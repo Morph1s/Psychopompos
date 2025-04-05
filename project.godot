@@ -13,3 +13,15 @@ config_version=5
 config/name="Psychopompos"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/graphics/icon.svg"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/resizable=false
+window/size/window_width_override=1280
+window/size/window_height_override=720
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
