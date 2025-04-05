@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cffw6mejnewc"]
+
+[ext_resource type="PackedScene" uid="uid://b421431h80p3u" path="res://scenes/ui/run_ui.tscn" id="4_nafsq"]
+
+[node name="Run" type="Node2D"]
+
+[node name="RelicHandler" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="DeckHandler" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EncounterHandler" type="Node2D" parent="."]
+
+[node name="RunUI" parent="." instance=ExtResource("4_nafsq")]
