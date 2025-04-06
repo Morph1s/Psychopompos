@@ -1,3 +1,4 @@
+class_name PlayerStats
 extends EntityStats
 
 @export var maximum_energy: int = 3:
