@@ -1,6 +1,6 @@
 extends Node
 
-var run_scene = load("res://scenes/ui/run.tscn")
+var run_scene = preload("res://scenes/ui/run.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
