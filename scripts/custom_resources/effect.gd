@@ -1,9 +1,9 @@
 class_name Effect
 extends Action
 
-enum EffectType {Buff, Debuff, Summon}
+enum EffectType {BUFF, DEBUFF, SUMMON}
 
-@export var EffectDuration: int = 2
+@export var effect_duration: int = 2
 
 func undo() -> void : 
 	pass

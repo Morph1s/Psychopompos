@@ -1,7 +1,7 @@
 class_name Attack
 extends Action
 
-@export var DamageStat: int = 6;
+@export var damage_stat: int = 6;
 
 func resolve() -> void : 
 	pass
