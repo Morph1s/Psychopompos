@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://omtvob7lkl85"]
+
+[ext_resource type="Texture2D" uid="uid://bjv6l3pqqnc1y" path="res://assets/graphics/cards/placeHolder_cards1.png" id="1_qnn7r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imta7"]
+size = Vector2(48, 64)
+
+[node name="Card" type="Area2D"]
+
+[node name="CardImage" type="Sprite2D" parent="."]
+texture = ExtResource("1_qnn7r")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 64)
+
+[node name="CardShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_imta7")
