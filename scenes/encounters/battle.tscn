@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckurrpodkua76"]
+
+[ext_resource type="Texture2D" uid="uid://dgaagv3k6cqil" path="res://assets/graphics/background/placeholder_canvas1.png" id="1_pfikb"]
+[ext_resource type="Script" uid="uid://4s8qo2wk58lm" path="res://scripts/battle/card_handler.gd" id="2_8apll"]
+[ext_resource type="PackedScene" uid="uid://6wnlmm80st27" path="res://scenes/characters/test_character.tscn" id="2_cymlh"]
+
+[node name="Battle" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_pfikb")
+centered = false
+
+[node name="CardHandler" type="Node2D" parent="." groups=["card_piles"]]
+script = ExtResource("2_8apll")
+
+[node name="EnemyHandler" type="Node2D" parent="."]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_cymlh")]
+position = Vector2(90, 260)
