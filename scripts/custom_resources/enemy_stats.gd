@@ -8,3 +8,4 @@ enum ActionPattern {
 
 @export var enemy_sprite: Texture
 @export var action_pattern: ActionPattern = ActionPattern.RANDOM
+@export var actions: Array[EnemyAction]
