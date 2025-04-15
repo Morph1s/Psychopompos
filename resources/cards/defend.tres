@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=7 format=3 uid="uid://r53s3kohc8k0"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_gmmty"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_4vhli"]
+[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend.gd" id="2_5nopr"]
+
+[sub_resource type="Resource" id="Resource_jcy5c"]
+script = ExtResource("2_5nopr")
+block_stat = 5
+target_type = 0
+metadata/_custom_type_script = "uid://riw8fvdo6pdh"
+
+[sub_resource type="Gradient" id="Gradient_4vhli"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 0.498039, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5nopr"]
+gradient = SubResource("Gradient_4vhli")
+width = 48
+fill_from = Vector2(0, 1)
+
+[resource]
+script = ExtResource("2_4vhli")
+texture = SubResource("GradientTexture2D_5nopr")
+on_play_action = Array[ExtResource("1_gmmty")]([SubResource("Resource_jcy5c")])
+on_graveyard_action = Array[ExtResource("1_gmmty")]([])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
