@@ -7,7 +7,7 @@ extends Resource
 		current_hitpoints = clamp(current_hitpoints, 0, maximum_hitpoints) # limit hp if maxhp get reduced
 		# call stats changed eventbus
 
-var current_hitpoints: int = maximum_hitpoints:
+var current_hitpoints: int = 1:
 	set(value):
 		current_hitpoints = clamp(value, 0, maximum_hitpoints)
 		if current_hitpoints == 0:
@@ -18,6 +18,9 @@ var block: int = 0:
 	set(value):
 		block = clamp(value, 0, 999)
 		# call stats changed eventbus
+
+func initialize() -> void:
+	current_hitpoints = maximum_hitpoints
 
 func take_damage(damage_value: int) -> void:
 	if damage_value <= 0:

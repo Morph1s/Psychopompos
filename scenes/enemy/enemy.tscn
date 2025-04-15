@@ -9,11 +9,11 @@ size = Vector2(53, 51)
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_4a83h")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="EnemyImage" type="Sprite2D" parent="."]
 texture = ExtResource("2_a3pup")
 region_enabled = true
 region_rect = Rect2(17, 19, 35, 38)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="EnemyShape" type="CollisionShape2D" parent="."]
 position = Vector2(-5.5, -6.5)
 shape = SubResource("RectangleShape2D_40wdo")
