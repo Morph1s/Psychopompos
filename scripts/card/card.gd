@@ -5,13 +5,10 @@ signal card_play_finished
 
 var card_type: CardType
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-
-func _ready():
-	print(rng.randi_range(0, 0))
-	$CardImage.texture = card_type.texture 
-
+ 
 func initialize(card_type: CardType) -> void:
 	self.card_type = card_type
+	$CardImage.texture = card_type.texture
 
 ## function to be called on playing the card
 ## 
