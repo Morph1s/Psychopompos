@@ -2,17 +2,16 @@ extends Area2D
 
 signal card_play_finished
 
-var resource: Resource
+
 var card_type: CardType
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	print(rng.randi_range(0, 0))
-	card_type = resource
 	$CardImage.texture = card_type.texture 
 
-func initilaize(resource) -> void:
-	resource = resource
+func initialize(card_type: CardType) -> void:
+	self.card_type = card_type
 
 ## function to be called on playing the card
 ## 
