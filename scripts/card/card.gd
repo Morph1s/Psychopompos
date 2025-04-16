@@ -2,11 +2,15 @@ extends Area2D
 
 signal card_play_finished
 
+var res = load("res://resources/cards/defend.tres")  # für test-Zwecke mit defend gefüllt
 var card_type: CardType
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	print(rng.randi_range(0, 0))
+	card_type = res
+	$CardImage.texture = card_type.texture 
+	
 
 ## function to be called on playing the card
 ## 
