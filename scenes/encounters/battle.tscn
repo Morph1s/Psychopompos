@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckurrpodkua76"]
+[gd_scene load_steps=8 format=3 uid="uid://ckurrpodkua76"]
 
 [ext_resource type="Texture2D" uid="uid://dgaagv3k6cqil" path="res://assets/graphics/background/placeholder_canvas1.png" id="1_pfikb"]
-[ext_resource type="Texture2D" uid="uid://bjv6l3pqqnc1y" path="res://assets/graphics/cards/placeHolder_cards1.png" id="2_5ildr"]
 [ext_resource type="Script" uid="uid://4s8qo2wk58lm" path="res://scripts/battle/card_handler.gd" id="2_8apll"]
 [ext_resource type="PackedScene" uid="uid://6wnlmm80st27" path="res://scenes/characters/test_character.tscn" id="2_cymlh"]
+
+[sub_resource type="Gradient" id="Gradient_cymlh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8apll"]
+gradient = SubResource("Gradient_cymlh")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_5ildr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1mqim"]
+gradient = SubResource("Gradient_5ildr")
+fill_from = Vector2(0, 1)
 
 [node name="Battle" type="Node2D"]
 
@@ -45,10 +56,9 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="BackCardImage" type="Sprite2D" parent="CardHandler/CardUI/CardInterface/DrawPile"]
-position = Vector2(-53, 2)
-texture = ExtResource("2_5ildr")
-centered = false
-offset = Vector2(5, 0)
+position = Vector2(25, 35)
+scale = Vector2(0.703125, 1)
+texture = SubResource("GradientTexture2D_8apll")
 
 [node name="Hand" type="HBoxContainer" parent="CardHandler/CardUI/CardInterface"]
 custom_minimum_size = Vector2(50, 0)
@@ -73,8 +83,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="FrontCardImage" type="Sprite2D" parent="CardHandler/CardUI/CardInterface/RightSide/DiscardPile"]
-position = Vector2(18, 66)
-texture = ExtResource("2_5ildr")
+position = Vector2(25.5, 35)
+scale = Vector2(0.734375, 1)
+texture = SubResource("GradientTexture2D_1mqim")
 
 [node name="EndTurnButton" type="Button" parent="CardHandler/CardUI/CardInterface/RightSide"]
 layout_mode = 2
