@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckurrpodkua76"]
+[gd_scene load_steps=5 format=3 uid="uid://ckurrpodkua76"]
 
 [ext_resource type="Texture2D" uid="uid://dgaagv3k6cqil" path="res://assets/graphics/background/placeholder_canvas1.png" id="1_pfikb"]
+[ext_resource type="Texture2D" uid="uid://bjv6l3pqqnc1y" path="res://assets/graphics/cards/placeHolder_cards1.png" id="2_5ildr"]
 [ext_resource type="Script" uid="uid://4s8qo2wk58lm" path="res://scripts/battle/card_handler.gd" id="2_8apll"]
 [ext_resource type="PackedScene" uid="uid://6wnlmm80st27" path="res://scenes/characters/test_character.tscn" id="2_cymlh"]
 
@@ -11,9 +12,81 @@ texture = ExtResource("1_pfikb")
 centered = false
 
 [node name="CardHandler" type="Node2D" parent="." groups=["card_piles"]]
+position = Vector2(152, 266)
 script = ExtResource("2_8apll")
 
+[node name="CardUI" type="Control" parent="CardHandler"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -46.0
+offset_right = 488.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CardInterface" type="HBoxContainer" parent="CardHandler/CardUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawPile" type="Button" parent="CardHandler/CardUI/CardInterface"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="BackCardImage" type="Sprite2D" parent="CardHandler/CardUI/CardInterface/DrawPile"]
+position = Vector2(-53, 2)
+texture = ExtResource("2_5ildr")
+centered = false
+offset = Vector2(5, 0)
+
+[node name="Hand" type="HBoxContainer" parent="CardHandler/CardUI/CardInterface"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightSide" type="VBoxContainer" parent="CardHandler/CardUI/CardInterface"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Grave" type="Button" parent="CardHandler/CardUI/CardInterface/RightSide"]
+layout_mode = 2
+size_flags_vertical = 0
+toggle_mode = true
+text = "Grave"
+
+[node name="DiscardPile" type="Button" parent="CardHandler/CardUI/CardInterface/RightSide"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="FrontCardImage" type="Sprite2D" parent="CardHandler/CardUI/CardInterface/RightSide/DiscardPile"]
+position = Vector2(18, 66)
+texture = ExtResource("2_5ildr")
+
+[node name="EndTurnButton" type="Button" parent="CardHandler/CardUI/CardInterface/RightSide"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "EndTurn"
+
 [node name="EnemyHandler" type="Node2D" parent="."]
+position = Vector2(0, 20)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_cymlh")]
 position = Vector2(90, 260)
+
+[connection signal="button_up" from="CardHandler/CardUI/CardInterface/DrawPile" to="CardHandler" method="_on_draw_pile_button_up"]
+[connection signal="button_up" from="CardHandler/CardUI/CardInterface/RightSide/DiscardPile" to="CardHandler" method="_on_discard_pile_button_up"]
+[connection signal="button_up" from="CardHandler/CardUI/CardInterface/RightSide/EndTurnButton" to="CardHandler" method="_on_end_turn_button_button_up"]
