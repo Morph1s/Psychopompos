@@ -27,9 +27,3 @@ func _update_display() -> void:
 	hp_bar.value = current_hp
 	hp_label.text = "HP: %d / %d" % [current_hp, max_hp]
 	block_label.text = "Block: %d" % block_value
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	set_current_hp(50)
-	set_max_hp(200)
-	set_block(20)
