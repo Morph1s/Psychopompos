@@ -1,6 +1,8 @@
 class_name CardHandler
 extends Node2D
 
+
+
 var draw_pile: Array[CardType]
 var discard_pile: Array[CardType] = []
 
