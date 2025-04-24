@@ -41,7 +41,7 @@ func _get_targets(targeting_mode: Action.TargetType, target_id: int) -> Array[No
 			if enemy.id != target_id:
 				to_return.append(enemy)
 		
-	elif targeting_mode == Action.TargetType.ENEMY_ALL_EXCLUSIVE:
+	elif targeting_mode == Action.TargetType.ENEMY_RANDOM:
 		var enemies := get_tree().get_nodes_in_group("enemy")
 		to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 	
