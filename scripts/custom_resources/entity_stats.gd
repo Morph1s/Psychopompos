@@ -22,6 +22,11 @@ var block: int = 0:
 func initialize() -> void:
 	current_hitpoints = maximum_hitpoints
 
+func create_instance() -> EntityStats:
+	var new_entity = self.duplicate()
+	new_entity.initialize()
+	return new_entity
+
 func take_damage(damage_value: int) -> void:
 	if damage_value <= 0:
 		return
