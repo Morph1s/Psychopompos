@@ -6,6 +6,7 @@
 size = Vector2(48, 64)
 
 [node name="Card" type="Area2D"]
+z_index = 1
 script = ExtResource("1_imta7")
 
 [node name="CardImage" type="Sprite2D" parent="."]

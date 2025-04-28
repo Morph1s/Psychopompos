@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardLibrary" load_steps=5 format=3 uid="uid://iki6vgrbgc7l"]
+
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="1_myw5c"]
+[ext_resource type="Script" uid="uid://ckp8ofhnx14eh" path="res://scripts/custom_resources/card_library.gd" id="2_p71n3"]
+[ext_resource type="Resource" uid="uid://ch25cteno6qfm" path="res://resources/cards/strike.tres" id="3_5vy6m"]
+[ext_resource type="Resource" uid="uid://r53s3kohc8k0" path="res://resources/cards/defend.tres" id="4_cywgr"]
+
+[resource]
+script = ExtResource("2_p71n3")
+starting_deck = Array[ExtResource("1_myw5c")]([ExtResource("3_5vy6m"), ExtResource("3_5vy6m"), ExtResource("3_5vy6m"), ExtResource("3_5vy6m"), ExtResource("3_5vy6m"), ExtResource("4_cywgr"), ExtResource("4_cywgr"), ExtResource("4_cywgr"), ExtResource("4_cywgr"), ExtResource("4_cywgr")])
+common_cards = Array[ExtResource("1_myw5c")]([])
+rare_cards = Array[ExtResource("1_myw5c")]([])
+epic_cards = Array[ExtResource("1_myw5c")]([])
+metadata/_custom_type_script = "uid://ckp8ofhnx14eh"
