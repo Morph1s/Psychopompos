@@ -1,3 +1,4 @@
+class_name Card
 extends Area2D
 
 signal card_play_finished
