@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://qm4xvb6vqwt6"]
+
+[ext_resource type="Script" uid="uid://rqst1nkft1gr" path="res://scripts/ui/entity_hud.gd" id="1_qf4hu"]
+
+[sub_resource type="Gradient" id="Gradient_qf4hu"]
+colors = PackedColorArray(0.416754, 8.48304e-07, 2.16588e-07, 1, 0.947406, 3.77826e-06, 1.73271e-06, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_elymy"]
+gradient = SubResource("Gradient_qf4hu")
+width = 128
+height = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_cu66s"]
+font_size = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_yp36h"]
+font_size = 9
+
+[node name="EntityHud" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 41.0
+offset_right = 40.0
+offset_bottom = 81.0
+script = ExtResource("1_qf4hu")
+
+[node name="HpBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 8.0
+value = 50.0
+texture_progress = SubResource("GradientTexture2D_elymy")
+
+[node name="BlockLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 47.0
+offset_bottom = 21.0
+text = "Block:"
+label_settings = SubResource("LabelSettings_cu66s")
+
+[node name="HpLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = -13.0
+offset_right = 40.0
+text = "HP:"
+label_settings = SubResource("LabelSettings_yp36h")
