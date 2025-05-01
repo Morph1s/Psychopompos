@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=6 format=3 uid="uid://cp5rxr3mp8elq"]
+
+[ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="1_xdanq"]
+[ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="2_7egoo"]
+[ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="2_318jf"]
+[ext_resource type="Resource" uid="uid://ev37vnfhspoc" path="res://resources/enemies/normal_attack.tres" id="2_irtgr"]
+[ext_resource type="Resource" uid="uid://kfo4jefrvumr" path="res://resources/enemies/swift_attack.tres" id="3_lbsk5"]
+
+[resource]
+script = ExtResource("2_7egoo")
+enemy_sprite = ExtResource("2_318jf")
+action_pattern = 0
+actions = Array[ExtResource("1_xdanq")]([ExtResource("2_irtgr"), ExtResource("3_lbsk5")])
+maximum_hitpoints = 20
+metadata/_custom_type_script = "uid://bq170hnpyow8i"

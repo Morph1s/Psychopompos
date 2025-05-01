@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyAction" load_steps=7 format=3 uid="uid://kfo4jefrvumr"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_sqapn"]
+[ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="2_8o47x"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack.gd" id="2_op2l1"]
+[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend.gd" id="3_kxpjv"]
+
+[sub_resource type="Resource" id="Resource_g848u"]
+script = ExtResource("2_op2l1")
+damage_stat = 5
+target_type = 0
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_u633v"]
+script = ExtResource("3_kxpjv")
+block_stat = 8
+target_type = 0
+metadata/_custom_type_script = "uid://riw8fvdo6pdh"
+
+[resource]
+script = ExtResource("2_8o47x")
+action_catalogue = Array[ExtResource("1_sqapn")]([SubResource("Resource_g848u"), SubResource("Resource_u633v")])
+metadata/_custom_type_script = "uid://djsgq2wlihskl"

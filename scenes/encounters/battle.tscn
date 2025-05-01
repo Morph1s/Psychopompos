@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckurrpodkua76"]
+[gd_scene load_steps=10 format=3 uid="uid://ckurrpodkua76"]
 
 [ext_resource type="Texture2D" uid="uid://dgaagv3k6cqil" path="res://assets/graphics/background/placeholder_canvas1.png" id="1_pfikb"]
 [ext_resource type="Script" uid="uid://4s8qo2wk58lm" path="res://scripts/battle/card_handler.gd" id="2_8apll"]
 [ext_resource type="PackedScene" uid="uid://6wnlmm80st27" path="res://scenes/characters/test_character.tscn" id="2_cymlh"]
+[ext_resource type="Script" uid="uid://crlh3bv2ij6qu" path="res://scripts/battle/enemy_handler.gd" id="3_5ildr"]
 [ext_resource type="Script" uid="uid://do01jrwml771o" path="res://scripts/battle/card_ui.gd" id="4_8apll"]
 
 [sub_resource type="Gradient" id="Gradient_cymlh"]
@@ -27,6 +28,7 @@ centered = false
 script = ExtResource("2_8apll")
 
 [node name="EnemyHandler" type="Node2D" parent="."]
+script = ExtResource("3_5ildr")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_cymlh")]
 position = Vector2(90, 260)
