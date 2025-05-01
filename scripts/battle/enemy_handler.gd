@@ -35,6 +35,16 @@ func _calculate_enemie_position(index: int, enemie_count: int) -> Vector2:
 	var enemy_x_position = ENEMY_PLACEMENT_CENTER_X + index * enemy_distance - enemy_distance * (enemie_count - 1) / 2
 	return Vector2(enemy_x_position, 240)
 
+func resolve_intent():
+	for enemy in enemies:
+		var timer = get_tree().create_timer(1)
+		await timer.timeout
+		enemy.resolve_intent()
+		
+func choose_intent():
+	for e in enemies:
+		e.choose_intent()
+
 
 
 func _ready() -> void:
