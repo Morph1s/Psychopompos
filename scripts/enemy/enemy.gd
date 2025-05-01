@@ -9,7 +9,7 @@ signal action_resolved
 @onready var shape: CollisionShape2D = $EnemyShape
 
 var id: int = 0
-var intent: int = -1 #Damit in Runde eins der intent auf null erhöht werden kann
+var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func initialize() -> void:
@@ -32,7 +32,7 @@ func resolve_intent() -> void:
 		action.resolve(_get_targets(action.target_type))
 	action_resolved.emit()
 
-func choose_intent(turn: int) -> void:
+func choose_intent() -> void:
 	if stats.action_pattern == stats.ActionPattern.LINEAR :
 		intent += 1
 		if intent >= stats.actions.size():
