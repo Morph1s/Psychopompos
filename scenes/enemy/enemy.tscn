@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="2_a3pup"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40wdo"]
-size = Vector2(53, 51)
+size = Vector2(49.5, 51)
 
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_4a83h")
@@ -15,5 +15,5 @@ region_enabled = true
 region_rect = Rect2(17, 19, 35, 38)
 
 [node name="EnemyShape" type="CollisionShape2D" parent="."]
-position = Vector2(-5.5, -6.5)
+position = Vector2(1.75, 0)
 shape = SubResource("RectangleShape2D_40wdo")

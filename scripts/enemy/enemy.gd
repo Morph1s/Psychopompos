@@ -1,3 +1,4 @@
+class_name Enemy
 extends Area2D
 
 signal action_resolved

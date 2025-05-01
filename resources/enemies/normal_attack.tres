@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyAction" load_steps=5 format=3 uid="uid://ev37vnfhspoc"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_kd44m"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack.gd" id="2_cc8lm"]
+[ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="2_lb0yl"]
+
+[sub_resource type="Resource" id="Resource_f60a5"]
+script = ExtResource("2_cc8lm")
+damage_stat = 10
+target_type = 0
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[resource]
+script = ExtResource("2_lb0yl")
+action_catalogue = Array[ExtResource("1_kd44m")]([SubResource("Resource_f60a5")])
+metadata/_custom_type_script = "uid://djsgq2wlihskl"
