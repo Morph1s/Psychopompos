@@ -28,20 +28,22 @@ script = ExtResource("1_qf4hu")
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 8.0
-value = 50.0
+value = 100.0
 texture_progress = SubResource("GradientTexture2D_elymy")
 
 [node name="BlockLabel" type="Label" parent="."]
 layout_mode = 0
+offset_left = 81.0
 offset_top = 8.0
-offset_right = 47.0
+offset_right = 128.0
 offset_bottom = 21.0
 text = "Block:"
 label_settings = SubResource("LabelSettings_cu66s")
 
 [node name="HpLabel" type="Label" parent="."]
 layout_mode = 0
-offset_top = -13.0
+offset_top = 8.0
 offset_right = 40.0
+offset_bottom = 21.0
 text = "HP:"
 label_settings = SubResource("LabelSettings_yp36h")
