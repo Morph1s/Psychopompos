@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhrw1q2m7p5fa"]
+
+[ext_resource type="Script" uid="uid://cf0ptkb7xnhj" path="res://scripts/map/map.gd" id="1_sxf4j"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_sxf4j")
+
+[node name="MapLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MapUI" type="Control" parent="MapLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SampleEncounterButtons" type="VBoxContainer" parent="MapLayer/MapUI"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -68.0
+offset_right = 40.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleButton" type="Button" parent="MapLayer/MapUI/SampleEncounterButtons"]
+layout_mode = 2
+text = "Battle"
+
+[node name="ShopButton" type="Button" parent="MapLayer/MapUI/SampleEncounterButtons"]
+layout_mode = 2
+text = "Shop"
+
+[node name="CampfireButton" type="Button" parent="MapLayer/MapUI/SampleEncounterButtons"]
+layout_mode = 2
+text = "Campfire"
+
+[node name="RandomButton" type="Button" parent="MapLayer/MapUI/SampleEncounterButtons"]
+layout_mode = 2
+text = "Random"
+
+[node name="ExitButton" type="Button" parent="MapLayer/MapUI"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -26.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = " x "
+
+[node name="MapBackground" type="TextureRect" parent="MapLayer/MapUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
