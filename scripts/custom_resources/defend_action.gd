@@ -1,4 +1,4 @@
-class_name Defend
+class_name DefendAction
 extends Action
 
 @export var block_stat: int = 5
