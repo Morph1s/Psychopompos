@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b086lic3ys2g6"]
+[gd_scene load_steps=3 format=3 uid="uid://b086lic3ys2g6"]
 
 [ext_resource type="Script" uid="uid://batcfmukfigsj" path="res://scripts/characters/player.gd" id="1_x31xa"]
+[ext_resource type="PackedScene" uid="uid://bye227bai3ofb" path="res://scenes/ui/player_hud.tscn" id="2_1bdar"]
 
 [node name="Character" type="Node2D" groups=["player"]]
 script = ExtResource("1_x31xa")
 
 [node name="CharacterImage" type="Sprite2D" parent="."]
+
+[node name="PlayerHud" parent="." instance=ExtResource("2_1bdar")]
+offset_left = -54.0
+offset_top = 40.0
+offset_right = -14.0
+offset_bottom = 80.0

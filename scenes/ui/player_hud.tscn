@@ -4,20 +4,62 @@
 [ext_resource type="Script" uid="uid://75rbvg66ls2v" path="res://scripts/ui/player_hud.gd" id="2_31ty4"]
 
 [sub_resource type="Gradient" id="Gradient_31ty4"]
-colors = PackedColorArray(1.44392e-07, 0.246031, 0.515232, 1, 0.173203, 0.511429, 0.931974, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.623)
+colors = PackedColorArray(1, 0, 0, 1, 0.278431, 1, 0.992157, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u16pa"]
 gradient = SubResource("Gradient_31ty4")
-width = 128
+width = 144
 height = 8
 
 [node name="PlayerHud" instance=ExtResource("1_e6e0b")]
+offset_left = 20.0
+offset_top = 130.0
+offset_right = 60.0
+offset_bottom = 170.0
 script = ExtResource("2_31ty4")
 
+[node name="HpBar" parent="." index="0"]
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 76.0
+offset_bottom = 15.0
+
+[node name="BlockLabel" parent="." index="1"]
+offset_left = 12.0
+offset_top = 15.0
+offset_right = 59.0
+offset_bottom = 28.0
+
+[node name="HpLabel" parent="." index="2"]
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 17.0
+
 [node name="EnergyBar" type="TextureProgressBar" parent="." index="3"]
-layout_mode = 0
-offset_top = -12.0
-offset_right = 128.0
-offset_bottom = -4.0
-value = 100.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.375
+anchor_right = 0.05
+anchor_bottom = 0.375
+offset_left = -7.0
+offset_top = 82.0
+offset_right = 137.0
+offset_bottom = 90.0
+rotation = -1.5708
+min_value = -5.0
+max_value = 3.0
+value = 3.0
 texture_progress = SubResource("GradientTexture2D_u16pa")
+
+[node name="Label" type="Label" parent="EnergyBar" index="0"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -7.0
+offset_right = 104.0
+offset_bottom = 16.0
+rotation = 1.5708
+pivot_offset = Vector2(26, 11)

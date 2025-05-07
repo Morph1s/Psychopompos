@@ -7,14 +7,6 @@
 [node name="EnemyHud" instance=ExtResource("1_n2lff")]
 script = ExtResource("2_84853")
 
-[node name="BlockLabel" parent="." index="1"]
-offset_left = 0.0
-offset_right = 47.0
-
-[node name="HpLabel" parent="." index="2"]
-offset_top = -3.0
-offset_bottom = 10.0
-
 [node name="IntentIndicator" type="TextureRect" parent="." index="3"]
 layout_mode = 0
 offset_top = -16.0
