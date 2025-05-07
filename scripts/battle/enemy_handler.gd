@@ -13,10 +13,10 @@ var rng_zahl: int
 var place: Vector2
 
 func load_enemy(loading_enemies: Array[EnemyStats]) :
-	for e in loading_enemies:
+	for enemy in loading_enemies:
 		var new_enemy: Enemy = ENEMY.instantiate() as Enemy
 		self.add_child(new_enemy)
-		new_enemy.stats = e
+		new_enemy.stats = enemy
 		new_enemy.initialize()
 		rng_zahl = rng.randi_range(1,400)
 		new_enemy.position = Vector2(670,rng_zahl) # platziert zuffälig rechts ausser sichtweite
@@ -26,9 +26,9 @@ func load_enemy(loading_enemies: Array[EnemyStats]) :
 func place_enemy_in_scene():
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
-	for e in enemies:
-		place = _calculate_enemie_position(e.get_index(), enemies.size())
-		tween.tween_property(e,"position",place,SPEED)
+	for enemy in enemies:
+		place = _calculate_enemie_position(enemy.get_index(), enemies.size())
+		tween.tween_property(enemy,"position",place,SPEED)
 
 func _calculate_enemie_position(index: int, enemie_count: int) -> Vector2:
 	var enemy_distance: int = ENEMY_WIDTH - round(enemie_count / 2) * 2
@@ -37,13 +37,13 @@ func _calculate_enemie_position(index: int, enemie_count: int) -> Vector2:
 
 func resolve_intent():
 	for enemy in enemies:
+		enemy.resolve_intent()
 		var timer = get_tree().create_timer(1)
 		await timer.timeout
-		enemy.resolve_intent()
-		
+
 func choose_intent():
-	for e in enemies:
-		e.choose_intent()
+	for enemy in enemies:
+		enemy.choose_intent()
 
 
 
