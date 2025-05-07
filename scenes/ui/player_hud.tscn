@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bye227bai3ofb"]
+
+[ext_resource type="PackedScene" uid="uid://qm4xvb6vqwt6" path="res://scenes/ui/entity_hud.tscn" id="1_e6e0b"]
+[ext_resource type="Script" uid="uid://75rbvg66ls2v" path="res://scripts/ui/player_hud.gd" id="2_31ty4"]
+
+[sub_resource type="Gradient" id="Gradient_31ty4"]
+colors = PackedColorArray(1.44392e-07, 0.246031, 0.515232, 1, 0.173203, 0.511429, 0.931974, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u16pa"]
+gradient = SubResource("Gradient_31ty4")
+width = 128
+height = 8
+
+[node name="PlayerHud" instance=ExtResource("1_e6e0b")]
+script = ExtResource("2_31ty4")
+
+[node name="EnergyBar" type="TextureProgressBar" parent="." index="3"]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 128.0
+offset_bottom = -4.0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_u16pa")
