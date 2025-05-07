@@ -1,4 +1,4 @@
-class_name Attack
+class_name AttackAction
 extends Action
 
 @export var damage_stat: int = 6;
