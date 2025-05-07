@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_sqapn"]
 [ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="2_8o47x"]
-[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack.gd" id="2_op2l1"]
-[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend.gd" id="3_kxpjv"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_op2l1"]
+[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="3_kxpjv"]
 
 [sub_resource type="Resource" id="Resource_g848u"]
 script = ExtResource("2_op2l1")
