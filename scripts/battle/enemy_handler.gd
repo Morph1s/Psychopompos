@@ -1,8 +1,8 @@
 extends Node2D
 
 var ENEMY = preload("res://scenes/enemy/enemy.tscn")
-var ENEMY_WIDTH: int = 40
-var ENEMY_PLACEMENT_CENTER_X: int = 430
+var ENEMY_WIDTH: int = 64
+var ENEMY_PLACEMENT_CENTER_X: int = 320 - 100
 var SPEED: float = 0.5
 
 var enemies_stats: Array[EnemyStats]
@@ -18,8 +18,8 @@ func load_enemy(loading_enemies: Array[EnemyStats]) :
 		self.add_child(new_enemy)
 		new_enemy.stats = enemy
 		new_enemy.initialize()
-		rng_zahl = rng.randi_range(1,400)
-		new_enemy.position = Vector2(670,rng_zahl) # platziert zuffälig rechts ausser sichtweite
+		rng_zahl = rng.randi_range(1,180)
+		new_enemy.position = Vector2(340,rng_zahl) # platziert zuffälig rechts ausser sichtweite
 		enemies.append(new_enemy)
 	place_enemy_in_scene()
 
@@ -33,7 +33,7 @@ func place_enemy_in_scene():
 func _calculate_enemie_position(index: int, enemie_count: int) -> Vector2:
 	var enemy_distance: int = ENEMY_WIDTH - round(enemie_count / 2) * 2
 	var enemy_x_position = ENEMY_PLACEMENT_CENTER_X + index * enemy_distance - enemy_distance * (enemie_count - 1) / 2
-	return Vector2(enemy_x_position, 240)
+	return Vector2(enemy_x_position, 82)
 
 func resolve_intent():
 	for enemy in enemies:

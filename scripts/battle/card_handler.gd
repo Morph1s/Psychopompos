@@ -6,11 +6,11 @@ extends Node2D
 const TEST_CHARACTER_CARDS = preload("res://resources/characters/test_character_cards.tres") 
 
 const CARD = preload("res://scenes/card/card.tscn")
-const DRAW_PILE_COORDS: Vector2 = Vector2(40.0, 312.0)
+const DRAW_PILE_COORDS: Vector2 = Vector2(24.0, 148.0)
 const MAX_HAND_SIZE: int = 10
-const CARD_Y_POSITION: int = 312
-const SCREEN_CENTER_X: int = 320
-const CARD_WIDTH = 48
+const CARD_Y_POSITION: int = 152
+const SCREEN_CENTER_X: int = 160
+const CARD_WIDTH = 32
 const CARD_DRAW_SPEED: float = 0.2
 
 var draw_pile: Array[CardType]
