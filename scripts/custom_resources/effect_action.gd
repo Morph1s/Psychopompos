@@ -1,4 +1,4 @@
-class_name Effect
+class_name EffectAction
 extends Action
 
 enum EffectType {STRENGTH, DEXTERITY}
