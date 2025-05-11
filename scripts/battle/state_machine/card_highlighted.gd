@@ -11,6 +11,7 @@ func enter():
 
 func exit():
 	battle_ui.set_end_turn_button_enabled(false)
+	battle_ui.end_turn_button_pressed.disconnect(_on_end_turn_button_pressed)
 	print("Exited CardHighlighted")
 
 
