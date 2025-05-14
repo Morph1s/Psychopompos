@@ -17,6 +17,9 @@
 
 [node name="Battle" type="Node2D"]
 
+[node name="CardHandler" type="Node2D" parent="." groups=["card_piles"]]
+script = ExtResource("2_8apll")
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_g3s1b")
 
@@ -50,9 +53,6 @@ script = ExtResource("9_mqlpk")
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_pfikb")
 centered = false
-
-[node name="CardHandler" type="Node2D" parent="." groups=["card_piles"]]
-script = ExtResource("2_8apll")
 
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("3_5ildr")
