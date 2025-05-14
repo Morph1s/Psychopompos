@@ -12,6 +12,7 @@ const CARD_Y_POSITION: int = 152
 const SCREEN_CENTER_X: int = 160
 const CARD_WIDTH = 32
 const CARD_DRAW_SPEED: float = 0.2
+const DISCARD_PILE_COORDS: Vector2 = Vector2(360.0, 148.0)
 
 var draw_pile: Array[CardType]
 var hand: Array[Card] = []
@@ -27,7 +28,8 @@ func initialize() -> void:
 # currently used for testing purposes
 func _ready() -> void:
 	initialize()
-	draw_cards(5)
+	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_START, Callable(self, "_on_player_turn_start"))
+	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END, Callable(self, "_on_player_turn_end"))
 
 ## draws "amount" cards from the drawpile to hand
 func draw_cards(amount: int) -> void:
@@ -72,6 +74,29 @@ func shuffle_discard_pile_into_draw_pile() -> void:
 	discard_pile = []
 	draw_pile.shuffle()
 
+func discard_hand() -> void:
+	while hand.size() > 0:
+		var card = hand.back()
+		await discard_card_from_hand(card)
+
+func discard_card_from_hand(card: Card) -> void:
+	if not hand.has(card):
+		return
+	
+	# remove the card from hand and add it to discard pile
+	hand.erase(card)
+	discard_pile.append(card.card_type)
+	
+	# animate discarding
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "position", DISCARD_PILE_COORDS, CARD_DRAW_SPEED)
+	await tween.finished
+	
+	card.queue_free()
+	
+	if not hand.is_empty():
+		_update_hand_positions()
+
 #region local functions
 
 # used to animate the cards to their respective position
@@ -85,5 +110,15 @@ func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 	var card_distance: int = CARD_WIDTH - round(hand_count / 2) * 2
 	var card_x_position = SCREEN_CENTER_X + index * card_distance - card_distance * (hand_count - 1) / 2
 	return Vector2(card_x_position, CARD_Y_POSITION)
+
+#endregion
+
+#region game loop helpers
+
+func _on_player_turn_start():
+	draw_cards(5)
+
+func _on_player_turn_end():
+	discard_hand()
 
 #endregion
