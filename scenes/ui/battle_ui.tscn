@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4e78agpxhvh3"]
+
+[ext_resource type="Script" uid="uid://do01jrwml771o" path="res://scripts/battle/battle_ui.gd" id="1_2hywk"]
+
+[sub_resource type="Gradient" id="Gradient_cymlh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8apll"]
+gradient = SubResource("Gradient_cymlh")
+width = 32
+height = 48
+
+[sub_resource type="Gradient" id="Gradient_5ildr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1mqim"]
+gradient = SubResource("Gradient_5ildr")
+width = 32
+height = 48
+
+[node name="BattleUI" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("1_2hywk")
+metadata/_edit_lock_ = true
+
+[node name="Grave" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 4.0
+offset_right = -4.0
+grow_horizontal = 0
+size_flags_vertical = 0
+toggle_mode = true
+text = "Grave"
+
+[node name="EndTurnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -4.0
+offset_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+disabled = true
+text = "EndTurn"
+
+[node name="DrawPile" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_bottom = -4.0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_8apll")
+
+[node name="DiscardPile" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_1mqim")
+
+[connection signal="button_up" from="EndTurnButton" to="." method="_on_end_turn_button_button_up"]
+[connection signal="gui_input" from="DrawPile" to="." method="_on_draw_pile_gui_input"]
+[connection signal="gui_input" from="DiscardPile" to="." method="_on_discard_pile_gui_input"]

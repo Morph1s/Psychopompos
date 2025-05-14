@@ -3,20 +3,20 @@ extends Control
 
 @onready var end_turn_button: Button = $EndTurnButton
 
-signal discard_pile_pressed
-signal draw_pile_pressed
-signal end_turn_button_pressed
+func _ready() -> void:
+	EventBusHandler.connect_to_event(EventBus.Event.ENTERED_IDLE, _on_event_bus_entered_idle)
 
 func _on_discard_pile_gui_input(event: InputEvent) -> void:
 	if event.is_released() :
-		discard_pile_pressed.emit()
+		pass
 
 func _on_end_turn_button_button_up() -> void:
-	end_turn_button_pressed.emit()
+	EventBusHandler.call_event(EventBus.Event.END_TURN_BUTTON)
+	end_turn_button.disabled = true
 
 func _on_draw_pile_gui_input(event: InputEvent) -> void:
 	if event.is_released() :
-		draw_pile_pressed.emit()
+		pass
 
-func set_end_turn_button_enabled(enabled: bool) -> void:
-	end_turn_button.disabled = not enabled
+func _on_event_bus_entered_idle() -> void:
+	end_turn_button.disabled = false
