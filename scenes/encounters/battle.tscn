@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ckurrpodkua76"]
+[gd_scene load_steps=15 format=3 uid="uid://ckurrpodkua76"]
 
 [ext_resource type="Script" uid="uid://c65koxneqq7ba" path="res://scripts/battle/state_machine/player_start_turn.gd" id="1_1mqim"]
 [ext_resource type="Script" uid="uid://c0x53jyxyhdli" path="res://scripts/battle/state_machine/state_machine.gd" id="1_g3s1b"]
@@ -9,88 +9,13 @@
 [ext_resource type="Script" uid="uid://crlh3bv2ij6qu" path="res://scripts/battle/enemy_handler.gd" id="3_5ildr"]
 [ext_resource type="Script" uid="uid://nk7amndct7q3" path="res://scripts/battle/state_machine/card_highlighted.gd" id="3_g3s1b"]
 [ext_resource type="Script" uid="uid://c2haf47cbxrvk" path="res://scripts/battle/state_machine/resolve_card.gd" id="4_6die2"]
-[ext_resource type="Script" uid="uid://do01jrwml771o" path="res://scripts/battle/battle_ui.gd" id="4_8apll"]
 [ext_resource type="Script" uid="uid://8cfdfrue4qpi" path="res://scripts/battle/state_machine/player_end_turn.gd" id="5_dqn5d"]
 [ext_resource type="Script" uid="uid://dnfuy53rabvw1" path="res://scripts/battle/state_machine/enemy_start_turn.gd" id="6_qhkyp"]
 [ext_resource type="Script" uid="uid://bxigu8nv1jbme" path="res://scripts/battle/state_machine/enemy_turn.gd" id="7_7id2p"]
 [ext_resource type="Script" uid="uid://c758m1ohji7ep" path="res://scripts/battle/state_machine/enemy_end_turn.gd" id="8_tt5ef"]
 [ext_resource type="Script" uid="uid://d4l21cq278qpt" path="res://scripts/battle/state_machine/exit.gd" id="9_mqlpk"]
 
-[sub_resource type="Gradient" id="Gradient_cymlh"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8apll"]
-gradient = SubResource("Gradient_cymlh")
-width = 32
-height = 48
-
-[sub_resource type="Gradient" id="Gradient_5ildr"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1mqim"]
-gradient = SubResource("Gradient_5ildr")
-width = 32
-height = 48
-
 [node name="Battle" type="Node2D"]
-
-[node name="BattleUI" type="Control" parent="."]
-z_index = 1
-layout_mode = 3
-anchors_preset = 0
-offset_right = 320.0
-offset_bottom = 180.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("4_8apll")
-metadata/_edit_lock_ = true
-
-[node name="Grave" type="Button" parent="BattleUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_top = 4.0
-offset_right = -4.0
-grow_horizontal = 0
-size_flags_vertical = 0
-toggle_mode = true
-text = "Grave"
-
-[node name="EndTurnButton" type="Button" parent="BattleUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -4.0
-offset_bottom = -64.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 8
-text = "EndTurn"
-
-[node name="DrawPile" type="TextureRect" parent="BattleUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_bottom = -4.0
-grow_vertical = 0
-texture = SubResource("GradientTexture2D_8apll")
-
-[node name="DiscardPile" type="TextureRect" parent="BattleUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -4.0
-offset_bottom = -4.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = SubResource("GradientTexture2D_1mqim")
 
 [node name="CardHandler" type="Node2D" parent="." groups=["card_piles"]]
 script = ExtResource("2_8apll")
@@ -133,8 +58,4 @@ centered = false
 script = ExtResource("3_5ildr")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_cymlh")]
-position = Vector2(90, 260)
-
-[connection signal="button_up" from="BattleUI/EndTurnButton" to="BattleUI" method="_on_end_turn_button_button_up"]
-[connection signal="gui_input" from="BattleUI/DrawPile" to="BattleUI" method="_on_draw_pile_gui_input"]
-[connection signal="gui_input" from="BattleUI/DiscardPile" to="BattleUI" method="_on_discard_pile_gui_input"]
+position = Vector2(82, 82)

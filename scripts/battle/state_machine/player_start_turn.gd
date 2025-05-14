@@ -3,8 +3,7 @@ extends State
 
 func enter():
 	print("Entered PlayerStartTurn")
-	battle_ui.set_end_turn_button_enabled(false)
-	
+
 	# 1. choose enemy intent
 	# 2. resolve start of turn effects
 	# 3. draw cards

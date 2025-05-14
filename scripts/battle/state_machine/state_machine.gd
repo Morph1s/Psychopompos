@@ -1,8 +1,6 @@
 class_name StateMachine
 extends Node
 
-@onready var battle_ui: Control = $"../BattleUI"
-
 var current_state: State = null
 var states: Dictionary = {}
 
@@ -11,10 +9,12 @@ func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			child.state_machine = self
-			child.battle_ui = battle_ui
 			states[child.name] = child
 		else:
 			push_warning("Child node '%s' does not extend State" % child.name)
+	
+	# notify that combat started
+	EventBusHandler.call_event(EventBus.Event.BATTLE_STARTED)
 	
 	# Set initial state
 	current_state = states.get("PlayerStartTurn")
