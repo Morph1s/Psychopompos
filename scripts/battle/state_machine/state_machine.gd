@@ -4,7 +4,7 @@ extends Node
 var current_state: State = null
 var states: Dictionary = {}
 
-func _ready() -> void:
+func initialize() -> void:
 	# Add all state nodes to the states dictionary
 	for child in get_children():
 		if child is State:

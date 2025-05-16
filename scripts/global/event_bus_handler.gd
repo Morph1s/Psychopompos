@@ -77,22 +77,22 @@ func connect_to_event(event: Event, function: Callable) -> void:
 ## disposes all connections of all events
 func clear_all_battle_events() -> void:
 	for function in entered_idle.get_connections():
-		entered_idle.disconnect(function)
+		entered_idle.disconnect(function["callable"])
 	
 	for function in player_turn_start.get_connections():
-		player_turn_start.disconnect(function)
+		player_turn_start.disconnect(function["callable"])
 	
 	for function in player_turn_end.get_connections():
-		player_turn_end.disconnect(function)
+		player_turn_end.disconnect(function["callable"])
 	
 	for function in enemies_turn_start.get_connections():
-		enemies_turn_start.disconnect(function)
+		enemies_turn_start.disconnect(function["callable"])
 	
 	for function in enemies_turn_end.get_connections():
-		enemies_turn_end.disconnect(function)
+		enemies_turn_end.disconnect(function["callable"])
 	
 	for function in card_played.get_connections():
-		card_played.disconnect(function)
+		card_played.disconnect(function["callable"])
 	
 	for function in end_turn_button_pressed.get_connections():
-		end_turn_button_pressed.disconnect(function)
+		end_turn_button_pressed.disconnect(function["callable"])
