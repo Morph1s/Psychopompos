@@ -18,4 +18,5 @@ func _on_event_bus_battle_ended() -> void:
 	for child in get_children():
 		if child is BattleUI:
 			child.queue_free()
+			print("Huiiiiiiiiiiiiiiiiiiii")
 			break
