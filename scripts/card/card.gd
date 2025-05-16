@@ -1,15 +1,55 @@
 class_name Card
 extends Area2D
 
+enum HighlightMode {NONE, HOVERED, SELECTED}
+
+signal mouse_entered_card(Node)
+signal mouse_exited_card(Node)
 signal card_play_finished
 
+@onready var card_image: Sprite2D = $CardImage
+@onready var card_highlight: Sprite2D = $CardHighlight
 
+var card_mode: HighlightMode = HighlightMode.NONE # for card-selecting/-hovering
 var card_type: CardType
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var mouse_is_in_card: bool = false
+var index: int = 0:
+	
+	set(value):
+		z_index = value
+		index = value
  
 func initialize(card_type: CardType) -> void:
 	self.card_type = card_type
 	$CardImage.texture = card_type.texture
+
+
+## function for CardHandler to handel card-state
+##
+## CardHandler passes the enum HighlightMode as mode 
+func highlight(mode: HighlightMode):
+	if mode == HighlightMode.HOVERED:
+		if card_mode == HighlightMode.SELECTED: 
+			self.card_image.position.y += 5
+			self.card_highlight.position.y += 5
+		card_highlight.show()
+		self.z_index = 10
+		card_mode = HighlightMode.HOVERED
+	elif mode == HighlightMode.SELECTED:
+		card_mode = HighlightMode.SELECTED
+		self.z_index = 11
+		self.card_image.position.y -= 5
+		self.card_highlight.position.y -= 5
+		card_highlight.show()
+	else:
+		if card_mode == HighlightMode.SELECTED: 
+			self.card_image.position.y += 5
+			self.card_highlight.position.y += 5
+		card_highlight.hide()
+		self.z_index = index
+		card_mode = HighlightMode.NONE
+
 
 ## function to be called on playing the card
 ## 
@@ -49,3 +89,13 @@ func _get_targets(targeting_mode: Action.TargetType, target_id: int) -> Array[No
 	return to_return
 	
 	#endregion
+
+
+func _on_mouse_entered() -> void:
+	mouse_is_in_card= true
+	mouse_entered_card.emit(self)
+
+
+func _on_mouse_exited() -> void:
+	mouse_is_in_card = false
+	mouse_exited_card.emit(self)

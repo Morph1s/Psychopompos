@@ -13,6 +13,12 @@ const SCREEN_CENTER_X: int = 320
 const CARD_WIDTH = 48
 const CARD_DRAW_SPEED: float = 0.2
 
+## for the highligting and select process
+var highlited_card: Card
+var second_card: Card
+var selected_card: Card
+
+
 var draw_pile: Array[CardType]
 var hand: Array[Card] = []
 var discard_pile: Array[CardType] = []
@@ -28,6 +34,8 @@ func initialize() -> void:
 func _ready() -> void:
 	initialize()
 	draw_cards(5)
+
+
 
 ## draws "amount" cards from the drawpile to hand
 func draw_cards(amount: int) -> void:
@@ -57,11 +65,15 @@ func add_card_to_hand(card_type: CardType) -> bool:
 	if hand.size() == MAX_HAND_SIZE:
 		print("hand size limit reached")
 		return false
-	
+	# instantiate new Card to CardHandler
 	var new_card: Card = CARD.instantiate() as Card
 	new_card.initialize(card_type)
 	new_card.position = DRAW_PILE_COORDS
 	self.add_child(new_card)
+	# connect mouse-signal
+	new_card.mouse_entered_card.connect(_on_mouse_entered_card)
+	new_card.mouse_exited_card.connect(_on_mouse_exited_card)
+	# dynamicly moves card to apropiate position
 	hand.push_front(new_card)
 	_update_hand_positions()
 	return true
@@ -82,8 +94,51 @@ func _update_hand_positions() -> void:
 		tween.tween_property(hand[i], "position", _calculate_card_position(i, hand.size()), CARD_DRAW_SPEED)
 
 func _calculate_card_position(index: int, hand_count: int) -> Vector2:
+	self.get_children()[index].index = index
 	var card_distance: int = CARD_WIDTH - round(hand_count / 2) * 2
 	var card_x_position = SCREEN_CENTER_X + index * card_distance - card_distance * (hand_count - 1) / 2
 	return Vector2(card_x_position, CARD_Y_POSITION)
+#endregion
 
+#region card-state-handler
+## handels state of cards (has some unconsidered edgecases)
+
+## handels state after mouseinput
+func _input(event: InputEvent) -> void:
+	# set card as an selected card
+	if  event.is_action_released("left_click") && highlited_card: 
+		if selected_card:  
+			selected_card.highlight(Card.HighlightMode.NONE)
+		highlited_card.highlight(Card.HighlightMode.SELECTED)
+		selected_card = highlited_card
+	# realeses selected card
+	if event.is_action_released("right_click") and selected_card:
+		if selected_card == highlited_card:
+			selected_card.highlight(Card.HighlightMode.HOVERED)
+			selected_card = null
+		else:
+			selected_card.highlight(Card.HighlightMode.NONE)
+			selected_card = null
+## handels state after mouse enters card
+func _on_mouse_entered_card(card):
+	if highlited_card == null :
+		if card!=selected_card:
+			card.highlight(Card.HighlightMode.HOVERED)
+		highlited_card = card
+	elif selected_card != card: 
+		second_card = card
+## handels state after mouse exits card
+func _on_mouse_exited_card(card):
+	if (card == highlited_card):
+		if card != selected_card:
+			card.highlight(Card.HighlightMode.NONE)
+		highlited_card = null
+	
+	if (card == second_card):
+		second_card = null
+	
+	if ((second_card != null) && (card != second_card)):
+		second_card.highlight(Card.HighlightMode.HOVERED)
+		highlited_card = second_card
+		second_card = null
 #endregion
