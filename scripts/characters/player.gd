@@ -6,6 +6,7 @@ extends Node2D
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 
 func take_damage(damage_amount: int) -> void:
+	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(damage_amount)
 
 func lose_hp(hp_loss: int) -> void:

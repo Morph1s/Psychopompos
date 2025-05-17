@@ -20,6 +20,7 @@ func initialize() -> void:
 	shape.shape.size = image.texture.get_size()
 
 func take_damage(damage_amount:int) -> void:
+	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(damage_amount)
 
 func lose_hp(hp_loss:int) -> void:
