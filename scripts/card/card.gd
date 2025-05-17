@@ -11,6 +11,10 @@ func initialize(card_type: CardType) -> void:
 	self.card_type = card_type
 	$CardImage.texture = card_type.texture
 
+## call after adding node to tree to setup the modifiers
+func set_modifier_handler() -> void:
+	card_type.set_modifier_handler(get_tree().get_first_node_in_group("player").modifier_handler)
+
 ## function to be called on playing the card
 ## 
 ## if the card requires targeting an enemy, add its id as the parameter
@@ -47,5 +51,5 @@ func _get_targets(targeting_mode: Action.TargetType, target_id: int) -> Array[No
 		to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 	
 	return to_return
-	
-	#endregion
+
+#endregion

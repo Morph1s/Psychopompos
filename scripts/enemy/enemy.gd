@@ -7,6 +7,7 @@ signal action_resolved
 
 @onready var image: Sprite2D = $EnemyImage
 @onready var shape: CollisionShape2D = $EnemyShape
+@onready var modifier_handler: ModifierHandler = $ModifierHandler
 
 var id: int = 0
 var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
@@ -14,6 +15,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func initialize() -> void:
 	stats.initialize()
+	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
 	shape.shape.size = image.texture.get_size()
 

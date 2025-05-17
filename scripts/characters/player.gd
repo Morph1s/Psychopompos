@@ -3,6 +3,8 @@ extends Node2D
 
 @export var stats : PlayerStats 
 
+@onready var modifier_handler: ModifierHandler = $ModifierHandler
+
 func take_damage(damage_amount: int) -> void:
 	stats.take_damage(damage_amount)
 

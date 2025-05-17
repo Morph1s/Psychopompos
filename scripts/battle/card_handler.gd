@@ -59,6 +59,7 @@ func add_card_to_hand(card_type: CardType) -> bool:
 	new_card.initialize(card_type)
 	new_card.position = DRAW_PILE_COORDS
 	self.add_child(new_card)
+	new_card.set_modifier_handler()
 	hand.push_front(new_card)
 	_update_hand_positions()
 	return true

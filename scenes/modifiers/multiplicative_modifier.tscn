@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhla05d6yrdyt"]
+
+[ext_resource type="Script" uid="uid://o8csungea2bt" path="res://scripts/modifiers/multiplicative_modifier.gd" id="1_momvs"]
+
+[node name="MultiplicativeModifier" type="Node"]
+script = ExtResource("1_momvs")
