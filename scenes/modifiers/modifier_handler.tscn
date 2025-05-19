@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc705r0vhke8v"]
+
+[ext_resource type="Script" uid="uid://di5y6n0iesr3x" path="res://scripts/modifiers/modifier_handler.gd" id="1_fcsld"]
+[ext_resource type="PackedScene" uid="uid://138hwp3lnu3u" path="res://scenes/modifiers/modifier.tscn" id="2_y8wsb"]
+
+[node name="ModifierHandler" type="Node"]
+script = ExtResource("1_fcsld")
+
+[node name="DamageTaken" parent="." instance=ExtResource("2_y8wsb")]
+
+[node name="DamageDealt" parent="." instance=ExtResource("2_y8wsb")]
+
+[node name="BlockGained" parent="." instance=ExtResource("2_y8wsb")]
