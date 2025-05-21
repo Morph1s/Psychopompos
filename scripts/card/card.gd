@@ -15,7 +15,6 @@ var card_type: CardType
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var mouse_is_in_card: bool = false
 var index: int = 0:
-	
 	set(value):
 		z_index = value
 		index = value
@@ -24,9 +23,7 @@ func initialize(card_type: CardType) -> void:
 	self.card_type = card_type
 	$CardImage.texture = card_type.texture
 
-
-## function for CardHandler to handel card-state
-##
+## function for CardHandler to handle card-state
 ## CardHandler passes the enum HighlightMode as mode 
 func highlight(mode: HighlightMode):
 	if mode == HighlightMode.HOVERED:
@@ -50,6 +47,9 @@ func highlight(mode: HighlightMode):
 		self.z_index = index
 		card_mode = HighlightMode.NONE
 
+## call after adding node to tree to setup the modifiers
+func set_modifier_handler() -> void:
+	card_type.set_modifier_handler(get_tree().get_first_node_in_group("player").modifier_handler)
 
 ## function to be called on playing the card
 ## 
@@ -88,13 +88,11 @@ func _get_targets(targeting_mode: Action.TargetType, target_id: int) -> Array[No
 	
 	return to_return
 	
-	#endregion
-
+#endregion
 
 func _on_mouse_entered() -> void:
 	mouse_is_in_card= true
 	mouse_entered_card.emit(self)
-
 
 func _on_mouse_exited() -> void:
 	mouse_is_in_card = false

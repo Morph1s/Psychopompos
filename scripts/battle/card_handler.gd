@@ -6,12 +6,13 @@ extends Node2D
 const TEST_CHARACTER_CARDS = preload("res://resources/characters/test_character_cards.tres") 
 
 const CARD = preload("res://scenes/card/card.tscn")
-const DRAW_PILE_COORDS: Vector2 = Vector2(40.0, 312.0)
+const DRAW_PILE_COORDS: Vector2 = Vector2(24.0, 148.0)
 const MAX_HAND_SIZE: int = 10
-const CARD_Y_POSITION: int = 312
-const SCREEN_CENTER_X: int = 320
-const CARD_WIDTH = 48
+const CARD_Y_POSITION: int = 152
+const SCREEN_CENTER_X: int = 160
+const CARD_WIDTH = 32
 const CARD_DRAW_SPEED: float = 0.2
+const DISCARD_PILE_COORDS: Vector2 = Vector2(360.0, 148.0)
 
 ## for the highligting and select process
 var highlited_card: Card
@@ -26,16 +27,10 @@ var discard_pile: Array[CardType] = []
 ## handels setup at beginning of battle.
 ## should only be called once to handle the initialization!
 func initialize() -> void:
+	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_START, Callable(self, "_on_player_turn_start"))
+	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END, Callable(self, "_on_player_turn_end"))
 	draw_pile.append_array(TEST_CHARACTER_CARDS.starting_deck)
 	draw_pile.shuffle()
-
-# ready fuction needs to be replaced by calling methods from battle later
-# currently used for testing purposes
-func _ready() -> void:
-	initialize()
-	draw_cards(5)
-
-
 
 ## draws "amount" cards from the drawpile to hand
 func draw_cards(amount: int) -> void:
@@ -73,6 +68,7 @@ func add_card_to_hand(card_type: CardType) -> bool:
 	# connect mouse-signal
 	new_card.mouse_entered_card.connect(_on_mouse_entered_card)
 	new_card.mouse_exited_card.connect(_on_mouse_exited_card)
+  new_card.set_modifier_handler()
 	# dynamicly moves card to apropiate position
 	hand.push_front(new_card)
 	_update_hand_positions()
@@ -83,6 +79,29 @@ func shuffle_discard_pile_into_draw_pile() -> void:
 	draw_pile.append_array(discard_pile)
 	discard_pile = []
 	draw_pile.shuffle()
+
+func discard_hand() -> void:
+	while hand.size() > 0:
+		var card = hand.back()
+		await discard_card_from_hand(card)
+
+func discard_card_from_hand(card: Card) -> void:
+	if not hand.has(card):
+		return
+	
+	# remove the card from hand and add it to discard pile
+	hand.erase(card)
+	discard_pile.append(card.card_type)
+	
+	# animate discarding
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "position", DISCARD_PILE_COORDS, CARD_DRAW_SPEED)
+	await tween.finished
+	
+	card.queue_free()
+	
+	if not hand.is_empty():
+		_update_hand_positions()
 
 #region local functions
 
@@ -141,4 +160,14 @@ func _on_mouse_exited_card(card):
 		second_card.highlight(Card.HighlightMode.HOVERED)
 		highlited_card = second_card
 		second_card = null
+#endregion
+
+#region battle loop helpers
+
+func _on_player_turn_start():
+	draw_cards(5)
+
+func _on_player_turn_end():
+	discard_hand()
+
 #endregion

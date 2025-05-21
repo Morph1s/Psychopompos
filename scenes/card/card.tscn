@@ -9,7 +9,7 @@
 gradient = SubResource("Gradient_qnn7r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imta7"]
-size = Vector2(48, 64)
+size = Vector2(32, 48)
 
 [node name="Card" type="Area2D"]
 z_index = 1
@@ -22,7 +22,7 @@ texture = ExtResource("2_imta7")
 [node name="CardImage" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_imta7")
 region_enabled = true
-region_rect = Rect2(0, 0, 48, 64)
+region_rect = Rect2(0, 0, 32, 48)
 
 [node name="CardShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_imta7")
