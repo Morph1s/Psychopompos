@@ -18,6 +18,7 @@ config/icon="res://assets/graphics/icon.svg"
 [autoload]
 
 EventBusHandler="*res://scripts/global/event_bus_handler.gd"
+DeckHandler="*res://scripts/global/deck_handler.gd"
 
 [display]
 

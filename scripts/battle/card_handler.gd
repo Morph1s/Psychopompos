@@ -1,10 +1,6 @@
 class_name CardHandler
 extends Node2D
 
-## only for testing purposes. cards are not properly initialized. 
-## will be handled in $Run/DeckHandler in the final version.
-const TEST_CHARACTER_CARDS = preload("res://resources/characters/test_character_cards.tres") 
-
 const CARD = preload("res://scenes/card/card.tscn")
 const DRAW_PILE_COORDS: Vector2 = Vector2(24.0, 148.0)
 const MAX_HAND_SIZE: int = 10
@@ -29,7 +25,7 @@ var discard_pile: Array[CardType] = []
 func initialize() -> void:
 	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_START, Callable(self, "_on_player_turn_start"))
 	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END, Callable(self, "_on_player_turn_end"))
-	draw_pile.append_array(TEST_CHARACTER_CARDS.starting_deck)
+	draw_pile.append_array(DeckHandler.current_deck)
 	draw_pile.shuffle()
 
 ## draws "amount" cards from the drawpile to hand
