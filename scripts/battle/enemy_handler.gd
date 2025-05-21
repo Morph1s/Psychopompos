@@ -2,9 +2,10 @@ class_name EnemyHandler
 extends Node2D
 
 const ENEMY = preload("res://scenes/enemy/enemy.tscn")
-const ENEMY_WIDTH: int = 64
+const ENEMY_WIDTH: int = 82
 const ENEMY_PLACEMENT_CENTER_X: int = 320 - 100
 const SPEED: float = 0.5
+@onready var card_handler: CardHandler = $"../CardHandler"
 
 var enemies_stats: Array[EnemyStats]
 var enemies: Array[Enemy]
@@ -14,6 +15,7 @@ var rng_zahl: int
 var place: Vector2
 
 func initialize() -> void:
+	#for testing purpose load two preloaded test enemy. This will be changed
 	enemies_stats.append(preload("res://resources/enemies/test_enemy.tres"))
 	load_enemy(enemies_stats)
 
@@ -23,6 +25,9 @@ func load_enemy(loading_enemies: Array[EnemyStats]) :
 		self.add_child(new_enemy)
 		new_enemy.stats = enemy
 		new_enemy.initialize()
+		new_enemy.id = get_child_count()
+		new_enemy.mouse_entered_enemy.connect(_on_enemy_enterd)
+		new_enemy.mouse_exited_enemy.connect(_on_enemy_exited)
 		rng_zahl = rng.randi_range(1,180)
 		new_enemy.position = Vector2(340,rng_zahl)
 		enemies.append(new_enemy)
@@ -49,3 +54,12 @@ func resolve_intent():
 func choose_intent():
 	for enemy in enemies:
 		enemy.choose_intent()
+
+
+#region card played on enemy
+## looks if enemy is selecetd with valid card
+func _on_enemy_enterd(enemy):
+	card_handler.hovered_enemy_id = enemy.id
+
+func _on_enemy_exited(enemy):
+	card_handler.hovered_enemy_id = -1

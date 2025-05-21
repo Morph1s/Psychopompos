@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckurrpodkua76"]
+[gd_scene load_steps=17 format=3 uid="uid://ckurrpodkua76"]
 
 [ext_resource type="Script" uid="uid://c65koxneqq7ba" path="res://scripts/battle/state_machine/player_start_turn.gd" id="1_1mqim"]
 [ext_resource type="Script" uid="uid://cjw0yaraqpdnr" path="res://scripts/battle/battle.gd" id="1_6die2"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://bxigu8nv1jbme" path="res://scripts/battle/state_machine/enemy_turn.gd" id="7_7id2p"]
 [ext_resource type="Script" uid="uid://c758m1ohji7ep" path="res://scripts/battle/state_machine/enemy_end_turn.gd" id="8_tt5ef"]
 [ext_resource type="Script" uid="uid://d4l21cq278qpt" path="res://scripts/battle/state_machine/exit.gd" id="9_mqlpk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3s1b"]
+size = Vector2(320, 88)
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_6die2")
@@ -61,3 +64,12 @@ script = ExtResource("3_5ildr")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_cymlh")]
 position = Vector2(82, 82)
+
+[node name="PlayArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea"]
+position = Vector2(160, 69)
+shape = SubResource("RectangleShape2D_g3s1b")
+
+[connection signal="mouse_entered" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_entered"]
+[connection signal="mouse_exited" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_exited"]
