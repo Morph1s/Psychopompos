@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckurrpodkua76"]
+[gd_scene load_steps=15 format=3 uid="uid://ckurrpodkua76"]
 
 [ext_resource type="Script" uid="uid://c65koxneqq7ba" path="res://scripts/battle/state_machine/player_start_turn.gd" id="1_1mqim"]
 [ext_resource type="Script" uid="uid://cjw0yaraqpdnr" path="res://scripts/battle/battle.gd" id="1_6die2"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://6wnlmm80st27" path="res://scenes/characters/test_character.tscn" id="2_cymlh"]
 [ext_resource type="Script" uid="uid://dxiv25i4b0a7q" path="res://scripts/battle/state_machine/idle.gd" id="2_fiugh"]
 [ext_resource type="Script" uid="uid://crlh3bv2ij6qu" path="res://scripts/battle/enemy_handler.gd" id="3_5ildr"]
-[ext_resource type="Script" uid="uid://nk7amndct7q3" path="res://scripts/battle/state_machine/card_highlighted.gd" id="3_g3s1b"]
 [ext_resource type="Script" uid="uid://c2haf47cbxrvk" path="res://scripts/battle/state_machine/resolve_card.gd" id="4_6die2"]
 [ext_resource type="Script" uid="uid://8cfdfrue4qpi" path="res://scripts/battle/state_machine/player_end_turn.gd" id="5_dqn5d"]
 [ext_resource type="Script" uid="uid://dnfuy53rabvw1" path="res://scripts/battle/state_machine/enemy_start_turn.gd" id="6_qhkyp"]
@@ -27,9 +26,6 @@ script = ExtResource("1_1mqim")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("2_fiugh")
-
-[node name="CardHighlighted" type="Node" parent="StateMachine"]
-script = ExtResource("3_g3s1b")
 
 [node name="ResolveCard" type="Node" parent="StateMachine"]
 script = ExtResource("4_6die2")
@@ -61,3 +57,7 @@ script = ExtResource("3_5ildr")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_cymlh")]
 position = Vector2(82, 82)
+
+[connection signal="choose_enemy_intents" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_choose_enemy_intents"]
+[connection signal="draw_cards" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_draw_cards"]
+[connection signal="resolve_enemy_intents" from="StateMachine/EnemyTurn" to="." method="_on_enemy_turn_resolve_enemy_intents"]
