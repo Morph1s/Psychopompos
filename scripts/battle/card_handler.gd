@@ -21,7 +21,6 @@ var discard_pile: Array[CardType] = []
 ## handels setup at beginning of battle.
 ## should only be called once to handle the initialization!
 func initialize() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_START, Callable(self, "_on_player_turn_start"))
 	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END, Callable(self, "_on_player_turn_end"))
 	draw_pile.append_array(TEST_CHARACTER_CARDS.starting_deck)
 	draw_pile.shuffle()
@@ -109,9 +108,6 @@ func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 #endregion
 
 #region battle loop helpers
-
-func _on_player_turn_start():
-	draw_cards(5)
 
 func _on_player_turn_end():
 	discard_hand()
