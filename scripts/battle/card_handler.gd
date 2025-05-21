@@ -15,7 +15,7 @@ const CARD_DRAW_SPEED: float = 0.2
 const DISCARD_PILE_COORDS: Vector2 = Vector2(360.0, 148.0)
 
 ## for the highligting and select process
-var highlited_card: Card
+var highlighted_card: Card
 var second_card: Card
 var selected_card: Card
 
@@ -68,7 +68,7 @@ func add_card_to_hand(card_type: CardType) -> bool:
 	# connect mouse-signal
 	new_card.mouse_entered_card.connect(_on_mouse_entered_card)
 	new_card.mouse_exited_card.connect(_on_mouse_exited_card)
-  new_card.set_modifier_handler()
+	new_card.set_modifier_handler()
 	# dynamicly moves card to apropiate position
 	hand.push_front(new_card)
 	_update_hand_positions()
@@ -125,14 +125,14 @@ func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 ## handels state after mouseinput
 func _input(event: InputEvent) -> void:
 	# set card as an selected card
-	if  event.is_action_released("left_click") && highlited_card: 
+	if  event.is_action_released("left_click") && highlighted_card: 
 		if selected_card:  
 			selected_card.highlight(Card.HighlightMode.NONE)
-		highlited_card.highlight(Card.HighlightMode.SELECTED)
-		selected_card = highlited_card
+		highlighted_card.highlight(Card.HighlightMode.SELECTED)
+		selected_card = highlighted_card
 	# realeses selected card
 	if event.is_action_released("right_click") and selected_card:
-		if selected_card == highlited_card:
+		if selected_card == highlighted_card:
 			selected_card.highlight(Card.HighlightMode.HOVERED)
 			selected_card = null
 		else:
@@ -140,25 +140,25 @@ func _input(event: InputEvent) -> void:
 			selected_card = null
 ## handels state after mouse enters card
 func _on_mouse_entered_card(card):
-	if highlited_card == null :
+	if highlighted_card == null :
 		if card!=selected_card:
 			card.highlight(Card.HighlightMode.HOVERED)
-		highlited_card = card
+		highlighted_card = card
 	elif selected_card != card: 
 		second_card = card
 ## handels state after mouse exits card
 func _on_mouse_exited_card(card):
-	if (card == highlited_card):
+	if (card == highlighted_card):
 		if card != selected_card:
 			card.highlight(Card.HighlightMode.NONE)
-		highlited_card = null
+		highlighted_card = null
 	
 	if (card == second_card):
 		second_card = null
 	
 	if ((second_card != null) && (card != second_card)):
 		second_card.highlight(Card.HighlightMode.HOVERED)
-		highlited_card = second_card
+		highlighted_card = second_card
 		second_card = null
 #endregion
 
