@@ -29,6 +29,10 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[editor]
+
+script/templates_search_path="res://scripts/script_templates"
+
 [input]
 
 left_click={

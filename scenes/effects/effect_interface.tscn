@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm301jgeenuu"]
+
+[ext_resource type="Script" uid="uid://blljvxi03h4k2" path="res://scripts/effects/effect_interface.gd" id="1_mlygs"]
+
+[node name="EffectInterface" type="Sprite2D"]
+centered = false
+script = ExtResource("1_mlygs")
+
+[node name="Counter" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 25.0
