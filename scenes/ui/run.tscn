@@ -42,8 +42,5 @@ script = ExtResource("2_6ock1")
 [node name="RelicHandler" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="DeckHandler" type="Node2D" parent="."]
-unique_name_in_owner = true
-
 [connection signal="pressed" from="UILayer/RunUI/OpenMapButton" to="UILayer" method="_on_open_map_button_pressed"]
 [connection signal="encounter_selected" from="UILayer/Map" to="." method="_on_map_encounter_selected"]

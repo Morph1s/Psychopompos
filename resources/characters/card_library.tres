@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardLibrary" load_steps=5 format=3 uid="uid://iki6vgrbgc7l"]
+
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="1_uu6n5"]
+[ext_resource type="Script" uid="uid://ckp8ofhnx14eh" path="res://scripts/custom_resources/card_library.gd" id="2_u06q2"]
+[ext_resource type="Resource" uid="uid://ch25cteno6qfm" path="res://resources/cards/strike.tres" id="3_tojp7"]
+[ext_resource type="Resource" uid="uid://r53s3kohc8k0" path="res://resources/cards/defend.tres" id="4_g2fsd"]
+
+[resource]
+script = ExtResource("2_u06q2")
+starting_deck = Array[ExtResource("1_uu6n5")]([ExtResource("3_tojp7"), ExtResource("3_tojp7"), ExtResource("3_tojp7"), ExtResource("3_tojp7"), ExtResource("3_tojp7"), ExtResource("4_g2fsd"), ExtResource("4_g2fsd"), ExtResource("4_g2fsd"), ExtResource("4_g2fsd"), ExtResource("4_g2fsd")])
+common_cards_boon_one = Array[ExtResource("1_uu6n5")]([])
+rare_cards_boon_one = Array[ExtResource("1_uu6n5")]([])
+epic_cards_boon_one = Array[ExtResource("1_uu6n5")]([])
+common_cards_boon_two = Array[ExtResource("1_uu6n5")]([])
+rare_cards_boon_two = Array[ExtResource("1_uu6n5")]([])
+epic_cards_boon_two = Array[ExtResource("1_uu6n5")]([])
+metadata/_custom_type_script = "uid://ckp8ofhnx14eh"
