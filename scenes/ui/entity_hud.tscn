@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://qm4xvb6vqwt6"]
+[gd_scene load_steps=7 format=3 uid="uid://qm4xvb6vqwt6"]
 
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_elymy"]
 [ext_resource type="Script" uid="uid://rqst1nkft1gr" path="res://scripts/ui/entity_hud.gd" id="1_qf4hu"]
 
 [sub_resource type="Gradient" id="Gradient_qf4hu"]
@@ -21,6 +22,7 @@ anchors_preset = 0
 offset_top = 41.0
 offset_right = 40.0
 offset_bottom = 81.0
+theme = ExtResource("1_elymy")
 script = ExtResource("1_qf4hu")
 
 [node name="HpBar" type="TextureProgressBar" parent="."]
