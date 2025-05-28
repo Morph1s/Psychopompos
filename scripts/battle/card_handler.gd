@@ -167,12 +167,15 @@ func _input(event: InputEvent) -> void:
 	if selected_card:
 		if event.is_action_released("left_click") and selected_card.card_type.targeted and hovered_enemy_id>-1:
 			selected_card.play(hovered_enemy_id)
+			discard_card_from_hand(selected_card)
 			deselect_card()
+			
 		
 	# play untageted card
 	if selected_card:
 		if event.is_action_released("left_click") and !selected_card.card_type.targeted and mouse_on_play_area:
 			selected_card.play()
+			discard_card_from_hand(selected_card)
 			deselect_card()
 			
 		

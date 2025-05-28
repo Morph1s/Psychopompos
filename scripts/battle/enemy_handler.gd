@@ -15,7 +15,7 @@ var rng_zahl: int
 var place: Vector2
 
 func initialize() -> void:
-	#for testing purpose load two preloaded test enemy. This will be changed
+	#for testing purpose load preloaded test enemy. This will be changed.
 	enemies_stats.append(preload("res://resources/enemies/test_enemy.tres"))
 	load_enemy(enemies_stats)
 
