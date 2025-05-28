@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cffw6mejnewc"]
+[gd_scene load_steps=7 format=3 uid="uid://cffw6mejnewc"]
 
 [ext_resource type="Script" uid="uid://bvmqf5646cs7k" path="res://scripts/ui/run.gd" id="1_q5lik"]
 [ext_resource type="Script" uid="uid://1oo6m0q0nn66" path="res://scripts/run/encounter_handler.gd" id="2_6ock1"]
 [ext_resource type="Script" uid="uid://bdgcrb63bt51r" path="res://scripts/ui/ui_layer.gd" id="2_dqgnb"]
 [ext_resource type="PackedScene" uid="uid://dhrw1q2m7p5fa" path="res://scenes/map/map.tscn" id="3_6ock1"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="4_5kaao"]
 [ext_resource type="PackedScene" uid="uid://b421431h80p3u" path="res://scenes/ui/run_ui.tscn" id="4_nafsq"]
 
 [node name="Run" type="Node2D"]
@@ -21,6 +22,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("4_5kaao")
 
 [node name="OpenMapButton" type="Button" parent="UILayer/RunUI"]
 layout_mode = 1
@@ -35,14 +37,12 @@ text = "Open Map"
 
 [node name="Map" parent="UILayer" instance=ExtResource("3_6ock1")]
 visible = false
+theme = ExtResource("4_5kaao")
 
 [node name="EncounterHandler" type="Node2D" parent="."]
 script = ExtResource("2_6ock1")
 
 [node name="RelicHandler" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="DeckHandler" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [connection signal="pressed" from="UILayer/RunUI/OpenMapButton" to="UILayer" method="_on_open_map_button_pressed"]

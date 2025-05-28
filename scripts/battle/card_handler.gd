@@ -10,6 +10,7 @@ const UNAIMED_CURSOR = preload("res://assets/graphics/ui/unaimed_cursor.png")
 const LOCKON_CURSOR = preload("res://assets/graphics/ui/lockOn_cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/graphics/ui/default_cursor.png")
 
+
 const CARD = preload("res://scenes/card/card.tscn")
 const DRAW_PILE_COORDS: Vector2 = Vector2(24.0, 148.0)
 const MAX_HAND_SIZE: int = 10
@@ -34,9 +35,8 @@ var discard_pile: Array[CardType] = []
 ## handels setup at beginning of battle.
 ## should only be called once to handle the initialization!
 func initialize() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_START, Callable(self, "_on_player_turn_start"))
 	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END, Callable(self, "_on_player_turn_end"))
-	draw_pile.append_array(TEST_CHARACTER_CARDS.starting_deck)
+	draw_pile.append_array(DeckHandler.current_deck)
 	draw_pile.shuffle()
 
 ## draws "amount" cards from the drawpile to hand
@@ -206,9 +206,6 @@ func _on_mouse_exited_card(card):
 #endregion
 
 #region battle loop helpers
-
-func _on_player_turn_start():
-	draw_cards(5)
 
 func _on_player_turn_end():
 	discard_hand()

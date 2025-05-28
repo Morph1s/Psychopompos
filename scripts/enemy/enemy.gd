@@ -43,9 +43,7 @@ func choose_intent() -> void:
 		if intent >= stats.actions.size():
 			intent = 0
 	else: 
-		intent = rng.randi_range(0,stats.actions.size())
-	
-	
+		intent = rng.randi_range(0,stats.actions.size()-1)	
 
 #region local functions
 
