@@ -3,7 +3,7 @@ extends Node2D
 
 ## only for testing purposes. cards are not properly initialized. 
 ## will be handled in $Run/DeckHandler in the final version.
-const TEST_CHARACTER_CARDS = preload("res://resources/characters/test_character_cards.tres") 
+const TEST_CHARACTER_CARDS = preload("res://resources/characters/card_library.tres")
 
 ## Assets preloud for mouse_changes
 const UNAIMED_CURSOR = preload("res://assets/graphics/ui/unaimed_cursor.png")
