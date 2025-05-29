@@ -20,13 +20,15 @@ layout_mode = 3
 anchors_preset = 0
 offset_top = 41.0
 offset_right = 40.0
-offset_bottom = 81.0
+offset_bottom = 61.0
+mouse_filter = 2
 script = ExtResource("1_qf4hu")
 
 [node name="HpBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 8.0
+mouse_filter = 2
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_elymy")
 

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="EnemyAction" load_steps=7 format=3 uid="uid://kfo4jefrvumr"]
+[gd_resource type="Resource" script_class="EnemyAction" load_steps=8 format=3 uid="uid://kfo4jefrvumr"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_sqapn"]
 [ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="2_8o47x"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_op2l1"]
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="3_kxpjv"]
+[ext_resource type="Texture2D" uid="uid://cm6yrlsnlwqhb" path="res://assets/graphics/ui/placeholder_intent_damage.png" id="4_kxpjv"]
 
 [sub_resource type="Resource" id="Resource_g848u"]
 script = ExtResource("2_op2l1")
@@ -19,5 +20,6 @@ metadata/_custom_type_script = "uid://riw8fvdo6pdh"
 
 [resource]
 script = ExtResource("2_8o47x")
+intent_sprite = ExtResource("4_kxpjv")
 action_catalogue = Array[ExtResource("1_sqapn")]([SubResource("Resource_g848u"), SubResource("Resource_u633v")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"

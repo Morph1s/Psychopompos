@@ -27,3 +27,4 @@ func _update_display() -> void:
 	hp_bar.value = current_hp
 	hp_label.text = "HP: %d / %d" % [current_hp, max_hp]
 	block_label.text = "Block: %d" % block_value
+	

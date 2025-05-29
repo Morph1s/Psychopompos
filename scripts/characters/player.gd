@@ -2,6 +2,7 @@ class_name Character
 extends Node2D
 
 @export var stats : PlayerStats 
+@export var player_hud: PlayerHud
 
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 
@@ -14,3 +15,38 @@ func lose_hp(hp_loss: int) -> void:
 
 func gain_block(gain_block: int) -> void:
 	stats.block += gain_block
+
+func initialize() -> void:
+	stats.initialize()
+	
+	# Connecting Signals
+	stats.died.connect(_on_died)
+	stats.energy_changed.connect(_on_energy_changed)
+	stats.hitpoints_changed.connect(_on_hitpoints_changed)
+	stats.block_changed.connect(_on_block_changed)
+	
+	await get_tree().create_timer(1).timeout
+	
+	stats.maximum_hitpoints = 100
+	stats.current_hitpoints = 50
+	stats.block = 20
+	stats.current_energy = 2
+
+#region Signal methods
+func _on_died() -> void:
+	print("Player died")
+
+func _on_energy_changed(new_energy: int, maximum_energy: int, maximum_energy_deficit: int) -> void:
+	player_hud.set_current_energy(new_energy)
+	player_hud.set_max_energy(maximum_energy)
+	player_hud.set_max_energy_deficit(maximum_energy_deficit)
+	print("Player Energy changed")
+
+func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:
+	player_hud.set_current_hp(new_hp)
+	player_hud.set_max_hp(max_hp)
+	print("Player HP changed")
+
+func _on_block_changed(new_block: int) -> void:
+	player_hud.set_block(new_block)
+#endregion
