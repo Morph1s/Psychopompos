@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e2xcukabbxvt"
-path="res://.godot/imported/unaimed_cursor.png-12da512a614b311948a12a01c0f53d79.ctex"
+uid="uid://wqtvwx6f3y7t"
+path="res://.godot/imported/pictograms_effect_sheet.png-9b00f481534c8c6b3a68cf2228fb9a6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/unaimed_cursor.png"
-dest_files=["res://.godot/imported/unaimed_cursor.png-12da512a614b311948a12a01c0f53d79.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/pictograms_effect_sheet.png"
+dest_files=["res://.godot/imported/pictograms_effect_sheet.png-9b00f481534c8c6b3a68cf2228fb9a6f.ctex"]
 
 [params]
 

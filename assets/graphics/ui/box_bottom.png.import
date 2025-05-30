@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wqtvwx6f3y7t"
-path="res://.godot/imported/effect_picto.png-e657c81ded13b2797a0054a821316a1e.ctex"
+uid="uid://cpkalvekcbvxd"
+path="res://.godot/imported/box_bottom.png-9ea23ec268385e0c8d1fd7b5efb69dd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_picto.png"
-dest_files=["res://.godot/imported/effect_picto.png-e657c81ded13b2797a0054a821316a1e.ctex"]
+source_file="res://assets/graphics/ui/box_bottom.png"
+dest_files=["res://.godot/imported/box_bottom.png-9ea23ec268385e0c8d1fd7b5efb69dd7.ctex"]
 
 [params]
 

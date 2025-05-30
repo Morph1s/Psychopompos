@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dim4ktn2ekd8u"
-path="res://.godot/imported/lockOn_cursor.png-9bd933baca2d209c5134f89a2266ea6b.ctex"
+uid="uid://ciqym2av8hur"
+path="res://.godot/imported/box_top.png-4b1ae39e66fc78694325879bd649bce3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/lockOn_cursor.png"
-dest_files=["res://.godot/imported/lockOn_cursor.png-9bd933baca2d209c5134f89a2266ea6b.ctex"]
+source_file="res://assets/graphics/ui/box_top.png"
+dest_files=["res://.godot/imported/box_top.png-4b1ae39e66fc78694325879bd649bce3.ctex"]
 
 [params]
 
