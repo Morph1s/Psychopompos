@@ -3,7 +3,13 @@ extends Node2D
 
 ## only for testing purposes. cards are not properly initialized. 
 ## will be handled in $Run/DeckHandler in the final version.
-const TEST_CHARACTER_CARDS = preload("res://resources/characters/test_character_cards.tres") 
+const TEST_CHARACTER_CARDS = preload("res://resources/characters/card_library.tres")
+
+## Assets preloud for mouse_changes
+const UNAIMED_CURSOR = preload("res://assets/graphics/ui/unaimed_cursor.png")
+const LOCKON_CURSOR = preload("res://assets/graphics/ui/lockOn_cursor.png")
+const DEFAULT_CURSOR = preload("res://assets/graphics/ui/default_cursor.png")
+
 
 const CARD = preload("res://scenes/card/card.tscn")
 const DRAW_PILE_COORDS: Vector2 = Vector2(24.0, 148.0)
@@ -14,6 +20,14 @@ const CARD_WIDTH = 32
 const CARD_DRAW_SPEED: float = 0.2
 const DISCARD_PILE_COORDS: Vector2 = Vector2(360.0, 148.0)
 
+## for the highligting and select process
+var highlighted_card: Card
+var second_card: Card
+var selected_card: Card
+var hovered_enemy_id: int = -1
+var mouse_on_play_area: bool = false
+
+
 var draw_pile: Array[CardType]
 var hand: Array[Card] = []
 var discard_pile: Array[CardType] = []
@@ -21,9 +35,8 @@ var discard_pile: Array[CardType] = []
 ## handels setup at beginning of battle.
 ## should only be called once to handle the initialization!
 func initialize() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_START, Callable(self, "_on_player_turn_start"))
 	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END, Callable(self, "_on_player_turn_end"))
-	draw_pile.append_array(TEST_CHARACTER_CARDS.starting_deck)
+	draw_pile.append_array(DeckHandler.current_deck)
 	draw_pile.shuffle()
 
 ## draws "amount" cards from the drawpile to hand
@@ -46,6 +59,7 @@ func draw_cards(amount: int) -> void:
 		# wait for hand to be updated
 		var timer = get_tree().create_timer(CARD_DRAW_SPEED)
 		await timer.timeout
+	
 
 ## adds the given card type to the players hand.
 ## THIS IS THE ONLY WAY CARDS SHOULD BE ADDED TO THE HAND!
@@ -54,12 +68,17 @@ func add_card_to_hand(card_type: CardType) -> bool:
 	if hand.size() == MAX_HAND_SIZE:
 		print("hand size limit reached")
 		return false
-	
+		
+	# instantiate new Card to CardHandler
 	var new_card: Card = CARD.instantiate() as Card
 	new_card.initialize(card_type)
 	new_card.position = DRAW_PILE_COORDS
 	self.add_child(new_card)
+	# connect mouse-signal
+	new_card.mouse_entered_card.connect(_on_mouse_entered_card)
+	new_card.mouse_exited_card.connect(_on_mouse_exited_card)
 	new_card.set_modifier_handler()
+	# dynamicly moves card to apropiate position
 	hand.push_front(new_card)
 	_update_hand_positions()
 	return true
@@ -78,6 +97,7 @@ func discard_hand() -> void:
 func discard_card_from_hand(card: Card) -> void:
 	if not hand.has(card):
 		return
+		
 	
 	# remove the card from hand and add it to discard pile
 	hand.erase(card)
@@ -103,18 +123,99 @@ func _update_hand_positions() -> void:
 		tween.tween_property(hand[i], "position", _calculate_card_position(i, hand.size()), CARD_DRAW_SPEED)
 
 func _calculate_card_position(index: int, hand_count: int) -> Vector2:
+	self.get_children()[index].index = index
 	var card_distance: int = CARD_WIDTH - round(hand_count / 2) * 2
 	var card_x_position = SCREEN_CENTER_X + index * card_distance - card_distance * (hand_count - 1) / 2
 	return Vector2(card_x_position, CARD_Y_POSITION)
+#endregion
 
+#region card-state-handler
+## handels state of cards (has some unconsidered edgecases)
+
+
+
+func select_card() -> void:
+	if selected_card:  
+		selected_card.highlight(Card.HighlightMode.NONE)
+	highlighted_card.highlight(Card.HighlightMode.SELECTED)
+	selected_card = highlighted_card
+	#change mouse cursor
+	if selected_card.card_type.targeted:
+		Input.set_custom_mouse_cursor(LOCKON_CURSOR)
+	else:
+		Input.set_custom_mouse_cursor(UNAIMED_CURSOR)
+
+func deselect_card() -> void:
+	if selected_card == highlighted_card:
+		selected_card.highlight(Card.HighlightMode.HOVERED)
+		selected_card = null
+	else:
+		selected_card.highlight(Card.HighlightMode.NONE)
+		selected_card = null
+	Input.set_custom_mouse_cursor(DEFAULT_CURSOR)
+
+## handels state after mouseinput
+func _input(event: InputEvent) -> void:
+	# set card as an selected card
+	if  event.is_action_released("left_click") && highlighted_card: 
+		select_card()
+	# realeses selected card
+	if event.is_action_released("right_click") and selected_card:
+		deselect_card()
+	
+	# play targeted card
+	if selected_card:
+		if event.is_action_released("left_click") and selected_card.card_type.targeted and hovered_enemy_id>-1:
+			selected_card.play(hovered_enemy_id)
+			discard_card_from_hand(selected_card)
+			deselect_card()
+			
+		
+	# play untageted card
+	if selected_card:
+		if event.is_action_released("left_click") and !selected_card.card_type.targeted and mouse_on_play_area:
+			selected_card.play()
+			discard_card_from_hand(selected_card)
+			deselect_card()
+			
+		
+	
+
+## handels state after mouse enters card
+func _on_mouse_entered_card(card):
+	if highlighted_card == null :
+		if selected_card != card:
+			card.highlight(Card.HighlightMode.HOVERED)
+		highlighted_card = card
+	elif selected_card != card: 
+		second_card = card
+## handels state after mouse exits card
+func _on_mouse_exited_card(card):
+	if (card == highlighted_card):
+		if card != selected_card:
+			card.highlight(Card.HighlightMode.NONE)
+		highlighted_card = null
+	
+	if (card == second_card):
+		second_card = null
+	
+	if ((second_card != null) && (card != second_card)):
+		second_card.highlight(Card.HighlightMode.HOVERED)
+		highlighted_card = second_card
+		second_card = null
 #endregion
 
 #region battle loop helpers
-
-func _on_player_turn_start():
-	draw_cards(5)
 
 func _on_player_turn_end():
 	discard_hand()
 
 #endregion
+
+
+func _on_play_area_mouse_entered() -> void:
+	mouse_on_play_area = true # Replace with function body.
+
+
+func _on_play_area_mouse_exited() -> void:
+	mouse_on_play_area = false # Replace with function body.

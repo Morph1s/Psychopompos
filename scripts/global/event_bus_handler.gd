@@ -16,6 +16,10 @@ signal enemies_turn_start
 signal enemies_turn_end
 signal card_played
 signal end_turn_button_pressed
+signal resolve_player_turn_start_effects
+signal resolve_player_turn_end_effects
+signal resolve_enemy_turn_start_effects
+signal resolve_enemy_turn_end_effects
 
 ## all currently available events during combat
 enum Event {
@@ -28,6 +32,10 @@ enum Event {
 	ENEMIES_TURN_END,
 	CARD_PLAY,
 	END_TURN_BUTTON,
+	PLAYER_TURN_START_EFFECTS,
+	PLAYER_TURN_END_EFFECTS,
+	ENEMY_TURN_START_EFFECTS,
+	ENEMY_TURN_END_EFFECTS,
 	}
 
 ## triggers the given event and all connected effects
@@ -51,6 +59,14 @@ func call_event(event: Event) -> void:
 			card_played.emit()
 		Event.END_TURN_BUTTON:
 			end_turn_button_pressed.emit()
+		Event.PLAYER_TURN_START_EFFECTS:
+			resolve_player_turn_start_effects.emit()
+		Event.PLAYER_TURN_END_EFFECTS:
+			resolve_player_turn_end_effects.emit()
+		Event.ENEMY_TURN_START_EFFECTS:
+			resolve_enemy_turn_start_effects.emit()
+		Event.ENEMY_TURN_END_EFFECTS:
+			resolve_enemy_turn_end_effects.emit()
 
 ## adds the given callable-function into the queue for the given event.
 func connect_to_event(event: Event, function: Callable) -> void:
@@ -73,6 +89,14 @@ func connect_to_event(event: Event, function: Callable) -> void:
 			card_played.connect(function)
 		Event.END_TURN_BUTTON:
 			end_turn_button_pressed.connect(function)
+		Event.PLAYER_TURN_START_EFFECTS:
+			resolve_player_turn_start_effects.connect(function)
+		Event.PLAYER_TURN_END_EFFECTS:
+			resolve_player_turn_end_effects.connect(function)
+		Event.ENEMY_TURN_START_EFFECTS:
+			resolve_enemy_turn_start_effects.connect(function)
+		Event.ENEMY_TURN_END_EFFECTS:
+			resolve_enemy_turn_end_effects.connect(function)
 
 ## disposes all connections of all events
 func clear_all_battle_events() -> void:
@@ -96,3 +120,15 @@ func clear_all_battle_events() -> void:
 	
 	for function in end_turn_button_pressed.get_connections():
 		end_turn_button_pressed.disconnect(function["callable"])
+	
+	for function in resolve_player_turn_start_effects.get_connections():
+		resolve_player_turn_start_effects.disconnect(function["callable"])
+	
+	for function in resolve_player_turn_end_effects.get_connections():
+		resolve_player_turn_end_effects.disconnect(function["callable"])
+	
+	for function in resolve_enemy_turn_start_effects.get_connections():
+		resolve_enemy_turn_start_effects.disconnect(function["callable"])
+	
+	for function in resolve_enemy_turn_end_effects.get_connections():
+		resolve_enemy_turn_end_effects.disconnect(function["callable"])

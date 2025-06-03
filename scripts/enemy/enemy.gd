@@ -2,6 +2,8 @@ class_name Enemy
 extends Area2D
 
 signal action_resolved
+signal mouse_entered_enemy(Node)
+signal mouse_exited_enemy(Node)
 
 @export var stats: EnemyStats
 @export var enemy_hud: EnemyHud
@@ -51,9 +53,8 @@ func choose_intent() -> void:
 		intent += 1
 		if intent >= stats.actions.size():
 			intent = 0
-	else:
-		intent = rng.randi_range(0,stats.actions.size())
-
+	else: 
+		intent = rng.randi_range(0,stats.actions.size()-1)	
 
 #region local functions
 
@@ -96,3 +97,9 @@ func _on_intent_changed(new_intent) -> void:
 func _on_died() -> void:
 	print("Enemy died")
 #endregion
+
+func _on_mouse_entered() -> void:
+	mouse_entered_enemy.emit(self)
+
+func _on_mouse_exited() -> void:
+	mouse_exited_enemy.emit(self)
