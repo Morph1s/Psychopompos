@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnvptp2ehqilu"
-path="res://.godot/imported/default_cursor.png-14aa4ba3fa5069c1b6df41a21ed85484.ctex"
+uid="uid://cxj0il56h6j0a"
+path="res://.godot/imported/card_halt_v1.png-0e059ad00aa653b99531c59b7812a3d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/default_cursor.png"
-dest_files=["res://.godot/imported/default_cursor.png-14aa4ba3fa5069c1b6df41a21ed85484.ctex"]
+source_file="res://assets/graphics/cards/card_halt_v1.png"
+dest_files=["res://.godot/imported/card_halt_v1.png-0e059ad00aa653b99531c59b7812a3d3.ctex"]
 
 [params]
 

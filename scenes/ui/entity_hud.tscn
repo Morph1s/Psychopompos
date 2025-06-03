@@ -2,13 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_elymy"]
 [ext_resource type="Script" uid="uid://rqst1nkft1gr" path="res://scripts/ui/entity_hud.gd" id="1_qf4hu"]
-
-[sub_resource type="Gradient" id="Gradient_qf4hu"]
-colors = PackedColorArray(0.416754, 8.48304e-07, 2.16588e-07, 1, 0.947406, 3.77826e-06, 1.73271e-06, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_elymy"]
-gradient = SubResource("Gradient_qf4hu")
-height = 8
+[ext_resource type="Texture2D" uid="uid://cx7lhttskmu26" path="res://assets/graphics/ui/hp_energy_bar/hpbar_over.png" id="3_yp36h"]
+[ext_resource type="Texture2D" uid="uid://ddgrrrit28y50" path="res://assets/graphics/ui/hp_energy_bar/hpbar_progress.png" id="4_1ufrs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cu66s"]
 font_size = 9
@@ -31,7 +26,9 @@ offset_right = 64.0
 offset_bottom = 8.0
 mouse_filter = 2
 value = 100.0
-texture_progress = SubResource("GradientTexture2D_elymy")
+texture_over = ExtResource("3_yp36h")
+texture_progress = ExtResource("4_1ufrs")
+texture_progress_offset = Vector2(16, 0)
 
 [node name="BlockLabel" type="Label" parent="."]
 layout_mode = 0
