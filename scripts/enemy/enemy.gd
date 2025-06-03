@@ -2,6 +2,8 @@ class_name Enemy
 extends Area2D
 
 signal action_resolved
+signal mouse_entered_enemy(Node)
+signal mouse_exited_enemy(Node)
 
 @export var stats: EnemyStats
 
@@ -69,3 +71,10 @@ func _get_targets(targeting_mode: Action.TargetType) -> Array[Node2D]:
 	return to_return
 
 #endregion
+
+
+func _on_mouse_entered() -> void:
+	mouse_entered_enemy.emit(self)
+
+func _on_mouse_exited() -> void:
+	mouse_exited_enemy.emit(self)

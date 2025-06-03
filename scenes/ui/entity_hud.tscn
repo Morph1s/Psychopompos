@@ -29,6 +29,7 @@ script = ExtResource("1_qf4hu")
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 8.0
+mouse_filter = 2
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_elymy")
 
