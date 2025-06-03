@@ -6,9 +6,9 @@ extends Node2D
 const TEST_CHARACTER_CARDS = preload("res://resources/characters/card_library.tres")
 
 ## Assets preloud for mouse_changes
-const UNAIMED_CURSOR = preload("res://assets/graphics/ui/unaimed_cursor.png")
-const LOCKON_CURSOR = preload("res://assets/graphics/ui/lockOn_cursor.png")
-const DEFAULT_CURSOR = preload("res://assets/graphics/ui/default_cursor.png")
+const UNAIMED_CURSOR = preload("res://assets/graphics/ui/cursor_unaimed.png")
+const LOCKON_CURSOR = preload("res://assets/graphics/ui/cursor_lockOn.png")
+const DEFAULT_CURSOR = preload("res://assets/graphics/ui/cursor_default.png")
 
 
 const CARD = preload("res://scenes/card/card.tscn")
