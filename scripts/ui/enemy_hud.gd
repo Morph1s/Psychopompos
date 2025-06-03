@@ -9,5 +9,5 @@ func set_intent(texture: Texture) -> void:
 func _update_display() -> void:
 	super._update_display()
 
-func initiliaze() -> void:
+func initialize() -> void:
 	set_intent(preload("res://assets/graphics/ui/placeholder_intent_heal.png"))
