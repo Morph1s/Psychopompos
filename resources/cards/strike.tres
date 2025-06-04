@@ -23,4 +23,5 @@ script = ExtResource("2_kdkt8")
 texture = SubResource("GradientTexture2D_weh8t")
 on_play_action = Array[ExtResource("1_fkwoo")]([SubResource("Resource_70hq6")])
 on_graveyard_action = Array[ExtResource("1_fkwoo")]([])
+targeted = true
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

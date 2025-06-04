@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://ev37vnfhspoc" path="res://resources/enemies/normal_attack.tres" id="2_irtgr"]
 [ext_resource type="Resource" uid="uid://kfo4jefrvumr" path="res://resources/enemies/swift_attack.tres" id="3_lbsk5"]
 
+
 [resource]
 script = ExtResource("2_7egoo")
 enemy_sprite = ExtResource("2_318jf")

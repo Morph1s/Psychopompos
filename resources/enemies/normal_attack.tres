@@ -1,16 +1,18 @@
-[gd_resource type="Resource" script_class="EnemyAction" load_steps=5 format=3 uid="uid://ev37vnfhspoc"]
+[gd_resource type="Resource" script_class="EnemyAction" load_steps=6 format=3 uid="uid://ev37vnfhspoc"]
 
-[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_kd44m"]
-[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_cc8lm"]
-[ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="2_lb0yl"]
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_cc8lm"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_f60a5"]
+[ext_resource type="Texture2D" uid="uid://bl1fisqld1jpr" path="res://assets/graphics/ui/placeholder_intent_block.png" id="3_sio2d"]
+[ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="4_yx5r4"]
 
 [sub_resource type="Resource" id="Resource_f60a5"]
-script = ExtResource("2_cc8lm")
+script = ExtResource("2_f60a5")
 damage_stat = 10
 target_type = 0
 metadata/_custom_type_script = "uid://gsab2qn21okq"
 
 [resource]
-script = ExtResource("2_lb0yl")
-action_catalogue = Array[ExtResource("1_kd44m")]([SubResource("Resource_f60a5")])
+script = ExtResource("4_yx5r4")
+intent_sprite = ExtResource("3_sio2d")
+action_catalogue = Array[ExtResource("1_cc8lm")]([SubResource("Resource_f60a5")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"

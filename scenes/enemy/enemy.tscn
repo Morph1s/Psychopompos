@@ -8,8 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40wdo"]
 size = Vector2(49.5, 51)
 
-[node name="Enemy" type="Area2D" groups=["enemy"]]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("enemy_hud") groups=["enemy"]]
 script = ExtResource("1_4a83h")
+enemy_hud = NodePath("EnemyHud")
 
 [node name="EnemyImage" type="Sprite2D" parent="."]
 texture = ExtResource("2_a3pup")
@@ -27,3 +28,6 @@ offset_right = 11.0
 offset_bottom = 66.0
 
 [node name="ModifierHandler" parent="." instance=ExtResource("4_tjssy")]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

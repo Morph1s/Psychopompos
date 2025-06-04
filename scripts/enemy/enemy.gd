@@ -2,8 +2,11 @@ class_name Enemy
 extends Area2D
 
 signal action_resolved
+signal mouse_entered_enemy(Node)
+signal mouse_exited_enemy(Node)
 
 @export var stats: EnemyStats
+@export var enemy_hud: EnemyHud
 
 @onready var image: Sprite2D = $EnemyImage
 @onready var shape: CollisionShape2D = $EnemyShape
@@ -18,6 +21,16 @@ func initialize() -> void:
 	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
 	shape.shape.size = image.texture.get_size()
+	
+	# Connecting Signals
+	stats.intent_changed.connect(_on_intent_changed)
+	stats.hitpoints_changed.connect(_on_hitpoints_changed)
+	stats.block_changed.connect(_on_block_changed)
+	stats.died.connect(_on_died)
+	
+	_on_hitpoints_changed(stats.current_hitpoints, stats.maximum_hitpoints)
+	_on_block_changed(stats.block)
+
 
 func take_damage(damage_amount:int) -> void:
 	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
@@ -69,3 +82,24 @@ func _get_targets(targeting_mode: Action.TargetType) -> Array[Node2D]:
 	return to_return
 
 #endregion
+
+#region Signal Methods
+func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:
+	enemy_hud.set_current_hp(new_hp)
+	enemy_hud.set_max_hp(max_hp)
+
+func _on_block_changed(new_block) -> void:
+	enemy_hud.set_block(new_block)
+
+func _on_intent_changed(new_intent) -> void:
+	enemy_hud.set_intent(new_intent)
+
+func _on_died() -> void:
+	print("Enemy died")
+#endregion
+
+func _on_mouse_entered() -> void:
+	mouse_entered_enemy.emit(self)
+
+func _on_mouse_exited() -> void:
+	mouse_exited_enemy.emit(self)
