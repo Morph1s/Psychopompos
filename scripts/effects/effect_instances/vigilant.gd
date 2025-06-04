@@ -6,18 +6,30 @@ extends Effect
 
 # implement all functions relevant for your effect
 
+const DAMAGE_TAKEN_REDUCTION: float = 0.5
+
 ## this function is called when the entity was attacked
-func attacked() -> void:
+func attacked():
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(previous: int, current: int) -> void:
-	pass
+func changed_stacks(previous, current):
+	if previous == 0:
+		effect_owner.modifier_handler.apply_multiplicative_modifier(
+			DAMAGE_TAKEN_REDUCTION,
+			ModifierHandler.ModifiedValue.DAMAGE_TAKEN,
+			effect_name
+			)
+	if current == 0:
+		effect_owner.modifier_handler.remove_modifier(
+			ModifierHandler.ModifiedValue.DAMAGE_TAKEN,
+			effect_name
+		)
 
 ## this function is called at the start of the entities turn 
-func start_of_turn() -> void:
+func start_of_turn():
 	pass
 
 ## this function is called ath the end of the entities turn s
-func end_of_turn() -> void:
-	pass
+func end_of_turn():
+	remove_stacks(1)

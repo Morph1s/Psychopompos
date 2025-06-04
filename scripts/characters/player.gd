@@ -5,16 +5,17 @@ extends Node2D
 @export var player_hud: PlayerHud
 
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
+@onready var effect_handler = $EffectHandler
 
 func take_damage(damage_amount: int) -> void:
 	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(damage_amount)
 
-func lose_hp(hp_loss: int) -> void:
-	stats.lose_hp(hp_loss)
+func lose_hp(amount: int) -> void:
+	stats.lose_hp(amount)
 
-func gain_block(gain_block: int) -> void:
-	stats.block += gain_block
+func gain_block(amount: int) -> void:
+	stats.block += amount
 
 func initialize() -> void:
 	stats.initialize()
@@ -25,12 +26,18 @@ func initialize() -> void:
 	stats.hitpoints_changed.connect(_on_hitpoints_changed)
 	stats.block_changed.connect(_on_block_changed)
 	
+	effect_handler.initialize(self)
+	
 	await get_tree().create_timer(1).timeout
 	
 	stats.maximum_hitpoints = 100
 	stats.current_hitpoints = 50
 	stats.block = 20
 	stats.current_energy = 2
+
+func get_attacked(damage_amount: int) -> void:
+	take_damage(damage_amount)
+	effect_handler._on_unit_attacked()
 
 #region Signal methods
 func _on_died() -> void:

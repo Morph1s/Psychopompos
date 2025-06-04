@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://deaandfrgv8xp"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_fejqu"]
+[ext_resource type="Script" uid="uid://ctuwaqpbv4d4o" path="res://scripts/effects/effect_instances/vigilant.gd" id="2_yu7aa"]
+
+[sub_resource type="Gradient" id="Gradient_fejqu"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yu7aa"]
+gradient = SubResource("Gradient_fejqu")
+width = 8
+height = 8
+
+[node name="Vigilant" instance=ExtResource("1_fejqu")]
+texture = SubResource("GradientTexture2D_yu7aa")
+script = ExtResource("2_yu7aa")
+effect_name = "Vigilant"
+stackable = true

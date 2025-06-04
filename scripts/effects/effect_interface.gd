@@ -3,34 +3,20 @@ extends Sprite2D
 
 signal remove_effect(effect: Effect)
 
-enum Trigger {
-	MODIFIER,
-	END_OF_ENTITY_TURN,
-	START_OF_ENTITY_TURN,
-}
-enum StackLossMode {
-	NONE,
-	END_OF_TURN,
-	SPECIAL,
-}
-
 @onready var counter = $Counter
 
 ## unique idenifier for the effect
 @export var effect_name: String
-## when the effect will trigger
-@export var effect_trigger: Trigger
 ## can the effect have mutiple stacks at the same time?
 @export var stackable: bool
-## if and when the stacks of this effect will fall of
-@export var stack_loss_mode: StackLossMode
+## set true if the effect can't be added to enemies
+@export var player_only: bool = false
 
 var effect_owner: Node2D
 var stacks: int = 0:
 	set(value):
-		# apply modifier
-		if effect_trigger == Trigger.MODIFIER:
-			change_modifier(value - stacks)
+		# call the logic on changing stats
+		changed_stacks(stacks, value)
 		
 		# update value
 		stacks = value
@@ -42,9 +28,13 @@ var stacks: int = 0:
 			counter.text = ""
 
 ## called to setup the effects functionality
-func initialize(owner: Node2D, amount: int) -> void:
-	effect_owner = owner
+func initialize(entity: Node2D, amount: int) -> void:
+	effect_owner = entity
 	add_stacks(amount)
+
+## removes the effect completely
+func remove() -> void:
+	remove_effect.emit(self)
 
 ## call to add stacks. to remove stacks call remove_stacks() instead!
 func add_stacks(amount: int = 1) -> void:
@@ -62,14 +52,16 @@ func remove_stacks(amount: int = 1) -> void:
 	else:
 		remove()
 
-## removes the effect completely
-func remove() -> void:
-	remove_effect.emit(self)
-
 ## this function has to be implemented individually for each effect that doesn't modify values 
-func resolve() -> void:
+func attacked() -> void:
 	pass
 
 ## this function has to be implemented individually for each effect that modifies values 
-func change_modifier(amount: int) -> void:
+func changed_stacks(_previous: int, _current: int) -> void:
+	pass
+
+func start_of_turn() -> void:
+	pass
+
+func end_of_turn() -> void:
 	pass

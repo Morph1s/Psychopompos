@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://csqftmwral1gc"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_iig7d"]
+[ext_resource type="Script" uid="uid://7wb2ocmb1avg" path="res://scripts/effects/effect_instances/agile.gd" id="2_8el0s"]
+
+[sub_resource type="Gradient" id="Gradient_8el0s"]
+colors = PackedColorArray(0.224328, 0.382368, 0.331382, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w6wxh"]
+gradient = SubResource("Gradient_8el0s")
+width = 8
+height = 8
+
+[node name="Agile" instance=ExtResource("1_iig7d")]
+texture = SubResource("GradientTexture2D_w6wxh")
+script = ExtResource("2_8el0s")
+effect_name = "Agile"
+stackable = true
+player_only = true

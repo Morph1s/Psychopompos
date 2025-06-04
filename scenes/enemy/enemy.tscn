@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm2tq7prc7mvg"]
+[gd_scene load_steps=7 format=3 uid="uid://bm2tq7prc7mvg"]
 
 [ext_resource type="Script" uid="uid://07iupn545nui" path="res://scripts/enemy/enemy.gd" id="1_4a83h"]
 [ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="2_a3pup"]
 [ext_resource type="PackedScene" uid="uid://djragsajdg5xq" path="res://scenes/ui/enemy_hud.tscn" id="3_40wdo"]
+[ext_resource type="PackedScene" uid="uid://bnyj4jetklh6b" path="res://scenes/effects/effect_handler.tscn" id="4_gl05p"]
 [ext_resource type="PackedScene" uid="uid://cc705r0vhke8v" path="res://scenes/modifiers/modifier_handler.tscn" id="4_tjssy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40wdo"]
@@ -26,6 +27,9 @@ offset_left = -29.0
 offset_top = 26.0
 offset_right = 11.0
 offset_bottom = 66.0
+
+[node name="EffectHandler" parent="." instance=ExtResource("4_gl05p")]
+position = Vector2(20, -20)
 
 [node name="ModifierHandler" parent="." instance=ExtResource("4_tjssy")]
 

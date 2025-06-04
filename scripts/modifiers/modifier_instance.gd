@@ -22,7 +22,7 @@ func apply_additive_modifier(amount: int, source: String) -> void:
 	for modifier: ModifierAdditive in additive_modifiers.get_children():
 		if modifier.source == source:
 			modifier.value += amount
-			if modifier.value == 0:
+			if modifier.value <= 0:
 				modifier.queue_free()
 			return
 	

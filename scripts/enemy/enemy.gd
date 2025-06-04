@@ -11,6 +11,7 @@ signal mouse_exited_enemy(Node)
 @onready var image: Sprite2D = $EnemyImage
 @onready var shape: CollisionShape2D = $EnemyShape
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
+@onready var effect_handler = $EffectHandler
 
 var id: int = 0
 var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
@@ -30,7 +31,8 @@ func initialize() -> void:
 	
 	_on_hitpoints_changed(stats.current_hitpoints, stats.maximum_hitpoints)
 	_on_block_changed(stats.block)
-
+	
+	effect_handler.initialize(self)
 
 func take_damage(damage_amount:int) -> void:
 	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
@@ -41,6 +43,10 @@ func lose_hp(hp_loss:int) -> void:
 
 func gain_block(gain_block:int) -> void:
 	stats.block += gain_block
+
+func get_attacked(damage_amount: int) -> void:
+	take_damage(damage_amount)
+	effect_handler._on_unit_attacked()
 
 func resolve_intent() -> void:
 	var actions: Array[Action] = stats.actions[intent].action_catalogue

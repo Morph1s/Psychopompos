@@ -7,17 +7,19 @@ extends Effect
 # implement all functions relevant for your effect
 
 ## this function is called when the entity was attacked
-func attacked() -> void:
+func attacked():
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(previous: int, current: int) -> void:
+func changed_stacks(_previous, _current):
 	pass
+	print("effect agile not implemented")
+	# change the amount of cards drawn at start of turn
 
 ## this function is called at the start of the entities turn 
-func start_of_turn() -> void:
+func start_of_turn():
 	pass
 
 ## this function is called ath the end of the entities turn s
-func end_of_turn() -> void:
-	pass
+func end_of_turn():
+	remove_stacks(1)

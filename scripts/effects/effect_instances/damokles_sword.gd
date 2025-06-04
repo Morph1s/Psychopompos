@@ -6,18 +6,24 @@ extends Effect
 
 # implement all functions relevant for your effect
 
+const DAMAGE_PER_STACK: int = 5
+
 ## this function is called when the entity was attacked
-func attacked() -> void:
-	pass
+func attacked():
+	stacks += 1
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(previous: int, current: int) -> void:
+func changed_stacks(_previous, _current):
 	pass
 
 ## this function is called at the start of the entities turn 
-func start_of_turn() -> void:
+func start_of_turn():
 	pass
 
 ## this function is called ath the end of the entities turn s
-func end_of_turn() -> void:
-	pass
+func end_of_turn():
+	if effect_owner.has_method("take_damage"):
+		effect_owner.take_damage(stacks * DAMAGE_PER_STACK)
+		remove_stacks(stacks)
+	else:
+		push_warning("something went wrong with damokles_swords damage")
