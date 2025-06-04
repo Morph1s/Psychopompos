@@ -4,11 +4,14 @@ extends Node2D
 @onready var card_handler: CardHandler = $CardHandler
 @onready var enemy_handler: EnemyHandler = $EnemyHandler
 @onready var state_machine: StateMachine = $StateMachine
+@onready var player_character: Character = $PlayerCharacter
+
 
 var card_draw_amount: int = 5
 var player_win: bool = false
 
 func _ready() -> void:
+	player_character.initialize()
 	card_handler.initialize()
 	enemy_handler.initialize()
 	state_machine.initialize()

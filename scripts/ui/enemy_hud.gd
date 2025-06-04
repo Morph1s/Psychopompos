@@ -5,3 +5,9 @@ extends EntityHud
 
 func set_intent(texture: Texture) -> void:
 	intent_indicator.texture = texture
+
+func _update_display() -> void:
+	super._update_display()
+
+func initialize() -> void:
+	set_intent(preload("res://assets/graphics/ui/placeholder_intent_heal.png"))
