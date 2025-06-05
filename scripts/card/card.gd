@@ -58,6 +58,12 @@ func play(target_id: int = -1) -> void:
 	var actions: Array[Action] = card_type.on_play_action
 	for action in actions:
 		action.resolve(_get_targets(action.target_type, target_id))
+	
+	# call the player played attack event if the card contains an attack
+	for action in actions:
+		if action is AttackAction:
+			EventBusHandler.call_event(EventBus.Event.PLAYER_PLAYED_ATTACK)
+	
 	card_play_finished.emit()
 
 #region local functions

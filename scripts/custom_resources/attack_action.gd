@@ -11,7 +11,7 @@ var modified_damage: int:
 
 func resolve(targets: Array[Node2D]) -> void: 
 	for target in targets:
-		if target.has_method("take_damage"):
-			target.take_damage(modified_damage)
+		if target.has_method("get_attacked"):
+			target.get_attacked(modified_damage)
 		else:
 			printerr("Wrong node in node group! Node: " + target.to_string())
