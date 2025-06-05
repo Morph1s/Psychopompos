@@ -27,6 +27,7 @@ func initialize() -> void:
 	stats.block_changed.connect(_on_block_changed)
 	
 	effect_handler.initialize(self)
+	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_PLAYED_ATTACK, effect_handler._on_unit_played_attack)
 	
 	await get_tree().create_timer(1).timeout
 	
@@ -37,7 +38,7 @@ func initialize() -> void:
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
-	effect_handler._on_unit_attacked()
+	effect_handler._on_unit_get_attacked()
 
 #region Signal methods
 func _on_died() -> void:

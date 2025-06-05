@@ -1,8 +1,10 @@
 class_name EffectHandler
 extends Node2D
 
-const EFFECT_ICON_DISTACE: int = 2
+const EFFECT_ICON_DISTANCE: int = 2
 const EFFECT_ICON_HEIGHT: int = 8
+const MAX_EFFECTS_IN_COLUMN: int = 5
+const COLUMN_DISTANCE: int = 15
 
 var effect_scenes: Dictionary = {
 	"Vigilant": preload("res://scenes/effects/effect_instances/vigilant.tscn"),
@@ -32,6 +34,16 @@ func initialize(parent: Node2D) -> void:
 	else:
 		push_error("effect handler added to wrong node type: ", self)
 		queue_free()
+	
+	await get_tree().create_timer(1).timeout
+	
+	apply_effect("Vigilant", 10)
+	apply_effect("Gather", 10)
+	apply_effect("DamoklesSword", 10)
+	apply_effect("Phalanx", 10)
+	apply_effect("Agile", 10)
+	apply_effect("WarriorsFury", 10)
+	apply_effect("Wounded", 10)
 
 ## adds a effect if it doesnt exist yet and adds stacks if it does
 func apply_effect(effect_name: String, amount: int) -> void:
@@ -61,8 +73,9 @@ func apply_effect(effect_name: String, amount: int) -> void:
 
 ## calculates the relative position of the effect given its index 
 func _calculate_icon_position(index: int) -> Vector2:
-	var y_pos: int = index * (EFFECT_ICON_DISTACE + EFFECT_ICON_HEIGHT)
-	return Vector2(0, y_pos)
+	var y_pos: int = index % MAX_EFFECTS_IN_COLUMN * (EFFECT_ICON_DISTANCE + EFFECT_ICON_HEIGHT)
+	var x_pos: int = index / MAX_EFFECTS_IN_COLUMN * COLUMN_DISTANCE
+	return Vector2(x_pos, y_pos)
 
 ## gets called to remove an effect from the handler
 func _on_effect_remove_effect(target: Effect) -> void:
@@ -83,6 +96,10 @@ func _on_unit_turn_start() -> void:
 	for effect: Effect in get_children():
 		effect.start_of_turn()
 
-func _on_unit_attacked() -> void:
+func _on_unit_get_attacked() -> void:
 	for effect: Effect in get_children():
-		effect.attacked()
+		effect.get_attacked()
+
+func _on_unit_played_attack() -> void:
+	for effect: Effect in get_children():
+		effect.played_attack()

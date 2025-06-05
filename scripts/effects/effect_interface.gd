@@ -52,16 +52,22 @@ func remove_stacks(amount: int = 1) -> void:
 	else:
 		remove()
 
-## this function has to be implemented individually for each effect that doesn't modify values 
-func attacked() -> void:
+## this function is called when the entity was attacked 
+func get_attacked() -> void:
 	pass
 
-## this function has to be implemented individually for each effect that modifies values 
-func changed_stacks(_previous: int, _current: int) -> void:
+## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
+func played_attack() -> void:
 	pass
 
+## this function is called when the amount of stacks changes 
+func changed_stacks(previous: int, current: int) -> void:
+	pass
+
+## this function is called at the start of the entities turn 
 func start_of_turn() -> void:
 	pass
 
+## this function is called ath the end of the entities turn s
 func end_of_turn() -> void:
 	pass

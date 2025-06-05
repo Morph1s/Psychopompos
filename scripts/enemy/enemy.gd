@@ -46,12 +46,19 @@ func gain_block(gain_block:int) -> void:
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
-	effect_handler._on_unit_attacked()
+	effect_handler._on_unit_get_attacked()
 
 func resolve_intent() -> void:
 	var actions: Array[Action] = stats.actions[intent].action_catalogue
+	var attacked: bool = false
 	for action in actions:
 		action.resolve(_get_targets(action.target_type))
+		if action is AttackAction:
+			attacked = true
+	
+	if attacked:
+		effect_handler._on_unit_played_attack()
+	
 	action_resolved.emit()
 
 func choose_intent() -> void:
@@ -102,10 +109,10 @@ func _on_intent_changed(new_intent) -> void:
 
 func _on_died() -> void:
 	print("Enemy died")
-#endregion
 
 func _on_mouse_entered() -> void:
 	mouse_entered_enemy.emit(self)
 
 func _on_mouse_exited() -> void:
 	mouse_exited_enemy.emit(self)
+#endregion

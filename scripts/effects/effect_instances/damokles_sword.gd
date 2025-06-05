@@ -9,8 +9,12 @@ extends Effect
 const DAMAGE_PER_STACK: int = 5
 
 ## this function is called when the entity was attacked
-func attacked():
-	stacks += 1
+func get_attacked() -> void:
+	add_stacks(1)
+
+## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
+func played_attack() -> void:
+	pass
 
 ## this function is called when the amount of stacks changes 
 func changed_stacks(_previous, _current):

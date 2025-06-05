@@ -7,8 +7,12 @@ extends Effect
 # implement all functions relevant for your effect
 
 ## this function is called when the entity was attacked
-func attacked():
+func get_attacked() -> void:
 	pass
+
+## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
+func played_attack() -> void:
+	remove_stacks(stacks)
 
 ## this function is called when the amount of stacks changes 
 func changed_stacks(previous, current):
@@ -32,9 +36,3 @@ func start_of_turn():
 ## this function is called ath the end of the entities turn s
 func end_of_turn():
 	pass
-
-func _ready() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_PLAYED_ATTACK, _on_eventbus_player_played_attack)
-
-func _on_eventbus_player_played_attack() -> void:
-	remove_stacks(stacks)

@@ -7,7 +7,11 @@ extends Effect
 # implement all functions relevant for your effect
 
 ## this function is called when the entity was attacked
-func attacked():
+func get_attacked() -> void:
+	pass
+
+## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
+func played_attack() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 
