@@ -31,7 +31,7 @@ offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VerticalSeperation" type="VBoxContainer" parent="PauseMenu/Panel"]
+[node name="VerticalSeparation" type="VBoxContainer" parent="PauseMenu/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,84 +41,84 @@ grow_vertical = 2
 theme_override_constants/separation = -2
 alignment = 1
 
-[node name="GapTop" type="Label" parent="PauseMenu/Panel/VerticalSeperation"]
+[node name="GapTop" type="Label" parent="PauseMenu/Panel/VerticalSeparation"]
 layout_mode = 2
 
-[node name="Header" type="Label" parent="PauseMenu/Panel/VerticalSeperation"]
+[node name="Header" type="Label" parent="PauseMenu/Panel/VerticalSeparation"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 12
 text = "PAUSED"
 
-[node name="GapBottom" type="Label" parent="PauseMenu/Panel/VerticalSeperation"]
+[node name="GapBottom" type="Label" parent="PauseMenu/Panel/VerticalSeparation"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="PauseMenu/Panel/VerticalSeperation"]
+[node name="HSeparator" type="HSeparator" parent="PauseMenu/Panel/VerticalSeparation"]
 layout_mode = 2
 
-[node name="HorizontalSeperation" type="HBoxContainer" parent="PauseMenu/Panel/VerticalSeperation"]
+[node name="HorizontalSeparation" type="HBoxContainer" parent="PauseMenu/Panel/VerticalSeparation"]
 layout_mode = 2
 alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation"]
+[node name="Buttons" type="VBoxContainer" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation"]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="GapTop" type="Label" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons"]
+[node name="GapTop" type="Label" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons"]
 layout_mode = 2
 
-[node name="Continue" type="Button" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons"]
+[node name="Continue" type="Button" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons"]
 layout_mode = 2
 text = "CONTINUE"
 
-[node name="MainMenu" type="Button" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons"]
+[node name="MainMenu" type="Button" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons"]
 layout_mode = 2
 text = "MAIN MENU"
 
-[node name="Exit" type="Button" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons"]
+[node name="Exit" type="Button" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons"]
 layout_mode = 2
 text = "EXIT"
 
-[node name="GapBottom" type="Label" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons"]
+[node name="GapBottom" type="Label" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons"]
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation"]
+[node name="VSeparator" type="VSeparator" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation"]
 layout_mode = 2
 
-[node name="Options" type="VBoxContainer" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation"]
+[node name="Options" type="VBoxContainer" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation"]
 layout_mode = 2
 alignment = 1
 
-[node name="FullscreenGroup" type="HBoxContainer" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options"]
+[node name="FullscreenGroup" type="HBoxContainer" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options"]
 layout_mode = 2
 
-[node name="FullscreenCheckbox" type="CheckBox" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options/FullscreenGroup"]
+[node name="FullscreenCheckbox" type="CheckBox" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options/FullscreenGroup"]
 layout_mode = 2
 
-[node name="FullscreenLabel" type="Label" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options/FullscreenGroup"]
+[node name="FullscreenLabel" type="Label" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options/FullscreenGroup"]
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="Gap" type="Label" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options"]
+[node name="Gap" type="Label" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options"]
 layout_mode = 2
 text = "
 "
 
-[node name="VolumeGroup" type="HBoxContainer" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options"]
+[node name="VolumeGroup" type="HBoxContainer" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options"]
 layout_mode = 2
 
-[node name="VolumeIcon" type="TextureRect" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options/VolumeGroup"]
+[node name="VolumeIcon" type="TextureRect" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options/VolumeGroup"]
 layout_mode = 2
 texture = ExtResource("2_4kxpj")
 stretch_mode = 2
 
-[node name="VolumeSlider" type="HSlider" parent="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options/VolumeGroup"]
+[node name="VolumeSlider" type="HSlider" parent="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options/VolumeGroup"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 value = 80.0
 
-[connection signal="button_up" from="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons/Continue" to="." method="_on_continue_button_up"]
-[connection signal="button_up" from="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons/MainMenu" to="." method="_on_main_menu_button_up"]
-[connection signal="button_up" from="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Buttons/Exit" to="." method="_on_exit_button_up"]
-[connection signal="toggled" from="PauseMenu/Panel/VerticalSeperation/HorizontalSeperation/Options/FullscreenGroup/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
+[connection signal="button_up" from="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons/Continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons/MainMenu" to="." method="_on_main_menu_button_up"]
+[connection signal="button_up" from="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Buttons/Exit" to="." method="_on_exit_button_up"]
+[connection signal="toggled" from="PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/Options/FullscreenGroup/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
