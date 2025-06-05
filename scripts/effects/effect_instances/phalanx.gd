@@ -6,7 +6,7 @@ extends Effect
 
 # implement all functions relevant for your effect
 
-const BLOCK_GAIN_INCREACE: float = 1.75
+const BLOCK_GAIN_INCREASE: float = 1.75
 
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
@@ -20,7 +20,7 @@ func played_attack() -> void:
 func changed_stacks(previous, current):
 	if previous == 0:
 		effect_owner.modifier_handler.apply_multiplicative_modifier(
-			BLOCK_GAIN_INCREACE,
+			BLOCK_GAIN_INCREASE,
 			ModifierHandler.ModifiedValue.BLOCK_GAINED,
 			effect_name
 			)

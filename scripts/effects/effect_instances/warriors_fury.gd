@@ -6,8 +6,8 @@ extends Effect
 
 # implement all functions relevant for your effect
 
-const DAMAGE_DEALT_INCREACE: float = 2.0
-const DAMAGE_TAKEN_INCREACE: float = 1.5
+const DAMAGE_DEALT_INCREASE: float = 2.0
+const DAMAGE_TAKEN_INCREASE: float = 1.5
 
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
@@ -21,12 +21,12 @@ func played_attack() -> void:
 func changed_stacks(previous, current):
 	if previous == 0:
 		effect_owner.modifier_handler.apply_multiplicative_modifier(
-			DAMAGE_DEALT_INCREACE,
+			DAMAGE_DEALT_INCREASE,
 			ModifierHandler.ModifiedValue.DAMAGE_DEALT,
 			effect_name
 			)
 		effect_owner.modifier_handler.apply_multiplicative_modifier(
-			DAMAGE_TAKEN_INCREACE,
+			DAMAGE_TAKEN_INCREASE,
 			ModifierHandler.ModifiedValue.DAMAGE_TAKEN,
 			effect_name
 			)
