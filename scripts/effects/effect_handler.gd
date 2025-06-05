@@ -34,16 +34,6 @@ func initialize(parent: Node2D) -> void:
 	else:
 		push_error("effect handler added to wrong node type: ", self)
 		queue_free()
-	
-	await get_tree().create_timer(1).timeout
-	
-	apply_effect("Vigilant", 10)
-	apply_effect("Gather", 10)
-	apply_effect("DamoklesSword", 10)
-	apply_effect("Phalanx", 10)
-	apply_effect("Agile", 10)
-	apply_effect("WarriorsFury", 10)
-	apply_effect("Wounded", 10)
 
 ## adds a effect if it doesnt exist yet and adds stacks if it does
 func apply_effect(effect_name: String, amount: int) -> void:
