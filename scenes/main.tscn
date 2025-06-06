@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsrduttw82u4y"]
+[gd_scene load_steps=4 format=3 uid="uid://bsrduttw82u4y"]
 
 [ext_resource type="Script" uid="uid://ct37r6l32q135" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dap57sra3pvjs" path="res://scenes/ui/pause_menu_layer.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c5gc07wkxlaks" path="res://scenes/ui/close_game_confirmation.tscn" id="3_sugp2"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_o5qli")
 
 [node name="PauseMenuLayer" parent="." instance=ExtResource("2_0wfyh")]
 visible = false
+
+[node name="CloseGameConfirmation" parent="." instance=ExtResource("3_sugp2")]
+visible = false
+
+[connection signal="exit_button_pressed" from="PauseMenuLayer" to="." method="_on_pause_menu_layer_exit_button_pressed"]
+[connection signal="main_menu_button_pressed" from="PauseMenuLayer" to="." method="_on_pause_menu_layer_main_menu_button_pressed"]

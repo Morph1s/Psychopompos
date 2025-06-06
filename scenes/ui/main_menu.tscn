@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdtg0n15vghyv"]
+
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_fe2o3"]
+[ext_resource type="Script" uid="uid://ih60gyh4gwl2" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
+
+[sub_resource type="Gradient" id="Gradient_fe2o3"]
+colors = PackedColorArray(0.298039, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1g8jr"]
+gradient = SubResource("Gradient_fe2o3")
+width = 320
+height = 180
+fill_from = Vector2(0.229358, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fe2o3")
+script = ExtResource("1_sl1te")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_1g8jr")
+
+[node name="Main Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "
+PSYCHOPOMPOS"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -94.0
+offset_right = 320.0
+grow_vertical = 0
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_bottom = 16
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="StartRun" type="Button" parent="MarginContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "START RUN"
+alignment = 0
+
+[node name="Spacing" type="Control" parent="MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Options" type="Button" parent="MarginContainer/ButtonContainer"]
+layout_mode = 2
+text = "OPTIONS"
+alignment = 0
+
+[node name="Spacing2" type="Control" parent="MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="MarginContainer/ButtonContainer"]
+layout_mode = 2
+text = "EXIT"
+alignment = 0
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="StartRunParticles" type="CPUParticles2D" parent="Effects"]
+position = Vector2(48, 120)
+emitting = false
+amount = 12
+emission_shape = 3
+emission_rect_extents = Vector2(22, 2)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -30)
+
+[node name="OptionsParticles" type="CPUParticles2D" parent="Effects"]
+position = Vector2(48, 142)
+emitting = false
+amount = 12
+emission_shape = 3
+emission_rect_extents = Vector2(22, 2)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -30)
+
+[node name="ExitParticles" type="CPUParticles2D" parent="Effects"]
+position = Vector2(48, 164)
+emitting = false
+amount = 12
+emission_shape = 3
+emission_rect_extents = Vector2(22, 2)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -30)
+
+[connection signal="button_up" from="MarginContainer/ButtonContainer/StartRun" to="." method="_on_start_run_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/ButtonContainer/StartRun" to="." method="_on_start_run_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/ButtonContainer/StartRun" to="." method="_on_start_run_mouse_exited"]
+[connection signal="button_up" from="MarginContainer/ButtonContainer/Options" to="." method="_on_options_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/ButtonContainer/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/ButtonContainer/Options" to="." method="_on_options_mouse_exited"]
+[connection signal="button_up" from="MarginContainer/ButtonContainer/Exit" to="." method="_on_exit_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/ButtonContainer/Exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/ButtonContainer/Exit" to="." method="_on_exit_mouse_exited"]
