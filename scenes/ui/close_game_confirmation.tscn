@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5gc07wkxlaks"]
+
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_vcsrf"]
+[ext_resource type="Script" uid="uid://yd3ghqjd5tjo" path="res://scripts/ui/close_game_confirmation.gd" id="2_22sjx"]
+
+[node name="CloseGameConfirmation" type="CanvasLayer"]
+layer = 128
+script = ExtResource("2_22sjx")
+
+[node name="Control" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.67451)
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(92, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -24.0
+offset_right = 46.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vcsrf")
+
+[node name="VerticalContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Panel/VerticalContainer"]
+layout_mode = 2
+text = "CONFIRM EXIT
+"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Control/Panel/VerticalContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Confirm" type="Button" parent="Control/Panel/VerticalContainer/ButtonContainer"]
+layout_mode = 2
+text = "CONFIRM"
+
+[node name="Cancel" type="Button" parent="Control/Panel/VerticalContainer/ButtonContainer"]
+layout_mode = 2
+text = "CANCEL"
+
+[connection signal="button_up" from="Control/Panel/VerticalContainer/ButtonContainer/Confirm" to="." method="_on_confirm_button_up"]
+[connection signal="button_up" from="Control/Panel/VerticalContainer/ButtonContainer/Cancel" to="." method="_on_cancel_button_up"]
