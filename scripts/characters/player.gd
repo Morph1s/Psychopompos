@@ -17,6 +17,9 @@ func lose_hp(amount: int) -> void:
 func gain_block(amount: int) -> void:
 	stats.block += amount
 
+func reset_energy() -> void:
+	stats.current_energy = stats.maximum_energy
+
 func initialize() -> void:
 	stats.initialize()
 	
@@ -32,9 +35,8 @@ func initialize() -> void:
 	await get_tree().create_timer(1).timeout
 	
 	stats.maximum_hitpoints = 100
-	stats.current_hitpoints = 50
+	stats.current_hitpoints = 100
 	stats.block = 20
-	stats.current_energy = 2
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
@@ -44,10 +46,9 @@ func get_attacked(damage_amount: int) -> void:
 func _on_died() -> void:
 	print("Player died")
 
-func _on_energy_changed(new_energy: int, maximum_energy: int, maximum_energy_deficit: int) -> void:
+func _on_energy_changed(new_energy: int, maximum_energy: int) -> void:
 	player_hud.set_current_energy(new_energy)
 	player_hud.set_max_energy(maximum_energy)
-	player_hud.set_max_energy_deficit(maximum_energy_deficit)
 	print("Player Energy changed")
 
 func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:

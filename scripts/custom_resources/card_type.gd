@@ -5,6 +5,7 @@ extends Resource
 @export var on_play_action : Array[Action]
 @export var on_graveyard_action : Array[Action]
 @export var targeted : bool = false
+@export var energy_cost : int
 
 ## has to be called when adding a new card to the deck
 func create_instance() -> CardType:

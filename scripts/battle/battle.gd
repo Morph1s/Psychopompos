@@ -30,6 +30,9 @@ func _on_player_start_turn_draw_cards() -> void:
 func _on_player_start_turn_choose_enemy_intents() -> void:
 	enemy_handler.choose_intent()
 
+func _on_player_start_turn_reset_energy() -> void:
+	player_character.reset_energy()
+
 #endregion
 
 #region enemy turn

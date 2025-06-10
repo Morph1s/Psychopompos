@@ -26,7 +26,8 @@ var second_card: Card
 var selected_card: Card
 var hovered_enemy_id: int = -1
 var mouse_on_play_area: bool = false
-
+ 
+const WARRIOR_STATS : PlayerStats = preload("res://resources/characters/Warrior_Stats.tres")
 
 var draw_pile: Array[CardType]
 var hand: Array[Card] = []
@@ -113,6 +114,7 @@ func discard_card_from_hand(card: Card) -> void:
 	if not hand.is_empty():
 		_update_hand_positions()
 
+
 #region local functions
 
 # used to animate the cards to their respective position
@@ -166,14 +168,20 @@ func _input(event: InputEvent) -> void:
 	# play targeted card
 	if selected_card:
 		if event.is_action_released("left_click") and selected_card.card_type.targeted and hovered_enemy_id>-1:
+			print("card cost: ", selected_card.card_type.energy_cost)
+			for i in range(selected_card.card_type.energy_cost):
+				WARRIOR_STATS.lose_one_energy()                      # resolve energy_cost
 			selected_card.play(hovered_enemy_id)
 			discard_card_from_hand(selected_card)
 			deselect_card()
 			
 		
-	# play untageted card
+	# play untargeted card
 	if selected_card:
 		if event.is_action_released("left_click") and !selected_card.card_type.targeted and mouse_on_play_area:
+			print("card cost: ", selected_card.card_type.energy_cost)
+			for i in range(selected_card.card_type.energy_cost): 
+				WARRIOR_STATS.lose_one_energy()                       # resolve energy_cost
 			selected_card.play()
 			discard_card_from_hand(selected_card)
 			deselect_card()
@@ -213,9 +221,10 @@ func _on_player_turn_end():
 #endregion
 
 
+## for determening mouseposition
 func _on_play_area_mouse_entered() -> void:
-	mouse_on_play_area = true # Replace with function body.
+	mouse_on_play_area = true 
 
 
 func _on_play_area_mouse_exited() -> void:
-	mouse_on_play_area = false # Replace with function body.
+	mouse_on_play_area = false 
