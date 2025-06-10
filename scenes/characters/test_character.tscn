@@ -1,18 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://6wnlmm80st27"]
+[gd_scene load_steps=4 format=3 uid="uid://6wnlmm80st27"]
 
 [ext_resource type="PackedScene" uid="uid://b086lic3ys2g6" path="res://scenes/characters/character.tscn" id="1_t8p1r"]
+[ext_resource type="Resource" uid="uid://cdma0wk0jbcac" path="res://resources/characters/Warrior_Stats.tres" id="2_uexm4"]
 [ext_resource type="Texture2D" uid="uid://dswkxd5k64ba1" path="res://assets/graphics/characters/placeHolder_player1.png" id="2_wllic"]
-[ext_resource type="Script" uid="uid://bxxpdijpxt8sn" path="res://scripts/custom_resources/player_stats.gd" id="2_yi1db"]
-
-[sub_resource type="Resource" id="Resource_pvixp"]
-script = ExtResource("2_yi1db")
-maximum_energy = 3
-maximum_energy_deficit = 3
-maximum_hitpoints = 25
-metadata/_custom_type_script = "uid://bxxpdijpxt8sn"
 
 [node name="TestCharacter" instance=ExtResource("1_t8p1r")]
-stats = SubResource("Resource_pvixp")
+stats = ExtResource("2_uexm4")
 
 [node name="CharacterImage" parent="." index="0"]
 texture = ExtResource("2_wllic")

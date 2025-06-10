@@ -55,6 +55,8 @@ func set_modifier_handler() -> void:
 ## 
 ## if the card requires targeting an enemy, add its id as the parameter
 func play(target_id: int = -1) -> void:
+	#get_tree().get_first_node_in_group("player").stats.current_energy
+	
 	var actions: Array[Action] = card_type.on_play_action
 	for action in actions:
 		action.resolve(_get_targets(action.target_type, target_id))
