@@ -21,6 +21,7 @@ signal resolve_player_turn_end_effects
 signal resolve_enemy_turn_start_effects
 signal resolve_enemy_turn_end_effects
 signal player_played_attack
+signal open_settings
 
 ## all currently available events during combat
 enum Event {
@@ -38,6 +39,7 @@ enum Event {
 	ENEMY_TURN_START_EFFECTS,
 	ENEMY_TURN_END_EFFECTS,
 	PLAYER_PLAYED_ATTACK,
+	OPEN_SETTINGS,
 	}
 
 ## triggers the given event and all connected effects
@@ -71,6 +73,8 @@ func call_event(event: Event) -> void:
 			resolve_enemy_turn_end_effects.emit()
 		Event.PLAYER_PLAYED_ATTACK:
 			player_played_attack.emit()
+		Event.OPEN_SETTINGS:
+			open_settings.emit()
 
 ## adds the given callable-function into the queue for the given event.
 func connect_to_event(event: Event, function: Callable) -> void:
@@ -103,6 +107,8 @@ func connect_to_event(event: Event, function: Callable) -> void:
 			resolve_enemy_turn_end_effects.connect(function)
 		Event.PLAYER_PLAYED_ATTACK:
 			player_played_attack.connect(function)
+		Event.OPEN_SETTINGS:
+			open_settings.connect(function)
 
 ## disposes all connections of all events
 func clear_all_battle_events() -> void:
