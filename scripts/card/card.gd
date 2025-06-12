@@ -115,7 +115,7 @@ func _update_image_y_positions(value: int) -> void:
 
 func _set_description(icon: Texture, text: String, index: int) -> void:
 	if 2 < index:
-		push_error("to many desctiptions in card: ", card_type.card_name)
+		push_error("too many descriptions for card: ", card_type.card_name)
 		return
 	
 	if icon:
