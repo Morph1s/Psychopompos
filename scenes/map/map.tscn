@@ -3,55 +3,45 @@
 [ext_resource type="Script" uid="uid://cf0ptkb7xnhj" path="res://scripts/map/map.gd" id="1_sxf4j"]
 
 [node name="Map" type="Control"]
+z_index = 2
 layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
-script = ExtResource("1_sxf4j")
-
-[node name="SampleEncounterButtons" type="VBoxContainer" parent="."]
-z_index = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 120.0
-offset_top = 22.0
-offset_right = 200.0
-offset_bottom = 158.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sxf4j")
 
-[node name="BattleButton" type="Button" parent="SampleEncounterButtons"]
-layout_mode = 2
-text = "Battle"
-
-[node name="ShopButton" type="Button" parent="SampleEncounterButtons"]
-layout_mode = 2
-text = "Shop"
-
-[node name="CampfireButton" type="Button" parent="SampleEncounterButtons"]
-layout_mode = 2
-text = "Campfire"
-
-[node name="RandomButton" type="Button" parent="SampleEncounterButtons"]
-layout_mode = 2
-text = "Random"
-
-[node name="ExitButton" type="Button" parent="."]
-z_index = 1
+[node name="TopMargin" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = 294.0
-offset_right = 320.0
-offset_bottom = 31.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_top = 20
+
+[node name="MapIconsMargin" type="MarginContainer" parent="TopMargin"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="MapScrollContainer" type="ScrollContainer" parent="TopMargin/MapIconsMargin"]
+layout_mode = 2
+mouse_filter = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopMargin/MapIconsMargin/MapScrollContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ExitButton" type="Button" parent="TopMargin"]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 text = " x "
 
-[node name="MapBackground" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MapBackground" type="TextureRect" parent="TopMargin"]
+layout_mode = 2
+mouse_filter = 2
