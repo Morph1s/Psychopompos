@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://t44dhyfoti7a"]
+
+[ext_resource type="Script" uid="uid://3kh04q2pkah2" path="res://scripts/ui/select_card_screen.gd" id="1_v62bs"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_xwcgi"]
+
+[node name="SelectCardScreen" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xwcgi")
+color = Color(0, 0, 0, 0.67451)
+script = ExtResource("1_v62bs")
+
+[node name="HorizontalContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -20.0
+offset_right = 58.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Header" type="Label" parent="HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "SELECT A CARD"
+
+[node name="CardContainer" type="HBoxContainer" parent="HorizontalContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SkipCards" type="Button" parent="HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "SKIP"
+
+[connection signal="button_up" from="HorizontalContainer/SkipCards" to="." method="_on_skip_cards_button_up"]
