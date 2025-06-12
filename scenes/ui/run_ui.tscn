@@ -1,7 +1,71 @@
-[gd_scene format=3 uid="uid://b421431h80p3u"]
+[gd_scene load_steps=8 format=3 uid="uid://b421431h80p3u"]
 
-[node name="RunUI" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[ext_resource type="Texture2D" uid="uid://ciqym2av8hur" path="res://assets/graphics/ui/box_top.png" id="1_6gjgj"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_mjeky"]
+[ext_resource type="Texture2D" uid="uid://yjnkmlp7fc4r" path="res://assets/graphics/ui/placeholder_intent_heal.png" id="2_f487w"]
+[ext_resource type="Texture2D" uid="uid://dvh0agl3vn07y" path="res://assets/graphics/ui/hud_pictograms/deck_icon.png" id="2_lpnxo"]
+[ext_resource type="Script" uid="uid://c5ce77d6k6b44" path="res://scripts/ui/run_ui.gd" id="3_jynbq"]
+[ext_resource type="Texture2D" uid="uid://bd5xdcrvbangu" path="res://assets/graphics/ui/hud_pictograms/map_icon.png" id="3_mjeky"]
+[ext_resource type="Texture2D" uid="uid://c75h5hj2cyycl" path="res://assets/graphics/ui/hud_pictograms/settings_icon.png" id="4_jynbq"]
+
+[node name="RunUI" type="TextureRect"]
+custom_minimum_size = Vector2(0, 18)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+theme = ExtResource("1_mjeky")
+texture = ExtResource("1_6gjgj")
+stretch_mode = 2
+script = ExtResource("3_jynbq")
+
+[node name="IconsRight" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(60, 18)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="DeckIcon" type="TextureRect" parent="IconsRight"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_lpnxo")
+stretch_mode = 2
+
+[node name="MapIcon" type="TextureRect" parent="IconsRight"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_mjeky")
+stretch_mode = 2
+
+[node name="SettingsIcon" type="TextureRect" parent="IconsRight"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_jynbq")
+stretch_mode = 2
+
+[node name="IconsLeft" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(60, 18)
+layout_mode = 1
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 16.0
+alignment = 2
+
+[node name="HPIcon" type="TextureRect" parent="IconsLeft"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_f487w")
+stretch_mode = 2
+
+[node name="HPLabel" type="Label" parent="IconsLeft"]
+layout_mode = 2
+text = "42/69"
+
+[connection signal="gui_input" from="IconsRight/DeckIcon" to="." method="_on_deck_icon_gui_input"]
+[connection signal="gui_input" from="IconsRight/MapIcon" to="." method="_on_map_icon_gui_input"]
+[connection signal="gui_input" from="IconsRight/SettingsIcon" to="." method="_on_settings_icon_gui_input"]
