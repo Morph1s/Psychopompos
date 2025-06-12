@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhrw1q2m7p5fa"]
+[gd_scene load_steps=3 format=3 uid="uid://dhrw1q2m7p5fa"]
 
 [ext_resource type="Script" uid="uid://cf0ptkb7xnhj" path="res://scripts/map/map.gd" id="1_sxf4j"]
+[ext_resource type="Script" uid="uid://cd6mpm7b2dnb" path="res://scripts/map/map_connection_drawer.gd" id="2_tqkkf"]
 
 [node name="Map" type="Control"]
 z_index = 2
@@ -27,6 +28,11 @@ layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
 
+[node name="MapConnectionDrawer" type="Control" parent="TopMargin/MapIconsMargin"]
+clip_contents = true
+layout_mode = 2
+script = ExtResource("2_tqkkf")
+
 [node name="MapScrollContainer" type="ScrollContainer" parent="TopMargin/MapIconsMargin"]
 layout_mode = 2
 mouse_filter = 0
@@ -34,6 +40,7 @@ mouse_filter = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="TopMargin/MapIconsMargin/MapScrollContainer"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 32
 
 [node name="ExitButton" type="Button" parent="TopMargin"]
 z_index = 2

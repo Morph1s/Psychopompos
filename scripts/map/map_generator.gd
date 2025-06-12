@@ -71,16 +71,22 @@ func generate_map() -> Array[MapLayer]:
 			continue
 		
 		# if next layer is the boss, set all connections to the boss encounter
-		if map_layers[layer + 1].type == MapLayer.MapLayerType.BOSS:
+		elif map_layers[layer + 1].type == MapLayer.MapLayerType.BOSS:
 			for encounter: Encounter in map_layers[layer].encounters:
 				encounter.connections_to = map_layers[layer + 1].encounters
 			continue
 		
+		# if this layer ist the mini boss, set connections to all encounters of the next layer
+		elif map_layers[layer].type == MapLayer.MapLayerType.MINI_BOSS:
+			for encounter: Encounter in map_layers[layer].encounters:
+				encounter.connections_to = map_layers[layer + 1].encounters
+		
 		# if next layer is a normal layer, set random connections
-		for encounter: Encounter in map_layers[layer].encounters:
-			var next_encounters = map_layers[layer + 1].encounters.duplicate()
-			next_encounters.shuffle()
-			var num_next_encounters = randi_range(1, 3)
-			encounter.connections_to = next_encounters.slice(0, min(num_next_encounters, next_encounters.size()))
+		else:
+			for encounter: Encounter in map_layers[layer].encounters:
+				var next_encounters = map_layers[layer + 1].encounters.duplicate()
+				next_encounters.shuffle()
+				var num_next_encounters = randi_range(1, 3)
+				encounter.connections_to = next_encounters.slice(0, min(num_next_encounters, next_encounters.size()))
 	
 	return map_layers
