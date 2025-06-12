@@ -1,11 +1,25 @@
 class_name CardType
 extends Resource
 
+signal energy_cost_changed(new_value: int)
+
+@export var card_name: String = ""
+@export var energy_cost : int:
+	set(value):
+		energy_cost = value
+		energy_cost_changed.emit(value)
 @export var texture : Texture
 @export var on_play_action : Array[Action]
 @export var on_graveyard_action : Array[Action]
 @export var targeted : bool = false
-@export var energy_cost : int
+## Icons for description box.
+@export var first_description_icon: Texture
+## Text for description box.
+@export var first_description_text: String
+## Icons for description box.
+@export var second_description_icon: Texture
+## Text for description box.
+@export var second_description_text: String
 
 ## has to be called when adding a new card to the deck
 func create_instance() -> CardType:
