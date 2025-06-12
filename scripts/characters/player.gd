@@ -17,8 +17,13 @@ func lose_hp(amount: int) -> void:
 func gain_block(amount: int) -> void:
 	stats.block += amount
 
-func reset_energy() -> void:
+func start_of_turn() -> void:
 	stats.current_energy = stats.maximum_energy
+	stats.block = 0
+	effect_handler._on_unit_turn_start()
+
+func end_of_turn() -> void:
+	effect_handler._on_unit_turn_end()
 
 func initialize() -> void:
 	stats.initialize()
