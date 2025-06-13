@@ -10,6 +10,9 @@ extends Node2D
 var card_draw_amount: int = 5
 var player_win: bool = false
 
+signal  load_game_over_screen
+signal  load_battle_rewards
+
 func _ready() -> void:
 	player_character.initialize()
 	card_handler.initialize()
@@ -54,5 +57,12 @@ func _on_enemy_end_turn_enemy_ends_turn() -> void:
 	for enemy in enemy_handler.enemies:
 		enemy.end_of_turn()
 #endregion
+
+func _on_player_character_player_died() -> void:
+	load_game_over_screen.emit()
+
+func _on_enemy_handler_all_enemies_died() -> void:
+	
+	load_battle_rewards.emit()
 
 #endregion

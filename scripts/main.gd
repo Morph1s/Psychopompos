@@ -25,10 +25,11 @@ func _load_run_scene() -> void:
 		loaded_scene.queue_free()
 		print("killed child")
 	
-	var run_scene_instance = RUN.instantiate()
+	var run_scene_instance: Run = RUN.instantiate()
 	
 	loaded_scene = run_scene_instance
 	add_child(run_scene_instance)
+	run_scene_instance.load_main_menu.connect(_load_main_menu_scene)
 
 ## switch to main menu (and close run)
 func _load_main_menu_scene() -> void:

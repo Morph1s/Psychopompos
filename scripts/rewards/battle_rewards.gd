@@ -29,7 +29,10 @@ var card_rewards_list: Array[Array] = []
 
 const BATTLE_REWARD_BUTTON = preload("res://scenes/encounters/battle_reward_button.tscn")
 
+
 func load_common_rewards() -> void:
+	if not is_node_ready():
+		await ready
 	var card_reward = BATTLE_REWARD_BUTTON.instantiate()
 	card_reward.set_rewards(RewardType.CARDS, card_rewards_list.size())
 	card_rewards_list.append(DeckHandler.get_cards_for_card_rewards(CARDS_PER_CARD_REWARD))
@@ -43,6 +46,8 @@ func load_common_rewards() -> void:
 		rewards_container.add_child(coin_reward)
 
 func load_rare_rewards() -> void:
+	if not is_node_ready():
+		await ready
 	var artefact_reward = BATTLE_REWARD_BUTTON.instantiate()
 	artefact_reward.set_rewards(RewardType.ARTEFACT, 0)
 	artefact_reward.reward_selected.connect(_on_reward_button_reward_selected)
