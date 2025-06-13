@@ -32,7 +32,7 @@ func apply_effect(effect_name: String, amount: int) -> void:
 			if amount > 0:
 				effect.add_stacks(amount)
 			elif amount < 0:
-				effect.remove_stacks(amount)
+				effect.remove_stacks(-amount)
 			return
 	
 	# check if the effect exists
