@@ -36,7 +36,6 @@ var discard_pile: Array[CardType] = []
 ## handels setup at beginning of battle.
 ## should only be called once to handle the initialization!
 func initialize() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END, Callable(self, "_on_player_turn_end"))
 	draw_pile.append_array(DeckHandler.current_deck)
 	draw_pile.shuffle()
 
@@ -212,14 +211,6 @@ func _on_mouse_exited_card(card):
 		highlighted_card = second_card
 		second_card = null
 #endregion
-
-#region battle loop helpers
-
-func _on_player_turn_end():
-	discard_hand()
-
-#endregion
-
 
 ## for determening mouseposition
 func _on_play_area_mouse_entered() -> void:

@@ -8,8 +8,8 @@ var battle_ui_reference: BattleUI
 const BATTLE_UI = preload("res://scenes/ui/battle_ui.tscn")
 
 func _ready() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.BATTLE_STARTED, _on_event_bus_battle_started)
-	EventBusHandler.connect_to_event(EventBus.Event.BATTLE_ENDED, _on_event_bus_battle_ended)
+	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
+	EventBusHandler.battle_ended.connect(_on_event_bus_battle_ended)
 
 func _on_run_ui_open_map():
 	if map.visible:

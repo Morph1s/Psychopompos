@@ -77,7 +77,7 @@ func play(target_id: int = -1) -> void:
 	# call the player played attack event if the card contains an attack
 	for action in actions:
 		if action is AttackAction:
-			EventBusHandler.call_event(EventBus.Event.PLAYER_PLAYED_ATTACK)
+			EventBusHandler.player_played_attack.emit()
 	
 	card_play_finished.emit()
 

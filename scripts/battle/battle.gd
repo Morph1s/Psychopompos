@@ -17,8 +17,7 @@ func _ready() -> void:
 	state_machine.initialize()
 
 func _exit_tree() -> void:
-	EventBusHandler.call_event(EventBus.Event.BATTLE_ENDED)
-	EventBusHandler.clear_all_battle_events()
+	state_machine.transition_to("Exit")
 
 
 #region signals
@@ -36,6 +35,9 @@ func _on_player_start_turn_player_starts_turn() -> void:
 
 func _on_player_end_turn_player_ends_turn() -> void:
 	player_character.end_of_turn()
+
+func _on_player_end_turn_discard_hand():
+	card_handler.discard_hand()
 
 #endregion
 

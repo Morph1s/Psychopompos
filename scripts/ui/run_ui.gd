@@ -13,4 +13,4 @@ func _on_map_icon_gui_input(event: InputEvent) -> void:
 
 func _on_settings_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
-		EventBusHandler.call_event(EventBus.Event.OPEN_SETTINGS)
+		EventBusHandler.open_settings.emit()
