@@ -24,10 +24,6 @@ func _draw():
 		var button_from = conn["from"]
 		var button_to = conn["to"]
 		
-		# don't draw the line when both associated buttons are not visible
-		if not button_from.visible and not button_to.visible:
-			return
-		
 		# calculate the starting and end points of the line
 		var pos_from = button_from.get_global_position() + (button_from.size * 0.5) - self.get_global_position()
 		var pos_to = button_to.get_global_position() + (button_to.size * 0.5) - self.get_global_position()

@@ -3,7 +3,9 @@ extends Node
 
 const MAX_NUM_ENCOUNTERS_PER_LAYER = 5
 const MIN_NUM_ENCOUNTERS_PER_LAYER = 2
-const NUM_WELD_ITERATIONS = 25
+const NUM_LAYERS_BEFORE_MINI_BOSS = 4    # excluding starting layer
+const NUM_LAYERS_AFTER_MINI_BOSS = 5
+const NUM_WELD_ITERATIONS = (NUM_LAYERS_BEFORE_MINI_BOSS + NUM_LAYERS_AFTER_MINI_BOSS + 1) * 3
 
 func generate_map() -> Array[MapLayer]:
 	var map_layers: Array[MapLayer] = []
@@ -15,7 +17,7 @@ func generate_map() -> Array[MapLayer]:
 	map_layers.append(start_layer)
 	
 	# first half of normal layers
-	for layer in range(4):
+	for layer in NUM_LAYERS_BEFORE_MINI_BOSS:
 		var map_layer = MapLayer.new()
 		map_layer.type = MapLayer.MapLayerType.NORMAL
 		_initial_fill_layer(map_layer)
@@ -32,7 +34,7 @@ func generate_map() -> Array[MapLayer]:
 	map_layers.append(mini_boss_layer)
 	
 	# second half of normal layers
-	for layer in range(5):
+	for layer in NUM_LAYERS_AFTER_MINI_BOSS:
 		var map_layer = MapLayer.new()
 		map_layer.type = MapLayer.MapLayerType.NORMAL
 		_initial_fill_layer(map_layer)
@@ -57,7 +59,7 @@ func generate_map() -> Array[MapLayer]:
 	return map_layers
 
 func _initial_fill_layer(layer: MapLayer):
-	for i in range(MAX_NUM_ENCOUNTERS_PER_LAYER):
+	for i in MAX_NUM_ENCOUNTERS_PER_LAYER:
 		var encounter: Encounter = Encounter.new()
 		layer.encounters.append(encounter)
 
@@ -73,8 +75,8 @@ func _set_initial_connections(map_layers: Array[MapLayer]):
 		# if the following layer is the mini boss or boss layer, connect every encounter to the mini boss or boss encounter
 		# if this layer is the mini boss layer, also connect it to all encounters of the following layer
 		if ((next_layer.type == MapLayer.MapLayerType.MINI_BOSS) 
-			or (next_layer.type == MapLayer.MapLayerType.BOSS)
-			or (layer.type == MapLayer.MapLayerType.MINI_BOSS)):
+		or (next_layer.type == MapLayer.MapLayerType.BOSS)
+		or (layer.type == MapLayer.MapLayerType.MINI_BOSS)):
 			for encounter: Encounter in layer.encounters:
 				encounter.connections_to = next_layer.encounters
 			continue

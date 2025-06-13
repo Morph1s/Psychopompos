@@ -38,7 +38,6 @@ text = "Open Map"
 
 [node name="Map" parent="UILayer" instance=ExtResource("3_6ock1")]
 visible = false
-theme = ExtResource("4_5kaao")
 
 [node name="EncounterHandler" type="Node2D" parent="."]
 script = ExtResource("2_6ock1")

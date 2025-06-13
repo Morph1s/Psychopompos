@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhrw1q2m7p5fa"]
+[gd_scene load_steps=4 format=3 uid="uid://dhrw1q2m7p5fa"]
 
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_a2pkv"]
 [ext_resource type="Script" uid="uid://cf0ptkb7xnhj" path="res://scripts/map/map.gd" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://cd6mpm7b2dnb" path="res://scripts/map/map_connection_drawer.gd" id="2_tqkkf"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_a2pkv")
 script = ExtResource("1_sxf4j")
 
 [node name="TopMargin" type="MarginContainer" parent="."]
@@ -37,7 +39,7 @@ script = ExtResource("2_tqkkf")
 layout_mode = 2
 mouse_filter = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopMargin/MapIconsMargin/MapScrollContainer"]
+[node name="MapLayerContainer" type="HBoxContainer" parent="TopMargin/MapIconsMargin/MapScrollContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -53,3 +55,5 @@ text = " x "
 [node name="MapBackground" type="TextureRect" parent="TopMargin"]
 layout_mode = 2
 mouse_filter = 2
+
+[connection signal="pressed" from="TopMargin/ExitButton" to="." method="_on_exit_button_pressed"]

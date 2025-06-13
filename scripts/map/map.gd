@@ -5,7 +5,7 @@ signal encounter_selected(encounter_data)
 signal close_map
 
 @onready var exit_button = $TopMargin/ExitButton
-@onready var hbox = $TopMargin/MapIconsMargin/MapScrollContainer/HBoxContainer
+@onready var hbox = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
 
 var encounter_icons: Array[Texture] = [
@@ -16,10 +16,6 @@ var encounter_icons: Array[Texture] = [
 ]
 var encounter_to_button: Dictionary = {}
 var current_encounter: Encounter
-
-func _ready() -> void:
-	# Connect signals to buttons
-	exit_button.pressed.connect(_on_exit_button_pressed)
 
 func _process(delta: float) -> void:
 	# update the connection lines on the map
@@ -80,6 +76,5 @@ func _on_encounter_pressed(encounter: Encounter):
 	update_layer_states()
 
 func _on_exit_button_pressed():
-	print("exit button pressed")
 	hide()
 	close_map.emit()
