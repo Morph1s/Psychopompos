@@ -1,6 +1,11 @@
 class_name EncounterHandler
 extends Node2D
 
+const GAME_OVER_SCREEN: PackedScene = preload("res://scenes/ui/game_over_screen.tscn")
+
+signal load_main_menu()
+signal load_rewards()
+
 var current_encounter: Node = null
 
 # Loads a requested encounter into the Run scene
@@ -16,7 +21,22 @@ func start_encounter(encounter_data):
 	match encounter_data:
 		"battle":
 			var battle_scene = preload("res://scenes/encounters/battle.tscn").instantiate()
+			battle_scene.load_game_over_screen.connect(_load_game_over_screen)
+			battle_scene.load_battle_rewards.connect(_load_reward_screen)
 			add_child(battle_scene)
 			current_encounter = battle_scene
 		_:
 			print("Encounter type not implemented: ", encounter_data)
+
+func _load_game_over_screen():
+	current_encounter.queue_free()
+	var game_over_screen: GameOverScreen = GAME_OVER_SCREEN.instantiate() 
+	self.add_child(game_over_screen)
+	game_over_screen.back_to_main_menu_pressed.connect(_on_back_to_main_menu_pressed)
+
+func _load_reward_screen():
+	current_encounter.queue_free()
+	load_rewards.emit()
+
+func _on_back_to_main_menu_pressed():
+	load_main_menu.emit()

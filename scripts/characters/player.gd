@@ -7,6 +7,8 @@ extends Node2D
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
 
+signal player_died()
+
 func take_damage(damage_amount: int) -> void:
 	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(damage_amount)
@@ -40,7 +42,7 @@ func initialize() -> void:
 	await get_tree().create_timer(1).timeout
 	
 	stats.maximum_hitpoints = 100
-	stats.current_hitpoints = 100
+	stats.current_hitpoints = 1
 	stats.block = 20
 
 func get_attacked(damage_amount: int) -> void:
@@ -49,7 +51,8 @@ func get_attacked(damage_amount: int) -> void:
 
 #region Signal methods
 func _on_died() -> void:
-	print("Player died")
+	player_died.emit()
+	
 
 func _on_energy_changed(new_energy: int, maximum_energy: int) -> void:
 	player_hud.set_current_energy(new_energy)

@@ -1,6 +1,8 @@
 class_name EnemyHandler
 extends Node2D
 
+signal all_enemies_died
+
 const ENEMY = preload("res://scenes/enemy/enemy.tscn")
 const ENEMY_WIDTH: int = 82
 const ENEMY_PLACEMENT_CENTER_X: int = 320 - 100
@@ -28,10 +30,13 @@ func load_enemy(loading_enemies: Array[EnemyStats]) :
 		new_enemy.id = get_child_count()
 		new_enemy.mouse_entered_enemy.connect(_on_enemy_enterd)
 		new_enemy.mouse_exited_enemy.connect(_on_enemy_exited)
+		new_enemy.enemy_died.connect(_an_enmemy_died)
 		rng_zahl = rng.randi_range(1,180)
 		new_enemy.position = Vector2(340,rng_zahl)
 		enemies.append(new_enemy)
 	place_enemy_in_scene()
+
+
 
 func place_enemy_in_scene():
 	var tween = get_tree().create_tween()
@@ -55,6 +60,12 @@ func choose_intent():
 	for enemy in enemies:
 		enemy.choose_intent()
 
+# removes enemy and checks for win
+func _an_enmemy_died(dead_enemy: Enemy):
+	enemies.erase(dead_enemy)
+	remove_child(dead_enemy)
+	if enemies.is_empty():
+		all_enemies_died.emit()
 
 #region card played on enemy
 ## looks if enemy is selecetd with valid card
