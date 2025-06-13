@@ -13,7 +13,7 @@ var enemies_stats: Array[EnemyStats]
 var enemies: Array[Enemy]
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-var rng_zahl: int
+var random_y_position: int
 var place: Vector2
 
 func initialize() -> void:
@@ -30,9 +30,9 @@ func load_enemy(loading_enemies: Array[EnemyStats]) :
 		new_enemy.id = get_child_count()
 		new_enemy.mouse_entered_enemy.connect(_on_enemy_enterd)
 		new_enemy.mouse_exited_enemy.connect(_on_enemy_exited)
-		new_enemy.enemy_died.connect(_an_enememy_died)
-		rng_zahl = rng.randi_range(1,180)
-		new_enemy.position = Vector2(340,rng_zahl)
+		new_enemy.enemy_died.connect(_an_enemy_died)
+		random_y_position = rng.randi_range(1,180)
+		new_enemy.position = Vector2(340,random_y_position)
 		enemies.append(new_enemy)
 	place_enemy_in_scene()
 
@@ -61,7 +61,7 @@ func choose_intent():
 		enemy.choose_intent()
 
 # removes enemy and checks for win
-func _an_enememy_died(dead_enemy: Enemy):
+func _an_enemy_died(dead_enemy: Enemy):
 	enemies.erase(dead_enemy)
 	remove_child(dead_enemy)
 	if enemies.is_empty():
