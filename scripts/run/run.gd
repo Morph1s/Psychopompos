@@ -8,7 +8,7 @@ extends Node2D
 @onready var map = $UILayer/Map
 @onready var map_generator = $MapGenerator
 
-signal load_main_menu()
+signal load_main_menu
 
 func _ready():
 	var map_layers = map_generator.generate_map()

@@ -41,9 +41,6 @@ func initialize() -> void:
 	
 	await get_tree().create_timer(1).timeout
 	
-	stats.maximum_hitpoints = 100
-	stats.current_hitpoints = 1
-	stats.block = 20
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)

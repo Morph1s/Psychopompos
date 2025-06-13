@@ -10,7 +10,7 @@ extends Node2D
 var card_draw_amount: int = 5
 var player_win: bool = false
 
-signal  load_game_over_screen()
+signal  load_game_over_screen
 signal  load_battle_rewards
 
 func _ready() -> void:
