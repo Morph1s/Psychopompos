@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://qo0nfo00b6vb"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_hacm5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_34tpb"]
+size = Vector2(8, 8)
+
+[resource]
+script = ExtResource("1_hacm5")
+icon = SubResource("PlaceholderTexture2D_34tpb")
+description = "FURY: take and deal more damage"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
