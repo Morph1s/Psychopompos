@@ -8,5 +8,5 @@ size = Vector2(8, 8)
 [resource]
 script = ExtResource("1_l5yub")
 icon = SubResource("PlaceholderTexture2D_34tpb")
-description = "GATHER: attack for more, then loose stacks"
+description = "GATHER: attack for more, then lose stacks"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"
