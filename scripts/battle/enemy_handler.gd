@@ -64,6 +64,7 @@ func choose_intent():
 func _an_enemy_died(dead_enemy: Enemy):
 	enemies.erase(dead_enemy)
 	remove_child(dead_enemy)
+	dead_enemy.queue_free()
 	if enemies.is_empty():
 		all_enemies_died.emit()
 
@@ -74,3 +75,8 @@ func _on_enemy_enterd(enemy):
 
 func _on_enemy_exited(enemy):
 	card_handler.hovered_enemy_id = -1
+
+
+func _on_child_exiting_tree(node: Node) -> void:
+	if get_child_count() == 1:
+		print("gfukcgakuj")
