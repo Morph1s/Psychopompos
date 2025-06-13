@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=7 format=3 uid="uid://r53s3kohc8k0"]
+[gd_resource type="Resource" script_class="CardType" load_steps=8 format=3 uid="uid://r53s3kohc8k0"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_gmmty"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_4vhli"]
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="2_5nopr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4vhli"]
+size = Vector2(8, 8)
 
 [sub_resource type="Resource" id="Resource_jcy5c"]
 script = ExtResource("2_5nopr")
@@ -15,14 +18,19 @@ colors = PackedColorArray(0, 0, 1, 1, 0, 0.498039, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5nopr"]
 gradient = SubResource("Gradient_4vhli")
-width = 48
+width = 32
+height = 24
 fill_from = Vector2(0, 1)
 
 [resource]
 script = ExtResource("2_4vhli")
+card_name = "Defend"
+energy_cost = 1
 texture = SubResource("GradientTexture2D_5nopr")
 on_play_action = Array[ExtResource("1_gmmty")]([SubResource("Resource_jcy5c")])
 on_graveyard_action = Array[ExtResource("1_gmmty")]([])
 targeted = false
-energy_cost = 1
+first_description_icon = SubResource("PlaceholderTexture2D_4vhli")
+first_description_text = "5"
+second_description_text = ""
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

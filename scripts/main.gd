@@ -5,26 +5,19 @@ const MAIN_MENU: PackedScene = preload("res://scenes/ui/main_menu.tscn")
 
 @onready var pause_menu_layer = $PauseMenuLayer
 @onready var close_game_confirmation = $CloseGameConfirmation
-@onready var background_occlusion = $BackgroundOcclusion
 
 var loaded_scene: Node
 
 ## called on starting the game
 func _ready() -> void:
 	_load_main_menu_scene()
+	EventBusHandler.open_settings.connect(_open_settings)
 
 func _input(event) -> void:
 	if not event.is_action_pressed("pause"):
 		return
 	
-	if pause_menu_layer.visible:
-		pause_menu_layer.close()
-		return
-	
-	if loaded_scene is MainMenu:
-		pause_menu_layer.open(PauseMenu.OpenFrom.MAIN_MENU)
-	elif loaded_scene is Run:
-		pause_menu_layer.open(PauseMenu.OpenFrom.RUN)
+	_open_settings()
 
 ## switch to run (and close main menu)
 func _load_run_scene() -> void:
@@ -63,4 +56,15 @@ func _on_pause_menu_layer_main_menu_button_pressed() -> void:
 
 func _on_main_menu_options_button_pressed() -> void:
 	pause_menu_layer.open(PauseMenu.OpenFrom.MAIN_MENU)
+
+func _open_settings() -> void:
+	if pause_menu_layer.visible:
+		pause_menu_layer.close()
+		return
+	
+	if loaded_scene is MainMenu:
+		pause_menu_layer.open(PauseMenu.OpenFrom.MAIN_MENU)
+	elif loaded_scene is Run:
+		pause_menu_layer.open(PauseMenu.OpenFrom.RUN)
+
 #endregion

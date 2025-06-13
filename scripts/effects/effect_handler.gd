@@ -23,24 +23,16 @@ var parent_node: Node2D
 ## call this method to setup the nodes functionality
 func initialize(parent: Node2D) -> void:
 	parent_node = parent
-	
-	# connect the corresponding events 
-	if parent_node is Character:
-		EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_START_EFFECTS, _on_unit_turn_start)
-		EventBusHandler.connect_to_event(EventBus.Event.PLAYER_TURN_END_EFFECTS, _on_unit_turn_end)
-	elif parent_node is Enemy:
-		EventBusHandler.connect_to_event(EventBus.Event.ENEMY_TURN_START_EFFECTS, _on_unit_turn_start)
-		EventBusHandler.connect_to_event(EventBus.Event.ENEMY_TURN_END_EFFECTS, _on_unit_turn_end)
-	else:
-		push_error("effect handler added to wrong node type: ", self)
-		queue_free()
 
 ## adds a effect if it doesnt exist yet and adds stacks if it does
 func apply_effect(effect_name: String, amount: int) -> void:
 	# search for the effect in all children and adds stacks if found
 	for effect: Effect in get_children():
 		if effect.effect_name == effect_name:
-			effect.add_stacks(amount)
+			if amount > 0:
+				effect.add_stacks(amount)
+			elif amount < 0:
+				effect.remove_stacks(-amount)
 			return
 	
 	# check if the effect exists

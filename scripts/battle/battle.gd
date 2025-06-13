@@ -17,12 +17,12 @@ func _ready() -> void:
 	state_machine.initialize()
 
 func _exit_tree() -> void:
-	EventBusHandler.call_event(EventBus.Event.BATTLE_ENDED)
-	EventBusHandler.clear_all_battle_events()
+	state_machine.transition_to("Exit")
 
 
+#region signals
 
-#region player start turn
+#region player turn
 
 func _on_player_start_turn_draw_cards() -> void:
 	card_handler.draw_cards(card_draw_amount)
@@ -30,8 +30,14 @@ func _on_player_start_turn_draw_cards() -> void:
 func _on_player_start_turn_choose_enemy_intents() -> void:
 	enemy_handler.choose_intent()
 
-func _on_player_start_turn_reset_energy() -> void:
-	player_character.reset_energy()
+func _on_player_start_turn_player_starts_turn() -> void:
+	player_character.start_of_turn()
+
+func _on_player_end_turn_player_ends_turn() -> void:
+	player_character.end_of_turn()
+
+func _on_player_end_turn_discard_hand():
+	card_handler.discard_hand()
 
 #endregion
 
@@ -39,5 +45,14 @@ func _on_player_start_turn_reset_energy() -> void:
 
 func _on_enemy_turn_resolve_enemy_intents() -> void:
 	enemy_handler.resolve_intent()
+
+func _on_enemy_start_turn_enemy_starts_turn() -> void:
+	for enemy in enemy_handler.enemies:
+		enemy.start_of_turn()
+
+func _on_enemy_end_turn_enemy_ends_turn() -> void:
+	for enemy in enemy_handler.enemies:
+		enemy.end_of_turn()
+#endregion
 
 #endregion

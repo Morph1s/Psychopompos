@@ -34,6 +34,13 @@ func initialize() -> void:
 	
 	effect_handler.initialize(self)
 
+func start_of_turn() -> void:
+	stats.block = 0
+	effect_handler._on_unit_turn_start()
+
+func end_of_turn() -> void:
+	effect_handler._on_unit_turn_end()
+
 func take_damage(damage_amount:int) -> void:
 	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(damage_amount)

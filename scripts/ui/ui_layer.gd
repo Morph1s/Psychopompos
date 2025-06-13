@@ -1,18 +1,29 @@
 extends CanvasLayer
 
 @onready var map = $Map
+@onready var run_ui = $RunUI
+
+var battle_ui_reference: BattleUI 
 
 const BATTLE_UI = preload("res://scenes/ui/battle_ui.tscn")
 
 func _ready() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.BATTLE_STARTED, _on_event_bus_battle_started)
-	EventBusHandler.connect_to_event(EventBus.Event.BATTLE_ENDED, _on_event_bus_battle_ended)
+	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
+	EventBusHandler.battle_ended.connect(_on_event_bus_battle_ended)
 
-func _on_open_map_button_pressed():
+func _on_run_ui_open_map():
+	if map.visible:
+		map.hide()
+		return
+	
 	map.show()
+	
+	if battle_ui_reference:
+		battle_ui_reference.hide()
 
 func _on_event_bus_battle_started() -> void:
-	add_child(BATTLE_UI.instantiate())
+	battle_ui_reference = BATTLE_UI.instantiate()
+	add_child(battle_ui_reference)
 
 func _on_event_bus_battle_ended() -> void:
 	for child in get_children():
@@ -20,3 +31,7 @@ func _on_event_bus_battle_ended() -> void:
 			child.queue_free()
 			print("Huiiiiiiiiiiiiiiiiiiii")
 			break
+
+func _on_map_hidden():
+	if battle_ui_reference:
+		battle_ui_reference.show()

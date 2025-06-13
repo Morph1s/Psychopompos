@@ -7,8 +7,14 @@ signal mouse_entered_card(Node)
 signal mouse_exited_card(Node)
 signal card_play_finished
 
-@onready var card_image: Sprite2D = $CardImage
+const MAIN_THEME = preload("res://resources/theme/main_theme.tres")
+
+@onready var card_image = $CardImage
 @onready var card_highlight: Sprite2D = $CardHighlight
+@onready var energy_cost = $EnergyCost
+@onready var card_name = $Name
+@onready var card_shape = $CardShape
+@onready var description = $Description
 
 var card_mode: HighlightMode = HighlightMode.NONE # for card-selecting/-hovering
 var card_type: CardType
@@ -18,31 +24,38 @@ var index: int = 0:
 	set(value):
 		z_index = value
 		index = value
- 
+
+
 func initialize(card_type: CardType) -> void:
+	if not is_node_ready():
+		await ready
+	
 	self.card_type = card_type
-	$CardImage.texture = card_type.texture
+	card_image.texture = card_type.texture
+	energy_cost.text = str(card_type.energy_cost)
+	card_type.energy_cost_changed.connect(_on_card_type_energy_cost_changed)
+	card_name.text = card_type.card_name
+	
+	_set_description(card_type.first_description_icon, card_type.first_description_text,0)
+	_set_description(card_type.second_description_icon, card_type.second_description_text, 1)
 
 ## function for CardHandler to handle card-state
 ## CardHandler passes the enum HighlightMode as mode 
 func highlight(mode: HighlightMode):
 	if mode == HighlightMode.HOVERED:
-		if card_mode == HighlightMode.SELECTED: 
-			self.card_image.position.y += 5
-			self.card_highlight.position.y += 5
+		if card_mode == HighlightMode.SELECTED:
+			_update_image_y_positions(5)
 		card_highlight.show()
 		self.z_index = 10
 		card_mode = HighlightMode.HOVERED
 	elif mode == HighlightMode.SELECTED:
 		card_mode = HighlightMode.SELECTED
 		self.z_index = 11
-		self.card_image.position.y -= 5
-		self.card_highlight.position.y -= 5
+		_update_image_y_positions(-5)
 		card_highlight.show()
 	else:
 		if card_mode == HighlightMode.SELECTED: 
-			self.card_image.position.y += 5
-			self.card_highlight.position.y += 5
+			_update_image_y_positions(5)
 		card_highlight.hide()
 		self.z_index = index
 		card_mode = HighlightMode.NONE
@@ -64,7 +77,7 @@ func play(target_id: int = -1) -> void:
 	# call the player played attack event if the card contains an attack
 	for action in actions:
 		if action is AttackAction:
-			EventBusHandler.call_event(EventBus.Event.PLAYER_PLAYED_ATTACK)
+			EventBusHandler.player_played_attack.emit()
 	
 	card_play_finished.emit()
 
@@ -95,8 +108,33 @@ func _get_targets(targeting_mode: Action.TargetType, target_id: int) -> Array[No
 		to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 	
 	return to_return
+
+func _update_image_y_positions(value: int) -> void:
+	position.y += value
+	card_shape.position.y -= value
+
+func _set_description(icon: Texture, text: String, index: int) -> void:
+	if 2 < index:
+		push_error("too many descriptions for card: ", card_type.card_name)
+		return
 	
+	if icon:
+		var sprite = Sprite2D.new()
+		sprite.centered = false
+		sprite.texture = icon
+		sprite.position = Vector2(0, 9 * index)
+		description.add_child(sprite)
+	
+	if text:
+		var label = Label.new()
+		label.theme = MAIN_THEME
+		label.text = text
+		label.position = Vector2(9, (9 * index) + 2)
+		description.add_child(label)
+
 #endregion
+
+#region signal functions
 
 func _on_mouse_entered() -> void:
 	mouse_is_in_card= true
@@ -105,3 +143,8 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	mouse_is_in_card = false
 	mouse_exited_card.emit(self)
+
+func _on_card_type_energy_cost_changed(new_value: int) -> void:
+	energy_cost.text = str(new_value)
+
+#endregion

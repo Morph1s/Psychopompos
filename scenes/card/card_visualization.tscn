@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://hbqw7odpxssl"]
+
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_tilqd"]
+[ext_resource type="Script" uid="uid://mp5frlmm2bys" path="res://scripts/card/card_visualization.gd" id="1_wl1ke"]
+[ext_resource type="Texture2D" uid="uid://di0c33j0860id" path="res://assets/graphics/cards/card_highlight.png" id="2_tlsm8"]
+
+[node name="CardVisualization" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tilqd")
+script = ExtResource("1_wl1ke")
+
+[node name="Highlight" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -34.0
+offset_right = 26.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tlsm8")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

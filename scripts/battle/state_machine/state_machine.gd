@@ -14,7 +14,7 @@ func initialize() -> void:
 			push_warning("Child node '%s' does not extend State" % child.name)
 	
 	# notify that combat started
-	EventBusHandler.call_event(EventBus.Event.BATTLE_STARTED)
+	EventBusHandler.battle_started.emit()
 	
 	# Set initial state
 	current_state = states.get("PlayerStartTurn")

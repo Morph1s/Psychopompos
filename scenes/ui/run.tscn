@@ -16,25 +16,10 @@ script = ExtResource("2_dqgnb")
 
 [node name="RunUI" parent="UILayer" instance=ExtResource("4_nafsq")]
 anchors_preset = 15
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
 offset_bottom = 0.0
-grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("4_5kaao")
-
-[node name="OpenMapButton" type="Button" parent="UILayer/RunUI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -44.5
-offset_right = 44.5
-offset_bottom = 31.0
-grow_horizontal = 2
-text = "Open Map"
 
 [node name="Map" parent="UILayer" instance=ExtResource("3_6ock1")]
 visible = false
@@ -48,5 +33,6 @@ unique_name_in_owner = true
 [node name="MapGenerator" type="Node2D" parent="."]
 script = ExtResource("7_nafsq")
 
-[connection signal="pressed" from="UILayer/RunUI/OpenMapButton" to="UILayer" method="_on_open_map_button_pressed"]
+[connection signal="open_map" from="UILayer/RunUI" to="UILayer" method="_on_run_ui_open_map"]
 [connection signal="encounter_selected" from="UILayer/Map" to="." method="_on_map_encounter_selected"]
+[connection signal="hidden" from="UILayer/Map" to="UILayer" method="_on_map_hidden"]

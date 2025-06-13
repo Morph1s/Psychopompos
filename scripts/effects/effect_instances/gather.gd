@@ -24,7 +24,7 @@ func changed_stacks(previous, current):
 		return
 	
 	effect_owner.modifier_handler.apply_additive_modifier(
-		previous - current,
+		current - previous,
 		ModifierHandler.ModifiedValue.DAMAGE_DEALT,
 		effect_name
 		)

@@ -69,7 +69,11 @@ shape = SubResource("RectangleShape2D_g3s1b")
 
 [connection signal="choose_enemy_intents" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_choose_enemy_intents"]
 [connection signal="draw_cards" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_draw_cards"]
-[connection signal="reset_energy" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_reset_energy"]
+[connection signal="player_starts_turn" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_player_starts_turn"]
+[connection signal="discard_hand" from="StateMachine/PlayerEndTurn" to="." method="_on_player_end_turn_discard_hand"]
+[connection signal="player_ends_turn" from="StateMachine/PlayerEndTurn" to="." method="_on_player_end_turn_player_ends_turn"]
+[connection signal="enemy_starts_turn" from="StateMachine/EnemyStartTurn" to="." method="_on_enemy_start_turn_enemy_starts_turn"]
 [connection signal="resolve_enemy_intents" from="StateMachine/EnemyTurn" to="." method="_on_enemy_turn_resolve_enemy_intents"]
+[connection signal="enemy_ends_turn" from="StateMachine/EnemyEndTurn" to="." method="_on_enemy_end_turn_enemy_ends_turn"]
 [connection signal="mouse_entered" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_entered"]
 [connection signal="mouse_exited" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_exited"]
