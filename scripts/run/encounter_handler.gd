@@ -9,7 +9,7 @@ signal load_rewards()
 var current_encounter: Node = null
 
 # Loads a requested encounter into the Run scene
-func start_encounter(encounter_data):
+func start_encounter(encounter_data: Encounter):
 	# Remove current encounter if exists
 	if current_encounter:
 		current_encounter.queue_free()
@@ -18,8 +18,8 @@ func start_encounter(encounter_data):
 		await get_tree().create_timer(0.1).timeout
 	
 	# Load requested encounter if implemented
-	match encounter_data:
-		"battle":
+	match encounter_data.type:
+		Encounter.EncounterType.BATTLE:
 			var battle_scene = preload("res://scenes/encounters/battle.tscn").instantiate()
 			battle_scene.load_game_over_screen.connect(_load_game_over_screen)
 			battle_scene.load_battle_rewards.connect(_load_reward_screen)

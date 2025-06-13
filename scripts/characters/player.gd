@@ -37,7 +37,7 @@ func initialize() -> void:
 	stats.block_changed.connect(_on_block_changed)
 	
 	effect_handler.initialize(self)
-	EventBusHandler.connect_to_event(EventBus.Event.PLAYER_PLAYED_ATTACK, effect_handler._on_unit_played_attack)
+	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)
 	
 	await get_tree().create_timer(1).timeout
 	

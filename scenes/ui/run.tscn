@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cffw6mejnewc"]
 
-[ext_resource type="Script" uid="uid://bvmqf5646cs7k" path="res://scripts/ui/run.gd" id="1_q5lik"]
+[ext_resource type="Script" uid="uid://bvmqf5646cs7k" path="res://scripts/run/run.gd" id="1_q5lik"]
 [ext_resource type="Script" uid="uid://1oo6m0q0nn66" path="res://scripts/run/encounter_handler.gd" id="2_6ock1"]
 [ext_resource type="Script" uid="uid://bdgcrb63bt51r" path="res://scripts/ui/ui_layer.gd" id="2_dqgnb"]
 [ext_resource type="PackedScene" uid="uid://dhrw1q2m7p5fa" path="res://scenes/map/map.tscn" id="3_6ock1"]
-[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="4_5kaao"]
 [ext_resource type="PackedScene" uid="uid://b421431h80p3u" path="res://scenes/ui/run_ui.tscn" id="4_nafsq"]
+[ext_resource type="Script" uid="uid://boad1eqjx3ol2" path="res://scripts/map/map_generator.gd" id="7_nafsq"]
 
 [node name="Run" type="Node2D"]
 script = ExtResource("1_q5lik")
@@ -22,13 +22,15 @@ mouse_filter = 2
 
 [node name="Map" parent="UILayer" instance=ExtResource("3_6ock1")]
 visible = false
-theme = ExtResource("4_5kaao")
 
 [node name="EncounterHandler" type="Node2D" parent="."]
 script = ExtResource("2_6ock1")
 
 [node name="RelicHandler" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="MapGenerator" type="Node2D" parent="."]
+script = ExtResource("7_nafsq")
 
 [connection signal="open_map" from="UILayer/RunUI" to="UILayer" method="_on_run_ui_open_map"]
 [connection signal="encounter_selected" from="UILayer/Map" to="." method="_on_map_encounter_selected"]

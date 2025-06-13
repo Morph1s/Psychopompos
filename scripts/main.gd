@@ -11,7 +11,7 @@ var loaded_scene: Node
 ## called on starting the game
 func _ready() -> void:
 	_load_main_menu_scene()
-	EventBusHandler.connect_to_event(EventBus.Event.OPEN_SETTINGS, _open_settings)
+	EventBusHandler.open_settings.connect(_open_settings)
 
 func _input(event) -> void:
 	if not event.is_action_pressed("pause"):

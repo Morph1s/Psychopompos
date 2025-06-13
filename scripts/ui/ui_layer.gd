@@ -10,8 +10,8 @@ const BATTLE_UI = preload("res://scenes/ui/battle_ui.tscn")
 const BATTLE_REWARDS : PackedScene = preload("res://scenes/encounters/battle_rewards.tscn")
 
 func _ready() -> void:
-	EventBusHandler.connect_to_event(EventBus.Event.BATTLE_STARTED, _on_event_bus_battle_started)
-	EventBusHandler.connect_to_event(EventBus.Event.BATTLE_ENDED, _on_event_bus_battle_ended)
+	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
+	EventBusHandler.battle_ended.connect(_on_event_bus_battle_ended)
 
 func load_battle_rewards():
 	var battle_rewards: BattleRewards = BATTLE_REWARDS.instantiate()
