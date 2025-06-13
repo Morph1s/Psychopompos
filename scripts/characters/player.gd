@@ -28,19 +28,18 @@ func end_of_turn() -> void:
 	effect_handler._on_unit_turn_end()
 
 func initialize() -> void:
-	stats.initialize()
+	
 	
 	# Connecting Signals
 	stats.died.connect(_on_died)
 	stats.energy_changed.connect(_on_energy_changed)
 	stats.hitpoints_changed.connect(_on_hitpoints_changed)
 	stats.block_changed.connect(_on_block_changed)
+	stats.initialize()
 	
 	effect_handler.initialize(self)
 	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)
-	
-	await get_tree().create_timer(1).timeout
-	
+
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
