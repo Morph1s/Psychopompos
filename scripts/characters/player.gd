@@ -7,7 +7,7 @@ extends Node2D
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
 
-signal player_died()
+signal player_died
 
 func take_damage(damage_amount: int) -> void:
 	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
