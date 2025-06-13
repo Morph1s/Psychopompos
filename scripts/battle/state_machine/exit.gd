@@ -2,7 +2,8 @@ class_name Exit
 extends State
 
 func enter():
-	EventBusHandler.call_event(EventBus.Event.BATTLE_ENDED)
+	EventBusHandler.battle_ended.emit()
+	EventBusHandler.clear_all_battle_events()
 	# 1. check if win == true:
 	# true: show loot screen -> 2.1.
 	# false: show end/defeat screen -> 2.2.
