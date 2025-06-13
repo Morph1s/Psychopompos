@@ -18,7 +18,7 @@ var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden ka
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func initialize() -> void:
-	stats.initialize()
+	
 	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
 	shape.shape.size = image.texture.get_size()
@@ -29,8 +29,8 @@ func initialize() -> void:
 	stats.block_changed.connect(_on_block_changed)
 	stats.died.connect(_on_died)
 	
-	_on_hitpoints_changed(stats.current_hitpoints, stats.maximum_hitpoints)
-	_on_block_changed(stats.block)
+	stats.initialize()
+	
 	
 	effect_handler.initialize(self)
 
