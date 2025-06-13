@@ -1,22 +1,37 @@
 class_name EffectAction
 extends Action
 
-enum EffectType {STRENGTH, DEXTERITY}
+enum EffectType {
+	AGILE,
+	DAMOKLES_SWORD,
+	GATHER,
+	INCAPACITATED,
+	PHALANX,
+	REGENERATION,
+	VIGILANT,
+	WARRIORS_FURRY,
+	WOUNDED,
+}
+ 
+var effect_names: Dictionary = {
+	EffectType.AGILE: "Agile",
+	EffectType.DAMOKLES_SWORD: "DamoklesSword",
+	EffectType.GATHER: "Gather",
+	EffectType.INCAPACITATED: "Incapacitated",
+	EffectType.PHALANX: "Phalanx",
+	EffectType.REGENERATION: "Regeneration",
+	EffectType.VIGILANT: "Vigilant",
+	EffectType.WARRIORS_FURRY: "WarriorsFury",
+	EffectType.WOUNDED: "Wounded",
+}
 
-@export var effect_value: int = 2
+@export var effect: EffectType
+@export var effect_value: int = 1
 
 func resolve(targets: Array[Node2D]) -> void:
 	for target in targets:
-		if target.has_method("something"):
-			# add a function to give entities effects
-			pass
-		else:
-			printerr("Wrong node in node group! Node: " + target.to_string())
+		target.effect_handler.apply_effect(effect_names[effect], effect_value)
 
-func undo(targets: Array[Node2D]) -> void : 
+func undo(targets: Array[Node2D]) -> void: 
 	for target in targets:
-		if target.has_method("something"):
-			# add a function to make entities lose effects
-			pass
-		else:
-			printerr("Wrong node in node group! Node: " + target.to_string())
+		target.effect_handler.apply_effect(effect_names[effect], -effect_value)

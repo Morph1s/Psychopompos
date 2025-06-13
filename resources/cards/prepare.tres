@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=8 format=3 uid="uid://bl5m5lr5vrkce"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_l15jk"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_xvp5t"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_xy00l"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xvp5t"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_lvs4i"]
+script = ExtResource("2_xy00l")
+effect = 2
+effect_value = 3
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[sub_resource type="Gradient" id="Gradient_8vgpp"]
+colors = PackedColorArray(0, 0.486275, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nmkdb"]
+gradient = SubResource("Gradient_8vgpp")
+width = 32
+height = 24
+fill_from = Vector2(0, 1)
+
+[resource]
+script = ExtResource("2_xvp5t")
+card_name = "prepare"
+energy_cost = 1
+texture = SubResource("GradientTexture2D_nmkdb")
+on_play_action = Array[ExtResource("1_l15jk")]([SubResource("Resource_lvs4i")])
+on_graveyard_action = Array[ExtResource("1_l15jk")]([])
+targeted = false
+first_description_icon = SubResource("PlaceholderTexture2D_xvp5t")
+first_description_text = "3"
+second_description_text = ""
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
