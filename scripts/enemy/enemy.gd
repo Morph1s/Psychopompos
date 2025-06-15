@@ -34,7 +34,6 @@ func initialize() -> void:
 	y_position -= size.y - 48
 	
 	# Connecting Signals
-	stats.intent_changed.connect(_on_intent_changed)
 	stats.hitpoints_changed.connect(_on_hitpoints_changed)
 	stats.block_changed.connect(_on_block_changed)
 	stats.died.connect(_on_died)
@@ -122,9 +121,6 @@ func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:
 
 func _on_block_changed(new_block) -> void:
 	enemy_hud.set_block(new_block)
-
-func _on_intent_changed(new_intent) -> void:
-	enemy_hud.set_intent(new_intent, 1, 2)
 
 func _on_died() -> void:
 	enemy_died.emit(self)
