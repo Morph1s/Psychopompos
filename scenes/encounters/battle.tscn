@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c0x53jyxyhdli" path="res://scripts/battle/state_machine/state_machine.gd" id="1_g3s1b"]
 [ext_resource type="Texture2D" uid="uid://dgaagv3k6cqil" path="res://assets/graphics/background/placeholder_canvas1.png" id="1_pfikb"]
 [ext_resource type="Script" uid="uid://4s8qo2wk58lm" path="res://scripts/battle/card_handler.gd" id="2_8apll"]
-[ext_resource type="PackedScene" uid="uid://6wnlmm80st27" path="res://scenes/characters/test_character.tscn" id="2_cymlh"]
 [ext_resource type="Script" uid="uid://dxiv25i4b0a7q" path="res://scripts/battle/state_machine/idle.gd" id="2_fiugh"]
 [ext_resource type="Script" uid="uid://crlh3bv2ij6qu" path="res://scripts/battle/enemy_handler.gd" id="3_5ildr"]
 [ext_resource type="Script" uid="uid://c2haf47cbxrvk" path="res://scripts/battle/state_machine/resolve_card.gd" id="4_6die2"]
@@ -14,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bxigu8nv1jbme" path="res://scripts/battle/state_machine/enemy_turn.gd" id="7_7id2p"]
 [ext_resource type="Script" uid="uid://c758m1ohji7ep" path="res://scripts/battle/state_machine/enemy_end_turn.gd" id="8_tt5ef"]
 [ext_resource type="Script" uid="uid://d4l21cq278qpt" path="res://scripts/battle/state_machine/exit.gd" id="9_mqlpk"]
+[ext_resource type="PackedScene" uid="uid://b086lic3ys2g6" path="res://scenes/characters/character.tscn" id="14_fiugh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3s1b"]
 size = Vector2(320, 88)
@@ -58,8 +58,8 @@ script = ExtResource("2_8apll")
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("3_5ildr")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_cymlh")]
-position = Vector2(82, 82)
+[node name="PlayerCharacter" parent="." instance=ExtResource("14_fiugh")]
+position = Vector2(16, 55)
 
 [node name="PlayArea" type="Area2D" parent="."]
 
@@ -76,6 +76,5 @@ shape = SubResource("RectangleShape2D_g3s1b")
 [connection signal="resolve_enemy_intents" from="StateMachine/EnemyTurn" to="." method="_on_enemy_turn_resolve_enemy_intents"]
 [connection signal="enemy_ends_turn" from="StateMachine/EnemyEndTurn" to="." method="_on_enemy_end_turn_enemy_ends_turn"]
 [connection signal="all_enemies_died" from="EnemyHandler" to="." method="_on_enemy_handler_all_enemies_died"]
-[connection signal="player_died" from="PlayerCharacter" to="." method="_on_player_character_player_died"]
 [connection signal="mouse_entered" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_entered"]
 [connection signal="mouse_exited" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_exited"]

@@ -17,12 +17,21 @@ signal enemy_died(Node)
 var id: int = 0
 var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var y_position: int = 55
 
 func initialize() -> void:
 	
 	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
-	shape.shape.size = image.texture.get_size()
+	
+	var size: Vector2 = image.texture.get_size()
+	shape.shape.size = size
+	shape.position = size / 2
+	enemy_hud.set_entity_size(size)
+	effect_handler.position.x = size.x
+	
+	# update position for larger enemies
+	y_position -= size.y - 48
 	
 	# Connecting Signals
 	stats.intent_changed.connect(_on_intent_changed)
@@ -74,8 +83,10 @@ func choose_intent() -> void:
 		intent += 1
 		if intent >= stats.actions.size():
 			intent = 0
-	else: 
-		intent = rng.randi_range(0,stats.actions.size()-1)	
+	elif stats.action_pattern == stats.ActionPattern.RANDOM: 
+		intent = rng.randi_range(0,stats.actions.size()-1)
+	
+	enemy_hud.set_intent(stats.actions[intent].intent_sprite, stats.actions[intent].value, stats.actions[intent].count)
 
 #region local functions
 
@@ -113,7 +124,7 @@ func _on_block_changed(new_block) -> void:
 	enemy_hud.set_block(new_block)
 
 func _on_intent_changed(new_intent) -> void:
-	enemy_hud.set_intent(new_intent)
+	enemy_hud.set_intent(new_intent, 1, 2)
 
 func _on_died() -> void:
 	enemy_died.emit(self)

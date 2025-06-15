@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_cc8lm"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_f60a5"]
-[ext_resource type="Texture2D" uid="uid://bl1fisqld1jpr" path="res://assets/graphics/ui/placeholder_intent_block.png" id="3_sio2d"]
+[ext_resource type="Texture2D" uid="uid://cm6yrlsnlwqhb" path="res://assets/graphics/ui/placeholder_intent_damage.png" id="3_cc8lm"]
 [ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="4_yx5r4"]
 
 [sub_resource type="Resource" id="Resource_f60a5"]
@@ -13,6 +13,8 @@ metadata/_custom_type_script = "uid://gsab2qn21okq"
 
 [resource]
 script = ExtResource("4_yx5r4")
-intent_sprite = ExtResource("3_sio2d")
+intent_sprite = ExtResource("3_cc8lm")
+value = 10
+count = 1
 action_catalogue = Array[ExtResource("1_cc8lm")]([SubResource("Resource_f60a5")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"

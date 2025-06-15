@@ -15,14 +15,18 @@ enemy_hud = NodePath("EnemyHud")
 [node name="EnemyImage" type="Sprite2D" parent="."]
 texture = ExtResource("2_a3pup")
 centered = false
+region_enabled = true
 region_rect = Rect2(17, 19, 35, 38)
 
 [node name="EnemyShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gl05p")
 
 [node name="EnemyHud" parent="." instance=ExtResource("3_40wdo")]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="EffectHandler" parent="." instance=ExtResource("4_gl05p")]
+position = Vector2(20, -20)
 
 [node name="ModifierHandler" parent="." instance=ExtResource("4_tjssy")]
 
