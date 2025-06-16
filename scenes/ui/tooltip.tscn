@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c548kbb7afp6r"]
+
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_b5j4s"]
+[ext_resource type="Script" uid="uid://b1eik2f1yxgp3" path="res://scripts/ui/tooltip.gd" id="1_mtwet"]
+
+[node name="Tooltip" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 89.0
+offset_bottom = 8.0
+theme = ExtResource("1_b5j4s")
+script = ExtResource("1_mtwet")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_right = 44.0
+offset_bottom = 8.0
+
+[node name="DescriptionsContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 2

@@ -9,6 +9,8 @@ signal entered_idle
 signal end_turn_button_pressed
 signal player_played_attack
 signal open_settings
+signal show_tooltips(data: Array[TooltipData])
+signal hide_tooltips
 
 
 ## disposes all connections of all events
