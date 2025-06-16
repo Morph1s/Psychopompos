@@ -76,5 +76,6 @@ shape = SubResource("RectangleShape2D_g3s1b")
 [connection signal="resolve_enemy_intents" from="StateMachine/EnemyTurn" to="." method="_on_enemy_turn_resolve_enemy_intents"]
 [connection signal="enemy_ends_turn" from="StateMachine/EnemyEndTurn" to="." method="_on_enemy_end_turn_enemy_ends_turn"]
 [connection signal="all_enemies_died" from="EnemyHandler" to="." method="_on_enemy_handler_all_enemies_died"]
+[connection signal="player_died" from="PlayerCharacter" to="." method="_on_player_character_player_died"]
 [connection signal="mouse_entered" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_entered"]
 [connection signal="mouse_exited" from="PlayArea" to="CardHandler" method="_on_play_area_mouse_exited"]

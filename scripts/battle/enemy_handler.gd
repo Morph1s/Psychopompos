@@ -63,6 +63,7 @@ func choose_intent():
 func _an_enemy_died(dead_enemy: Enemy):
 	enemies.erase(dead_enemy)
 	remove_child(dead_enemy)
+	dead_enemy.queue_free()
 	if enemies.is_empty():
 		all_enemies_died.emit()
 

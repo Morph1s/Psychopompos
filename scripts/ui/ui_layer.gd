@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-@onready var map = $Map
+@onready var map: Map = $Map
 @onready var run_ui = $RunUI
 
 var battle_ui_reference: BattleUI 
@@ -16,13 +16,14 @@ func _ready() -> void:
 func load_battle_rewards():
 	var battle_rewards: BattleRewards = BATTLE_REWARDS.instantiate()
 	battle_rewards.load_common_rewards()
+	battle_rewards.finished_selecting.connect(_on_battle_rewards_finished_selecting)
 	add_child(battle_rewards)
 
 
 
 func _on_run_ui_open_map():
 	if map.visible:
-		map.hide()
+		map.close_map()
 		return
 	
 	map.show()
@@ -44,7 +45,14 @@ func _on_event_bus_battle_ended() -> void:
 			print(" ")
 			print("AAAAAAhhhhhhhhhhhhhhhh!!!")
 			break
+	map.current_encounter.completed = true
+	map.unlock_next_encounters()
+	map.current_layer += 1
 
 func _on_map_hidden():
 	if battle_ui_reference:
 		battle_ui_reference.show()
+
+func _on_battle_rewards_finished_selecting() -> void:
+	map.can_close = false
+	map.show()

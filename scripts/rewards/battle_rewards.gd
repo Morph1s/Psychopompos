@@ -82,6 +82,7 @@ func _on_reward_button_reward_selected(type: RewardType, count: int, button: But
 func _on_skip_rewards_button_up() -> void:
 	print("skipped rewards")
 	finished_selecting.emit()
+	queue_free()
 
 func _on_select_card_screen_card_selected(card: CardType) -> void:
 	select_card_screen.hide()
@@ -96,3 +97,4 @@ func _on_rewards_container_child_exiting_tree(node):
 	if rewards_container.get_child_count() == 1:
 		print("all rewards selected")
 		finished_selecting.emit()
+		queue_free()

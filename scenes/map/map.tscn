@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhrw1q2m7p5fa"]
+[gd_scene load_steps=6 format=3 uid="uid://dhrw1q2m7p5fa"]
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_a2pkv"]
 [ext_resource type="Script" uid="uid://cf0ptkb7xnhj" path="res://scripts/map/map.gd" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://cd6mpm7b2dnb" path="res://scripts/map/map_connection_drawer.gd" id="2_tqkkf"]
+
+[sub_resource type="Gradient" id="Gradient_a2pkv"]
+colors = PackedColorArray(1, 0.788235, 0.498039, 0.878431, 1, 0.788235, 0.498039, 0.878431)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ph54e"]
+gradient = SubResource("Gradient_a2pkv")
 
 [node name="Map" type="Control"]
 z_index = 2
@@ -26,6 +32,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 20
 
+[node name="MapBackground" type="TextureRect" parent="TopMargin"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_ph54e")
+
 [node name="MapIconsMargin" type="MarginContainer" parent="TopMargin"]
 layout_mode = 2
 mouse_filter = 2
@@ -40,6 +51,8 @@ script = ExtResource("2_tqkkf")
 [node name="MapScrollContainer" type="ScrollContainer" parent="TopMargin/MapIconsMargin"]
 layout_mode = 2
 mouse_filter = 0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
 
 [node name="MapLayerContainer" type="HBoxContainer" parent="TopMargin/MapIconsMargin/MapScrollContainer"]
 layout_mode = 2
@@ -48,14 +61,11 @@ mouse_filter = 2
 theme_override_constants/separation = 32
 
 [node name="ExitButton" type="Button" parent="TopMargin"]
+visible = false
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = " x "
-
-[node name="MapBackground" type="TextureRect" parent="TopMargin"]
-layout_mode = 2
-mouse_filter = 2
 
 [connection signal="pressed" from="TopMargin/ExitButton" to="." method="_on_exit_button_pressed"]
