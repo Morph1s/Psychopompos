@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=29 format=3 uid="uid://gu54ssij03su"]
+[gd_resource type="Theme" load_steps=32 format=3 uid="uid://gu54ssij03su"]
 
 [ext_resource type="Texture2D" uid="uid://k62wg457bs4o" path="res://assets/graphics/ui/theme/button_disabled.png" id="1_70gfe"]
 [ext_resource type="FontFile" uid="uid://c2nl2b31h4hn2" path="res://assets/graphics/ui/theme/small_pixel_font.fnt" id="1_rjbnf"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://boo2oghls8gcj" path="res://assets/graphics/ui/theme/h_seperator.png" id="9_h0e8e"]
 [ext_resource type="Texture2D" uid="uid://mgk1nqofxscd" path="res://assets/graphics/ui/theme/slider_grabber_normal.png" id="9_ls74w"]
 [ext_resource type="Texture2D" uid="uid://cji4qb45627bk" path="res://assets/graphics/ui/theme/slider.png" id="10_ls74w"]
+[ext_resource type="Texture2D" uid="uid://kemeo536aui1" path="res://assets/graphics/ui/theme/panel_container.png" id="12_4s6wu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jtx1y"]
 texture = ExtResource("1_70gfe")
@@ -99,6 +100,17 @@ texture_margin_bottom = 4.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rh5lv"]
+texture = ExtResource("12_4s6wu")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3sob"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8yoe2"]
 texture = ExtResource("5_wif3f")
 texture_margin_left = 3.0
@@ -141,5 +153,7 @@ HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_h0e8e")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_4s6wu")
 HSlider/styles/slider = SubResource("StyleBoxTexture_ls74w")
 Panel/styles/panel = SubResource("StyleBoxTexture_0exeo")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_rh5lv")
+ScrollContainer/styles/focus = SubResource("StyleBoxEmpty_t3sob")
 VSeparator/constants/separation = 8
 VSeparator/styles/separator = SubResource("StyleBoxTexture_8yoe2")

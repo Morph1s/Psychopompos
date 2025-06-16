@@ -1,13 +1,13 @@
 class_name EnemyHud
 extends EntityHud
 
-@onready var intent_indicator: TextureRect = $IntentIndicator
+@onready var intent_container = $IntentContainer
+@onready var intent_icon = $IntentContainer/IntentIcon
+@onready var intent_value = $IntentContainer/IntentValue
 
-func set_intent(texture: Texture) -> void:
-	intent_indicator.texture = texture
-
-func _update_display() -> void:
-	super._update_display()
-
-func initialize() -> void:
-	set_intent(preload("res://assets/graphics/ui/placeholder_intent_heal.png"))
+func set_intent(icon: Texture, value: int, amount: int = 1) -> void:
+	intent_icon.texture = icon
+	if amount == 1:
+		intent_value.text = str(value)
+	else:
+		intent_value.text = "%d*%d" % [value, amount]

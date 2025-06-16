@@ -2,10 +2,11 @@ class_name Character
 extends Node2D
 
 @export var stats : PlayerStats 
-@export var player_hud: PlayerHud
 
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
+@onready var character_image = $CharacterImage
+@onready var player_hud = $PlayerHud
 
 signal player_died
 
@@ -36,6 +37,10 @@ func initialize() -> void:
 	stats.hitpoints_changed.connect(_on_hitpoints_changed)
 	stats.block_changed.connect(_on_block_changed)
 	stats.initialize()
+	
+	var size = character_image.texture.get_size()
+	player_hud.set_entity_size(size)
+	effect_handler.position.x = size.x
 	
 	effect_handler.initialize(self)
 	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)

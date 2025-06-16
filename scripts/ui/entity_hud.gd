@@ -5,10 +5,8 @@ var current_hp: int = 0
 var max_hp: int = 100
 var block_value: int = 0
 
-@onready var hp_bar: TextureProgressBar = $HpBar
-@onready var block_label: Label = $BlockLabel
-@onready var hp_label: Label = $HpLabel
-
+@onready var hitpoints = $HitpointBackground/HitpointContainer/Hitpoints
+@onready var block = $HitpointBackground/HitpointContainer/Block
 
 func set_current_hp(value: int) -> void:
 	current_hp = value
@@ -16,7 +14,6 @@ func set_current_hp(value: int) -> void:
 	
 func set_max_hp(value: int) -> void:
 	max_hp = value	
-	hp_bar.max_value = max_hp
 	_update_display()
 
 func set_block(value: int) -> void:
@@ -24,7 +21,8 @@ func set_block(value: int) -> void:
 	_update_display()
 
 func _update_display() -> void:
-	hp_bar.value = current_hp
-	hp_label.text = "HP: %d / %d" % [current_hp, max_hp]
-	block_label.text = "Block: %d" % block_value
-	
+	hitpoints.text = "%d/%d" % [current_hp, max_hp]
+	block.text = "+%d" % [block_value]
+
+func set_entity_size(size: Vector2) -> void:
+	custom_minimum_size = size + Vector2(0, 8)
