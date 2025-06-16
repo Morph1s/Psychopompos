@@ -11,6 +11,3 @@ func set_intent(icon: Texture, value: int, amount: int = 1) -> void:
 		intent_value.text = str(value)
 	else:
 		intent_value.text = "%d*%d" % [value, amount]
-
-func initialize() -> void:
-	pass
