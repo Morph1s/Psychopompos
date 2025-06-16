@@ -46,7 +46,7 @@ func create_instance() -> EntityStats:
 	return new_entity
 
 func take_damage(damage_value: int) -> void:
-	if damage_value <= 0 or current_hitpoints == 0:
+	if damage_value <= 0:
 		return
 	
 	var actual_damage: int = damage_value - block
@@ -60,7 +60,7 @@ func take_damage(damage_value: int) -> void:
 	block_changed.emit(block)
 
 func lose_hp(hp_loss) -> void:
-	if current_hitpoints == 0:
+	if current_hitpoints <= 0:
 		return
 	current_hitpoints -= hp_loss
 	# play take damage animation

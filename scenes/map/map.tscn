@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_a2pkv"]
 [ext_resource type="Script" uid="uid://cf0ptkb7xnhj" path="res://scripts/map/map.gd" id="1_sxf4j"]
-[ext_resource type="Script" path="res://scripts/map/map_connection_drawer.gd" id="2_tqkkf"]
+[ext_resource type="Script" uid="uid://cd6mpm7b2dnb" path="res://scripts/map/map_connection_drawer.gd" id="2_tqkkf"]
 
 [sub_resource type="Gradient" id="Gradient_a2pkv"]
 colors = PackedColorArray(1, 0.788235, 0.498039, 0.878431, 1, 0.788235, 0.498039, 0.878431)
@@ -59,6 +59,7 @@ mouse_filter = 2
 theme_override_constants/separation = 32
 
 [node name="ExitButton" type="Button" parent="TopMargin"]
+visible = false
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 8

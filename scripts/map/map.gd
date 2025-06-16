@@ -3,8 +3,8 @@ extends Control
 
 signal encounter_selected(encounter_data)
 
-@onready var exit_button = $TopMargin/ExitButton
-@onready var hbox = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
+@onready var exit_button: Button = $TopMargin/ExitButton
+@onready var map_layer_container = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
 
 var encounter_icons: Array[Texture] = [
@@ -16,7 +16,13 @@ var encounter_icons: Array[Texture] = [
 var encounter_to_button: Dictionary = {}
 var current_encounter: Encounter
 var current_layer = 0
-var can_close: bool = false
+var can_close: bool = false:
+	set(value):
+		if value:
+			exit_button.show()
+		else:
+			exit_button.hide()
+		can_close = value
 
 func _process(_delta: float) -> void:
 	# update the connection lines on the map
@@ -24,7 +30,7 @@ func _process(_delta: float) -> void:
 
 
 func load_layers(map_layers):
-	for child in hbox.get_children():
+	for child in map_layer_container.get_children():
 		child.queue_free()
 	
 	# each layer gets a VBoxContainer for displaying its encounters
@@ -32,7 +38,7 @@ func load_layers(map_layers):
 		var layer_container = VBoxContainer.new()
 		layer_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		layer_container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		hbox.add_child(layer_container)
+		map_layer_container.add_child(layer_container)
 		
 		for encounter: Encounter in layer.encounters:
 			var button = Button.new()
@@ -48,17 +54,17 @@ func load_layers(map_layers):
 	connection_drawer.set_connections(encounter_to_button)
 
 func lock_layer():
-	for button: Button in hbox.get_child(current_layer).get_children():
+	for button: Button in map_layer_container.get_child(current_layer).get_children():
 		var encounter = encounter_to_button.find_key(button)
 		button.disabled = true
 		if encounter == current_encounter:
 			button.modulate = Color(0.3, 0.3, 0.4)
 
 func unlock_next_encounters():
-	if current_layer >= hbox.get_child_count() - 1:
+	if current_layer >= map_layer_container.get_child_count() - 1:
 		return
 	
-	for button in hbox.get_child(current_layer + 1).get_children():
+	for button in map_layer_container.get_child(current_layer + 1).get_children():
 		var encounter = encounter_to_button.find_key(button)
 		button.disabled = not current_encounter.connections_to.has(encounter)
 		# change the appearance of already visited or the current encounter
