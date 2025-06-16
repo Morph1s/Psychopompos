@@ -46,11 +46,11 @@ theme_override_constants/margin_right = 24
 [node name="MapConnectionDrawer" type="Control" parent="TopMargin/MapIconsMargin"]
 clip_contents = true
 layout_mode = 2
+mouse_filter = 2
 script = ExtResource("2_tqkkf")
 
 [node name="MapScrollContainer" type="ScrollContainer" parent="TopMargin/MapIconsMargin"]
 layout_mode = 2
-mouse_filter = 0
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 

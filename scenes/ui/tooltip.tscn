@@ -8,6 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 89.0
 offset_bottom = 8.0
+mouse_filter = 2
 theme = ExtResource("1_b5j4s")
 script = ExtResource("1_mtwet")
 
@@ -15,6 +16,9 @@ script = ExtResource("1_mtwet")
 layout_mode = 1
 offset_right = 44.0
 offset_bottom = 8.0
+mouse_filter = 2
 
 [node name="DescriptionsContainer" type="VBoxContainer" parent="Background"]
 layout_mode = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false

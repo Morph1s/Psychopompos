@@ -10,10 +10,10 @@
 [resource]
 script = ExtResource("2_u06q2")
 starting_deck = Array[ExtResource("1_uu6n5")]([ExtResource("3_tojp7"), ExtResource("3_tojp7"), ExtResource("3_tojp7"), ExtResource("3_tojp7"), ExtResource("4_g2fsd"), ExtResource("4_g2fsd"), ExtResource("4_g2fsd"), ExtResource("4_g2fsd"), ExtResource("5_tojp7"), ExtResource("6_g2fsd")])
-common_cards_boon_one = Array[ExtResource("1_uu6n5")]([])
-rare_cards_boon_one = Array[ExtResource("1_uu6n5")]([])
+common_cards_boon_one = Array[ExtResource("1_uu6n5")]([ExtResource("5_tojp7"), ExtResource("5_tojp7")])
+rare_cards_boon_one = Array[ExtResource("1_uu6n5")]([ExtResource("5_tojp7"), ExtResource("5_tojp7")])
 epic_cards_boon_one = Array[ExtResource("1_uu6n5")]([])
-common_cards_boon_two = Array[ExtResource("1_uu6n5")]([])
-rare_cards_boon_two = Array[ExtResource("1_uu6n5")]([])
+common_cards_boon_two = Array[ExtResource("1_uu6n5")]([ExtResource("5_tojp7"), ExtResource("5_tojp7")])
+rare_cards_boon_two = Array[ExtResource("1_uu6n5")]([ExtResource("5_tojp7"), ExtResource("5_tojp7")])
 epic_cards_boon_two = Array[ExtResource("1_uu6n5")]([])
 metadata/_custom_type_script = "uid://ckp8ofhnx14eh"
