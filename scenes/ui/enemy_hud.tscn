@@ -7,10 +7,18 @@
 [node name="EnemyHud" instance=ExtResource("1_n2lff")]
 script = ExtResource("2_84853")
 
-[node name="IntentIndicator" type="TextureRect" parent="." index="3"]
+[node name="IntentContainer" type="HBoxContainer" parent="." index="1"]
 layout_mode = 0
+offset_left = 6.0
 offset_top = -16.0
-offset_right = 16.0
-pivot_offset = Vector2(8, 4)
+offset_right = 38.0
+
+[node name="IntentIcon" type="TextureRect" parent="IntentContainer" index="0"]
+layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_aiwmg")
+
+[node name="IntentValue" type="Label" parent="IntentContainer" index="1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1*3"

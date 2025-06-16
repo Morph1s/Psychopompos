@@ -2,41 +2,45 @@
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_elymy"]
 [ext_resource type="Script" uid="uid://rqst1nkft1gr" path="res://scripts/ui/entity_hud.gd" id="1_qf4hu"]
-[ext_resource type="Texture2D" uid="uid://cx7lhttskmu26" path="res://assets/graphics/ui/hp_energy_bar/hpbar_over.png" id="3_yp36h"]
-[ext_resource type="Texture2D" uid="uid://ddgrrrit28y50" path="res://assets/graphics/ui/hp_energy_bar/hpbar_progress.png" id="4_1ufrs"]
+[ext_resource type="Texture2D" uid="uid://cvcjdtjyphia7" path="res://assets/graphics/ui/hud_heart.png" id="3_yp36h"]
+[ext_resource type="Texture2D" uid="uid://dtux8aq3osqwm" path="res://assets/graphics/ui/hud_shield.png" id="4_1ufrs"]
 
 [node name="EntityHud" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 41.0
-offset_right = 40.0
-offset_bottom = 61.0
 mouse_filter = 2
 theme = ExtResource("1_elymy")
 script = ExtResource("1_qf4hu")
 
-[node name="HpBar" type="TextureProgressBar" parent="."]
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 8.0
-mouse_filter = 2
-value = 100.0
-texture_over = ExtResource("3_yp36h")
-texture_progress = ExtResource("4_1ufrs")
-texture_progress_offset = Vector2(16, 0)
-
-[node name="BlockLabel" type="Label" parent="."]
+[node name="HitpointBackground" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -13.0
-offset_right = 47.0
+offset_top = -6.0
+offset_right = 45.0
 grow_vertical = 0
-text = "Block:"
 
-[node name="HpLabel" type="Label" parent="."]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 13.0
-text = "HP:"
+[node name="HitpointContainer" type="HBoxContainer" parent="HitpointBackground"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Hitpoints" type="Label" parent="HitpointBackground/HitpointContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "25/67"
+
+[node name="HitpointIcon" type="TextureRect" parent="HitpointBackground/HitpointContainer"]
+layout_mode = 2
+texture = ExtResource("3_yp36h")
+stretch_mode = 2
+
+[node name="Block" type="Label" parent="HitpointBackground/HitpointContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+text = "+13"
+
+[node name="BlockIcon" type="TextureRect" parent="HitpointBackground/HitpointContainer"]
+layout_mode = 2
+texture = ExtResource("4_1ufrs")
+stretch_mode = 2

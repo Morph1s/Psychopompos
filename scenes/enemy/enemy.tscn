@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bnyj4jetklh6b" path="res://scenes/effects/effect_handler.tscn" id="4_gl05p"]
 [ext_resource type="PackedScene" uid="uid://cc705r0vhke8v" path="res://scenes/modifiers/modifier_handler.tscn" id="4_tjssy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_40wdo"]
-size = Vector2(49.5, 51)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl05p"]
 
 [node name="Enemy" type="Area2D" node_paths=PackedStringArray("enemy_hud") groups=["enemy"]]
 script = ExtResource("1_4a83h")
@@ -15,21 +14,15 @@ enemy_hud = NodePath("EnemyHud")
 
 [node name="EnemyImage" type="Sprite2D" parent="."]
 texture = ExtResource("2_a3pup")
-region_enabled = true
+centered = false
 region_rect = Rect2(17, 19, 35, 38)
 
 [node name="EnemyShape" type="CollisionShape2D" parent="."]
-position = Vector2(1.75, 0)
-shape = SubResource("RectangleShape2D_40wdo")
+shape = SubResource("RectangleShape2D_gl05p")
 
 [node name="EnemyHud" parent="." instance=ExtResource("3_40wdo")]
-offset_left = -29.0
-offset_top = 26.0
-offset_right = 11.0
-offset_bottom = 66.0
 
 [node name="EffectHandler" parent="." instance=ExtResource("4_gl05p")]
-position = Vector2(20, -20)
 
 [node name="ModifierHandler" parent="." instance=ExtResource("4_tjssy")]
 
