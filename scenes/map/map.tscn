@@ -51,6 +51,8 @@ script = ExtResource("2_tqkkf")
 [node name="MapScrollContainer" type="ScrollContainer" parent="TopMargin/MapIconsMargin"]
 layout_mode = 2
 mouse_filter = 0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
 
 [node name="MapLayerContainer" type="HBoxContainer" parent="TopMargin/MapIconsMargin/MapScrollContainer"]
 layout_mode = 2
