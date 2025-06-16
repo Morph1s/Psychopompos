@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=8 format=3 uid="uid://ch25cteno6qfm"]
+[gd_resource type="Resource" script_class="CardType" load_steps=10 format=3 uid="uid://ch25cteno6qfm"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_fkwoo"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_kdkt8"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_weh8t"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="4_weh8t"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="5_70hq6"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kdkt8"]
 size = Vector2(8, 8)
@@ -33,4 +35,5 @@ targeted = true
 first_description_icon = SubResource("PlaceholderTexture2D_kdkt8")
 first_description_text = "6"
 second_description_text = ""
+tooltips = Array[ExtResource("4_weh8t")]([ExtResource("5_70hq6")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

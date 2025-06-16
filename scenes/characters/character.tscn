@@ -1,23 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b086lic3ys2g6"]
+[gd_scene load_steps=7 format=3 uid="uid://b086lic3ys2g6"]
 
 [ext_resource type="Script" uid="uid://batcfmukfigsj" path="res://scripts/characters/player.gd" id="1_x31xa"]
 [ext_resource type="PackedScene" uid="uid://bye227bai3ofb" path="res://scenes/ui/player_hud.tscn" id="2_1bdar"]
+[ext_resource type="Texture2D" uid="uid://dswkxd5k64ba1" path="res://assets/graphics/characters/placeHolder_player1.png" id="2_ma1fs"]
+[ext_resource type="Resource" uid="uid://cdma0wk0jbcac" path="res://resources/characters/Warrior_Stats.tres" id="2_yscb1"]
 [ext_resource type="PackedScene" uid="uid://bnyj4jetklh6b" path="res://scenes/effects/effect_handler.tscn" id="3_2qjml"]
 [ext_resource type="PackedScene" uid="uid://cc705r0vhke8v" path="res://scenes/modifiers/modifier_handler.tscn" id="3_e22cc"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("player_hud") groups=["player"]]
+[node name="Character" type="Node2D" groups=["player"]]
 script = ExtResource("1_x31xa")
-player_hud = NodePath("PlayerHud")
+stats = ExtResource("2_yscb1")
 
 [node name="CharacterImage" type="Sprite2D" parent="."]
+texture = ExtResource("2_ma1fs")
+centered = false
 
 [node name="PlayerHud" parent="." instance=ExtResource("2_1bdar")]
-offset_left = -54.0
-offset_top = 40.0
-offset_right = -14.0
-offset_bottom = 80.0
 
 [node name="EffectHandler" parent="." instance=ExtResource("3_2qjml")]
-position = Vector2(20, -20)
 
 [node name="ModifierHandler" parent="." instance=ExtResource("3_e22cc")]

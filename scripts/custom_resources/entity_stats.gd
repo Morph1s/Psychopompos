@@ -60,5 +60,7 @@ func take_damage(damage_value: int) -> void:
 	block_changed.emit(block)
 
 func lose_hp(hp_loss) -> void:
+	if current_hitpoints <= 0:
+		return
 	current_hitpoints -= hp_loss
 	# play take damage animation

@@ -97,7 +97,6 @@ func discard_hand() -> void:
 func discard_card_from_hand(card: Card) -> void:
 	if not hand.has(card):
 		return
-		
 	
 	# remove the card from hand and add it to discard pile
 	hand.erase(card)
@@ -153,6 +152,8 @@ func deselect_card() -> void:
 	else:
 		selected_card.highlight(Card.HighlightMode.NONE)
 		selected_card = null
+		if not highlighted_card:
+			EventBusHandler.hide_tooltips.emit()
 	Input.set_custom_mouse_cursor(DEFAULT_CURSOR)
 
 ## handels state after mouseinput
@@ -189,19 +190,26 @@ func _input(event: InputEvent) -> void:
 	
 
 ## handels state after mouse enters card
-func _on_mouse_entered_card(card):
-	if highlighted_card == null :
+func _on_mouse_entered_card(card: Card):
+	if highlighted_card == null:
 		if selected_card != card:
 			card.highlight(Card.HighlightMode.HOVERED)
 		highlighted_card = card
+		EventBusHandler.show_tooltips.emit(card.card_type.tooltips)
 	elif selected_card != card: 
 		second_card = card
+
 ## handels state after mouse exits card
-func _on_mouse_exited_card(card):
+func _on_mouse_exited_card(card: Card):
 	if (card == highlighted_card):
 		if card != selected_card:
 			card.highlight(Card.HighlightMode.NONE)
 		highlighted_card = null
+		
+		if selected_card:
+			EventBusHandler.show_tooltips.emit(selected_card.card_type.tooltips)
+		else:
+			EventBusHandler.hide_tooltips.emit()
 	
 	if (card == second_card):
 		second_card = null
@@ -210,6 +218,8 @@ func _on_mouse_exited_card(card):
 		second_card.highlight(Card.HighlightMode.HOVERED)
 		highlighted_card = second_card
 		second_card = null
+		EventBusHandler.show_tooltips.emit(highlighted_card.card_type.tooltips)
+
 #endregion
 
 ## for determening mouseposition

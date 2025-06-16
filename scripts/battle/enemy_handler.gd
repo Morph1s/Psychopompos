@@ -14,7 +14,6 @@ var enemies: Array[Enemy]
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var random_y_position: int
-var place: Vector2
 
 func initialize() -> void:
 	#for testing purpose load preloaded test enemy. This will be changed.
@@ -42,13 +41,13 @@ func place_enemy_in_scene():
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	for enemy in enemies:
-		place = _calculate_enemy_position(enemy.get_index(), enemies.size())
-		tween.tween_property(enemy,"position",place,SPEED)
+		var new_position: Vector2 = _calculate_enemy_position(enemy.get_index(), enemies.size())
+		tween.tween_property(enemy, "position", new_position ,SPEED)
 
 func _calculate_enemy_position(index: int, enemy_count: int) -> Vector2:
 	var enemy_distance: int = ENEMY_WIDTH - round(enemy_count / 2) * 2
 	var enemy_x_position = ENEMY_PLACEMENT_CENTER_X + index * enemy_distance - enemy_distance * (enemy_count - 1) / 2
-	return Vector2(enemy_x_position, 82)
+	return Vector2(enemy_x_position, enemies[index].y_position)
 
 func resolve_intent():
 	for enemy in enemies:
@@ -64,6 +63,7 @@ func choose_intent():
 func _an_enemy_died(dead_enemy: Enemy):
 	enemies.erase(dead_enemy)
 	remove_child(dead_enemy)
+	dead_enemy.queue_free()
 	if enemies.is_empty():
 		all_enemies_died.emit()
 
