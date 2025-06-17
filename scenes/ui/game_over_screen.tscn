@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://camqloxq48hfj"]
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_dnrai"]
-[ext_resource type="Script" uid="uid://cuenyajfcmnq7" path="res://scenes/ui/game_over_screen.gd" id="2_sopbp"]
+[ext_resource type="Script" uid="uid://cuenyajfcmnq7" path="res://scripts/ui/game_over_screen.gd" id="2_sopbp"]
+
 
 [node name="GameOverScreen" type="Control"]
 top_level = true

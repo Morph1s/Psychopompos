@@ -1,17 +1,13 @@
 class_name Battle
 extends Node2D
 
+signal  load_game_over_screen
+signal  load_battle_rewards
+
 @onready var card_handler: CardHandler = $CardHandler
 @onready var enemy_handler: EnemyHandler = $EnemyHandler
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_character: Character = $PlayerCharacter
-
-
-var card_draw_amount: int = 5
-var player_win: bool = false
-
-signal  load_game_over_screen
-signal  load_battle_rewards
 
 func _ready() -> void:
 	player_character.initialize()
@@ -22,13 +18,12 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	state_machine.transition_to("Exit")
 
-
 #region signals
 
 #region player turn
 
 func _on_player_start_turn_draw_cards() -> void:
-	card_handler.draw_cards(card_draw_amount)
+	card_handler.draw_cards(RunData.player_stats.card_draw_amount)
 
 func _on_player_start_turn_choose_enemy_intents() -> void:
 	enemy_handler.choose_intent()

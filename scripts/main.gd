@@ -1,6 +1,6 @@
 extends Node
 
-const RUN: PackedScene = preload("res://scenes/ui/run.tscn")
+const RUN: PackedScene = preload("res://scenes/run.tscn")
 const MAIN_MENU: PackedScene = preload("res://scenes/ui/main_menu.tscn")
 
 @onready var pause_menu_layer = $PauseMenuLayer

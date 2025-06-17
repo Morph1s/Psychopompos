@@ -12,4 +12,5 @@ enemy_sprite = ExtResource("2_318jf")
 action_pattern = 1
 actions = Array[ExtResource("1_xdanq")]([ExtResource("2_irtgr"), ExtResource("3_lbsk5")])
 maximum_hitpoints = 20
+current_hitpoints = 1
 metadata/_custom_type_script = "uid://bq170hnpyow8i"

@@ -4,10 +4,12 @@ extends TextureRect
 signal open_map
 
 @onready var tooltip = $Tooltip
+@onready var hitpoints = $IconsLeft/HPLabel
 
-func _ready() -> void:
+func initialize() -> void:
 	EventBusHandler.show_tooltips.connect(_on_eventbus_show_tooltips)
 	EventBusHandler.hide_tooltips.connect(_on_eventbus_hide_tooltips)
+	RunData.player_stats.hitpoints_changed.connect(_on_stats_hp_changed)
 
 func _on_deck_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
@@ -27,3 +29,6 @@ func _on_eventbus_show_tooltips(data: Array[TooltipData]) -> void:
 
 func _on_eventbus_hide_tooltips() -> void:
 	tooltip.hide()
+
+func _on_stats_hp_changed(current_hp: int, max_hp: int):
+	hitpoints.text = "%d/%d" % [current_hp, max_hp]
