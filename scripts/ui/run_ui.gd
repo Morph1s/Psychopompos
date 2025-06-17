@@ -6,9 +6,6 @@ signal open_map
 @onready var tooltip = $Tooltip
 @onready var hitpoints = $IconsLeft/HPLabel
 
-var current_hp: int = 0
-var max_hp: int = 100
-
 func initialize() -> void:
 	EventBusHandler.show_tooltips.connect(_on_eventbus_show_tooltips)
 	EventBusHandler.hide_tooltips.connect(_on_eventbus_hide_tooltips)
