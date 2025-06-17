@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cffw6mejnewc"]
+[gd_scene load_steps=8 format=3 uid="uid://cffw6mejnewc"]
 
 [ext_resource type="Script" uid="uid://bvmqf5646cs7k" path="res://scripts/run/run.gd" id="1_q5lik"]
 [ext_resource type="Script" uid="uid://1oo6m0q0nn66" path="res://scripts/run/encounter_handler.gd" id="2_6ock1"]
 [ext_resource type="Script" uid="uid://bdgcrb63bt51r" path="res://scripts/ui/ui_layer.gd" id="2_dqgnb"]
 [ext_resource type="PackedScene" uid="uid://dhrw1q2m7p5fa" path="res://scenes/map/map.tscn" id="3_6ock1"]
 [ext_resource type="PackedScene" uid="uid://b421431h80p3u" path="res://scenes/ui/run_ui.tscn" id="4_nafsq"]
+[ext_resource type="PackedScene" uid="uid://dotipftxbq4ps" path="res://scenes/ui/deck_view.tscn" id="5_nafsq"]
 [ext_resource type="Script" uid="uid://boad1eqjx3ol2" path="res://scripts/map/map_generator.gd" id="7_nafsq"]
 
 [node name="Run" type="Node2D"]
@@ -21,6 +22,9 @@ mouse_filter = 2
 [node name="Map" parent="UILayer" instance=ExtResource("3_6ock1")]
 visible = false
 
+[node name="DeckView" parent="UILayer" instance=ExtResource("5_nafsq")]
+visible = false
+
 [node name="EncounterHandler" type="Node2D" parent="."]
 script = ExtResource("2_6ock1")
 
@@ -33,5 +37,6 @@ script = ExtResource("7_nafsq")
 [connection signal="open_map" from="UILayer/RunUI" to="UILayer" method="_on_run_ui_open_map"]
 [connection signal="encounter_selected" from="UILayer/Map" to="." method="_on_map_encounter_selected"]
 [connection signal="hidden" from="UILayer/Map" to="UILayer" method="_on_map_hidden"]
+[connection signal="close_deck_view" from="UILayer/DeckView" to="UILayer" method="_close_deck_view"]
 [connection signal="load_main_menu" from="EncounterHandler" to="." method="_on_encounter_handler_load_main_menu"]
 [connection signal="load_rewards" from="EncounterHandler" to="." method="_on_encounter_handler_load_rewards"]

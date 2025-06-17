@@ -7,16 +7,16 @@ func _ready() -> void:
 	EventBusHandler.entered_idle.connect(_on_event_bus_entered_idle)
 
 func _on_discard_pile_gui_input(event: InputEvent) -> void:
-	if event.is_released() :
-		pass
+	if event.is_action_released("left_click") and not get_tree().get_first_node_in_group("card_piles").discard_pile.is_empty():
+		EventBusHandler.show_deck_view.emit(get_tree().get_first_node_in_group("card_piles").discard_pile)
 
 func _on_end_turn_button_button_up() -> void:
 	EventBusHandler.end_turn_button_pressed.emit()
 	end_turn_button.disabled = true
 
 func _on_draw_pile_gui_input(event: InputEvent) -> void:
-	if event.is_released() :
-		pass
+	if event.is_action_released("left_click") and not get_tree().get_first_node_in_group("card_piles").draw_pile.is_empty():
+		EventBusHandler.show_deck_view.emit(get_tree().get_first_node_in_group("card_piles").draw_pile)
 
 func _on_event_bus_entered_idle() -> void:
 	end_turn_button.disabled = false

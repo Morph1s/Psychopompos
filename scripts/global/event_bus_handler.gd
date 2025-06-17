@@ -11,6 +11,7 @@ signal player_played_attack
 signal open_settings
 signal show_tooltips(data: Array[TooltipData])
 signal hide_tooltips
+signal show_deck_view(deck: Array[CardType], fullscreen: bool)
 
 
 ## disposes all connections of all events

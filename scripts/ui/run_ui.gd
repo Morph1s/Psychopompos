@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _on_deck_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
-		pass
+		EventBusHandler.show_deck_view.emit(DeckHandler.current_deck)
 
 func _on_map_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
