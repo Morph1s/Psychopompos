@@ -6,7 +6,7 @@ var max_energy: int = 3
 
 @onready var energy_label: Label = $EnergyLabel
 
-func _ready() -> void:
+func initialize() -> void:
 	_update_display()
 
 func set_current_energy(value: int) -> void:

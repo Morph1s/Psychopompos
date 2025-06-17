@@ -1,9 +1,8 @@
 class_name Run
 extends Node2D
 
-
-
 @onready var ui_layer: CanvasLayer = $UILayer
+@onready var run_ui: RunUI = $UILayer/RunUI
 @onready var encounter_handler = $EncounterHandler
 @onready var map = $UILayer/Map
 @onready var map_generator = $MapGenerator
@@ -13,7 +12,10 @@ signal load_main_menu
 func _ready():
 	var map_layers = map_generator.generate_map()
 	map.load_layers(map_layers)
+	RunData.start_run()
 	DeckHandler.start_run_setup()
+	run_ui.initialize()
+	RunData.player_stats.initialize()
 	map.show()
 
 # Uses the EncounterHandler to load the requested encounter

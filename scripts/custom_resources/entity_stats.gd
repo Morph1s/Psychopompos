@@ -13,7 +13,7 @@ signal died()
 		# call stats changed eventbus
 		hitpoints_changed.emit(current_hitpoints, maximum_hitpoints)
 
-var current_hitpoints: int = 1:
+@export var current_hitpoints: int = 1:
 	set(value):
 		var old_hp = current_hitpoints
 		current_hitpoints = clamp(value, 0, maximum_hitpoints)
@@ -24,7 +24,6 @@ var current_hitpoints: int = 1:
 			# signal death
 			died.emit()
 			print("unit_died")
-		# call stats changed eventbus
 var block: int = 0:
 	set(value):
 		print("changing block")
@@ -33,7 +32,6 @@ var block: int = 0:
 		if old_block != block:
 			print("changed block")
 			block_changed.emit(block)
-		# call stats changed eventbus
 
 func initialize() -> void:
 	current_hitpoints = maximum_hitpoints

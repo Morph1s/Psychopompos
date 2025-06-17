@@ -1,12 +1,12 @@
 class_name Character
 extends Node2D
 
-@export var stats : PlayerStats 
+@onready var stats: PlayerStats = preload("res://resources/characters/Warrior_Stats.tres")
 
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
 @onready var character_image = $CharacterImage
-@onready var player_hud = $PlayerHud
+@onready var player_hud: PlayerHud = $PlayerHud
 
 signal player_died
 
@@ -29,14 +29,11 @@ func end_of_turn() -> void:
 	effect_handler._on_unit_turn_end()
 
 func initialize() -> void:
-	
-	
 	# Connecting Signals
 	stats.died.connect(_on_died)
 	stats.energy_changed.connect(_on_energy_changed)
 	stats.hitpoints_changed.connect(_on_hitpoints_changed)
 	stats.block_changed.connect(_on_block_changed)
-	stats.initialize()
 	
 	var size = character_image.texture.get_size()
 	player_hud.set_entity_size(size)
@@ -44,7 +41,9 @@ func initialize() -> void:
 	
 	effect_handler.initialize(self)
 	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)
-
+	
+	player_hud.set_current_hp(RunData.player_stats.current_hitpoints)
+	player_hud.set_max_hp(RunData.player_stats.maximum_hitpoints)
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
