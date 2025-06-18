@@ -28,6 +28,7 @@ fill_from = Vector2(0, 1)
 script = ExtResource("2_4vhli")
 card_name = "Guard"
 energy_cost = 1
+rarity = 0
 texture = SubResource("GradientTexture2D_5nopr")
 on_play_action = Array[ExtResource("1_gmmty")]([SubResource("Resource_jcy5c")])
 on_graveyard_action = Array[ExtResource("1_gmmty")]([])
