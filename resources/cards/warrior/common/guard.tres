@@ -11,7 +11,7 @@ size = Vector2(8, 8)
 
 [sub_resource type="Resource" id="Resource_jcy5c"]
 script = ExtResource("2_5nopr")
-block_stat = 5
+block_stat = 4
 target_type = 0
 metadata/_custom_type_script = "uid://riw8fvdo6pdh"
 
@@ -26,14 +26,14 @@ fill_from = Vector2(0, 1)
 
 [resource]
 script = ExtResource("2_4vhli")
-card_name = "Defend"
+card_name = "Guard"
 energy_cost = 1
 texture = SubResource("GradientTexture2D_5nopr")
 on_play_action = Array[ExtResource("1_gmmty")]([SubResource("Resource_jcy5c")])
 on_graveyard_action = Array[ExtResource("1_gmmty")]([])
 targeted = false
 first_description_icon = SubResource("PlaceholderTexture2D_4vhli")
-first_description_text = "5"
+first_description_text = "4"
 second_description_text = ""
 tooltips = Array[ExtResource("4_5nopr")]([ExtResource("5_jcy5c")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

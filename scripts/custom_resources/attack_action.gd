@@ -1,5 +1,5 @@
 class_name AttackAction
-extends Action
+extends TargetedAction
 
 @export var damage_stat: int = 6
 

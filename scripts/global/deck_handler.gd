@@ -1,29 +1,23 @@
 extends Node2D
 
 var rarity_distribution: Dictionary = {
-	"common": 65,
-	"rare": 30,
-	"epic": 5
+	CardType.Rarity.COMMON_CARD: 65,
+	CardType.Rarity.HERO_CARD: 30,
+	CardType.Rarity.GODS_BOON: 5
 }
 
-var selected_boons: Array[String]
+var card_library: CardLibrary
 var current_deck: Array[CardType] = []
 
-# possible card rewards
-var common_cards: Array[CardType] = []
-var rare_cards: Array[CardType] = []
-var epic_cards: Array[CardType] = []
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func start_run_setup(boons: Array[String] = ["Boon 1", "Boon 2"]) -> void:
-	var card_library: CardLibrary = load("res://resources/characters/card_library.tres")
+func start_run_setup() -> void:
+	card_library = null
 	
-	# setting selected boons
-	selected_boons = boons
-	
-	# setting possible card rewards
-	_set_card_rewards(card_library)
+	match RunData.selected_character:
+		RunData.Characters.WARRIOR:
+			card_library = load("res://resources/characters/warrior_cards.tres")
 	
 	# setting starting deck
 	current_deck.clear()
@@ -43,50 +37,34 @@ func get_cards_for_card_rewards(amount: int) -> Array[CardType]:
 	
 	# setup temporary arrays 
 	var selected_common_cards: Array[CardType] = []
-	var selected_rare_cards: Array[CardType] = []
-	var selected_epic_cards: Array[CardType] = []
+	var selected_hero_cards: Array[CardType] = []
+	var selected_gods_boon_cards: Array[CardType] = []
 	
 	# selecting amount cards and removing selected cards from the pool
 	for i in range(amount):
-		var rarity: String = _get_card_rarity()
+		var rarity: CardType.Rarity = _get_card_rarity()
 		var card_index: int = _get_card_index_by_rarity(rarity)
 		match rarity:
-			"common":
-				selected_common_cards.append(common_cards.pop_at(card_index))
-			"rare":
-				selected_rare_cards.append(rare_cards.pop_at(card_index))
-			"epic":
-				selected_epic_cards.append(epic_cards.pop_at(card_index))
+			CardType.Rarity.COMMON_CARD:
+				selected_common_cards.append(card_library.common_cards.pop_at(card_index))
+			CardType.Rarity.HERO_CARD:
+				selected_hero_cards.append(card_library.hero_cards.pop_at(card_index))
+			CardType.Rarity.GODS_BOON:
+				selected_gods_boon_cards.append(card_library.gods_boon_cards.pop_at(card_index))
 	
 	# adding removed cards back into the pool
 	if selected_common_cards:
-		common_cards.append_array(selected_common_cards)
-	if selected_rare_cards:
-		rare_cards.append_array(selected_rare_cards)
-	if selected_epic_cards:
-		epic_cards.append_array(selected_epic_cards)
+		card_library.common_cards.append_array(selected_common_cards)
+	if selected_hero_cards:
+		card_library.hero_cards.append_array(selected_hero_cards)
+	if selected_gods_boon_cards:
+		card_library.gods_boon_cards.append_array(selected_gods_boon_cards)
 	
-	return selected_epic_cards + selected_rare_cards + selected_common_cards  
+	return selected_gods_boon_cards + selected_hero_cards + selected_common_cards  
 
 #region local helper functions
 
-func _set_card_rewards(card_library: CardLibrary) -> void:
-	common_cards.clear()
-	rare_cards.clear()
-	epic_cards.clear()
-	
-	for boon in selected_boons:
-		match boon:
-			"Boon 1":
-				common_cards.append_array(card_library.common_cards_boon_one)
-				rare_cards.append_array(card_library.rare_cards_boon_one)
-				epic_cards.append_array(card_library.epic_cards_boon_one)
-			"Boon 2":
-				common_cards.append_array(card_library.common_cards_boon_two)
-				rare_cards.append_array(card_library.rare_cards_boon_two)
-				epic_cards.append_array(card_library.epic_cards_boon_two)
-
-func _get_card_rarity() -> String:
+func _get_card_rarity() -> CardType.Rarity:
 	var rarity_roll = rng.randi_range(0, 100)
 	
 	for key in rarity_distribution:
@@ -96,17 +74,18 @@ func _get_card_rarity() -> String:
 			rarity_roll -= rarity_distribution[key]
 	
 	# failsafe
-	return "common"
+	push_error("error when selecting card rarity")
+	return CardType.Rarity.COMMON_CARD
 
 
-func _get_card_index_by_rarity(rarity: String) -> int:
+func _get_card_index_by_rarity(rarity: CardType.Rarity) -> int:
 	match rarity:
-		"common":
-			return rng.randi_range(0, common_cards.size() - 1)
-		"rare":
-			return rng.randi_range(0, rare_cards.size() - 1)
-		"epic":
-			return rng.randi_range(0, epic_cards.size() - 1)
+		CardType.Rarity.COMMON_CARD:
+			return rng.randi_range(0, card_library.common_cards.size() - 1)
+		CardType.Rarity.HERO_CARD:
+			return rng.randi_range(0, card_library.hero_cards.size() - 1)
+		CardType.Rarity.GODS_BOON:
+			return rng.randi_range(0, card_library.gods_boon_cards.size() - 1)
 		_:
 			push_error("Wrong card rarity selected: ", rarity)
 			return -1

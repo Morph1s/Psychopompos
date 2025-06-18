@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardLibrary" load_steps=25 format=3 uid="uid://b0uaatd6pxb0u"]
+
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="1_a6qaj"]
+[ext_resource type="Script" uid="uid://ckp8ofhnx14eh" path="res://scripts/custom_resources/card_library.gd" id="2_1siwy"]
+[ext_resource type="Resource" uid="uid://bstj6148e5h46" path="res://resources/cards/warrior/common/flurry.tres" id="2_v55og"]
+[ext_resource type="Resource" uid="uid://usdb4u0e72jh" path="res://resources/cards/warrior/common/poke.tres" id="3_8q21g"]
+[ext_resource type="Resource" uid="uid://bl5m5lr5vrkce" path="res://resources/cards/warrior/common/prepare.tres" id="4_2nwhb"]
+[ext_resource type="Resource" uid="uid://r43h6r5htgjp" path="res://resources/cards/warrior/common/respite.tres" id="5_rvubs"]
+[ext_resource type="Resource" uid="uid://dhfd6kku1alih" path="res://resources/cards/warrior/common/scrape.tres" id="6_x5qw7"]
+[ext_resource type="Resource" uid="uid://do3iftlwnk53j" path="res://resources/cards/warrior/common/swipe.tres" id="7_6kbyg"]
+[ext_resource type="Resource" uid="uid://ccfdqsl1eagpq" path="res://resources/cards/warrior/gods_boon/eris.tres" id="8_k1r47"]
+[ext_resource type="Resource" uid="uid://c0kf21jvrxk0a" path="res://resources/cards/warrior/gods_boon/hades.tres" id="9_i8wp8"]
+[ext_resource type="Resource" uid="uid://c70jlsvppy1d0" path="res://resources/cards/warrior/gods_boon/hermes.tres" id="10_emhmc"]
+[ext_resource type="Resource" uid="uid://dew2o7wbgskb3" path="res://resources/cards/warrior/gods_boon/ker.tres" id="11_5ld4v"]
+[ext_resource type="Resource" uid="uid://iku4w5o2a2gu" path="res://resources/cards/warrior/gods_boon/nemesis.tres" id="12_2dfa5"]
+[ext_resource type="Resource" uid="uid://btbjki4ou2ghp" path="res://resources/cards/warrior/gods_boon/thanatos.tres" id="13_ynupk"]
+[ext_resource type="Resource" uid="uid://byu2u4d1mcdmo" path="res://resources/cards/warrior/hero/actaeon.tres" id="14_smktl"]
+[ext_resource type="Resource" uid="uid://brymu8wjxkgj5" path="res://resources/cards/warrior/hero/damokles.tres" id="15_brfyi"]
+[ext_resource type="Resource" uid="uid://drurb1fexxina" path="res://resources/cards/warrior/hero/hektor.tres" id="16_klj1b"]
+[ext_resource type="Resource" uid="uid://jfy5pw4k5e3m" path="res://resources/cards/warrior/hero/helenos.tres" id="17_r1n0g"]
+[ext_resource type="Resource" uid="uid://bn2pxsug5qhl4" path="res://resources/cards/warrior/hero/idas.tres" id="18_r5237"]
+[ext_resource type="Resource" uid="uid://bducaavaxj0of" path="res://resources/cards/warrior/hero/kassandra.tres" id="19_k4tln"]
+[ext_resource type="Resource" uid="uid://c52ehu7orm4oy" path="res://resources/cards/warrior/hero/nestor.tres" id="20_srqpi"]
+[ext_resource type="Resource" uid="uid://c1utyurugrhyi" path="res://resources/cards/warrior/hero/odysseus.tres" id="21_4dvnv"]
+[ext_resource type="Resource" uid="uid://ch25cteno6qfm" path="res://resources/cards/warrior/common/hit.tres" id="23_okumc"]
+[ext_resource type="Resource" uid="uid://r53s3kohc8k0" path="res://resources/cards/warrior/common/guard.tres" id="24_2ip6v"]
+
+[resource]
+script = ExtResource("2_1siwy")
+starting_deck = Array[ExtResource("1_a6qaj")]([ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v")])
+common_cards = Array[ExtResource("1_a6qaj")]([ExtResource("2_v55og"), ExtResource("3_8q21g"), ExtResource("4_2nwhb"), ExtResource("5_rvubs"), ExtResource("6_x5qw7"), ExtResource("7_6kbyg")])
+hero_cards = Array[ExtResource("1_a6qaj")]([ExtResource("14_smktl"), ExtResource("15_brfyi"), ExtResource("16_klj1b"), ExtResource("17_r1n0g"), ExtResource("18_r5237"), ExtResource("19_k4tln"), ExtResource("20_srqpi"), ExtResource("21_4dvnv")])
+gods_boon_cards = Array[ExtResource("1_a6qaj")]([ExtResource("8_k1r47"), ExtResource("9_i8wp8"), ExtResource("10_emhmc"), ExtResource("11_5ld4v"), ExtResource("12_2dfa5"), ExtResource("13_ynupk")])
+metadata/_custom_type_script = "uid://ckp8ofhnx14eh"

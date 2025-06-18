@@ -17,6 +17,7 @@ size = Vector2(40, 60)
 
 [node name="Card" type="Area2D"]
 z_index = 1
+input_pickable = false
 script = ExtResource("1_imta7")
 
 [node name="CardHighlight" type="Sprite2D" parent="."]
@@ -36,9 +37,9 @@ region_rect = Rect2(0, 0, 40, 60)
 shape = SubResource("RectangleShape2D_imta7")
 
 [node name="EnergyCost" type="Label" parent="."]
-offset_left = -17.0
+offset_left = -16.0
 offset_top = -28.0
-offset_right = -12.0
+offset_right = -11.0
 offset_bottom = -22.0
 theme = ExtResource("4_g65cd")
 text = "0"
@@ -59,6 +60,10 @@ uppercase = true
 
 [node name="Description" type="Node2D" parent="."]
 position = Vector2(-13, 10)
+
+[node name="ActionTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

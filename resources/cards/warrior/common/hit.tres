@@ -11,7 +11,7 @@ size = Vector2(8, 8)
 
 [sub_resource type="Resource" id="Resource_70hq6"]
 script = ExtResource("2_weh8t")
-damage_stat = 6
+damage_stat = 5
 target_type = 1
 metadata/_custom_type_script = "uid://gsab2qn21okq"
 
@@ -26,14 +26,14 @@ fill_from = Vector2(0.0042735, 1)
 
 [resource]
 script = ExtResource("2_kdkt8")
-card_name = "Strike"
+card_name = "hit"
 energy_cost = 1
 texture = SubResource("GradientTexture2D_weh8t")
 on_play_action = Array[ExtResource("1_fkwoo")]([SubResource("Resource_70hq6")])
 on_graveyard_action = Array[ExtResource("1_fkwoo")]([])
 targeted = true
 first_description_icon = SubResource("PlaceholderTexture2D_kdkt8")
-first_description_text = "6"
+first_description_text = "5"
 second_description_text = ""
 tooltips = Array[ExtResource("4_weh8t")]([ExtResource("5_70hq6")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

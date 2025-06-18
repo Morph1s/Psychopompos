@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://btbjki4ou2ghp"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_fy8dn"]
+[ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="2_6whb6"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_bxexo"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_5c2y6"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="3_6whb6"]
+[ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/gather_tooltip.tres" id="5_boj4b"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0mdlm"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_boj4b"]
+script = ExtResource("2_6whb6")
+action_type = 1
+metadata/_custom_type_script = "uid://0budk8al2kwm"
+
+[resource]
+script = ExtResource("2_bxexo")
+card_name = "thanatos"
+energy_cost = 1
+rarity = 3
+texture = ExtResource("3_6whb6")
+on_play_action = Array[ExtResource("1_fy8dn")]([SubResource("Resource_boj4b")])
+on_graveyard_action = Array[ExtResource("1_fy8dn")]([])
+targeted = false
+first_description_icon = SubResource("PlaceholderTexture2D_0mdlm")
+first_description_text = "X2"
+second_description_text = ""
+tooltips = Array[ExtResource("3_5c2y6")]([ExtResource("5_boj4b")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"

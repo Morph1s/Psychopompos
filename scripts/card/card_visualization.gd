@@ -10,23 +10,35 @@ signal hide_tooltip
 @onready var card_name = $Name
 @onready var description_box = $DescriptionBox
 
-var card: CardType
+var card_type: CardType
 
 func initialize(card: CardType) -> void:
 	if not is_node_ready():
 		await ready
 	
-	self.card = card
-	card_image.texture = card.texture
-	card_name.text = card.card_name
-	energy_cost.text = str(card.energy_cost)
+	# load card visuals
+	card_type = card
+	card_image.texture = card_type.texture
+	card_name.text = card_type.card_name
+	energy_cost.text = str(card_type.energy_cost)
 	
-	_set_description(card.first_description_icon, card.first_description_text,0)
-	_set_description(card.second_description_icon, card.second_description_text, 1)
+	_set_description(card_type.first_description_icon, card_type.first_description_text)
+	_set_description(card_type.second_description_icon, card_type.second_description_text)
+	
+	# set visuals based on rarity
+	match card_type.rarity:
+		CardType.Rarity.STARTING_CARD:
+			card_name.add_theme_color_override("font_color", Color.WHITE)
+		CardType.Rarity.COMMON_CARD:
+			card_name.add_theme_color_override("font_color", Color.WHITE)
+		CardType.Rarity.HERO_CARD:
+			card_name.add_theme_color_override("font_color", Color.MEDIUM_PURPLE)
+		CardType.Rarity.GODS_BOON:
+			card_name.add_theme_color_override("font_color", Color.GOLD)
 
 func _on_mouse_entered() -> void:
 	highlight.show()
-	show_tooltip.emit(card.tooltips)
+	show_tooltip.emit(card_type.tooltips)
 
 func _on_mouse_exited() -> void:
 	highlight.hide()
@@ -34,10 +46,10 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
-		card_selected.emit(card)
+		card_selected.emit(card_type)
 		print("ofheivbwefiepfpqiehgipipeh")
 
-func _set_description(icon: Texture, text: String, index: int) -> void:
+func _set_description(icon: Texture, text: String) -> void:
 	var container = HBoxContainer.new()
 	container.add_theme_constant_override("separation", 1)
 	container.mouse_filter = Control.MOUSE_FILTER_IGNORE

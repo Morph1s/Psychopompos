@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://c0kf21jvrxk0a"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_uy6uf"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_44t4l"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_p2gno"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_7qwwq"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_lumf3"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="6_gor4m"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i1oy6"]
+
+[sub_resource type="Resource" id="Resource_gpe51"]
+script = ExtResource("2_44t4l")
+damage_stat = 2
+target_type = 2
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[resource]
+script = ExtResource("2_p2gno")
+card_name = "hades"
+energy_cost = 3
+rarity = 3
+texture = ExtResource("4_lumf3")
+on_play_action = Array[ExtResource("1_uy6uf")]([SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51")])
+on_graveyard_action = Array[ExtResource("1_uy6uf")]([])
+targeted = false
+first_description_icon = SubResource("PlaceholderTexture2D_i1oy6")
+first_description_text = "2*5"
+second_description_text = ""
+tooltips = Array[ExtResource("3_7qwwq")]([ExtResource("6_gor4m")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
