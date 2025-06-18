@@ -1,7 +1,7 @@
 class_name Encounter
 extends Resource
 
-enum EncounterType { BATTLE, SHOP, CAMPFIRE, RANDOM, MINI_BOSS, BOSS }
+enum EncounterType { BATTLE, SHOP, CAMPFIRE, DIALOGUE, RANDOM, MINI_BOSS, BOSS }
 
 var type: EncounterType
 var connections_to: Array[Encounter]  # connections to next encounter(s)
