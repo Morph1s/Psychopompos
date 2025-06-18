@@ -135,7 +135,6 @@ func _play_card(card: Card) -> void:
 	card.highlight(Card.HighlightMode.PLAYED)
 	selected_card = null
 	hand.erase(card)
-	#_set_mouse_cursor()
 	
 	await card.play(hovered_enemy_id)
 	
@@ -291,15 +290,11 @@ func _on_play_area_mouse_exited() -> void:
 
 func _set_mouse_cursor() -> void:
 	if not selected_card:
-		#RunData.change_mouse_cursor(RunData.DEFAULT_CURSOR)
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR)
 	elif -1 < hovered_enemy_id and selected_card.card_type.targeted:
-		#RunData.change_mouse_cursor(RunData.LOCKON_CURSOR)
 		Input.set_custom_mouse_cursor(LOCKON_CURSOR)
 	elif mouse_on_play_area and not selected_card.card_type.targeted:
-		#RunData.change_mouse_cursor(RunData.UNAIMED_CURSOR)
 		Input.set_custom_mouse_cursor(UNAIMED_CURSOR)
 	else:
-		#RunData.change_mouse_cursor(RunData.DEFAULT_CURSOR)
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR)
 #endregion

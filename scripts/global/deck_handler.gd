@@ -74,6 +74,7 @@ func _get_card_rarity() -> CardType.Rarity:
 			rarity_roll -= rarity_distribution[key]
 	
 	# failsafe
+	push_error("error when selecting card rarity")
 	return CardType.Rarity.COMMON_CARD
 
 
