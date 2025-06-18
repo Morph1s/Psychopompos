@@ -24,6 +24,7 @@ func start_encounter(encounter_data: Encounter):
 			battle_scene.load_game_over_screen.connect(_load_game_over_screen)
 			battle_scene.load_battle_rewards.connect(_load_reward_screen)
 			add_child(battle_scene)
+			battle_scene.initialize(encounter_data)
 			current_encounter = battle_scene
 		_:
 			print("Encounter type not implemented: ", encounter_data)

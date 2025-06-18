@@ -9,10 +9,10 @@ signal  load_battle_rewards
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_character: Character = $PlayerCharacter
 
-func _ready() -> void:
+func initialize(data: BattleEncounter) -> void:
 	player_character.initialize()
 	card_handler.initialize()
-	enemy_handler.initialize()
+	enemy_handler.initialize(data.enemies)
 	state_machine.initialize()
 
 func _exit_tree() -> void:

@@ -7,12 +7,6 @@ signal encounter_selected(encounter_data)
 @onready var map_layer_container = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
 
-var encounter_icons: Array[Texture] = [
-	preload("res://assets/graphics/map/icon_battle.png"),
-	preload("res://assets/graphics/map/icon_shop.png"),
-	preload("res://assets/graphics/map/icon_campfire.png"),
-	preload("res://assets/graphics/map/icon_random.png"),
-]
 var encounter_to_button: Dictionary = {}
 var current_encounter: Encounter
 var current_layer = 0
@@ -45,7 +39,7 @@ func load_layers(map_layers):
 			# starting layer buttons should be enabled by default
 			if layer.type != MapLayer.MapLayerType.START:
 				button.disabled = true
-			button.icon = encounter_icons[encounter.type]
+			button.icon = encounter.icon
 			button.pressed.connect(func(): _on_encounter_pressed(encounter))
 			layer_container.add_child(button)
 			encounter_to_button[encounter] = button
