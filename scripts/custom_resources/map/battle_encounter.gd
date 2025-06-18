@@ -6,4 +6,4 @@ extends Encounter
 
 func _init() -> void:
 	type = EncounterType.BATTLE
-	icon = preload("res://assets/graphics/map/icon_battle.png")
+	icon = load("res://assets/graphics/map/icon_battle.png")
