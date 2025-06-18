@@ -12,7 +12,7 @@ signal load_main_menu
 func _ready():
 	var map_layers = map_generator.generate_map()
 	map.load_layers(map_layers)
-	RunData.start_run()
+	RunData.start_run(RunData.Characters.WARRIOR)
 	DeckHandler.start_run_setup()
 	run_ui.initialize()
 	RunData.player_stats.initialize()

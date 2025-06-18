@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=10 format=3 uid="uid://bl5m5lr5vrkce"]
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://bl5m5lr5vrkce"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_l15jk"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_xvp5t"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_xy00l"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_4clh2"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="4_lvs4i"]
 [ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/gather_tooltip.tres" id="5_8vgpp"]
 
@@ -16,20 +17,12 @@ effect_value = 3
 target_type = 0
 metadata/_custom_type_script = "uid://2e4l2jfud28l"
 
-[sub_resource type="Gradient" id="Gradient_8vgpp"]
-colors = PackedColorArray(0, 0.486275, 0, 1, 0, 1, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nmkdb"]
-gradient = SubResource("Gradient_8vgpp")
-width = 32
-height = 24
-fill_from = Vector2(0, 1)
-
 [resource]
 script = ExtResource("2_xvp5t")
 card_name = "prepare"
 energy_cost = 1
-texture = SubResource("GradientTexture2D_nmkdb")
+rarity = 1
+texture = ExtResource("4_4clh2")
 on_play_action = Array[ExtResource("1_l15jk")]([SubResource("Resource_lvs4i")])
 on_graveyard_action = Array[ExtResource("1_l15jk")]([])
 targeted = false

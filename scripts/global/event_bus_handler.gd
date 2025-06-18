@@ -5,22 +5,24 @@ extends Node
 
 signal battle_started
 signal battle_ended
-signal entered_idle
 signal end_turn_button_pressed
 signal player_played_attack
+signal set_player_control(value: bool)
 signal open_settings
 signal show_tooltips(data: Array[TooltipData])
 signal hide_tooltips
-signal show_deck_view(deck: Array[CardType], fullscreen: bool)
+signal show_deck_view(deck: Array[CardType])
+signal show_map
+signal back_to_battle
 
 
 ## disposes all connections of all events
 func clear_all_battle_events() -> void:
-	for function in entered_idle.get_connections():
-		entered_idle.disconnect(function["callable"])
-	
 	for function in end_turn_button_pressed.get_connections():
 		end_turn_button_pressed.disconnect(function["callable"])
 	
 	for function in player_played_attack.get_connections():
 		player_played_attack.disconnect(function["callable"])
+	
+	for function in set_player_control.get_connections():
+		set_player_control.disconnect(function["callable"])

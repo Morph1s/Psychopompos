@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://c70jlsvppy1d0"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_8w2ex"]
+[ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="2_3jf1v"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_8qtqe"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_xjfqq"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_4f833"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_ourqv"]
+[ext_resource type="Resource" uid="uid://g1i01gxgwbvs" path="res://resources/tooltips/agile_tooltip.tres" id="6_3jf1v"]
+[ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/card_draw.tres" id="7_b3ppu"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_b3ppu"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_8bm38"]
+script = ExtResource("2_3jf1v")
+card_action = 0
+count = 1
+metadata/_custom_type_script = "uid://d3tfuhm4icnum"
+
+[sub_resource type="Resource" id="Resource_yakpp"]
+script = ExtResource("2_xjfqq")
+effect = 0
+effect_value = 3
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[resource]
+script = ExtResource("2_8qtqe")
+card_name = "hermes"
+energy_cost = 0
+rarity = 3
+texture = ExtResource("4_ourqv")
+on_play_action = Array[ExtResource("1_8w2ex")]([SubResource("Resource_8bm38"), SubResource("Resource_yakpp")])
+on_graveyard_action = Array[ExtResource("1_8w2ex")]([])
+targeted = false
+first_description_icon = SubResource("PlaceholderTexture2D_b3ppu")
+first_description_text = "1"
+second_description_icon = SubResource("PlaceholderTexture2D_b3ppu")
+second_description_text = "3"
+tooltips = Array[ExtResource("3_4f833")]([ExtResource("7_b3ppu"), ExtResource("6_3jf1v")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"

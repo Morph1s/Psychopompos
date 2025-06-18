@@ -8,5 +8,5 @@ size = Vector2(8, 8)
 [resource]
 script = ExtResource("1_k4xkw")
 icon = SubResource("PlaceholderTexture2D_34tpb")
-description = "DAMOKLES SWORD: take massive damage, gain stacks when attacked"
+description = "DAMOKLES SWORD: take massive damage from stacks, gain stacks when attacked"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

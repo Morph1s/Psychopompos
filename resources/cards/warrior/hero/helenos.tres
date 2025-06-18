@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://jfy5pw4k5e3m"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_c813r"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_3b33u"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_p0gs4"]
+[ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="3_ebqwm"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_mrqq0"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="5_52s3y"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="7_gknr4"]
+[ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/card_draw.tres" id="8_ebqwm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eld8j"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_30gyi"]
+script = ExtResource("2_3b33u")
+damage_stat = 5
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_y5ktv"]
+script = ExtResource("3_ebqwm")
+card_action = 0
+count = 2
+metadata/_custom_type_script = "uid://d3tfuhm4icnum"
+
+[resource]
+script = ExtResource("2_p0gs4")
+card_name = "helenos"
+energy_cost = 1
+rarity = 2
+texture = ExtResource("5_52s3y")
+on_play_action = Array[ExtResource("1_c813r")]([SubResource("Resource_30gyi"), SubResource("Resource_y5ktv")])
+on_graveyard_action = Array[ExtResource("1_c813r")]([])
+targeted = true
+first_description_icon = SubResource("PlaceholderTexture2D_eld8j")
+first_description_text = "5"
+second_description_icon = SubResource("PlaceholderTexture2D_eld8j")
+second_description_text = "2"
+tooltips = Array[ExtResource("3_mrqq0")]([ExtResource("7_gknr4"), ExtResource("8_ebqwm")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"

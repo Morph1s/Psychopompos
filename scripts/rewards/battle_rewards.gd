@@ -91,7 +91,7 @@ func _on_select_card_screen_card_selected(card: CardType) -> void:
 		print("add card to deck")
 		current_card_reward_button.queue_free()
 
-func _on_rewards_container_child_exiting_tree(node):
+func _on_rewards_container_child_exiting_tree(_node):
 	# this has to check for the child count being one instead of 0 
 	# because the last child has not left the scene tree at the point of calling this signal
 	if rewards_container.get_child_count() == 1:

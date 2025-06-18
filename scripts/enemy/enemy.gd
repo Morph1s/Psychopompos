@@ -6,13 +6,13 @@ signal mouse_entered_enemy(Node)
 signal mouse_exited_enemy(Node)
 signal enemy_died(Node)
 
-@export var stats: EnemyStats
-@export var enemy_hud: EnemyHud
-
 @onready var image: Sprite2D = $EnemyImage
 @onready var shape: CollisionShape2D = $EnemyShape
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
+
+@export var stats: EnemyStats
+@export var enemy_hud: EnemyHud
 
 var id: int = 0
 var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
@@ -40,7 +40,6 @@ func initialize() -> void:
 	
 	stats.initialize()
 	
-	
 	effect_handler.initialize(self)
 
 func start_of_turn() -> void:
@@ -50,15 +49,15 @@ func start_of_turn() -> void:
 func end_of_turn() -> void:
 	effect_handler._on_unit_turn_end()
 
-func take_damage(damage_amount:int) -> void:
-	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
-	stats.take_damage(damage_amount)
+func take_damage(amount:int) -> void:
+	amount = modifier_handler.modify_value(amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
+	stats.take_damage(amount)
 
-func lose_hp(hp_loss:int) -> void:
-	stats.lose_hp(hp_loss)
+func lose_hp(amount: int) -> void:
+	stats.lose_hp(amount)
 
-func gain_block(gain_block:int) -> void:
-	stats.block += gain_block
+func gain_block(amount: int) -> void:
+	stats.block += amount
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
@@ -67,8 +66,12 @@ func get_attacked(damage_amount: int) -> void:
 func resolve_intent() -> void:
 	var actions: Array[Action] = stats.actions[intent].action_catalogue
 	var attacked: bool = false
+	
 	for action in actions:
-		action.resolve(_get_targets(action.target_type))
+		if action is TargetedAction:
+			action.resolve(_get_targets(action.target_type))
+		elif action is CardManipulationAction:
+			action.resolve([get_tree().get_first_node_in_group("card_piles")])
 		if action is AttackAction:
 			attacked = true
 	
@@ -89,24 +92,24 @@ func choose_intent() -> void:
 
 #region local functions
 
-func _get_targets(targeting_mode: Action.TargetType) -> Array[Node2D]:
+func _get_targets(targeting_mode: TargetedAction.TargetType) -> Array[Node2D]:
 	var to_return: Array[Node2D] = []
 	
-	if targeting_mode == Action.TargetType.PLAYER:
+	if targeting_mode == TargetedAction.TargetType.PLAYER:
 		to_return.append(get_tree().get_first_node_in_group("player"))
 		
-	elif targeting_mode == Action.TargetType.ENEMY_SINGLE:
+	elif targeting_mode == TargetedAction.TargetType.ENEMY_SINGLE:
 		to_return.append(self)
 		
-	elif targeting_mode == Action.TargetType.ENEMY_ALL_INCLUSIVE:
+	elif targeting_mode == TargetedAction.TargetType.ENEMY_ALL_INCLUSIVE:
 		to_return.append_array(get_tree().get_nodes_in_group("enemy"))
 		
-	elif targeting_mode == Action.TargetType.ENEMY_ALL_EXCLUSIVE:
+	elif targeting_mode == TargetedAction.TargetType.ENEMY_ALL_EXCLUSIVE:
 		for enemy in get_tree().get_nodes_in_group("enemy"):
 			if enemy.id != id:
 				to_return.append(enemy)
 		
-	elif targeting_mode == Action.TargetType.ENEMY_RANDOM:
+	elif targeting_mode == TargetedAction.TargetType.ENEMY_RANDOM:
 		var enemies := get_tree().get_nodes_in_group("enemy")
 		to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 	

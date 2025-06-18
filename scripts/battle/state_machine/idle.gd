@@ -7,7 +7,6 @@ func _ready():
 func enter():
 	print("Entered Idle")
 	
-	EventBusHandler.entered_idle.emit()
 	# check for card selected -> enter state card_highlighted
 	# check for end of turn button pressed -> enter state player_end_turn
 

@@ -28,6 +28,7 @@ func _on_run_ui_open_map():
 		return
 	
 	map.show()
+	EventBusHandler.show_map.emit()
 	
 	if battle_ui_reference:
 		battle_ui_reference.hide()
@@ -53,6 +54,7 @@ func _on_event_bus_battle_ended() -> void:
 func _on_map_hidden():
 	if battle_ui_reference:
 		battle_ui_reference.show()
+	EventBusHandler.back_to_battle.emit()
 
 func _on_battle_rewards_finished_selecting() -> void:
 	map.can_close = false
@@ -72,6 +74,6 @@ func _on_eventbus_open_deck_view(deck: Array[CardType]) -> void:
 
 func _close_deck_view():
 	deck_view.hide()
-	
+	EventBusHandler.back_to_battle.emit()
 	if battle_ui_reference:
 		battle_ui_reference.show()

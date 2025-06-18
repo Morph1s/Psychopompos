@@ -72,5 +72,5 @@ func _an_enemy_died(dead_enemy: Enemy):
 func _on_enemy_enterd(enemy):
 	card_handler.hovered_enemy_id = enemy.id
 
-func _on_enemy_exited(enemy):
+func _on_enemy_exited(_enemy):
 	card_handler.hovered_enemy_id = -1

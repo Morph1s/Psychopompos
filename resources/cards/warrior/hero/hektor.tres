@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://drurb1fexxina"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_81vne"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_7w4nw"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_8o7b6"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_kipiy"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_jxi6l"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="6_b8hhb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1mbk"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_geweb"]
+script = ExtResource("2_8o7b6")
+damage_stat = 25
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[resource]
+script = ExtResource("2_7w4nw")
+card_name = "hektor"
+energy_cost = 2
+rarity = 2
+texture = ExtResource("4_jxi6l")
+on_play_action = Array[ExtResource("1_81vne")]([SubResource("Resource_geweb")])
+on_graveyard_action = Array[ExtResource("1_81vne")]([])
+targeted = true
+first_description_icon = SubResource("PlaceholderTexture2D_o1mbk")
+first_description_text = "25"
+second_description_text = ""
+tooltips = Array[ExtResource("3_kipiy")]([ExtResource("6_b8hhb")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"

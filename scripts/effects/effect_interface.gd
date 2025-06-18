@@ -61,7 +61,7 @@ func played_attack() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(previous: int, current: int) -> void:
+func changed_stacks(_previous: int, _current: int) -> void:
 	pass
 
 ## this function is called at the start of the entities turn 

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://iku4w5o2a2gu"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_3cth4"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_1kg20"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_q8s22"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_in5d1"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_pus7p"]
+[ext_resource type="Resource" uid="uid://qo0nfo00b6vb" path="res://resources/tooltips/warriors_furry_tooltip.tres" id="6_x83cs"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_awk5p"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_n21wl"]
+script = ExtResource("2_q8s22")
+effect = 7
+effect_value = 5
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[resource]
+script = ExtResource("2_1kg20")
+card_name = "nemesis"
+energy_cost = 1
+rarity = 3
+texture = ExtResource("4_pus7p")
+on_play_action = Array[ExtResource("1_3cth4")]([SubResource("Resource_n21wl")])
+on_graveyard_action = Array[ExtResource("1_3cth4")]([])
+targeted = false
+first_description_icon = SubResource("PlaceholderTexture2D_awk5p")
+first_description_text = "5"
+second_description_text = ""
+tooltips = Array[ExtResource("3_in5d1")]([ExtResource("6_x83cs")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
