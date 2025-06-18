@@ -15,16 +15,15 @@ var enemies: Array[Enemy]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var random_y_position: int
 
-func initialize() -> void:
-	#for testing purpose load preloaded test enemy. This will be changed.
-	enemies_stats.append(preload("res://resources/enemies/test_enemy.tres"))
-	load_enemy(enemies_stats)
+func initialize(enemies_data: Array[EnemyStats]) -> void:
+	enemies_stats = enemies_data
+	load_enemies(enemies_stats)
 
-func load_enemy(loading_enemies: Array[EnemyStats]) :
+func load_enemies(loading_enemies: Array[EnemyStats]) :
 	for enemy in loading_enemies:
 		var new_enemy: Enemy = ENEMY.instantiate() as Enemy
 		self.add_child(new_enemy)
-		new_enemy.stats = enemy
+		new_enemy.stats = enemy.duplicate()
 		new_enemy.initialize()
 		new_enemy.id = get_child_count()
 		new_enemy.mouse_entered_enemy.connect(_on_enemy_enterd)

@@ -27,8 +27,7 @@ func generate_map() -> Array[MapLayer]:
 	var mini_boss_layer = MapLayer.new()
 	mini_boss_layer.type = MapLayer.MapLayerType.MINI_BOSS
 	
-	var mini_boss_encounter = Encounter.new()
-	#mini_boss_encounter.type = Encounter.EncounterType.BATTLE
+	var mini_boss_encounter = load("res://resources/encounters/test_battle_1.tres").duplicate()
 	mini_boss_layer.encounters.append(mini_boss_encounter)
 	
 	map_layers.append(mini_boss_layer)
@@ -44,7 +43,7 @@ func generate_map() -> Array[MapLayer]:
 	var boss_layer = MapLayer.new()
 	boss_layer.type = MapLayer.MapLayerType.BOSS
 	
-	var boss_encounter = Encounter.new()
+	var boss_encounter = load("res://resources/encounters/test_battle_1.tres").duplicate()
 	#boss_encounter.type = Encounter.EncounterType.BATTLE
 	boss_layer.encounters.append(boss_encounter)
 	
@@ -60,7 +59,8 @@ func generate_map() -> Array[MapLayer]:
 
 func _initial_fill_layer(layer: MapLayer):
 	for i in MAX_NUM_ENCOUNTERS_PER_LAYER:
-		var encounter: Encounter = Encounter.new()
+		# TODO: for now all the encounters are battles, change that when we implement more encounters
+		var encounter: Encounter = load("res://resources/encounters/test_battle_1.tres").duplicate()
 		layer.encounters.append(encounter)
 
 func _set_initial_connections(map_layers: Array[MapLayer]):
