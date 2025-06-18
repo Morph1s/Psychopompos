@@ -24,7 +24,7 @@ func resolve(targets: Array[Node2D]) -> void :
 func _discard_random(card_handler: CardHandler) -> void:
 	for i in count:
 		var target: Card = card_handler.hand[rng.randi_range(0, card_handler.hand.size() - 1)]
-		await card_handler.discard_card_from_hand(target)
+		await card_handler.discard_card(target)
 
 func _draw_cards(card_handler: CardHandler) -> void:
 	await card_handler.draw_cards(count)
