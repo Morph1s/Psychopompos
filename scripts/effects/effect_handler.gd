@@ -31,7 +31,7 @@ func initialize(parent: Node2D) -> void:
 	max_effects_per_column = int(parent.size.y / (EFFECT_ICON_DISTANCE + EFFECT_ICON_HEIGHT))
 	visible_range = Vector2i(0, max_effects_per_column - 1)
 	
-	buttons.set_bottom_button_positon(max_effects_per_column * EFFECT_ICON_HEIGHT + (max_effects_per_column - 1) * EFFECT_ICON_DISTANCE)
+	buttons.set_bottom_button_position(max_effects_per_column * EFFECT_ICON_HEIGHT + (max_effects_per_column - 1) * EFFECT_ICON_DISTANCE)
 
 #region effect adding
 

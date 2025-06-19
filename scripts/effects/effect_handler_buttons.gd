@@ -19,7 +19,7 @@ const DECREMENT_SPRITE_HIGHLIGHTED = preload("res://assets/graphics/ui/hud_picto
 #var decrement_sprite_position_highlighted: Vector2 = Vector2(0, 0)
 
 
-func set_bottom_button_positon(effects_bottom_boundary: int) -> void:
+func set_bottom_button_position(effects_bottom_boundary: int) -> void:
 	increment_area.position = Vector2(4, effects_bottom_boundary + 3)
 
 func set_increment_button_visibility(visible: bool) -> void:
