@@ -1,24 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8h54lt7wdl6v"]
+[gd_scene load_steps=3 format=3 uid="uid://c8h54lt7wdl6v"]
 
 [ext_resource type="Script" uid="uid://bmpbtmwdke0ot" path="res://scripts/encounters/campfire.gd" id="1_dr3fi"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_j6ic1"]
-[ext_resource type="PackedScene" uid="uid://dotipftxbq4ps" path="res://scenes/ui/deck_view.tscn" id="3_qin1o"]
-
-[sub_resource type="Gradient" id="Gradient_md4li"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_w2xb7"]
-gradient = SubResource("Gradient_md4li")
 
 [node name="Campfire" type="Node2D"]
 script = ExtResource("1_dr3fi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_w2xb7")
+offset_right = 320.0
+offset_bottom = 180.0
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
@@ -38,15 +28,13 @@ size_flags_vertical = 6
 theme_override_constants/separation = 20
 
 [node name="ContinueButton" type="Button" parent="."]
+visible = false
 offset_left = 252.0
 offset_top = 144.0
 offset_right = 300.0
 offset_bottom = 160.0
 theme = ExtResource("1_j6ic1")
 text = "Continue"
-
-[node name="DeckView" parent="." instance=ExtResource("3_qin1o")]
-visible = false
 
 [node name="HealButton" type="Button" parent="."]
 custom_minimum_size = Vector2(80, 0)

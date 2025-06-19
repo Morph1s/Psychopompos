@@ -1,26 +1,31 @@
 class_name Campfire
 extends Node2D
 
-@onready var heal: Button = $HealButton
+@onready var heal_button: Button = $HealButton
 @onready var remove_card: Button = $RemoveCardButton
 @onready var continue_button: Button = $ContinueButton
-@onready var deck_view = $DeckView
-
 
 func _on_continue_button_pressed() -> void:
-	pass # Replace with function body.
+	EventBusHandler.campfire_finished.emit()
 
 func _on_heal_button_pressed() -> void:
-	_finish_campfire()
+	heal()
 
 func _on_remove_card_button_pressed() -> void:
 	open_remove_card_view()
 
 func open_remove_card_view():
-	deck_view.show()
-	deck_view.load_cards(DeckHandler.current_deck)
+	EventBusHandler.show_deck_view.emit(DeckHandler.current_deck, Callable(self, "remove_card_from_deck"))
+
+func remove_card_from_deck(card: CardType):
+	DeckHandler.remove_card_from_deck(card)
+	_finish_campfire()
+
+func heal():
+	RunData.player_stats.current_hitpoints += RunData.player_stats.maximum_hitpoints * 0.3
+	_finish_campfire()
 
 func _finish_campfire():
-	heal.hide()
+	heal_button.hide()
 	remove_card.hide()
 	continue_button.show()
