@@ -70,6 +70,8 @@ func draw_cards(amount: int) -> void:
 		var timer = get_tree().create_timer(CARD_DRAW_SPEED)
 		await timer.timeout
 	
+	EventBusHandler.cards_drawn.emit()
+	
 	if not playing_card:
 		_set_player_control(true)
 

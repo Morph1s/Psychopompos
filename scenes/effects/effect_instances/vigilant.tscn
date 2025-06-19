@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://deaandfrgv8xp"]
+[gd_scene load_steps=7 format=3 uid="uid://deaandfrgv8xp"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_fejqu"]
 [ext_resource type="Script" uid="uid://ctuwaqpbv4d4o" path="res://scripts/effects/effect_instances/vigilant.gd" id="2_yu7aa"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_r6dus"]
+[ext_resource type="Resource" uid="uid://c4sumg4eugky1" path="res://resources/tooltips/vigilant_tooltip.tres" id="3_yu7aa"]
 
 [sub_resource type="Gradient" id="Gradient_fejqu"]
 colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1)
@@ -16,3 +18,4 @@ texture = SubResource("GradientTexture2D_yu7aa")
 script = ExtResource("2_yu7aa")
 effect_name = "Vigilant"
 stackable = true
+tooltip_data = Array[ExtResource("3_r6dus")]([ExtResource("3_yu7aa")])

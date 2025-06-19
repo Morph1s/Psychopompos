@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1jmn6iw7gt63"]
+[gd_scene load_steps=7 format=3 uid="uid://b1jmn6iw7gt63"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_e8cwk"]
 [ext_resource type="Script" uid="uid://cd1is11rp2xch" path="res://scripts/effects/effect_instances/regeneration.gd" id="2_yho3i"]
+[ext_resource type="Resource" uid="uid://dlyl21r76fp54" path="res://resources/tooltips/regeneration_tooltip.tres" id="3_l74rh"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_ys3r8"]
 
 [sub_resource type="Gradient" id="Gradient_yho3i"]
 offsets = PackedFloat32Array(0.00649351, 1)
@@ -17,3 +19,4 @@ texture = SubResource("GradientTexture2D_l74rh")
 script = ExtResource("2_yho3i")
 effect_name = "Regeneration"
 stackable = true
+tooltip_data = Array[ExtResource("3_ys3r8")]([ExtResource("3_l74rh")])

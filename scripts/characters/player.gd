@@ -1,6 +1,8 @@
 class_name Character
 extends Node2D
 
+signal player_died
+
 @onready var stats: PlayerStats = preload("res://resources/characters/Warrior_Stats.tres")
 
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
@@ -8,7 +10,7 @@ extends Node2D
 @onready var character_image = $CharacterImage
 @onready var player_hud: PlayerHud = $PlayerHud
 
-signal player_died
+var size: Vector2
 
 func take_damage(damage_amount: int) -> void:
 	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
@@ -35,9 +37,8 @@ func initialize() -> void:
 	stats.hitpoints_changed.connect(_on_hitpoints_changed)
 	stats.block_changed.connect(_on_block_changed)
 	
-	var size = character_image.texture.get_size()
+	size = character_image.texture.get_size()
 	player_hud.set_entity_size(size)
-	effect_handler.position.x = size.x
 	
 	effect_handler.initialize(self)
 	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)

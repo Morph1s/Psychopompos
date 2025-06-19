@@ -18,13 +18,14 @@ var id: int = 0
 var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var y_position: int = 55
+var size: Vector2
 
 func initialize() -> void:
 	
 	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
 	
-	var size: Vector2 = image.texture.get_size()
+	size = image.texture.get_size()
 	shape.shape.size = size
 	shape.position = size / 2
 	enemy_hud.set_entity_size(size)

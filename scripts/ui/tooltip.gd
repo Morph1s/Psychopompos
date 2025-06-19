@@ -6,6 +6,9 @@ extends Control
 const MAX_LABEL_WIDTH: int = 100
 
 func load_tooltips(data: Array[TooltipData]) -> void:
+	if not is_node_ready():
+		await ready
+	
 	for child in descriptions_container.get_children():
 		child.queue_free()
 	
