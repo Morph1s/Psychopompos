@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhw23eruot8"
-path="res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"
+uid="uid://cnpy3ky8voatb"
+path="res://.godot/imported/icon_medusa_boss.png-ea286773d7f221b249672c3bcb937b66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/map/icon_random.png"
-dest_files=["res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"]
+source_file="res://assets/graphics/map/icon_medusa_boss.png"
+dest_files=["res://.godot/imported/icon_medusa_boss.png-ea286773d7f221b249672c3bcb937b66.ctex"]
 
 [params]
 

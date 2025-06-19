@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhw23eruot8"
-path="res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"
+uid="uid://b1o1lrwo8xedf"
+path="res://.godot/imported/energyOrb.png-a993aa83306e71117a3ea1b154bd138b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/map/icon_random.png"
-dest_files=["res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"]
+source_file="res://assets/graphics/ui/hp_energy_icons/energyOrb.png"
+dest_files=["res://.godot/imported/energyOrb.png-a993aa83306e71117a3ea1b154bd138b.ctex"]
 
 [params]
 

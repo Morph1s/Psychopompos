@@ -3,7 +3,8 @@
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_tilqd"]
 [ext_resource type="Script" uid="uid://mp5frlmm2bys" path="res://scripts/card/card_visualization.gd" id="1_wl1ke"]
 [ext_resource type="Texture2D" uid="uid://di0c33j0860id" path="res://assets/graphics/cards/card_highlight.png" id="2_tlsm8"]
-[ext_resource type="Texture2D" uid="uid://c501osipmjuk1" path="res://assets/graphics/cards/common/card_background_v1.png" id="4_8rjyk"]
+[ext_resource type="Texture2D" uid="uid://c501osipmjuk1" path="res://assets/graphics/cards/common/old_card_background_v1.png" id="4_8rjyk"]
+
 
 [node name="CardVisualization" type="Control"]
 custom_minimum_size = Vector2(44, 64)

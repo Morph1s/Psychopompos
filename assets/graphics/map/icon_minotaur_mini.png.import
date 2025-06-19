@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1nj2xauxelhx"
-path="res://.godot/imported/coin_icon.png-238342c19d21b3258653e8a544b7b3a4.ctex"
+uid="uid://cg4mvm834nvhe"
+path="res://.godot/imported/icon_minotaur_mini.png-10fa35fe5ebaa6a4bb05b53a15df6dee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/hud_pictograms/coin_icon.png"
-dest_files=["res://.godot/imported/coin_icon.png-238342c19d21b3258653e8a544b7b3a4.ctex"]
+source_file="res://assets/graphics/map/icon_minotaur_mini.png"
+dest_files=["res://.godot/imported/icon_minotaur_mini.png-10fa35fe5ebaa6a4bb05b53a15df6dee.ctex"]
 
 [params]
 

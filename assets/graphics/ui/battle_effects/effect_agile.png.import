@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhw23eruot8"
-path="res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"
+uid="uid://cvjgiuxj1tu2m"
+path="res://.godot/imported/effect_agile.png-c179653b22ce63067645e9cab4b00f28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/map/icon_random.png"
-dest_files=["res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_agile.png"
+dest_files=["res://.godot/imported/effect_agile.png-c179653b22ce63067645e9cab4b00f28.ctex"]
 
 [params]
 
