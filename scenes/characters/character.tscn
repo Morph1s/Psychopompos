@@ -16,5 +16,6 @@ centered = false
 [node name="PlayerHud" parent="." instance=ExtResource("2_1bdar")]
 
 [node name="EffectHandler" parent="." instance=ExtResource("3_2qjml")]
+position = Vector2(-8, 0)
 
 [node name="ModifierHandler" parent="." instance=ExtResource("3_e22cc")]

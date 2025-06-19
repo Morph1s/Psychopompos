@@ -6,6 +6,9 @@ extends Effect
 
 # implement all functions relevant for your effect
 
+func _ready() -> void:
+	EventBusHandler.cards_drawn.connect(_on_eventhandler_cards_drawn)
+
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
 	pass
@@ -16,9 +19,10 @@ func played_attack() -> void:
 
 ## this function is called when the amount of stacks changes 
 func changed_stacks(_previous, _current):
-	pass
-	print("effect agile not implemented")
-	# change the amount of cards drawn at start of turn
+	if _current == 0 and _previous != 0:
+		RunData.player_stats.card_draw_amount -= 1
+	elif _previous == 0 and _current != 0:
+		RunData.player_stats.card_draw_amount += 1
 
 ## this function is called at the start of the entities turn 
 func start_of_turn():
@@ -26,4 +30,7 @@ func start_of_turn():
 
 ## this function is called ath the end of the entities turn s
 func end_of_turn():
+	pass
+
+func _on_eventhandler_cards_drawn() -> void:
 	remove_stacks(1)

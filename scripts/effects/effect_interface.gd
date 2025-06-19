@@ -4,6 +4,7 @@ extends Sprite2D
 signal remove_effect(effect: Effect)
 
 @onready var counter = $Counter
+@onready var tooltip = $Tooltip
 
 ## unique idenifier for the effect
 @export var effect_name: String
@@ -11,8 +12,10 @@ signal remove_effect(effect: Effect)
 @export var stackable: bool
 ## set true if the effect can't be added to enemies
 @export var player_only: bool = false
+@export var tooltip_data: Array[TooltipData]
 
 var effect_owner: Node2D
+@export var index: int
 var stacks: int = 0:
 	set(value):
 		# call the logic on changing stats
@@ -29,8 +32,12 @@ var stacks: int = 0:
 
 ## called to setup the effects functionality
 func initialize(entity: Node2D, amount: int) -> void:
+	if not is_node_ready():
+		await ready
+	
 	effect_owner = entity
 	add_stacks(amount)
+	tooltip.load_tooltips(tooltip_data)
 
 ## removes the effect completely
 func remove() -> void:
@@ -71,3 +78,10 @@ func start_of_turn() -> void:
 ## this function is called ath the end of the entities turn s
 func end_of_turn() -> void:
 	pass
+
+
+func _on_area_2d_mouse_entered():
+	tooltip.show()
+
+func _on_area_2d_mouse_exited():
+	tooltip.hide()

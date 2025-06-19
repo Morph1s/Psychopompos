@@ -14,6 +14,7 @@ signal hide_tooltips
 signal show_deck_view(deck: Array[CardType])
 signal show_map
 signal back_to_battle
+signal cards_drawn
 
 
 ## disposes all connections of all events
