@@ -60,7 +60,7 @@ func generate_map() -> Array[MapLayer]:
 func _initial_fill_layer(layer: MapLayer):
 	for i in MAX_NUM_ENCOUNTERS_PER_LAYER:
 		# TODO: for now all the encounters are battles, change that when we implement more encounters
-		var encounter: Encounter = CampfireEncounter.new()
+		var encounter: Encounter = load("res://resources/encounters/test_battle_1.tres").duplicate()
 		layer.encounters.append(encounter)
 
 func _set_initial_connections(map_layers: Array[MapLayer]):

@@ -12,7 +12,8 @@ signal set_player_control(value: bool)
 signal open_settings
 signal show_tooltips(data: Array[TooltipData])
 signal hide_tooltips
-signal show_deck_view(deck: Array[CardType], on_card_selected_action: Callable)
+signal show_deck_view(deck: Array[CardType])
+signal show_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable)
 signal show_map
 signal back_to_battle
 

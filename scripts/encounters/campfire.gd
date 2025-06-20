@@ -15,7 +15,7 @@ func _on_remove_card_button_pressed() -> void:
 	open_remove_card_view()
 
 func open_remove_card_view():
-	EventBusHandler.show_deck_view.emit(DeckHandler.current_deck, Callable(self, "remove_card_from_deck"))
+	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "remove_card_from_deck"))
 
 func remove_card_from_deck(card: CardType):
 	DeckHandler.remove_card_from_deck(card)
