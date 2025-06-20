@@ -1,21 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4e78agpxhvh3"]
+[gd_scene load_steps=8 format=3 uid="uid://c4e78agpxhvh3"]
 
 [ext_resource type="Script" uid="uid://do01jrwml771o" path="res://scripts/battle/battle_ui.gd" id="1_2hywk"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_uu5og"]
+[ext_resource type="Texture2D" uid="uid://cvcjdtjyphia7" path="res://assets/graphics/ui/hud_heart.png" id="3_ebl3e"]
 
 [sub_resource type="Gradient" id="Gradient_cymlh"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8apll"]
 gradient = SubResource("Gradient_cymlh")
-width = 32
-height = 48
+width = 24
+height = 24
 
 [sub_resource type="Gradient" id="Gradient_5ildr"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1mqim"]
 gradient = SubResource("Gradient_5ildr")
-width = 32
-height = 48
+width = 24
+height = 24
 
 [node name="BattleUI" type="Control"]
 z_index = 1
@@ -54,6 +55,7 @@ offset_left = 4.0
 offset_bottom = -4.0
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_8apll")
+stretch_mode = 2
 
 [node name="DiscardPile" type="TextureRect" parent="."]
 layout_mode = 1
@@ -67,6 +69,57 @@ offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_1mqim")
+stretch_mode = 2
+
+[node name="Energy" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 131.0
+offset_right = 10.0
+offset_bottom = 131.0
+
+[node name="EnergyText" type="Label" parent="Energy"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 5.0
+theme_override_font_sizes/font_size = 12
+text = "1/3"
+
+[node name="ConsequenceContainer" type="VBoxContainer" parent="Energy"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 2.0
+offset_right = 41.0
+offset_bottom = 18.0
+theme_override_constants/separation = 1
+
+[node name="EnergyCostContainer" type="HBoxContainer" parent="Energy/ConsequenceContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="EnergyCostText" type="Label" parent="Energy/ConsequenceContainer/EnergyCostContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.141176, 0.592157, 1, 1)
+text = "-1"
+
+[node name="EnergyIcon" type="TextureRect" parent="Energy/ConsequenceContainer/EnergyCostContainer"]
+layout_mode = 2
+
+[node name="HitpointCostContainer" type="HBoxContainer" parent="Energy/ConsequenceContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HitpointCostText" type="Label" parent="Energy/ConsequenceContainer/HitpointCostContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "-5"
+
+[node name="HitpointsIcon" type="TextureRect" parent="Energy/ConsequenceContainer/HitpointCostContainer"]
+layout_mode = 2
+texture = ExtResource("3_ebl3e")
+stretch_mode = 2
 
 [connection signal="button_up" from="EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="gui_input" from="DrawPile" to="." method="_on_draw_pile_gui_input"]

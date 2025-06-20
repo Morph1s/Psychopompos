@@ -107,8 +107,7 @@ func highlight(mode: HighlightMode):
 func play(target_id: int = -1) -> void:
 	
 	# pay energy cost
-	for energy in card_type.energy_cost:
-		RunData.player_stats.lose_one_energy()
+	RunData.player_stats.pay_energy(card_type.energy_cost)
 	
 	# return if the card cost killed the player
 	if RunData.player_stats.current_hitpoints < 1:
