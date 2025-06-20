@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://cdma0wk0jbcac"]
 
-[ext_resource type="Script" uid="uid://bxxpdijpxt8sn" path="res://scripts/custom_resources/player_stats.gd" id="1_pdq4i"]
+[ext_resource type="Script" uid="uid://bxxpdijpxt8sn" path="res://scripts/custom_resources/player_stats.gd" id="1_kkhma"]
 
 [resource]
-script = ExtResource("1_pdq4i")
+script = ExtResource("1_kkhma")
 maximum_energy = 3
 current_energy = 0
 card_draw_amount = 5
