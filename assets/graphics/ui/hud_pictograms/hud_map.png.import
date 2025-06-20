@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhw23eruot8"
-path="res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"
+uid="uid://bkoyuawsdmycs"
+path="res://.godot/imported/hud_map.png-de6caf2851437809294ebdcb58b76474.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/map/icon_random.png"
-dest_files=["res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"]
+source_file="res://assets/graphics/ui/hud_pictograms/hud_map.png"
+dest_files=["res://.godot/imported/hud_map.png-de6caf2851437809294ebdcb58b76474.ctex"]
 
 [params]
 

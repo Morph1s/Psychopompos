@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhw23eruot8"
-path="res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"
+uid="uid://xq2aqwo8rqyx"
+path="res://.godot/imported/hud_deck.png-759962bc86e1075e8b8872b8a14cb2f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/map/icon_random.png"
-dest_files=["res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"]
+source_file="res://assets/graphics/ui/hud_pictograms/hud_deck.png"
+dest_files=["res://.godot/imported/hud_deck.png-759962bc86e1075e8b8872b8a14cb2f8.ctex"]
 
 [params]
 

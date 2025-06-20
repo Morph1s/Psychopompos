@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hdtisheh0rw5"
-path="res://.godot/imported/map_sheet.png-3a856f236c20740adaa0c11265000e82.ctex"
+uid="uid://bf5qrfngl7p2f"
+path="res://.godot/imported/effect_incapacitated.png-93ec3e2a2c8ecc363101604d4bcd3e05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/map_sheet.png"
-dest_files=["res://.godot/imported/map_sheet.png-3a856f236c20740adaa0c11265000e82.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_incapacitated.png"
+dest_files=["res://.godot/imported/effect_incapacitated.png-93ec3e2a2c8ecc363101604d4bcd3e05.ctex"]
 
 [params]
 

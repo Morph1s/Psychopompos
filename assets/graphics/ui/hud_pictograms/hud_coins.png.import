@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhw23eruot8"
-path="res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"
+uid="uid://bq8sbptssf3q1"
+path="res://.godot/imported/hud_coins.png-4262a505c9b2c031230422cb9ed3c29a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/map/icon_random.png"
-dest_files=["res://.godot/imported/icon_random.png-38c164439d5a25595ef96cac394aae2f.ctex"]
+source_file="res://assets/graphics/ui/hud_pictograms/hud_coins.png"
+dest_files=["res://.godot/imported/hud_coins.png-4262a505c9b2c031230422cb9ed3c29a.ctex"]
 
 [params]
 

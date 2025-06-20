@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd5xdcrvbangu"
-path="res://.godot/imported/map_icon.png-725dd9690dc81b949db2ec40f673bdd3.ctex"
+uid="uid://dvh0agl3vn07y"
+path="res://.godot/imported/old_deck_icon.png-a9afbbe4ec81eec660dde458848bdfcd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/hud_pictograms/map_icon.png"
-dest_files=["res://.godot/imported/map_icon.png-725dd9690dc81b949db2ec40f673bdd3.ctex"]
+source_file="res://assets/graphics/ui/hud_pictograms/old_deck_icon.png"
+dest_files=["res://.godot/imported/old_deck_icon.png-a9afbbe4ec81eec660dde458848bdfcd.ctex"]
 
 [params]
 
