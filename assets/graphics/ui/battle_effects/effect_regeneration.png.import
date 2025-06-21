@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfhg72srr6nwb"
-path="res://.godot/imported/effect_fury.png-f164e843c974097d5b79f00204497b72.ctex"
+uid="uid://b2m7wdo2kk5ib"
+path="res://.godot/imported/effect_regeneration.png-e4ab3291ca68b44cdb2eda60844b3316.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_fury.png"
-dest_files=["res://.godot/imported/effect_fury.png-f164e843c974097d5b79f00204497b72.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_regeneration.png"
+dest_files=["res://.godot/imported/effect_regeneration.png-e4ab3291ca68b44cdb2eda60844b3316.ctex"]
 
 [params]
 

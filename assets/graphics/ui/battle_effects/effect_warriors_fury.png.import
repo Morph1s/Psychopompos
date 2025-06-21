@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2m7wdo2kk5ib"
-path="res://.godot/imported/effect_regen.png-17f5b6c040ea166ab6c0e960f13509db.ctex"
+uid="uid://cfhg72srr6nwb"
+path="res://.godot/imported/effect_warriors_fury.png-d8ac4d8f24c90fbe361bcdf5e14ec3e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_regen.png"
-dest_files=["res://.godot/imported/effect_regen.png-17f5b6c040ea166ab6c0e960f13509db.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_warriors_fury.png"
+dest_files=["res://.godot/imported/effect_warriors_fury.png-d8ac4d8f24c90fbe361bcdf5e14ec3e2.ctex"]
 
 [params]
 
