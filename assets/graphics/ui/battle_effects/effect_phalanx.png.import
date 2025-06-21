@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cujevvo6fssso"
-path="res://.godot/imported/effect_vigilant.png-fc4f71331fd6457796ed831febd5d24d.ctex"
+uid="uid://bk5bs7nbuabtp"
+path="res://.godot/imported/effect_phalanx.png-0c20c55264380bf828e695b6fa5a36a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_vigilant.png"
-dest_files=["res://.godot/imported/effect_vigilant.png-fc4f71331fd6457796ed831febd5d24d.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_phalanx.png"
+dest_files=["res://.godot/imported/effect_phalanx.png-0c20c55264380bf828e695b6fa5a36a6.ctex"]
 
 [params]
 

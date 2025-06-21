@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cujevvo6fssso"
-path="res://.godot/imported/effect_vigilant.png-fc4f71331fd6457796ed831febd5d24d.ctex"
+uid="uid://cfhg72srr6nwb"
+path="res://.godot/imported/effect_fury.png-f164e843c974097d5b79f00204497b72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_vigilant.png"
-dest_files=["res://.godot/imported/effect_vigilant.png-fc4f71331fd6457796ed831febd5d24d.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_fury.png"
+dest_files=["res://.godot/imported/effect_fury.png-f164e843c974097d5b79f00204497b72.ctex"]
 
 [params]
 

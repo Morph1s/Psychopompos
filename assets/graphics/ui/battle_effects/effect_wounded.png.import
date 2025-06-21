@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cujevvo6fssso"
-path="res://.godot/imported/effect_vigilant.png-fc4f71331fd6457796ed831febd5d24d.ctex"
+uid="uid://cxlugukpoxy1r"
+path="res://.godot/imported/effect_wounded.png-c7af5ec84ca55fd08b2e346e206d81a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_vigilant.png"
-dest_files=["res://.godot/imported/effect_vigilant.png-fc4f71331fd6457796ed831febd5d24d.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_wounded.png"
+dest_files=["res://.godot/imported/effect_wounded.png-c7af5ec84ca55fd08b2e346e206d81a2.ctex"]
 
 [params]
 
