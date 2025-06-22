@@ -35,6 +35,6 @@ func _resolve_eris(card_handler: CardHandler) -> void:
 
 ## double gather
 func _resolve_thanatos(player_effect_handler: EffectHandler) -> void:
-	for effect: Effect in player_effect_handler.get_child(0).get_children():
+	for effect: Effect in player_effect_handler.effect_collection.get_children():
 		if effect.effect_name == "Gather":
 			player_effect_handler.apply_effect("Gather", effect.stacks)
