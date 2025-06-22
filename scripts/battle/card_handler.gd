@@ -1,6 +1,9 @@
 class_name CardHandler
 extends Node2D
 
+signal display_play_area_highlights(visible: bool)
+signal display_enemy_highlights(visible: bool)
+
 ## card scene
 const CARD = preload("res://scenes/card/card.tscn")
 
@@ -135,6 +138,9 @@ func _play_card(card: Card) -> void:
 	playing_card = true
 	_set_player_control(false)
 	
+	display_enemy_highlights.emit(false)
+	display_play_area_highlights.emit(false)
+	
 	card.highlight(Card.HighlightMode.PLAYED)
 	selected_card = null
 	hand.erase(card)
@@ -171,7 +177,7 @@ func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 ## handels state after mouseinput
 func _input(event: InputEvent) -> void:
 	# set card as an selected card
-	if  event.is_action_released("left_click") && highlighted_card: 
+	if  event.is_action_pressed("left_click") && highlighted_card: 
 		_select_card()
 	
 	# realeses selected card
@@ -240,7 +246,10 @@ func _select_card() -> void:
 		selected_card.highlight(Card.HighlightMode.NONE)
 	highlighted_card.highlight(Card.HighlightMode.SELECTED)
 	selected_card = highlighted_card
-	# maybe add feedback whether the card is targeted or untargeted
+	if selected_card.card_type.targeted:
+		display_enemy_highlights.emit(true)
+	else:
+		display_play_area_highlights.emit(true)
 
 func _deselect_selected_card() -> void:
 	if selected_card == highlighted_card:
@@ -250,6 +259,8 @@ func _deselect_selected_card() -> void:
 		selected_card.highlight(Card.HighlightMode.NONE)
 		selected_card = null
 	
+	display_enemy_highlights.emit(false)
+	display_play_area_highlights.emit(false)
 	_set_mouse_cursor()
 
 func _set_tooltips() -> void:

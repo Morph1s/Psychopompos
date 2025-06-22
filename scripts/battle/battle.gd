@@ -8,6 +8,7 @@ signal  load_battle_rewards
 @onready var enemy_handler: EnemyHandler = $EnemyHandler
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_character: Character = $PlayerCharacter
+@onready var play_area_highlights = $PlayArea/Highlights
 
 func initialize(data: BattleEncounter) -> void:
 	player_character.initialize()
@@ -58,5 +59,14 @@ func _on_player_character_player_died() -> void:
 
 func _on_enemy_handler_all_enemies_died() -> void:
 	load_battle_rewards.emit()
+
+func _on_card_handler_display_play_area_highlights(visible: bool) -> void:
+	if visible:
+		play_area_highlights.show()
+	else:
+		play_area_highlights.hide()
+
+func _on_card_handler_display_enemy_highlights(visible: bool) -> void:
+	enemy_handler.display_enemy_highlights(visible)
 
 #endregion

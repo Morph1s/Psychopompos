@@ -58,6 +58,14 @@ func choose_intent():
 	for enemy in enemies:
 		enemy.choose_intent()
 
+func display_enemy_highlights(visible: bool) -> void:
+	if visible:
+		for enemy: Enemy in get_children():
+			enemy.show_highlights()
+	else:
+		for enemy: Enemy in get_children():
+			enemy.hide_highlights()
+
 # removes enemy and checks for win
 func _an_enemy_died(dead_enemy: Enemy):
 	enemies.erase(dead_enemy)

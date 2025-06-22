@@ -10,6 +10,7 @@ signal enemy_died(Node)
 @onready var shape: CollisionShape2D = $EnemyShape
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
+@onready var highlights = $Highlights
 
 @export var stats: EnemyStats
 @export var enemy_hud: EnemyHud
@@ -30,6 +31,7 @@ func initialize() -> void:
 	shape.position = size / 2
 	enemy_hud.set_entity_size(size)
 	effect_handler.position.x = size.x
+	_position_highlights(size)
 	
 	# update position for larger enemies
 	y_position -= size.y - 48
@@ -91,6 +93,12 @@ func choose_intent() -> void:
 	
 	enemy_hud.set_intent(stats.actions[intent].intent_sprite, stats.actions[intent].value, stats.actions[intent].count)
 
+func show_highlights() -> void:
+	highlights.show()
+
+func hide_highlights() -> void:
+	highlights.hide()
+
 #region local functions
 
 func _get_targets(targeting_mode: TargetedAction.TargetType) -> Array[Node2D]:
@@ -115,6 +123,11 @@ func _get_targets(targeting_mode: TargetedAction.TargetType) -> Array[Node2D]:
 		to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 	
 	return to_return
+
+func _position_highlights(size: Vector2) -> void:
+	$Highlights/HighlightTopRight.position.x = size.x
+	$Highlights/HighlightBottomLeft.position.y = size.y
+	$Highlights/HighlightBottomRight.position = size
 
 #endregion
 

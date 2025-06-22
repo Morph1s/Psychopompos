@@ -1,16 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm2tq7prc7mvg"]
+[gd_scene load_steps=11 format=3 uid="uid://bm2tq7prc7mvg"]
 
 [ext_resource type="Script" uid="uid://07iupn545nui" path="res://scripts/enemy/enemy.gd" id="1_4a83h"]
+[ext_resource type="Texture2D" uid="uid://dbch1ucf4lgk3" path="res://assets/graphics/enemies/highlight/highlight_top_left.png" id="2_4efjx"]
 [ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="2_a3pup"]
 [ext_resource type="PackedScene" uid="uid://djragsajdg5xq" path="res://scenes/ui/enemy_hud.tscn" id="3_40wdo"]
+[ext_resource type="Texture2D" uid="uid://bu353ldu5r47y" path="res://assets/graphics/enemies/highlight/highlight_top_right.png" id="3_hvxgb"]
 [ext_resource type="PackedScene" uid="uid://bnyj4jetklh6b" path="res://scenes/effects/effect_handler.tscn" id="4_gl05p"]
+[ext_resource type="Texture2D" uid="uid://vph2g6xhw38b" path="res://assets/graphics/enemies/highlight/highlight_bottom_left.png" id="4_peoo5"]
 [ext_resource type="PackedScene" uid="uid://cc705r0vhke8v" path="res://scenes/modifiers/modifier_handler.tscn" id="4_tjssy"]
+[ext_resource type="Texture2D" uid="uid://70btvntr2dq5" path="res://assets/graphics/enemies/highlight/highlight_bottom_right.png" id="5_2f3il"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gl05p"]
 
 [node name="Enemy" type="Area2D" node_paths=PackedStringArray("enemy_hud") groups=["enemy"]]
 script = ExtResource("1_4a83h")
 enemy_hud = NodePath("EnemyHud")
+
+[node name="Highlights" type="Node2D" parent="."]
+visible = false
+
+[node name="HighlightTopLeft" type="Sprite2D" parent="Highlights"]
+texture = ExtResource("2_4efjx")
+
+[node name="HighlightTopRight" type="Sprite2D" parent="Highlights"]
+texture = ExtResource("3_hvxgb")
+
+[node name="HighlightBottomLeft" type="Sprite2D" parent="Highlights"]
+texture = ExtResource("4_peoo5")
+
+[node name="HighlightBottomRight" type="Sprite2D" parent="Highlights"]
+texture = ExtResource("5_2f3il")
 
 [node name="EnemyImage" type="Sprite2D" parent="."]
 texture = ExtResource("2_a3pup")
