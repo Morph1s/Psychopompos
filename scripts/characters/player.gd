@@ -8,7 +8,7 @@ signal player_died
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
 @onready var character_image = $CharacterImage
-@onready var player_hud: PlayerHud = $PlayerHud
+@onready var player_hud = $PlayerHud
 
 var size: Vector2
 
@@ -33,7 +33,6 @@ func end_of_turn() -> void:
 func initialize() -> void:
 	# Connecting Signals
 	stats.died.connect(_on_died)
-	stats.energy_changed.connect(_on_energy_changed)
 	stats.hitpoints_changed.connect(_on_hitpoints_changed)
 	stats.block_changed.connect(_on_block_changed)
 	
@@ -53,12 +52,6 @@ func get_attacked(damage_amount: int) -> void:
 #region Signal methods
 func _on_died() -> void:
 	player_died.emit()
-	
-
-func _on_energy_changed(new_energy: int, maximum_energy: int) -> void:
-	player_hud.set_current_energy(new_energy)
-	player_hud.set_max_energy(maximum_energy)
-	print("Player Energy changed")
 
 func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:
 	player_hud.set_current_hp(new_hp)

@@ -78,45 +78,30 @@ offset_top = 131.0
 offset_right = 10.0
 offset_bottom = 131.0
 
-[node name="EnergyText" type="Label" parent="Energy"]
+[node name="EnergyBallContainer" type="HBoxContainer" parent="Energy"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 5.0
-theme_override_font_sizes/font_size = 12
-text = "1/3"
+theme_override_constants/separation = 3
 
-[node name="ConsequenceContainer" type="VBoxContainer" parent="Energy"]
+[node name="NegativeEnergyBallContainer" type="VBoxContainer" parent="Energy"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 2.0
-offset_right = 41.0
-offset_bottom = 18.0
+offset_left = -7.0
+offset_right = -1.0
 theme_override_constants/separation = 1
 
-[node name="EnergyCostContainer" type="HBoxContainer" parent="Energy/ConsequenceContainer"]
+[node name="HitpointCostLabelContainer" type="HBoxContainer" parent="Energy"]
 visible = false
 layout_mode = 2
+offset_top = 14.0
+offset_right = 13.0
+offset_bottom = 20.0
 theme_override_constants/separation = 0
 
-[node name="EnergyCostText" type="Label" parent="Energy/ConsequenceContainer/EnergyCostContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.141176, 0.592157, 1, 1)
-text = "-1"
-
-[node name="EnergyIcon" type="TextureRect" parent="Energy/ConsequenceContainer/EnergyCostContainer"]
-layout_mode = 2
-
-[node name="HitpointCostContainer" type="HBoxContainer" parent="Energy/ConsequenceContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="HitpointCostText" type="Label" parent="Energy/ConsequenceContainer/HitpointCostContainer"]
+[node name="HitpointCostText" type="Label" parent="Energy/HitpointCostLabelContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "-5"
 
-[node name="HitpointsIcon" type="TextureRect" parent="Energy/ConsequenceContainer/HitpointCostContainer"]
+[node name="HitpointsIcon" type="TextureRect" parent="Energy/HitpointCostLabelContainer"]
 layout_mode = 2
 texture = ExtResource("3_ebl3e")
 stretch_mode = 2
