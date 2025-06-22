@@ -58,8 +58,8 @@ func choose_intent():
 	for enemy in enemies:
 		enemy.choose_intent()
 
-func display_enemy_highlights(visible: bool) -> void:
-	if visible:
+func display_enemy_highlights(visibility: bool) -> void:
+	if visibility:
 		for enemy: Enemy in get_children():
 			enemy.show_highlights()
 	else:

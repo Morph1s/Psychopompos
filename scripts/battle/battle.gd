@@ -60,13 +60,13 @@ func _on_player_character_player_died() -> void:
 func _on_enemy_handler_all_enemies_died() -> void:
 	load_battle_rewards.emit()
 
-func _on_card_handler_display_play_area_highlights(visible: bool) -> void:
-	if visible:
+func _on_card_handler_display_play_area_highlights(visibility: bool) -> void:
+	if visibility:
 		play_area_highlights.show()
 	else:
 		play_area_highlights.hide()
 
-func _on_card_handler_display_enemy_highlights(visible: bool) -> void:
-	enemy_handler.display_enemy_highlights(visible)
+func _on_card_handler_display_enemy_highlights(visibility: bool) -> void:
+	enemy_handler.display_enemy_highlights(visibility)
 
 #endregion

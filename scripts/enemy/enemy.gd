@@ -31,7 +31,7 @@ func initialize() -> void:
 	shape.position = size / 2
 	enemy_hud.set_entity_size(size)
 	effect_handler.position.x = size.x
-	_position_highlights(size)
+	_position_highlights()
 	
 	# update position for larger enemies
 	y_position -= size.y - 48
@@ -124,7 +124,7 @@ func _get_targets(targeting_mode: TargetedAction.TargetType) -> Array[Node2D]:
 	
 	return to_return
 
-func _position_highlights(size: Vector2) -> void:
+func _position_highlights() -> void:
 	$Highlights/HighlightTopRight.position.x = size.x
 	$Highlights/HighlightBottomLeft.position.y = size.y
 	$Highlights/HighlightBottomRight.position = size

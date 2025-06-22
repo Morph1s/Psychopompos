@@ -1,8 +1,8 @@
 class_name CardHandler
 extends Node2D
 
-signal display_play_area_highlights(visible: bool)
-signal display_enemy_highlights(visible: bool)
+signal display_play_area_highlights(visibility: bool)
+signal display_enemy_highlights(visibility: bool)
 
 ## card scene
 const CARD = preload("res://scenes/card/card.tscn")
@@ -244,6 +244,12 @@ func _hover_card(card: Card) -> void:
 func _select_card() -> void:
 	if selected_card:  
 		selected_card.highlight(Card.HighlightMode.NONE)
+		
+		if selected_card.card_type.targeted:
+			display_enemy_highlights.emit(false)
+		else:
+			display_play_area_highlights.emit(false)
+	
 	highlighted_card.highlight(Card.HighlightMode.SELECTED)
 	selected_card = highlighted_card
 	if selected_card.card_type.targeted:
