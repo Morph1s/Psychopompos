@@ -56,6 +56,7 @@ func draw_cards(amount: int) -> void:
 		# if the drawpile is empty, shuffle discard pile
 		if draw_pile.size() == 0:
 			if discard_pile.size() == 0:
+				_set_player_control(true)
 				return
 			else:
 				shuffle_discard_pile_into_draw_pile()
