@@ -39,7 +39,7 @@ func _spawn_energy_balls(amount: int) -> void:
 		var ball = HUD_ENERGY_BALL.instantiate()
 		energy_ball_container.add_child(ball)
 		
-		if not ball.is_node_ready():
+		if not ball.is_inside_tree():
 			await ball.ready
 
 func _on_run_data_player_stats_energy_changed(energy_value: int, maximum_energy: int) -> void:
