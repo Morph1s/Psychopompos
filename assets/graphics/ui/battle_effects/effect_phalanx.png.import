@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://calpxe55h0v7d"
-path="res://.godot/imported/effect_regen.png-17f5b6c040ea166ab6c0e960f13509db.ctex"
+uid="uid://bk5bs7nbuabtp"
+path="res://.godot/imported/effect_phalanx.png-0c20c55264380bf828e695b6fa5a36a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_regen.png"
-dest_files=["res://.godot/imported/effect_regen.png-17f5b6c040ea166ab6c0e960f13509db.ctex"]
+source_file="res://assets/graphics/ui/battle_effects/effect_phalanx.png"
+dest_files=["res://.godot/imported/effect_phalanx.png-0c20c55264380bf828e695b6fa5a36a6.ctex"]
 
 [params]
 
