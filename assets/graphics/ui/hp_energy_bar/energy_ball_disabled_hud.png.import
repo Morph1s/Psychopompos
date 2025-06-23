@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://x6m6t5563rlj"
-path="res://.godot/imported/energy_ball_disabled_hud_test.png-2881ec89fb9735ee8d286bdf097ea9e0.ctex"
+path="res://.godot/imported/energy_ball_disabled_hud.png-5dd45afcb06e0075ad2e8b1121114024.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/hp_energy_bar/energy_ball_disabled_hud_test.png"
-dest_files=["res://.godot/imported/energy_ball_disabled_hud_test.png-2881ec89fb9735ee8d286bdf097ea9e0.ctex"]
+source_file="res://assets/graphics/ui/hp_energy_bar/energy_ball_disabled_hud.png"
+dest_files=["res://.godot/imported/energy_ball_disabled_hud.png-5dd45afcb06e0075ad2e8b1121114024.ctex"]
 
 [params]
 

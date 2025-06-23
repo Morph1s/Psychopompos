@@ -8,7 +8,7 @@ signal player_died
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
 @onready var character_image = $CharacterImage
-@onready var player_hud = $PlayerHud
+@onready var player_hud: EntityHud = $PlayerHud
 
 var size: Vector2
 
