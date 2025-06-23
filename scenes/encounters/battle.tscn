@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bxigu8nv1jbme" path="res://scripts/battle/state_machine/enemy_turn.gd" id="7_7id2p"]
 [ext_resource type="Script" uid="uid://c758m1ohji7ep" path="res://scripts/battle/state_machine/enemy_end_turn.gd" id="8_tt5ef"]
 [ext_resource type="Script" uid="uid://d4l21cq278qpt" path="res://scripts/battle/state_machine/exit.gd" id="9_mqlpk"]
-[ext_resource type="Texture2D" uid="uid://bv4srl865j4k1" path="res://assets/graphics/background/wallpaper_battlescene.png" id="10_luffw"]
+[ext_resource type="Texture2D" uid="uid://bv4srl865j4k1" path="res://assets/graphics/background/wallpaper_battle_scene.png" id="10_luffw"]
 [ext_resource type="PackedScene" uid="uid://b086lic3ys2g6" path="res://scenes/characters/character.tscn" id="14_fiugh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3s1b"]
