@@ -1,0 +1,51 @@
+extends Node
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+var available_artifacts: Array[Artifact] = [
+	null
+]
+var selected_artifacts: Array[Artifact] = []
+var encounter_changes: Dictionary = {
+	"CampfireHeal": 0
+}
+
+var effect_names: Dictionary = {
+	EffectAction.EffectType.AGILE: "Agile",
+	EffectAction.EffectType.DAMOKLES_SWORD: "DamoklesSword",
+	EffectAction.EffectType.GATHER: "Gather",
+	EffectAction.EffectType.INCAPACITATED: "Incapacitated",
+	EffectAction.EffectType.PHALANX: "Phalanx",
+	EffectAction.EffectType.REGENERATION: "Regeneration",
+	EffectAction.EffectType.VIGILANT: "Vigilant",
+	EffectAction.EffectType.WARRIORS_FURRY: "WarriorsFury",
+	EffectAction.EffectType.WOUNDED: "Wounded",
+}
+
+
+func start_of_run_setup() -> void:
+	available_artifacts.append_array(selected_artifacts)
+	selected_artifacts = []
+
+func get_random_artifact() -> Artifact:
+	return available_artifacts[rng.randi_range(0, available_artifacts.size() - 1)]
+
+func select_artifact(artifakt: Artifact) -> void:
+	selected_artifacts.append(artifakt)
+	available_artifacts.erase(artifakt)
+	
+	if artifakt.pickup_active:
+		artifakt.pickup()
+	
+	if artifakt.changes_active:
+		match artifakt.changed_value:
+			0: # none
+				pass
+			1: # campfire heal
+				encounter_changes["CampfireHeal"] = artifakt.amount
+
+func apply_start_of_combat_effects() -> void:
+	var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler
+	for artifact in selected_artifacts:
+		if artifact.effects_active:
+			player_effect_handler.apply_effect(effect_names[artifact.effect], artifact.amount)
