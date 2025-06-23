@@ -22,14 +22,14 @@ const DECREMENT_SPRITE_HIGHLIGHTED = preload("res://assets/graphics/ui/hud_picto
 func set_bottom_button_position(effects_bottom_boundary: int) -> void:
 	increment_area.position = Vector2(4, effects_bottom_boundary + 3)
 
-func set_increment_button_visibility(visible: bool) -> void:
-	if visible:
+func set_increment_button_visibility(visibility: bool) -> void:
+	if visibility:
 		increment_area.show()
 	else:
 		increment_area.hide()
 
-func set_decrement_button_visibility(visible: bool) -> void:
-	if visible:
+func set_decrement_button_visibility(visibility: bool) -> void:
+	if visibility:
 		decrement_area.show()
 	else:
 		decrement_area.hide()

@@ -19,7 +19,7 @@ const SELECTED_HEIGHT: int = 146
 const PLAYED_HEIGHT: int = 142
 
 @onready var card_image: Sprite2D = $CardImage
-@onready var card_highlight: Sprite2D = $CardHighlight
+@onready var card_highlight: AnimatedSprite2D = $CardHighlight
 @onready var energy_ball_container = $EnergyBallContainer
 @onready var card_name: Label = $Name
 @onready var card_shape: CollisionShape2D = $CardShape
@@ -89,6 +89,7 @@ func highlight(mode: HighlightMode):
 			position.y = NORMAL_HEIGHT
 			
 			self.z_index = 10
+			card_highlight.play("hovered")
 			card_highlight.show()
 		
 		HighlightMode.SELECTED:
@@ -96,10 +97,14 @@ func highlight(mode: HighlightMode):
 			position.y = SELECTED_HEIGHT
 			
 			self.z_index = 11
+			card_highlight.play("selected")
 			card_highlight.show()
 		
 		HighlightMode.PLAYED:
 			position.y = PLAYED_HEIGHT
+			
+			card_highlight.play("played")
+			card_highlight.show()
 
 
 ## function to be called on playing the card
