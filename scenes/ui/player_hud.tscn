@@ -1,16 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://bye227bai3ofb"]
+[gd_scene load_steps=2 format=3 uid="uid://bye227bai3ofb"]
 
 [ext_resource type="PackedScene" uid="uid://qm4xvb6vqwt6" path="res://scenes/ui/entity_hud.tscn" id="1_e6e0b"]
-[ext_resource type="Script" uid="uid://75rbvg66ls2v" path="res://scripts/ui/player_hud.gd" id="2_31ty4"]
 
 [node name="PlayerHud" instance=ExtResource("1_e6e0b")]
-script = ExtResource("2_31ty4")
-
-[node name="EnergyLabel" type="Label" parent="." index="1"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = -7.0
-offset_right = 33.0
-offset_bottom = -1.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Energy:"

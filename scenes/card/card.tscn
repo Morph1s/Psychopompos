@@ -1,9 +1,50 @@
-[gd_scene load_steps=8 format=3 uid="uid://omtvob7lkl85"]
+[gd_scene load_steps=14 format=3 uid="uid://omtvob7lkl85"]
 
 [ext_resource type="Script" uid="uid://bpc17ymc5fvvv" path="res://scripts/card/card.gd" id="1_imta7"]
-[ext_resource type="Texture2D" uid="uid://di0c33j0860id" path="res://assets/graphics/cards/card_highlight.png" id="2_imta7"]
-[ext_resource type="Texture2D" uid="uid://c501osipmjuk1" path="res://assets/graphics/cards/common/old_card_background_v1.png" id="3_vtcvk"]
+[ext_resource type="Texture2D" uid="uid://7kvuwx2mgdce" path="res://assets/graphics/cards/card_highlight_hovered.png" id="2_kaf1t"]
+[ext_resource type="Texture2D" uid="uid://bej5ms0cs71ye" path="res://assets/graphics/cards/card_highlight_played.png" id="3_ri62e"]
+[ext_resource type="Texture2D" uid="uid://dk4hslwqddrac" path="res://assets/graphics/cards/card_highlight_selected.png" id="4_b2sko"]
+[ext_resource type="Texture2D" uid="uid://dytl7rqvsxjnk" path="res://assets/graphics/cards/common/card_background_for_energy_balls.png" id="3_g65cd"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="4_g65cd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaf1t"]
+atlas = ExtResource("2_kaf1t")
+region = Rect2(0, 0, 44, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri62e"]
+atlas = ExtResource("3_ri62e")
+region = Rect2(0, 0, 44, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2sko"]
+atlas = ExtResource("4_b2sko")
+region = Rect2(0, 0, 44, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s65g1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaf1t")
+}],
+"loop": true,
+"name": &"hovered",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri62e")
+}],
+"loop": true,
+"name": &"played",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2sko")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_g65cd"]
 
@@ -20,9 +61,10 @@ z_index = 1
 input_pickable = false
 script = ExtResource("1_imta7")
 
-[node name="CardHighlight" type="Sprite2D" parent="."]
+[node name="CardHighlight" type="AnimatedSprite2D" parent="."]
 visible = false
-texture = ExtResource("2_imta7")
+sprite_frames = SubResource("SpriteFrames_s65g1")
+animation = &"selected"
 
 [node name="CardImage" type="Sprite2D" parent="."]
 position = Vector2(-16, -26)
@@ -30,22 +72,18 @@ texture = SubResource("GradientTexture2D_2ufkr")
 centered = false
 
 [node name="CardFrame" type="Sprite2D" parent="."]
-texture = ExtResource("3_vtcvk")
+texture = ExtResource("3_g65cd")
 region_rect = Rect2(0, 0, 40, 60)
 
 [node name="CardShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_imta7")
 
-[node name="EnergyCost" type="Label" parent="."]
-offset_left = -16.0
-offset_top = -28.0
-offset_right = -11.0
-offset_bottom = -22.0
-theme = ExtResource("4_g65cd")
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 1
+[node name="EnergyBallContainer" type="VBoxContainer" parent="."]
+offset_left = -21.0
+offset_top = -29.0
+offset_right = -21.0
+offset_bottom = -29.0
+theme_override_constants/separation = 2
 
 [node name="Name" type="Label" parent="."]
 offset_left = -18.0

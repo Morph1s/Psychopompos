@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://calpxe55h0v7d"
-path="res://.godot/imported/effect_regen.png-17f5b6c040ea166ab6c0e960f13509db.ctex"
+uid="uid://dbch1ucf4lgk3"
+path="res://.godot/imported/highlight_top_left.png-0def841993960d089669688a0c28ae18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/battle_effects/effect_regen.png"
-dest_files=["res://.godot/imported/effect_regen.png-17f5b6c040ea166ab6c0e960f13509db.ctex"]
+source_file="res://assets/graphics/enemies/highlight/highlight_top_left.png"
+dest_files=["res://.godot/imported/highlight_top_left.png-0def841993960d089669688a0c28ae18.ctex"]
 
 [params]
 
