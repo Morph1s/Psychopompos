@@ -246,10 +246,9 @@ func _hover_card(card: Card) -> void:
 func _select_card() -> void:
 	if selected_card:  
 		selected_card.highlight(Card.HighlightMode.NONE)
-
 		
 		EventBusHandler.card_deselected.emit()
-    
+		
 		if selected_card.card_type.targeted:
 			display_enemy_highlights.emit(false)
 		else:
@@ -257,9 +256,9 @@ func _select_card() -> void:
 	
 	highlighted_card.highlight(Card.HighlightMode.SELECTED)
 	selected_card = highlighted_card
-  
-  EventBusHandler.card_selected.emit(selected_card.card_type.energy_cost)
-  
+	
+	EventBusHandler.card_selected.emit(selected_card.card_type.energy_cost)
+	
 	if selected_card.card_type.targeted:
 		display_enemy_highlights.emit(true)
 	else:
@@ -275,9 +274,9 @@ func _deselect_selected_card() -> void:
 	
 	display_enemy_highlights.emit(false)
 	display_play_area_highlights.emit(false)
-  
+	
 	EventBusHandler.card_deselected.emit()
-  
+	
 	_set_mouse_cursor()
 
 func _set_tooltips() -> void:
