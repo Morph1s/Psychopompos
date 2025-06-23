@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://c65koxneqq7ba" path="res://scripts/battle/state_machine/player_start_turn.gd" id="1_1mqim"]
 [ext_resource type="Script" uid="uid://cjw0yaraqpdnr" path="res://scripts/battle/battle.gd" id="1_6die2"]
 [ext_resource type="Script" uid="uid://c0x53jyxyhdli" path="res://scripts/battle/state_machine/state_machine.gd" id="1_g3s1b"]
-[ext_resource type="Texture2D" uid="uid://dgaagv3k6cqil" path="res://assets/graphics/background/placeholder_canvas1.png" id="1_pfikb"]
 [ext_resource type="Script" uid="uid://4s8qo2wk58lm" path="res://scripts/battle/card_handler.gd" id="2_8apll"]
 [ext_resource type="Script" uid="uid://dxiv25i4b0a7q" path="res://scripts/battle/state_machine/idle.gd" id="2_fiugh"]
 [ext_resource type="Script" uid="uid://crlh3bv2ij6qu" path="res://scripts/battle/enemy_handler.gd" id="3_5ildr"]
@@ -13,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c758m1ohji7ep" path="res://scripts/battle/state_machine/enemy_end_turn.gd" id="8_tt5ef"]
 [ext_resource type="Script" uid="uid://d4l21cq278qpt" path="res://scripts/battle/state_machine/exit.gd" id="9_mqlpk"]
 [ext_resource type="Texture2D" uid="uid://dbch1ucf4lgk3" path="res://assets/graphics/enemies/highlight/highlight_top_left.png" id="14_dqn5d"]
+[ext_resource type="Texture2D" uid="uid://bv4srl865j4k1" path="res://assets/graphics/background/wallpaper_battle_scene.png" id="10_luffw"]
 [ext_resource type="PackedScene" uid="uid://b086lic3ys2g6" path="res://scenes/characters/character.tscn" id="14_fiugh"]
 [ext_resource type="Texture2D" uid="uid://bu353ldu5r47y" path="res://assets/graphics/enemies/highlight/highlight_top_right.png" id="15_qhkyp"]
 [ext_resource type="Texture2D" uid="uid://vph2g6xhw38b" path="res://assets/graphics/enemies/highlight/highlight_bottom_left.png" id="16_7id2p"]
@@ -49,7 +49,7 @@ script = ExtResource("8_tt5ef")
 script = ExtResource("9_mqlpk")
 
 [node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("1_pfikb")
+texture = ExtResource("10_luffw")
 centered = false
 
 [node name="CardHandler" type="Node2D" parent="." groups=["card_piles"]]

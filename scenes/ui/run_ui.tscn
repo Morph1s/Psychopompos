@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://c75h5hj2cyycl" path="res://assets/graphics/ui/hud_pictograms/old_settings_icon.png" id="4_jynbq"]
 [ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="8_5gf5s"]
 
-
 [node name="RunUI" type="TextureRect"]
 custom_minimum_size = Vector2(0, 20)
 anchors_preset = 10

@@ -12,6 +12,7 @@ signal mouse_entered_card(Node)
 signal mouse_exited_card(Node)
 
 const MAIN_THEME = preload("res://resources/theme/main_theme.tres")
+const CARD_ENERGY_BALL = preload("res://assets/graphics/cards/card_energy_ball.png")
 
 const NORMAL_HEIGHT: int = 150
 const SELECTED_HEIGHT: int = 146
@@ -19,7 +20,7 @@ const PLAYED_HEIGHT: int = 142
 
 @onready var card_image: Sprite2D = $CardImage
 @onready var card_highlight: AnimatedSprite2D = $CardHighlight
-@onready var energy_cost: Label = $EnergyCost
+@onready var energy_ball_container = $EnergyBallContainer
 @onready var card_name: Label = $Name
 @onready var card_shape: CollisionShape2D = $CardShape
 @onready var description: Node2D = $Description
@@ -55,7 +56,7 @@ func initialize(card: CardType) -> void:
 	# load card visuals
 	
 	card_image.texture = card_type.texture
-	energy_cost.text = str(card_type.energy_cost)
+	_create_energy_cost_balls(card_type.energy_cost)
 	card_type.energy_cost_changed.connect(_on_card_type_energy_cost_changed)
 	card_name.text = card_type.card_name
 	_set_description(card_type.first_description_icon, card_type.first_description_text,0)
@@ -112,8 +113,7 @@ func highlight(mode: HighlightMode):
 func play(target_id: int = -1) -> void:
 	
 	# pay energy cost
-	for energy in card_type.energy_cost:
-		RunData.player_stats.lose_one_energy()
+	RunData.player_stats.pay_energy(card_type.energy_cost)
 	
 	# return if the card cost killed the player
 	if RunData.player_stats.current_hitpoints < 1:
@@ -195,6 +195,12 @@ func _set_description(icon: Texture, text: String, description_index: int) -> vo
 		label.position = Vector2(9, (9 * description_index) + 2)
 		description.add_child(label)
 
+func _create_energy_cost_balls(amount: int) -> void:
+	for i in amount:
+		var new_ball = TextureRect.new()
+		new_ball.texture = CARD_ENERGY_BALL
+		energy_ball_container.add_child(new_ball)
+
 #endregion
 
 #region signal functions
@@ -206,6 +212,9 @@ func _on_mouse_exited() -> void:
 	mouse_exited_card.emit(self)
 
 func _on_card_type_energy_cost_changed(new_value: int) -> void:
-	energy_cost.text = str(new_value)
+	for energy_ball in energy_ball_container.get_children():
+		energy_ball.queue_free()
+	
+	_create_energy_cost_balls(new_value)
 
 #endregion

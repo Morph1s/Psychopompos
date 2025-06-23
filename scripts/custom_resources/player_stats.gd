@@ -16,7 +16,11 @@ signal energy_changed(new_energy: int, maximum_energy: int)
 @export var card_draw_amount: int = 5
 @export var coins: int = 0
 
-func lose_one_energy() -> void:
-	current_energy -= 1
-	if current_energy < 0 :
-		lose_hp(current_energy*current_energy)
+
+func pay_energy(amount: int) -> void:
+	current_energy -= amount
+	if current_energy < 0:
+			lose_hp(hp_loss_from_energy_calculation(clamp(-current_energy, 0, amount)))
+
+func hp_loss_from_energy_calculation(energy_overpayed: int) -> int:
+	return 5 * energy_overpayed

@@ -17,6 +17,8 @@ signal show_deck_view_with_action(deck: Array[CardType], on_card_selected_action
 signal show_map
 signal back_to_battle
 signal cards_drawn
+signal card_selected(cost: int)
+signal card_deselected
 
 
 ## disposes all connections of all events
