@@ -141,6 +141,8 @@ func _play_card(card: Card) -> void:
 	
 	await card.play(hovered_enemy_id)
 	
+	EventBusHandler.card_deselected.emit()
+	
 	await discard_card(card)
 	
 	playing_card = false
@@ -238,8 +240,10 @@ func _hover_card(card: Card) -> void:
 func _select_card() -> void:
 	if selected_card:  
 		selected_card.highlight(Card.HighlightMode.NONE)
+		EventBusHandler.card_deselected.emit()
 	highlighted_card.highlight(Card.HighlightMode.SELECTED)
 	selected_card = highlighted_card
+	EventBusHandler.card_selected.emit(selected_card.card_type.energy_cost)
 	# maybe add feedback whether the card is targeted or untargeted
 
 func _deselect_selected_card() -> void:
@@ -249,6 +253,8 @@ func _deselect_selected_card() -> void:
 	else:
 		selected_card.highlight(Card.HighlightMode.NONE)
 		selected_card = null
+	
+	EventBusHandler.card_deselected.emit()
 	
 	_set_mouse_cursor()
 

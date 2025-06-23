@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpc17ymc5fvvv" path="res://scripts/card/card.gd" id="1_imta7"]
 [ext_resource type="Texture2D" uid="uid://di0c33j0860id" path="res://assets/graphics/cards/card_highlight.png" id="2_imta7"]
-[ext_resource type="Texture2D" uid="uid://c501osipmjuk1" path="res://assets/graphics/cards/common/old_card_background_v1.png" id="3_vtcvk"]
+[ext_resource type="Texture2D" uid="uid://dytl7rqvsxjnk" path="res://assets/graphics/cards/common/card_background_for_energy_balls.png" id="3_g65cd"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="4_g65cd"]
 
 [sub_resource type="Gradient" id="Gradient_g65cd"]
@@ -30,22 +30,18 @@ texture = SubResource("GradientTexture2D_2ufkr")
 centered = false
 
 [node name="CardFrame" type="Sprite2D" parent="."]
-texture = ExtResource("3_vtcvk")
+texture = ExtResource("3_g65cd")
 region_rect = Rect2(0, 0, 40, 60)
 
 [node name="CardShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_imta7")
 
-[node name="EnergyCost" type="Label" parent="."]
-offset_left = -16.0
-offset_top = -28.0
-offset_right = -11.0
-offset_bottom = -22.0
-theme = ExtResource("4_g65cd")
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 1
+[node name="EnergyBallContainer" type="VBoxContainer" parent="."]
+offset_left = -21.0
+offset_top = -29.0
+offset_right = -21.0
+offset_bottom = -29.0
+theme_override_constants/separation = 2
 
 [node name="Name" type="Label" parent="."]
 offset_left = -18.0

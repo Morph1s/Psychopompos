@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dewaxmdsu38e8"]
+
+[ext_resource type="Script" uid="uid://c183lwsexti1w" path="res://scripts/ui/hud_energy_ball.gd" id="1_vpfjt"]
+[ext_resource type="Texture2D" uid="uid://x6m6t5563rlj" path="res://assets/graphics/ui/hp_energy_bar/energy_ball_disabled_hud.png" id="2_em2c5"]
+[ext_resource type="Texture2D" uid="uid://djg70g5qrybsc" path="res://assets/graphics/ui/hp_energy_bar/energy_ball_hud.png" id="3_6bq4h"]
+[ext_resource type="Texture2D" uid="uid://4qe7fx2ke5i3" path="res://assets/graphics/ui/hp_energy_bar/energy_ball_hud_highlighted.png" id="4_8t00u"]
+
+[node name="HudEnergyBall" type="TextureRect"]
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("2_em2c5")
+script = ExtResource("1_vpfjt")
+
+[node name="ActiveBall" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("3_6bq4h")
+stretch_mode = 2
+
+[node name="HighlightedBall" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("4_8t00u")
+stretch_mode = 2
+
+[node name="PrimaryParticles" type="CPUParticles2D" parent="."]
+position = Vector2(6, 6)
+lifetime = 0.8
+randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, -20)
+color = Color(0.486275, 0.843137, 0.913725, 1)
+
+[node name="HighlightParticles" type="CPUParticles2D" parent="."]
+position = Vector2(6, 6)
+emitting = false
+amount = 12
+randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, -25)

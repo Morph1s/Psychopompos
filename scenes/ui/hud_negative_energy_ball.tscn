@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds08lsotbv0uv"]
+
+[ext_resource type="Texture2D" uid="uid://cnl6j26iknhd4" path="res://assets/graphics/ui/hp_energy_bar/negative_energy_ball_hud.png" id="1_6upgw"]
+[ext_resource type="Script" uid="uid://clqj2oyall2sy" path="res://scripts/ui/hud_negative_energy_ball.gd" id="2_wb1rt"]
+
+[node name="HudNegativeEnergyBall" type="TextureRect"]
+offset_right = 6.0
+offset_bottom = 6.0
+texture = ExtResource("1_6upgw")
+stretch_mode = 2
+script = ExtResource("2_wb1rt")
+
+[node name="ConstantParticles" type="CPUParticles2D" parent="."]
+position = Vector2(3, 3)
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, -30)
+color = Color(1, 0.486275, 0.458824, 1)
+
+[node name="ParticleExplosion" type="CPUParticles2D" parent="."]
+position = Vector2(3, 3)
+emitting = false
+amount = 20
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.7
+randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, -30)
+color = Color(1, 0.152941, 0.101961, 1)
