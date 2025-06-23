@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=3 format=3 uid="uid://c7joixtqv71br"]
+
+[ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_gb6ng"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_84ik7"]
+
+[resource]
+script = ExtResource("1_gb6ng")
+name = "Ambrosia"
+amount = 15
+tooltip = Array[ExtResource("2_84ik7")]([])
+effects_active = false
+effect = 0
+pickup_active = true
+pickup_effect = 1
+changes_active = false
+changed_value = 0
+metadata/_custom_type_script = "uid://booqawgjhy2ac"

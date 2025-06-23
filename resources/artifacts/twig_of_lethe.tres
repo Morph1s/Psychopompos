@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=3 format=3 uid="uid://c1aslmtiqlfco"]
+
+[ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_3yxps"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_w78o3"]
+
+[resource]
+script = ExtResource("1_3yxps")
+name = "Twig of lethe"
+amount = 10
+tooltip = Array[ExtResource("2_w78o3")]([])
+effects_active = false
+effect = 0
+pickup_active = false
+pickup_effect = 0
+changes_active = true
+changed_value = 1
+metadata/_custom_type_script = "uid://booqawgjhy2ac"

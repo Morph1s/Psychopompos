@@ -7,15 +7,15 @@ extends Resource
 @export var amount: int
 @export var tooltip: Array[TooltipData]
 
-@export_category("Effect at start of combat")
+@export_group("Effect at start of combat")
 @export var effects_active: bool
 @export var effect: EffectAction.EffectType
 
-@export_category("Effect on pickup")
+@export_group("Effect on pickup")
 @export var pickup_active: bool
 @export_enum("None", "+Max HP", "+Max Energy", "Card Draw") var pickup_effect: int = 0
 
-@export_category("Encounter Changes")
+@export_group("Encounter Changes")
 @export var changes_active: bool
 @export_enum("None", "Campfire Heal") var changed_value: int = 0
 

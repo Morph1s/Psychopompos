@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=3 format=3 uid="uid://c7opeqh2c23n8"]
+
+[ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_4dg60"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_31ox7"]
+
+[resource]
+script = ExtResource("1_4dg60")
+name = "Eye of Graeae"
+amount = 1
+tooltip = Array[ExtResource("2_31ox7")]([])
+effects_active = false
+effect = 0
+pickup_active = true
+pickup_effect = 3
+changes_active = false
+changed_value = 0
+metadata/_custom_type_script = "uid://booqawgjhy2ac"
