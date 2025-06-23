@@ -16,6 +16,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pq4iv")
+text_overrun_behavior = 1
 script = ExtResource("1_u35ih")
 
 [connection signal="button_up" from="." to="." method="_on_button_up"]

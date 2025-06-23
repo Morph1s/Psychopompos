@@ -12,6 +12,7 @@ var loaded_scene: Node
 func _ready() -> void:
 	_load_main_menu_scene()
 	EventBusHandler.open_settings.connect(_open_settings)
+	ArtifactHandler.initialize()
 
 func _input(event) -> void:
 	if not event.is_action_pressed("pause"):

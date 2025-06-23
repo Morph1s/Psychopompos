@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_6fhqp")
-name = "Hermes Winged Boots"
+name = "WINGED BOOTS"
 amount = 2
 tooltip = Array[ExtResource("2_x13s8")]([])
 effects_active = true

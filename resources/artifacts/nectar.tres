@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_wpv65")
-name = "Nectar"
+name = "NECTAR"
 amount = 1
 tooltip = Array[ExtResource("2_5p5sv")]([])
 effects_active = true

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_gb6ng")
-name = "Ambrosia"
+name = "AMBROSIA"
 amount = 15
 tooltip = Array[ExtResource("2_84ik7")]([])
 effects_active = false

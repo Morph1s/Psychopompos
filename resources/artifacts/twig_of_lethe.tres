@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_3yxps")
-name = "Twig of lethe"
+name = "TWIG OF LETHE"
 amount = 10
 tooltip = Array[ExtResource("2_w78o3")]([])
 effects_active = false

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_4dg60")
-name = "Eye of Graeae"
+name = "EYE OF GRAEAE"
 amount = 1
 tooltip = Array[ExtResource("2_31ox7")]([])
 effects_active = false
