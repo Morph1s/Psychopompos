@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="2_xiw73"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_coxiv"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_d7rfk"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="5_coxiv"]
+[ext_resource type="Texture2D" uid="uid://dbuo4uylsacuq" path="res://assets/graphics/cards/common/card_common_respite.png" id="5_l6rkm"]
 [ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/block_tooltip.tres" id="6_p2vp2"]
 [ext_resource type="Resource" uid="uid://dlyl21r76fp54" path="res://resources/tooltips/regeneration_tooltip.tres" id="7_rfejf"]
 
@@ -33,7 +33,7 @@ script = ExtResource("2_jw6ef")
 card_name = "respite"
 energy_cost = 2
 rarity = 1
-texture = ExtResource("5_coxiv")
+texture = ExtResource("5_l6rkm")
 on_play_action = Array[ExtResource("1_atd0v")]([SubResource("Resource_kk01k"), SubResource("Resource_okt2f")])
 on_graveyard_action = Array[ExtResource("1_atd0v")]([])
 targeted = false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxj0il56h6j0a"
-path="res://.godot/imported/card_halt_v1.png-0e059ad00aa653b99531c59b7812a3d3.ctex"
+uid="uid://cg8i3524fx7hq"
+path="res://.godot/imported/card_common_flurry.png-947352e30ccb1e9bd822a40b1dce85f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/cards/card_halt_v1.png"
-dest_files=["res://.godot/imported/card_halt_v1.png-0e059ad00aa653b99531c59b7812a3d3.ctex"]
+source_file="res://assets/graphics/cards/common/card_common_flurry.png"
+dest_files=["res://.godot/imported/card_common_flurry.png-947352e30ccb1e9bd822a40b1dce85f7.ctex"]
 
 [params]
 
