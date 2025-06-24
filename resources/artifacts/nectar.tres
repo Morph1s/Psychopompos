@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Artifact" load_steps=3 format=3 uid="uid://bvxii13vc73u5"]
+[gd_resource type="Resource" script_class="Artifact" load_steps=5 format=3 uid="uid://bvxii13vc73u5"]
 
 [ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_wpv65"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_5p5sv"]
+[ext_resource type="Resource" uid="uid://b0dq78a1sy43p" path="res://resources/tooltips/artifact_tooltips/nectar_tooltip.tres" id="3_5p5sv"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wpv65"]
+size = Vector2(16, 16)
 
 [resource]
 script = ExtResource("1_wpv65")
 name = "NECTAR"
+texture = SubResource("PlaceholderTexture2D_wpv65")
 amount = 1
-tooltip = Array[ExtResource("2_5p5sv")]([])
+tooltip = Array[ExtResource("2_5p5sv")]([ExtResource("3_5p5sv")])
 effects_active = true
 effect = 5
 pickup_active = false

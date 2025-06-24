@@ -1,5 +1,7 @@
 extends Node
 
+signal artifact_selected(artifact: Artifact)
+
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var available_artifacts: Array[Artifact] = [
@@ -43,6 +45,8 @@ func get_random_artifact() -> Artifact:
 func select_artifact(artifakt: Artifact) -> void:
 	selected_artifacts.append(artifakt)
 	available_artifacts.erase(artifakt)
+	
+	artifact_selected.emit(artifakt)
 	
 	if artifakt.pickup_active:
 		artifakt.pickup()

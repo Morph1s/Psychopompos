@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Artifact" load_steps=3 format=3 uid="uid://c7joixtqv71br"]
+[gd_resource type="Resource" script_class="Artifact" load_steps=5 format=3 uid="uid://c7joixtqv71br"]
 
 [ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_gb6ng"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_84ik7"]
+[ext_resource type="Resource" uid="uid://cqps7jkjmfh21" path="res://resources/tooltips/artifact_tooltips/ambrosia_tooltip.tres" id="3_84ik7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gb6ng"]
+size = Vector2(16, 16)
 
 [resource]
 script = ExtResource("1_gb6ng")
 name = "AMBROSIA"
+texture = SubResource("PlaceholderTexture2D_gb6ng")
 amount = 15
-tooltip = Array[ExtResource("2_84ik7")]([])
+tooltip = Array[ExtResource("2_84ik7")]([ExtResource("3_84ik7")])
 effects_active = false
 effect = 0
 pickup_active = true

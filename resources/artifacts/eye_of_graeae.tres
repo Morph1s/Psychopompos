@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Artifact" load_steps=3 format=3 uid="uid://c7opeqh2c23n8"]
+[gd_resource type="Resource" script_class="Artifact" load_steps=5 format=3 uid="uid://c7opeqh2c23n8"]
 
 [ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_4dg60"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_31ox7"]
+[ext_resource type="Resource" uid="uid://hdsskc35rs3t" path="res://resources/tooltips/artifact_tooltips/eye_of_graeae_tooltip.tres" id="3_31ox7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4dg60"]
+size = Vector2(16, 16)
 
 [resource]
 script = ExtResource("1_4dg60")
 name = "EYE OF GRAEAE"
+texture = SubResource("PlaceholderTexture2D_4dg60")
 amount = 1
-tooltip = Array[ExtResource("2_31ox7")]([])
+tooltip = Array[ExtResource("2_31ox7")]([ExtResource("3_31ox7")])
 effects_active = false
 effect = 0
 pickup_active = true

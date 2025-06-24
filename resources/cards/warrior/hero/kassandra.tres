@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_vqc4w"]
 [ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_8tcyx"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_hb4dy"]
-[ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/discard_random.tres" id="6_7sjlp"]
-[ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/card_draw.tres" id="7_mnsx6"]
+[ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/action_tooltips/discard_random_tooltip.tres" id="6_7sjlp"]
+[ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="7_mnsx6"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7o4jg"]
 size = Vector2(8, 8)

@@ -67,6 +67,17 @@ stretch_mode = 2
 layout_mode = 2
 text = "42/69"
 
+[node name="ArtifactContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(90, 18)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
 [node name="Tooltip" parent="." instance=ExtResource("8_5gf5s")]
 visible = false
 layout_mode = 0

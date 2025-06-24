@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=2 format=3 uid="uid://hdsskc35rs3t"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_jpc8w"]
+
+[resource]
+script = ExtResource("1_jpc8w")
+description = "EYE OF GRAEAE: draw 1 more card at the start of your turn"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
