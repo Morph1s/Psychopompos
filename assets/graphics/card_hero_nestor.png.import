@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwl6jfp2cq72t"
-path="res://.godot/imported/cardBackground_v1.png-10086a5d63dd8efb60fc36ebc519e70d.ctex"
+uid="uid://bnptnxny4gprn"
+path="res://.godot/imported/card_hero_nestor.png-d9b5558dd3a75d00eba642f9d3a1f4d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/cards/common/cardBackground_v1.png"
-dest_files=["res://.godot/imported/cardBackground_v1.png-10086a5d63dd8efb60fc36ebc519e70d.ctex"]
+source_file="res://assets/graphics/card_hero_nestor.png"
+dest_files=["res://.godot/imported/card_hero_nestor.png-d9b5558dd3a75d00eba642f9d3a1f4d0.ctex"]
 
 [params]
 

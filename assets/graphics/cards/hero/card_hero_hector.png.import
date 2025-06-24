@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mb50x0mexevj"
-path="res://.godot/imported/card_blood_claw_v1.png-6f8620d8ec1536dd525d6e84fc6e2cd4.ctex"
+uid="uid://ccs4kelfv7buv"
+path="res://.godot/imported/card_hero_hector.png-f31c6d43a8d6ec84b1e2daee54fea516.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/cards/card_blood_claw_v1.png"
-dest_files=["res://.godot/imported/card_blood_claw_v1.png-6f8620d8ec1536dd525d6e84fc6e2cd4.ctex"]
+source_file="res://assets/graphics/cards/hero/card_hero_hector.png"
+dest_files=["res://.godot/imported/card_hero_hector.png-f31c6d43a8d6ec84b1e2daee54fea516.ctex"]
 
 [params]
 
