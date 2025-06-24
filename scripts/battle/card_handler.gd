@@ -68,6 +68,7 @@ func draw_cards(amount: int) -> void:
 		var front_card_card_type: CardType = draw_pile.pop_front()
 		var success: bool = add_card_to_hand(front_card_card_type)
 		if not success:
+			_set_player_control(true)
 			return
 		
 		# wait for hand to be updated
