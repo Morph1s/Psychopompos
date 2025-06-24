@@ -23,6 +23,8 @@ func resolve(targets: Array[Node2D]) -> void :
 
 func _discard_random(card_handler: CardHandler) -> void:
 	for i in count:
+		if card_handler.hand.is_empty():
+			break
 		var target: Card = card_handler.hand[rng.randi_range(0, card_handler.hand.size() - 1)]
 		await card_handler.discard_card(target)
 
