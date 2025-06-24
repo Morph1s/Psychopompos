@@ -4,7 +4,7 @@ extends Button
 signal reward_selected(type: BattleRewards.RewardType, amount: int, button: Button)
 
 const COINS_TOOLTIP: Array[TooltipData] = [preload("res://resources/tooltips/action_tooltips/coins_tooltip.tres")]
-const SECECT_CARD_TOOLTIP: Array[TooltipData] = [preload("res://resources/tooltips/action_tooltips/secect_card_tooltip.tres")]
+const SELECT_CARD_TOOLTIP: Array[TooltipData] = [preload("res://resources/tooltips/action_tooltips/select_card_tooltip.tres")]
 
 @onready var tooltip = $Tooltip
 
@@ -22,7 +22,7 @@ func set_rewards(reward_type: BattleRewards.RewardType, amount: int) -> void:
 	match type:
 		BattleRewards.RewardType.CARDS:
 			text = "CHOOSE CARD"
-			tooltip.load_tooltips(SECECT_CARD_TOOLTIP)
+			tooltip.load_tooltips(SELECT_CARD_TOOLTIP)
 		
 		BattleRewards.RewardType.COINS:
 			text = str(count) + " COINS"

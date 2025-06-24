@@ -38,7 +38,7 @@ func _on_stats_hp_changed(current_hp: int, max_hp: int):
 func _on_artifact_handler_artifact_selected(artifact: Artifact) -> void:
 	var artifact_visualization: TextureRect = TextureRect.new()
 	
-	# set paramters
+	# set parameters
 	artifact_visualization.texture = artifact.texture
 	artifact_visualization.stretch_mode = TextureRect.STRETCH_KEEP
 	artifact_visualization.custom_minimum_size = Vector2(16, 16)
