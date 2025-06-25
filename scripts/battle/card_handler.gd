@@ -8,7 +8,7 @@ signal display_enemy_highlights(visibility: bool)
 const CARD = preload("res://scenes/card/card.tscn")
 
 # Assets preload for mouse_changes
-const UNAIMED_CURSOR = preload("res://assets/graphics/cursors/cursor_default.png")
+const UNAIMED_CURSOR = preload("res://assets/graphics/cursors/cursor_unaimed.png")
 const LOCKON_CURSOR = preload("res://assets/graphics/cursors/cursor_lock_on.png")
 const DEFAULT_CURSOR = preload("res://assets/graphics/cursors/cursor_default.png")
 
