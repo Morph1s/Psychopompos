@@ -1,22 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4e78agpxhvh3"]
+[gd_scene load_steps=6 format=3 uid="uid://c4e78agpxhvh3"]
 
 [ext_resource type="Script" uid="uid://do01jrwml771o" path="res://scripts/battle/battle_ui.gd" id="1_2hywk"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_uu5og"]
-[ext_resource type="Texture2D" uid="uid://cvcjdtjyphia7" path="res://assets/graphics/ui/hud_heart.png" id="3_ebl3e"]
-
-[sub_resource type="Gradient" id="Gradient_cymlh"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8apll"]
-gradient = SubResource("Gradient_cymlh")
-width = 24
-height = 24
-
-[sub_resource type="Gradient" id="Gradient_5ildr"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1mqim"]
-gradient = SubResource("Gradient_5ildr")
-width = 24
-height = 24
+[ext_resource type="Texture2D" uid="uid://b6jvb651cgotr" path="res://assets/graphics/hud/pictograms/hud_deck_pile.png" id="3_7sxqq"]
+[ext_resource type="Texture2D" uid="uid://cvcjdtjyphia7" path="res://assets/graphics/hud/pictograms/hud_heart.png" id="3_ebl3e"]
+[ext_resource type="Texture2D" uid="uid://d26qdbmw07cqa" path="res://assets/graphics/hud/pictograms/hud_discard_pile.png" id="4_2kidt"]
 
 [node name="BattleUI" type="Control"]
 z_index = 1
@@ -32,16 +20,11 @@ script = ExtResource("1_2hywk")
 metadata/_edit_lock_ = true
 
 [node name="EndTurnButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -4.0
-offset_bottom = -64.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
+offset_left = 274.0
+offset_top = 124.0
+offset_right = 310.0
+offset_bottom = 138.0
 size_flags_horizontal = 8
 disabled = true
 text = "EndTurn"
@@ -51,10 +34,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
+offset_left = 6.0
 offset_bottom = -4.0
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_8apll")
+texture = ExtResource("3_7sxqq")
 stretch_mode = 2
 
 [node name="DiscardPile" type="TextureRect" parent="."]
@@ -64,24 +47,24 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -4.0
+offset_right = -6.0
 offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_1mqim")
+texture = ExtResource("4_2kidt")
 stretch_mode = 2
 
 [node name="Energy" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 10.0
-offset_top = 131.0
-offset_right = 10.0
-offset_bottom = 131.0
+offset_left = 12.0
+offset_top = 124.0
+offset_right = 12.0
+offset_bottom = 124.0
 mouse_filter = 2
 
 [node name="EnergyBallContainer" type="HBoxContainer" parent="Energy"]
 layout_mode = 0
-theme_override_constants/separation = 3
+theme_override_constants/separation = 2
 
 [node name="NegativeEnergyBallContainer" type="VBoxContainer" parent="Energy"]
 layout_mode = 0

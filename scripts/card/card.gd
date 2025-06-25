@@ -18,6 +18,7 @@ const NORMAL_HEIGHT: int = 150
 const SELECTED_HEIGHT: int = 146
 const PLAYED_HEIGHT: int = 142
 
+@onready var card_frame = $CardFrame
 @onready var card_image: Sprite2D = $CardImage
 @onready var card_highlight: AnimatedSprite2D = $CardHighlight
 @onready var energy_ball_container = $EnergyBallContainer
@@ -54,7 +55,6 @@ func initialize(card: CardType) -> void:
 	card_type.set_modifier_handler(get_tree().get_first_node_in_group("player").modifier_handler)
 	
 	# load card visuals
-	
 	card_image.texture = card_type.texture
 	_create_energy_cost_balls(card_type.energy_cost)
 	card_type.energy_cost_changed.connect(_on_card_type_energy_cost_changed)
@@ -66,12 +66,17 @@ func initialize(card: CardType) -> void:
 	match card_type.rarity:
 		CardType.Rarity.STARTING_CARD:
 			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/common/template_common_card.png")
 		CardType.Rarity.COMMON_CARD:
 			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/common/template_common_card.png")
 		CardType.Rarity.HERO_CARD:
-			card_name.add_theme_color_override("font_color", Color.PURPLE)
+			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/hero/template_hero_card.png")
 		CardType.Rarity.GODS_BOON:
-			card_name.add_theme_color_override("font_color", Color.GOLD)
+			card_name.add_theme_color_override("font_color", Color.BLACK)
+			# load god boon frame here
+			card_frame.texture = load("res://assets/graphics/cards/hero/template_hero_card.png")
 
 
 ## function for CardHandler to handle card-state

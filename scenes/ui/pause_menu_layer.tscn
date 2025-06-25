@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtbqimkp0gov1" path="res://scripts/ui/pause_menu_layer.gd" id="1_4kxpj"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_xin3r"]
-[ext_resource type="Texture2D" uid="uid://c1nrclascqod3" path="res://assets/graphics/ui/volume_icon.png" id="2_4kxpj"]
+[ext_resource type="Texture2D" uid="uid://c1nrclascqod3" path="res://assets/graphics/hud/volume_icon.png" id="2_4kxpj"]
 
 [node name="PauseMenuLayer" type="CanvasLayer"]
 layer = 127

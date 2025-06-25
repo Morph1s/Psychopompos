@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://c70jlsvppy1d0"]
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://c70jlsvppy1d0"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_8w2ex"]
 [ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="2_3jf1v"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_xjfqq"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_4f833"]
 [ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_ourqv"]
+[ext_resource type="Texture2D" uid="uid://cnrod70xm6tfy" path="res://assets/graphics/battle_effects/borderless/effect_agile_borderless.png" id="5_b3ppu"]
 [ext_resource type="Resource" uid="uid://g1i01gxgwbvs" path="res://resources/tooltips/effect_tooltips/agile_tooltip.tres" id="6_3jf1v"]
 [ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="7_b3ppu"]
 
@@ -36,7 +37,7 @@ on_graveyard_action = Array[ExtResource("1_8w2ex")]([])
 targeted = false
 first_description_icon = SubResource("PlaceholderTexture2D_b3ppu")
 first_description_text = "1"
-second_description_icon = SubResource("PlaceholderTexture2D_b3ppu")
+second_description_icon = ExtResource("5_b3ppu")
 second_description_text = "3"
 tooltips = Array[ExtResource("3_4f833")]([ExtResource("7_b3ppu"), ExtResource("6_3jf1v")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

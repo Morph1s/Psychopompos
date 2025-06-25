@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://brymu8wjxkgj5"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_8fyds"]
+[ext_resource type="Texture2D" uid="uid://cob6gvqhaycqe" path="res://assets/graphics/battle_effects/borderless/effect_damokles_borderless.png" id="1_h2noc"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_becyy"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_eacpi"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_340hy"]
 [ext_resource type="Texture2D" uid="uid://drts8cgt4yhxv" path="res://assets/graphics/cards/hero/card_hero_damocles.png" id="4_gs3k6"]
 [ext_resource type="Resource" uid="uid://bcq8tonghl4h6" path="res://resources/tooltips/effect_tooltips/damokles_sword_tooltip.tres" id="6_7ho12"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2f1ik"]
-size = Vector2(8, 8)
 
 [sub_resource type="Resource" id="Resource_y8yhs"]
 script = ExtResource("2_becyy")
@@ -26,7 +24,7 @@ texture = ExtResource("4_gs3k6")
 on_play_action = Array[ExtResource("1_8fyds")]([SubResource("Resource_y8yhs")])
 on_graveyard_action = Array[ExtResource("1_8fyds")]([])
 targeted = true
-first_description_icon = SubResource("PlaceholderTexture2D_2f1ik")
+first_description_icon = ExtResource("1_h2noc")
 first_description_text = "1"
 second_description_text = ""
 tooltips = Array[ExtResource("3_340hy")]([ExtResource("6_7ho12")])

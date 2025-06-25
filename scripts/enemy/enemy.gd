@@ -78,6 +78,8 @@ func resolve_intent() -> void:
 		if action is AttackAction:
 			attacked = true
 	
+	enemy_hud.intent_container.hide()
+	
 	if attacked:
 		effect_handler._on_unit_played_attack()
 	

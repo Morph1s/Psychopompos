@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://c2nl2b31h4hn2"
+path="res://.godot/imported/small_pixel_font.fnt-ce0ba3eb9d09c991b063dd5bc1f0f4d7.fontdata"
+
+[deps]
+
+source_file="res://assets/graphics/hud/theme/small_pixel_font.fnt"
+dest_files=["res://.godot/imported/small_pixel_font.fnt-ce0ba3eb9d09c991b063dd5bc1f0f4d7.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

@@ -1,16 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdtg0n15vghyv"]
+[gd_scene load_steps=6 format=3 uid="uid://cdtg0n15vghyv"]
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_fe2o3"]
 [ext_resource type="Script" uid="uid://ih60gyh4gwl2" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="Texture2D" uid="uid://w5ve5u7smocb" path="res://assets/graphics/hud/titlecard_v1.png" id="3_1g8jr"]
 
-[sub_resource type="Gradient" id="Gradient_fe2o3"]
-colors = PackedColorArray(0.298039, 0, 0, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_1g8jr"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1g8jr"]
-gradient = SubResource("Gradient_fe2o3")
-width = 320
-height = 180
-fill_from = Vector2(0.229358, 1)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m1kxf"]
+gradient = SubResource("Gradient_1g8jr")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,23 +20,21 @@ grow_vertical = 2
 theme = ExtResource("1_fe2o3")
 script = ExtResource("1_sl1te")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="PlacehoderBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_m1kxf")
+
+[node name="TitleCard" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = SubResource("GradientTexture2D_1g8jr")
-
-[node name="Main Title" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 30.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "
-PSYCHOPOMPOS"
-horizontal_alignment = 1
+texture = ExtResource("3_1g8jr")
+stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

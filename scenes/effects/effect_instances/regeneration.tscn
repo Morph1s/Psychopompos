@@ -1,22 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1jmn6iw7gt63"]
+[gd_scene load_steps=6 format=3 uid="uid://b1jmn6iw7gt63"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_e8cwk"]
+[ext_resource type="Texture2D" uid="uid://b2m7wdo2kk5ib" path="res://assets/graphics/battle_effects/with_border/effect_regeneration.png" id="2_ropfv"]
 [ext_resource type="Script" uid="uid://cd1is11rp2xch" path="res://scripts/effects/effect_instances/regeneration.gd" id="2_yho3i"]
 [ext_resource type="Resource" uid="uid://dlyl21r76fp54" path="res://resources/tooltips/effect_tooltips/regeneration_tooltip.tres" id="3_l74rh"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_ys3r8"]
 
-
-[sub_resource type="Gradient" id="Gradient_yho3i"]
-offsets = PackedFloat32Array(0.00649351, 1)
-colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0.596078, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l74rh"]
-gradient = SubResource("Gradient_yho3i")
-width = 8
-height = 8
-
 [node name="Regeneration" instance=ExtResource("1_e8cwk")]
-texture = SubResource("GradientTexture2D_l74rh")
+texture = ExtResource("2_ropfv")
 script = ExtResource("2_yho3i")
 effect_name = "Regeneration"
 stackable = true

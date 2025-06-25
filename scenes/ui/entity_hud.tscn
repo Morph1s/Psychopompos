@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://qm4xvb6vqwt6"]
+[gd_scene load_steps=6 format=3 uid="uid://qm4xvb6vqwt6"]
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_elymy"]
 [ext_resource type="Script" uid="uid://rqst1nkft1gr" path="res://scripts/ui/entity_hud.gd" id="1_qf4hu"]
-[ext_resource type="Texture2D" uid="uid://cvcjdtjyphia7" path="res://assets/graphics/ui/hud_heart.png" id="3_yp36h"]
-[ext_resource type="Texture2D" uid="uid://dtux8aq3osqwm" path="res://assets/graphics/ui/hud_shield.png" id="4_1ufrs"]
+[ext_resource type="Texture2D" uid="uid://de41nhwq0atgg" path="res://assets/graphics/hud/hp_bar/entity_hp_bar_under.png" id="5_xjrp6"]
+[ext_resource type="Texture2D" uid="uid://ckmqq0wpwfjl6" path="res://assets/graphics/hud/hp_bar/player_hp_bar_over.png" id="6_ugujv"]
+[ext_resource type="Texture2D" uid="uid://cp20avhpfqh04" path="res://assets/graphics/hud/hp_bar/entity_hp_bar_progress.png" id="7_ugujv"]
 
 [node name="EntityHud" type="Control"]
 layout_mode = 3
@@ -12,35 +13,36 @@ mouse_filter = 2
 theme = ExtResource("1_elymy")
 script = ExtResource("1_qf4hu")
 
-[node name="HitpointBackground" type="PanelContainer" parent="."]
+[node name="HpBar" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -6.0
-offset_right = 45.0
+offset_top = -1.0
+offset_right = 1.0
 grow_vertical = 0
+value = 70.0
+rounded = true
+texture_under = ExtResource("5_xjrp6")
+texture_over = ExtResource("6_ugujv")
+texture_progress = ExtResource("7_ugujv")
+texture_progress_offset = Vector2(8, 0)
 
-[node name="HitpointContainer" type="HBoxContainer" parent="HitpointBackground"]
-layout_mode = 2
+[node name="LabelContainer" type="HBoxContainer" parent="HpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 45.0
+offset_bottom = 9.0
 theme_override_constants/separation = 1
+alignment = 1
 
-[node name="Hitpoints" type="Label" parent="HitpointBackground/HitpointContainer"]
+[node name="Hitpoints" type="Label" parent="HpBar/LabelContainer"]
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "25/67"
+text = "10"
 
-[node name="HitpointIcon" type="TextureRect" parent="HitpointBackground/HitpointContainer"]
+[node name="Block" type="Label" parent="HpBar/LabelContainer"]
 layout_mode = 2
-texture = ExtResource("3_yp36h")
-stretch_mode = 2
-
-[node name="Block" type="Label" parent="HitpointBackground/HitpointContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_color = Color(0.737255, 0.752941, 0.85098, 1)
 text = "+13"
-
-[node name="BlockIcon" type="TextureRect" parent="HitpointBackground/HitpointContainer"]
-layout_mode = 2
-texture = ExtResource("4_1ufrs")
-stretch_mode = 2

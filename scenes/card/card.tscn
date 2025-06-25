@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://7kvuwx2mgdce" path="res://assets/graphics/cards/card_highlight_hovered.png" id="2_kaf1t"]
 [ext_resource type="Texture2D" uid="uid://bej5ms0cs71ye" path="res://assets/graphics/cards/card_highlight_played.png" id="3_ri62e"]
 [ext_resource type="Texture2D" uid="uid://dk4hslwqddrac" path="res://assets/graphics/cards/card_highlight_selected.png" id="4_b2sko"]
-[ext_resource type="Texture2D" uid="uid://dytl7rqvsxjnk" path="res://assets/graphics/cards/common/card_background_for_energy_balls.png" id="3_g65cd"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="4_g65cd"]
+[ext_resource type="Texture2D" uid="uid://xrg1u7888w1q" path="res://assets/graphics/cards/common/template_common_card.png" id="5_kaf1t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kaf1t"]
 atlas = ExtResource("2_kaf1t")
@@ -72,7 +72,7 @@ texture = SubResource("GradientTexture2D_2ufkr")
 centered = false
 
 [node name="CardFrame" type="Sprite2D" parent="."]
-texture = ExtResource("3_g65cd")
+texture = ExtResource("5_kaf1t")
 region_rect = Rect2(0, 0, 40, 60)
 
 [node name="CardShape" type="CollisionShape2D" parent="."]
