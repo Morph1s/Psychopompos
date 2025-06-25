@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dim4ktn2ekd8u"
-path="res://.godot/imported/cursor_lock_on.png-f9057d9a159d97d9ed74a2122cd770a5.ctex"
+path="res://.godot/imported/cursor_lock_on.png-e2976b03d8690d7244e15163c7228312.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/cursers/cursor_lock_on.png"
-dest_files=["res://.godot/imported/cursor_lock_on.png-f9057d9a159d97d9ed74a2122cd770a5.ctex"]
+source_file="res://assets/graphics/cursors/cursor_lock_on.png"
+dest_files=["res://.godot/imported/cursor_lock_on.png-e2976b03d8690d7244e15163c7228312.ctex"]
 
 [params]
 
