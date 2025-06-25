@@ -20,9 +20,9 @@ func played_attack() -> void:
 ## this function is called when the amount of stacks changes 
 func changed_stacks(_previous, _current):
 	if _current == 0 and _previous != 0:
-		RunData.player_stats.card_draw_amount -= 1
+		RunData.altered_values[RunData.AlteredValue.CARDS_DRAWN] -= 1
 	elif _previous == 0 and _current != 0:
-		RunData.player_stats.card_draw_amount += 1
+		RunData.altered_values[RunData.AlteredValue.CARDS_DRAWN] += 1
 
 ## this function is called at the start of the entities turn 
 func start_of_turn():

@@ -55,6 +55,9 @@ func initialize() -> void:
 ## draws "amount" cards from the drawpile
 func draw_cards(amount: int) -> void:
 	
+	# alter the value
+	amount += RunData.altered_values[RunData.AlteredValue.CARDS_DRAWN]
+	
 	# limit the amount of cards drawn to meet the maximum hand size
 	amount = clamp(amount, 0, MAX_HAND_SIZE - hand.size())
 	

@@ -4,6 +4,8 @@ extends State
 func enter():
 	EventBusHandler.battle_ended.emit()
 	EventBusHandler.clear_all_battle_events()
+	RunData.reset_altered_battle_parameters()
+	
 	# 1. check if win == true:
 	# true: show loot screen -> 2.1.
 	# false: show end/defeat screen -> 2.2.
