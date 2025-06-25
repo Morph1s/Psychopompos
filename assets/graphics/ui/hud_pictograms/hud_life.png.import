@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bduccqq4plm5j"
-path="res://.godot/imported/hud_settings.png-f445c3022cd0b457225dff4102a0856c.ctex"
+uid="uid://drmvh8f1at8my"
+path="res://.godot/imported/hud_life.png-9178d951d9a8f5d9fceb21f39ed6e452.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/ui/hud_pictograms/hud_settings.png"
-dest_files=["res://.godot/imported/hud_settings.png-f445c3022cd0b457225dff4102a0856c.ctex"]
+source_file="res://assets/graphics/ui/hud_pictograms/hud_life.png"
+dest_files=["res://.godot/imported/hud_life.png-9178d951d9a8f5d9fceb21f39ed6e452.ctex"]
 
 [params]
 
