@@ -22,7 +22,7 @@ func remove_card_from_deck(card: CardType):
 	_finish_campfire()
 
 func heal():
-	RunData.player_stats.current_hitpoints += RunData.player_stats.maximum_hitpoints * 0.3
+	RunData.player_stats.current_hitpoints += RunData.player_stats.maximum_hitpoints * 0.3 + ArtifactHandler.encounter_changes["CampfireHeal"]
 	_finish_campfire()
 
 func _finish_campfire():

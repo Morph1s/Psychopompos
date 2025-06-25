@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_q8s22"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_in5d1"]
 [ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_pus7p"]
-[ext_resource type="Resource" uid="uid://qo0nfo00b6vb" path="res://resources/tooltips/warriors_furry_tooltip.tres" id="6_x83cs"]
+[ext_resource type="Resource" uid="uid://qo0nfo00b6vb" path="res://resources/tooltips/effect_tooltips/warriors_furry_tooltip.tres" id="6_x83cs"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_awk5p"]
 size = Vector2(8, 8)

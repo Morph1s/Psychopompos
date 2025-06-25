@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_eacpi"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_340hy"]
 [ext_resource type="Texture2D" uid="uid://drts8cgt4yhxv" path="res://assets/graphics/cards/hero/card_hero_damocles.png" id="4_gs3k6"]
-[ext_resource type="Resource" uid="uid://bcq8tonghl4h6" path="res://resources/tooltips/damokles_sword_tooltip.tres" id="6_7ho12"]
+[ext_resource type="Resource" uid="uid://bcq8tonghl4h6" path="res://resources/tooltips/effect_tooltips/damokles_sword_tooltip.tres" id="6_7ho12"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2f1ik"]
 size = Vector2(8, 8)

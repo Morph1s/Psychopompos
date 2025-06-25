@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_sk7e7"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_tblvd"]
 [ext_resource type="Texture2D" uid="uid://dj3osv1bvjp06" path="res://assets/graphics/cards/hero/card_hero_actaeon.png" id="4_qwl0f"]
-[ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/wounded_tooltip.tres" id="6_bsegw"]
+[ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/effect_tooltips/wounded_tooltip.tres" id="6_bsegw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rn2q2"]
 size = Vector2(8, 8)

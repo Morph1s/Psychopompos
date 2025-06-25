@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=2 format=3 uid="uid://cqps7jkjmfh21"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_jdajy"]
+
+[resource]
+script = ExtResource("1_jdajy")
+description = "AMBROSIA: gain 15 max HP when picking up"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
