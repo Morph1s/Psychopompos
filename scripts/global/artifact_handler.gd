@@ -5,7 +5,7 @@ signal artifact_selected(artifact: Artifact)
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var available_artifacts: Array[Artifact] = [
-	preload("res://resources/artifacts/amrosia.tres"),
+	preload("res://resources/artifacts/ambrosia.tres"),
 	preload("res://resources/artifacts/bottle_of_icor.tres"),
 	preload("res://resources/artifacts/eye_of_graeae.tres"),
 	preload("res://resources/artifacts/hermes_winged_boots.tres"),
@@ -42,21 +42,21 @@ func get_random_artifact() -> Artifact:
 		return null
 	return available_artifacts[rng.randi_range(0, available_artifacts.size() - 1)]
 
-func select_artifact(artifakt: Artifact) -> void:
-	selected_artifacts.append(artifakt)
-	available_artifacts.erase(artifakt)
+func select_artifact(artifact: Artifact) -> void:
+	selected_artifacts.append(artifact)
+	available_artifacts.erase(artifact)
 	
-	artifact_selected.emit(artifakt)
+	artifact_selected.emit(artifact)
 	
-	if artifakt.pickup_active:
-		artifakt.pickup()
+	if artifact.pickup_active:
+		artifact.pickup()
 	
-	if artifakt.changes_active:
-		match artifakt.changed_value:
+	if artifact.changes_active:
+		match artifact.changed_value:
 			0: # none
 				pass
 			1: # campfire heal
-				encounter_changes["CampfireHeal"] = artifakt.amount
+				encounter_changes["CampfireHeal"] = artifact.amount
 
 func _on_event_bus_battle_started() -> void:
 	var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler

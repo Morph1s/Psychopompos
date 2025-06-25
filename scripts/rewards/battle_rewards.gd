@@ -16,7 +16,7 @@ const BOSS_COIN_AMOUNT_MIN: int = 50
 enum RewardType {
 	CARDS,
 	COINS,
-	ARTEFACT,
+	ARTIFACT,
 }
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -49,7 +49,7 @@ func load_boss_rewards() -> void:
 	if not is_node_ready():
 		await ready
 	var artefact_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
-	artefact_reward.set_rewards(RewardType.ARTEFACT, 0)
+	artefact_reward.set_rewards(RewardType.ARTIFACT, 0)
 	artefact_reward.reward_selected.connect(_on_reward_button_reward_selected)
 	rewards_container.add_child(artefact_reward)
 	
@@ -75,7 +75,7 @@ func _on_reward_button_reward_selected(type: RewardType, count: int, button: Bat
 		RewardType.COINS:
 			print("selected ", count, " coins (not implemented)")
 			button.queue_free()
-		RewardType.ARTEFACT:
+		RewardType.ARTIFACT:
 			ArtifactHandler.select_artifact(button.artifact_reward)
 			button.queue_free()
 

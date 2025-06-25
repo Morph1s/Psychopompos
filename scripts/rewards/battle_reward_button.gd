@@ -28,7 +28,7 @@ func set_rewards(reward_type: BattleRewards.RewardType, amount: int) -> void:
 			text = str(count) + " COINS"
 			tooltip.load_tooltips(COINS_TOOLTIP)
 		
-		BattleRewards.RewardType.ARTEFACT:
+		BattleRewards.RewardType.ARTIFACT:
 			artifact_reward = ArtifactHandler.get_random_artifact()
 			if not artifact_reward:
 				queue_free()
