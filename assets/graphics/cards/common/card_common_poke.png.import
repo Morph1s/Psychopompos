@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mb50x0mexevj"
-path="res://.godot/imported/card_blood_claw_v1.png-6f8620d8ec1536dd525d6e84fc6e2cd4.ctex"
+uid="uid://llr707e4p3fj"
+path="res://.godot/imported/card_common_poke.png-e2e114deaf93122844ba5a3e1becd146.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/cards/card_blood_claw_v1.png"
-dest_files=["res://.godot/imported/card_blood_claw_v1.png-6f8620d8ec1536dd525d6e84fc6e2cd4.ctex"]
+source_file="res://assets/graphics/cards/common/card_common_poke.png"
+dest_files=["res://.godot/imported/card_common_poke.png-e2e114deaf93122844ba5a3e1becd146.ctex"]
 
 [params]
 

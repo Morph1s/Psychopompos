@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_lasaj"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_5bf1g"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_cvos3"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_5bf1g"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="4_j10ey"]
+[ext_resource type="Texture2D" uid="uid://cjem3dpqo6dn8" path="res://assets/graphics/cards/common/card_common_swipe.png" id="4_wsurn"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="5_tq3bm"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_t5jlp"]
@@ -21,7 +21,7 @@ script = ExtResource("3_cvos3")
 card_name = "swipe"
 energy_cost = 1
 rarity = 1
-texture = ExtResource("4_5bf1g")
+texture = ExtResource("4_wsurn")
 on_play_action = Array[ExtResource("1_lasaj")]([SubResource("Resource_8ydu6")])
 on_graveyard_action = Array[ExtResource("1_lasaj")]([])
 targeted = false
