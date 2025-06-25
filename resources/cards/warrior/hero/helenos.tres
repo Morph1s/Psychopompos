@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_p0gs4"]
 [ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="3_ebqwm"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_mrqq0"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="5_52s3y"]
+[ext_resource type="Texture2D" uid="uid://c36bo0tc247hn" path="res://assets/graphics/cards/hero/card_hero_helenos.png" id="5_wl26v"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="7_gknr4"]
 [ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="8_ebqwm"]
 
@@ -29,7 +29,7 @@ script = ExtResource("2_p0gs4")
 card_name = "helenos"
 energy_cost = 1
 rarity = 2
-texture = ExtResource("5_52s3y")
+texture = ExtResource("5_wl26v")
 on_play_action = Array[ExtResource("1_c813r")]([SubResource("Resource_30gyi"), SubResource("Resource_y5ktv")])
 on_graveyard_action = Array[ExtResource("1_c813r")]([])
 targeted = true

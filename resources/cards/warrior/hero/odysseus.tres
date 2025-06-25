@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_6ntbw"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_uvpwg"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_cs4pc"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_mgj3t"]
+[ext_resource type="Texture2D" uid="uid://c4fb3mpmngx6f" path="res://assets/graphics/cards/hero/card_hero_odysseus.png" id="4_d3ugi"]
 [ext_resource type="Resource" uid="uid://6tmyyynxduew" path="res://resources/tooltips/effect_tooltips/phalanx_tooltip.tres" id="6_30ev2"]
 [ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="7_qju2a"]
 
@@ -30,7 +30,7 @@ script = ExtResource("2_uvpwg")
 card_name = "odysseus"
 energy_cost = 1
 rarity = 2
-texture = ExtResource("4_mgj3t")
+texture = ExtResource("4_d3ugi")
 on_play_action = Array[ExtResource("1_sen4b")]([SubResource("Resource_knot4"), SubResource("Resource_ts3iv")])
 on_graveyard_action = Array[ExtResource("1_sen4b")]([])
 targeted = false

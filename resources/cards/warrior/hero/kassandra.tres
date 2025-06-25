@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_wkh6x"]
 [ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="2_f4ea3"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_vqc4w"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_8tcyx"]
+[ext_resource type="Texture2D" uid="uid://caxgrovs64bbm" path="res://assets/graphics/cards/hero/card_hero_kassandra.png" id="4_wkh6x"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_hb4dy"]
 [ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/action_tooltips/discard_random_tooltip.tres" id="6_7sjlp"]
 [ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="7_mnsx6"]
@@ -28,7 +28,7 @@ script = ExtResource("3_vqc4w")
 card_name = "kasandra"
 energy_cost = 0
 rarity = 2
-texture = ExtResource("4_8tcyx")
+texture = ExtResource("4_wkh6x")
 on_play_action = Array[ExtResource("1_wkh6x")]([SubResource("Resource_budai"), SubResource("Resource_nl3qy")])
 on_graveyard_action = Array[ExtResource("1_wkh6x")]([])
 targeted = false

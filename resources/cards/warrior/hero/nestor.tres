@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="2_vxsc1"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_50kp2"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="4_ko634"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="5_bh0bu"]
+[ext_resource type="Texture2D" uid="uid://bnptnxny4gprn" path="res://assets/graphics/card_hero_nestor.png" id="5_1eyhx"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="6_lc23i"]
 [ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="7_08111"]
 [ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="8_v34uo"]
@@ -30,7 +30,7 @@ script = ExtResource("4_ko634")
 card_name = "nestor"
 energy_cost = 1
 rarity = 2
-texture = ExtResource("5_bh0bu")
+texture = ExtResource("5_1eyhx")
 on_play_action = Array[ExtResource("1_1eyhx")]([SubResource("Resource_mk383"), SubResource("Resource_e6yve")])
 on_graveyard_action = Array[ExtResource("1_1eyhx")]([])
 targeted = false
