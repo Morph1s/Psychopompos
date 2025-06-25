@@ -25,7 +25,7 @@ func set_max_hp(value: int) -> void:
 
 func set_block(value: int) -> void:
 	block_value = value
-	_set_hp_bar_boarder()
+	_set_hp_bar_border()
 	_update_display()
 
 func _update_display() -> void:
@@ -40,7 +40,7 @@ func _update_display() -> void:
 func set_entity_size(size: Vector2) -> void:
 	custom_minimum_size = size + Vector2(0, 8)
 
-func _set_hp_bar_boarder() -> void:
+func _set_hp_bar_border() -> void:
 	if block_value:
 		hp_bar.texture_over = ENTITY_DEFEND_BAR_OVER
 	else:
