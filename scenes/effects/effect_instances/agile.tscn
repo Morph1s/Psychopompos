@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_iig7d"]
 [ext_resource type="Script" uid="uid://7wb2ocmb1avg" path="res://scripts/effects/effect_instances/agile.gd" id="2_8el0s"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_3kcvr"]
-[ext_resource type="Resource" uid="uid://g1i01gxgwbvs" path="res://resources/tooltips/agile_tooltip.tres" id="3_w6wxh"]
+[ext_resource type="Resource" uid="uid://g1i01gxgwbvs" path="res://resources/tooltips/effect_tooltips/agile_tooltip.tres" id="3_w6wxh"]
+
 
 [sub_resource type="Gradient" id="Gradient_8el0s"]
 colors = PackedColorArray(0.224328, 0.382368, 0.331382, 1, 1, 1, 1, 1)

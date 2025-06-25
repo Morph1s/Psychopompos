@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_yxspx"]
 [ext_resource type="Script" uid="uid://4cbx8sqi3q46" path="res://scripts/effects/effect_instances/incapacitated.gd" id="2_uxbd3"]
-[ext_resource type="Resource" uid="uid://ckkhlxrxe0r6b" path="res://resources/tooltips/incapacitated_tooltip.tres" id="3_0rl4j"]
+[ext_resource type="Resource" uid="uid://ckkhlxrxe0r6b" path="res://resources/tooltips/effect_tooltips/incapacitated_tooltip.tres" id="3_0rl4j"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_whfib"]
+
 
 [sub_resource type="Gradient" id="Gradient_uxbd3"]
 colors = PackedColorArray(0.529412, 0, 0, 1, 0, 0, 0, 1)
