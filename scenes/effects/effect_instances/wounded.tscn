@@ -1,21 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bufjlhndnmfo8"]
+[gd_scene load_steps=6 format=3 uid="uid://bufjlhndnmfo8"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_7q00o"]
+[ext_resource type="Texture2D" uid="uid://cxlugukpoxy1r" path="res://assets/graphics/battle_effects/with_border/effect_wounded.png" id="2_0ect2"]
 [ext_resource type="Script" uid="uid://h1ag6uju78kb" path="res://scripts/effects/effect_instances/wounded.gd" id="2_q87uk"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_7wpxn"]
 [ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/effect_tooltips/wounded_tooltip.tres" id="3_qankt"]
 
-
-[sub_resource type="Gradient" id="Gradient_q87uk"]
-colors = PackedColorArray(0, 0, 0, 1, 1, 0, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qankt"]
-gradient = SubResource("Gradient_q87uk")
-width = 8
-height = 8
-
 [node name="Wounded" instance=ExtResource("1_7q00o")]
-texture = SubResource("GradientTexture2D_qankt")
+texture = ExtResource("2_0ect2")
 script = ExtResource("2_q87uk")
 effect_name = "Wounded"
 stackable = true

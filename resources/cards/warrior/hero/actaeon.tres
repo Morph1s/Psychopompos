@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://byu2u4d1mcdmo"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_1ydxg"]
+[ext_resource type="Texture2D" uid="uid://c0pulfg4u40ce" path="res://assets/graphics/battle_effects/borderless/effect_wounded_borderless.png" id="1_upcdq"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_qwl0f"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_sk7e7"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_tblvd"]
 [ext_resource type="Texture2D" uid="uid://dj3osv1bvjp06" path="res://assets/graphics/cards/hero/card_hero_actaeon.png" id="4_qwl0f"]
 [ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/effect_tooltips/wounded_tooltip.tres" id="6_bsegw"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rn2q2"]
-size = Vector2(8, 8)
 
 [sub_resource type="Resource" id="Resource_lcw76"]
 script = ExtResource("2_qwl0f")
@@ -26,7 +24,7 @@ texture = ExtResource("4_qwl0f")
 on_play_action = Array[ExtResource("1_1ydxg")]([SubResource("Resource_lcw76")])
 on_graveyard_action = Array[ExtResource("1_1ydxg")]([])
 targeted = true
-first_description_icon = SubResource("PlaceholderTexture2D_rn2q2")
+first_description_icon = ExtResource("1_upcdq")
 first_description_text = "3"
 second_description_text = ""
 tooltips = Array[ExtResource("3_tblvd")]([ExtResource("6_bsegw")])

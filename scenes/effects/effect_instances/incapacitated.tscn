@@ -1,24 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://d171h703ms8q0"]
+[gd_scene load_steps=6 format=3 uid="uid://d171h703ms8q0"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_yxspx"]
+[ext_resource type="Texture2D" uid="uid://krakw5xhotj7" path="res://assets/graphics/battle_effects/with_border/effect_incapacitated.png" id="2_2mw7b"]
 [ext_resource type="Script" uid="uid://4cbx8sqi3q46" path="res://scripts/effects/effect_instances/incapacitated.gd" id="2_uxbd3"]
 [ext_resource type="Resource" uid="uid://ckkhlxrxe0r6b" path="res://resources/tooltips/effect_tooltips/incapacitated_tooltip.tres" id="3_0rl4j"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_whfib"]
 
-
-[sub_resource type="Gradient" id="Gradient_uxbd3"]
-colors = PackedColorArray(0.529412, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0rl4j"]
-gradient = SubResource("Gradient_uxbd3")
-width = 8
-height = 8
-
 [node name="Incapacitated" instance=ExtResource("1_yxspx")]
-texture = SubResource("GradientTexture2D_0rl4j")
+texture = ExtResource("2_2mw7b")
 script = ExtResource("2_uxbd3")
 effect_name = "Incapacitated"
 stackable = true
 player_only = true
 tooltip_data = Array[ExtResource("3_whfib")]([ExtResource("3_0rl4j")])
-index = null

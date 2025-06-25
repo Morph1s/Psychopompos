@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://ds08lsotbv0uv"]
 
-[ext_resource type="Texture2D" uid="uid://cnl6j26iknhd4" path="res://assets/graphics/ui/hp_energy_bar/negative_energy_ball_hud.png" id="1_6upgw"]
+[ext_resource type="Texture2D" uid="uid://cnl6j26iknhd4" path="res://assets/graphics/hud/energy_balls/negative_energy_ball_hud.png" id="1_6upgw"]
 [ext_resource type="Script" uid="uid://clqj2oyall2sy" path="res://scripts/ui/hud_negative_energy_ball.gd" id="2_wb1rt"]
+
 
 [node name="HudNegativeEnergyBall" type="TextureRect"]
 custom_minimum_size = Vector2(6, 6)

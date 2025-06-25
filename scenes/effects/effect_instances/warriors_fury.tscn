@@ -1,21 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://luaay6v75g38"]
+[gd_scene load_steps=6 format=3 uid="uid://luaay6v75g38"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_54c0n"]
 [ext_resource type="Script" uid="uid://u74cl0wcnq6q" path="res://scripts/effects/effect_instances/warriors_fury.gd" id="2_xo0rj"]
+[ext_resource type="Texture2D" uid="uid://cfhg72srr6nwb" path="res://assets/graphics/battle_effects/with_border/effect_warriors_fury.png" id="2_y5x2s"]
 [ext_resource type="Resource" uid="uid://qo0nfo00b6vb" path="res://resources/tooltips/effect_tooltips/warriors_furry_tooltip.tres" id="3_0fs2j"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_lkon8"]
 
-
-[sub_resource type="Gradient" id="Gradient_xo0rj"]
-colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0fs2j"]
-gradient = SubResource("Gradient_xo0rj")
-width = 8
-height = 8
-
 [node name="WarriorsFury" instance=ExtResource("1_54c0n")]
-texture = SubResource("GradientTexture2D_0fs2j")
+texture = ExtResource("2_y5x2s")
 script = ExtResource("2_xo0rj")
 effect_name = "WarriorsFury"
 stackable = true

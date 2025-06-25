@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://c52ehu7orm4oy"]
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://c52ehu7orm4oy"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_1eyhx"]
 [ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="2_vxsc1"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_50kp2"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="4_ko634"]
-[ext_resource type="Texture2D" uid="uid://bnptnxny4gprn" path="res://assets/graphics/card_hero_nestor.png" id="5_1eyhx"]
+[ext_resource type="Texture2D" uid="uid://bnptnxny4gprn" path="res://assets/graphics/cards/hero/card_hero_nestor.png" id="5_1eyhx"]
+[ext_resource type="Texture2D" uid="uid://dtybxhbu703gj" path="res://assets/graphics/battle_effects/borderless/effect_gather_borderless.png" id="5_vxsc1"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="6_lc23i"]
 [ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="7_08111"]
 [ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="8_v34uo"]
@@ -36,7 +37,7 @@ on_graveyard_action = Array[ExtResource("1_1eyhx")]([])
 targeted = false
 first_description_icon = SubResource("PlaceholderTexture2D_lqnwt")
 first_description_text = "3"
-second_description_icon = SubResource("PlaceholderTexture2D_lqnwt")
+second_description_icon = ExtResource("5_vxsc1")
 second_description_text = "2"
 tooltips = Array[ExtResource("6_lc23i")]([ExtResource("7_08111"), ExtResource("8_v34uo")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

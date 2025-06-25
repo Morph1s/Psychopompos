@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://g1i01gxgwbvs"]
 
+[ext_resource type="Texture2D" uid="uid://cnrod70xm6tfy" path="res://assets/graphics/battle_effects/borderless/effect_agile_borderless.png" id="1_4sjxd"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_mtyvc"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_34tpb"]
-size = Vector2(8, 8)
 
 [resource]
 script = ExtResource("1_mtyvc")
-icon = SubResource("PlaceholderTexture2D_34tpb")
+icon = ExtResource("1_4sjxd")
 description = "AGILE: draw more cards"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

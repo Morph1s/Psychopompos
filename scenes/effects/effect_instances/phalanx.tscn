@@ -1,21 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0885qqemvpd0"]
+[gd_scene load_steps=6 format=3 uid="uid://d0885qqemvpd0"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_swcw1"]
+[ext_resource type="Texture2D" uid="uid://bk5bs7nbuabtp" path="res://assets/graphics/battle_effects/with_border/effect_phalanx.png" id="2_8rm82"]
 [ext_resource type="Script" uid="uid://c4n2m4uqy0na8" path="res://scripts/effects/effect_instances/phalanx.gd" id="2_r7xap"]
 [ext_resource type="Resource" uid="uid://6tmyyynxduew" path="res://resources/tooltips/effect_tooltips/phalanx_tooltip.tres" id="3_6ck0i"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_teo0j"]
 
-
-[sub_resource type="Gradient" id="Gradient_r7xap"]
-colors = PackedColorArray(0, 0, 1, 1, 0, 0.823529, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ck0i"]
-gradient = SubResource("Gradient_r7xap")
-width = 8
-height = 8
-
 [node name="Phalanx" instance=ExtResource("1_swcw1")]
-texture = SubResource("GradientTexture2D_6ck0i")
+texture = ExtResource("2_8rm82")
 script = ExtResource("2_r7xap")
 effect_name = "Phalanx"
 stackable = true

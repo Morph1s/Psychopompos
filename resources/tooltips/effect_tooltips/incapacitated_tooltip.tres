@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://ckkhlxrxe0r6b"]
 
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_5q1dt"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_34tpb"]
-size = Vector2(8, 8)
+[ext_resource type="Texture2D" uid="uid://boiyphw8p48tr" path="res://assets/graphics/battle_effects/borderless/effect_incapacitated_borderless.png" id="1_onhtv"]
 
 [resource]
 script = ExtResource("1_5q1dt")
-icon = SubResource("PlaceholderTexture2D_34tpb")
+icon = ExtResource("1_onhtv")
 description = "INCAPACITATED: draw less cards"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

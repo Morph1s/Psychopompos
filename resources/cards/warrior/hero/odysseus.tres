@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=11 format=3 uid="uid://c1utyurugrhyi"]
+[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://c1utyurugrhyi"]
 
+[ext_resource type="Texture2D" uid="uid://cfv4tjgc4ps2t" path="res://assets/graphics/battle_effects/borderless/effect_phalanx_borderless.png" id="1_8v5t5"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_sen4b"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_6ntbw"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_uvpwg"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_cs4pc"]
 [ext_resource type="Texture2D" uid="uid://c4fb3mpmngx6f" path="res://assets/graphics/cards/hero/card_hero_odysseus.png" id="4_d3ugi"]
+[ext_resource type="Texture2D" uid="uid://dtybxhbu703gj" path="res://assets/graphics/battle_effects/borderless/effect_gather_borderless.png" id="5_x3a30"]
 [ext_resource type="Resource" uid="uid://6tmyyynxduew" path="res://resources/tooltips/effect_tooltips/phalanx_tooltip.tres" id="6_30ev2"]
 [ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="7_qju2a"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_taprg"]
-size = Vector2(8, 8)
 
 [sub_resource type="Resource" id="Resource_knot4"]
 script = ExtResource("2_6ntbw")
@@ -34,9 +33,9 @@ texture = ExtResource("4_d3ugi")
 on_play_action = Array[ExtResource("1_sen4b")]([SubResource("Resource_knot4"), SubResource("Resource_ts3iv")])
 on_graveyard_action = Array[ExtResource("1_sen4b")]([])
 targeted = false
-first_description_icon = SubResource("PlaceholderTexture2D_taprg")
+first_description_icon = ExtResource("1_8v5t5")
 first_description_text = "2"
-second_description_icon = SubResource("PlaceholderTexture2D_taprg")
+second_description_icon = ExtResource("5_x3a30")
 second_description_text = "2"
 tooltips = Array[ExtResource("3_cs4pc")]([ExtResource("6_30ev2"), ExtResource("7_qju2a")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"
