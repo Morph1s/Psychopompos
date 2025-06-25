@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_nb3ep"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_pvuh7"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_ps0ax"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_8tqgj"]
+[ext_resource type="Texture2D" uid="uid://llr707e4p3fj" path="res://assets/graphics/cards/common/card_common_poke.png" id="4_nb3ep"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_2vo64"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="6_kpipf"]
 
@@ -21,7 +21,7 @@ script = ExtResource("3_ps0ax")
 card_name = "poke"
 energy_cost = 0
 rarity = 1
-texture = ExtResource("4_8tqgj")
+texture = ExtResource("4_nb3ep")
 on_play_action = Array[ExtResource("1_nb3ep")]([SubResource("Resource_koqij")])
 on_graveyard_action = Array[ExtResource("1_nb3ep")]([])
 targeted = true

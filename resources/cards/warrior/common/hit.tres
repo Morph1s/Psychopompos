@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=10 format=3 uid="uid://ch25cteno6qfm"]
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://ch25cteno6qfm"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_fkwoo"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_kdkt8"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_weh8t"]
+[ext_resource type="Texture2D" uid="uid://bbxj34xad1mvg" path="res://assets/graphics/cards/common/card_common_hit.png" id="4_66v8j"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="4_weh8t"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="5_70hq6"]
 
@@ -15,21 +16,12 @@ damage_stat = 5
 target_type = 1
 metadata/_custom_type_script = "uid://gsab2qn21okq"
 
-[sub_resource type="Gradient" id="Gradient_kdkt8"]
-colors = PackedColorArray(0.546409, 3.85046e-07, 2.40654e-07, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_weh8t"]
-gradient = SubResource("Gradient_kdkt8")
-width = 32
-height = 24
-fill_from = Vector2(0.0042735, 1)
-
 [resource]
 script = ExtResource("2_kdkt8")
 card_name = "hit"
 energy_cost = 1
 rarity = 0
-texture = SubResource("GradientTexture2D_weh8t")
+texture = ExtResource("4_66v8j")
 on_play_action = Array[ExtResource("1_fkwoo")]([SubResource("Resource_70hq6")])
 on_graveyard_action = Array[ExtResource("1_fkwoo")]([])
 targeted = true

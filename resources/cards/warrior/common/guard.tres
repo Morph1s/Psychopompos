@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=10 format=3 uid="uid://r53s3kohc8k0"]
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://r53s3kohc8k0"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_gmmty"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_4vhli"]
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="2_5nopr"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="4_5nopr"]
 [ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/action_tooltips/block_tooltip.tres" id="5_jcy5c"]
+[ext_resource type="Texture2D" uid="uid://bj1s8ov6drge2" path="res://assets/graphics/cards/common/card_common_guard.png" id="4_i4q88"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4vhli"]
 size = Vector2(8, 8)
@@ -15,21 +16,12 @@ block_stat = 4
 target_type = 0
 metadata/_custom_type_script = "uid://riw8fvdo6pdh"
 
-[sub_resource type="Gradient" id="Gradient_4vhli"]
-colors = PackedColorArray(0, 0, 1, 1, 0, 0.498039, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5nopr"]
-gradient = SubResource("Gradient_4vhli")
-width = 32
-height = 24
-fill_from = Vector2(0, 1)
-
 [resource]
 script = ExtResource("2_4vhli")
 card_name = "Guard"
 energy_cost = 1
 rarity = 0
-texture = SubResource("GradientTexture2D_5nopr")
+texture = ExtResource("4_i4q88")
 on_play_action = Array[ExtResource("1_gmmty")]([SubResource("Resource_jcy5c")])
 on_graveyard_action = Array[ExtResource("1_gmmty")]([])
 targeted = false

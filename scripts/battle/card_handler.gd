@@ -52,8 +52,12 @@ func initialize() -> void:
 
 #region card drawing and adding
 
-## draws "amount" cards from the drawpile to hand
+## draws "amount" cards from the drawpile
 func draw_cards(amount: int) -> void:
+	
+	# limit the amount of cards drawn to meet the maximum hand size
+	amount = clamp(amount, 0, MAX_HAND_SIZE - hand.size())
+	
 	for i in range(amount):
 		
 		# if the drawpile is empty, shuffle discard pile
@@ -66,9 +70,7 @@ func draw_cards(amount: int) -> void:
 		
 		# create a card
 		var front_card_card_type: CardType = draw_pile.pop_front()
-		var success: bool = add_card_to_hand(front_card_card_type)
-		if not success:
-			return
+		add_card_to_hand(front_card_card_type)
 		
 		# wait for hand to be updated
 		var timer = get_tree().create_timer(CARD_DRAW_SPEED)

@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_l15jk"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_xvp5t"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_xy00l"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_4clh2"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="4_lvs4i"]
 [ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="5_8vgpp"]
+[ext_resource type="Texture2D" uid="uid://c3ler4glwctyq" path="res://assets/graphics/cards/common/card_common_prepare.png" id="4_mjlr8"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xvp5t"]
 size = Vector2(8, 8)
@@ -22,7 +22,7 @@ script = ExtResource("2_xvp5t")
 card_name = "prepare"
 energy_cost = 1
 rarity = 1
-texture = ExtResource("4_4clh2")
+texture = ExtResource("4_mjlr8")
 on_play_action = Array[ExtResource("1_l15jk")]([SubResource("Resource_lvs4i")])
 on_graveyard_action = Array[ExtResource("1_l15jk")]([])
 targeted = false
