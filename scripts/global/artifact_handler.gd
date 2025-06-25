@@ -13,9 +13,6 @@ var available_artifacts: Array[Artifact] = [
 	preload("res://resources/artifacts/twig_of_lethe.tres"),
 ]
 var selected_artifacts: Array[Artifact] = []
-var encounter_changes: Dictionary = {
-	"CampfireHeal": 0
-}
 
 var effect_names: Dictionary = {
 	EffectAction.EffectType.AGILE: "Agile",
@@ -56,7 +53,7 @@ func select_artifact(artifact: Artifact) -> void:
 			0: # none
 				pass
 			1: # campfire heal
-				encounter_changes["CampfireHeal"] = artifact.amount
+				RunData.altered_values[RunData.AlteredValue.CAMPFIRE_HEAL] += artifact.amount
 
 func _on_event_bus_battle_started() -> void:
 	var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler
