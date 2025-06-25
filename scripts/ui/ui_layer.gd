@@ -49,7 +49,7 @@ func _on_event_bus_battle_ended() -> void:
 			print(" ")
 			print("AAAAAAhhhhhhhhhhhhhhhh!!!")
 			break
-	map.current_encounter.completed = true
+	map.current_node.encounter.completed = true
 	map.unlock_next_encounters()
 	map.current_layer += 1
 
@@ -94,7 +94,7 @@ func _close_deck_view():
 		battle_ui_reference.show()
 
 func _on_eventbus_campfire_finished():
-	map.current_encounter.completed = true
+	map.current_node.encounter.completed = true
 	map.unlock_next_encounters()
 	map.current_layer += 1
 	map.can_close = false

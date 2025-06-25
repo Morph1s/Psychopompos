@@ -8,5 +8,7 @@ enum MapLayerType {
 	BOSS,
 	}
 
+# TODO: remove @export before push
 @export var type: MapLayerType
-@export var encounters: Array[Encounter]
+@export var nodes: Array[MapNode]
+@export var layer_index: int

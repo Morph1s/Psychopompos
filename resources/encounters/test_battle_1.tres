@@ -8,6 +8,4 @@
 script = ExtResource("3_l043w")
 enemies = Array[ExtResource("2_nrcq2")]([ExtResource("2_l043w")])
 difficulty = 0
-completed = false
-position = Vector2(0, 0)
 metadata/_custom_type_script = "uid://dcebhtlbetxd1"

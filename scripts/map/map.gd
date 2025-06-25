@@ -7,8 +7,9 @@ signal encounter_selected(encounter_data)
 @onready var map_layer_container = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
 
-var encounter_to_button: Dictionary = {}
-var current_encounter: Encounter
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var node_to_button: Dictionary = {}
+var current_node: MapNode
 var current_layer = 0
 var can_close: bool = false:
 	set(value):
@@ -34,24 +35,37 @@ func load_layers(map_layers):
 		layer_container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		map_layer_container.add_child(layer_container)
 		
-		for encounter: Encounter in layer.encounters:
+		for node: MapNode in layer.nodes:
+			if not node.active:
+				continue
+			
+			var button_container = MarginContainer.new()
+			button_container.add_theme_constant_override("margin_left", rng.randi_range(0, 8))
+			button_container.add_theme_constant_override("margin_right", rng.randi_range(0, 8))
+			
 			var button = Button.new()
+			button.flat = true
 			# starting layer buttons should be enabled by default
 			if layer.type != MapLayer.MapLayerType.START:
 				button.disabled = true
-			button.icon = encounter.icon
-			button.pressed.connect(func(): _on_encounter_pressed(encounter))
-			layer_container.add_child(button)
-			encounter_to_button[encounter] = button
+			
+			if node.encounter != null:
+				button.icon = node.encounter.icon
+				button.pressed.connect(func(): _on_encounter_pressed(node))
+			
+			button_container.add_child(button)
+			
+			layer_container.add_child(button_container)
+			node_to_button[node] = button
 	
-	# fill the encounter_to_button Dictionary
-	connection_drawer.set_connections(encounter_to_button)
+	# fill the node_to_button Dictionary
+	connection_drawer.set_connections(node_to_button)
 
 func lock_layer():
 	for button: Button in map_layer_container.get_child(current_layer).get_children():
-		var encounter = encounter_to_button.find_key(button)
+		var node: MapNode = node_to_button.find_key(button)
 		button.disabled = true
-		if encounter == current_encounter:
+		if node == current_node:
 			button.modulate = Color(0.3, 0.3, 0.4)
 
 func unlock_next_encounters():
@@ -59,13 +73,13 @@ func unlock_next_encounters():
 		return
 	
 	for button in map_layer_container.get_child(current_layer + 1).get_children():
-		var encounter = encounter_to_button.find_key(button)
-		button.disabled = not current_encounter.connections_to.has(encounter)
+		var node: MapNode = node_to_button.find_key(button)
+		button.disabled = not current_node.next_nodes.has(node)
 		# change the appearance of already visited or the current encounter
-		if encounter == current_encounter:
+		if node == current_node:
 			button.modulate = Color(0.3, 0.3, 0.4)
 			button.disabled = true
-		elif encounter.completed:
+		elif node.encounter.completed:
 			button.modulate = Color(0.5, 0.5, 0.5)
 			button.disabled = true
 		else:
@@ -77,11 +91,11 @@ func close_map() -> bool:
 		return true
 	return false
 
-func _on_encounter_pressed(encounter: Encounter):
+func _on_encounter_pressed(node: MapNode):
 	hide()
 	can_close = true
-	encounter_selected.emit(encounter)
-	current_encounter = encounter
+	encounter_selected.emit(node.encounter)
+	current_node = node
 	lock_layer()
 
 func _on_exit_button_pressed():
