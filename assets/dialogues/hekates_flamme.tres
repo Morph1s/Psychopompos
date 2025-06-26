@@ -1,0 +1,72 @@
+[gd_resource type="JSON" format=3 uid="uid://cx5e7db72anea"]
+
+[resource]
+data = {
+"dialogue": {
+"block1": {
+"answers": {
+"answer1": {
+"action": [["hp", "-20"]],
+"next": [2.0],
+"text": "I chose vitality (lose 20 hp)"
+},
+"answer2": {
+"action": [["max hp", "-10"]],
+"next": [3.0],
+"text": "I chosse power (lose 10 maxhp)"
+},
+"answer3": {
+"action": [],
+"next": [4.0],
+"text": "I refuse to choose"
+}
+},
+"id": 1.0,
+"text": "As you walk through the underworld, you come to an oppening. A littel shrine of hekate goddess of crossroads stands bevore you. On the alter are two daggers, one black and the other blue, and a bronze brazier with green flammes dancing within in. A ghostly voice arises: \"I give you a choice, wary traveler. Pay the prize and claim your spoil...\" "
+},
+"block2": {
+"answers": {
+"answer1": {
+"action": [["max hp", "+15"]],
+"next": [5.0],
+"text": "I feel... healthier! (+15 maxHP)"
+}
+},
+"id": 2.0,
+"text": "You take the blue dagger and cut the inlay of youre ghostly hand. Somthing of your soul-essence leaves your body as littel drops of gold and blood fall in to the flames of the brazier. The flammes flare up in a blue color and warm feeling incompases you."
+},
+"block3": {
+"answers": {
+"answer1": {
+"action": [["random relic", "1"]],
+"next": [5.0],
+"text": "I hope this was worth it. (gain a random relic)"
+}
+},
+"id": 3.0,
+"text": "you take the black dagger and cut a hole in your chest. You reach with youre Hand inside an give a good portion of youre essenz as an clump of blood an gold into the brazier. The flammes flare up in an ghostly black hue and vanish, leaving a gift behind..."
+},
+"block4": {
+"answers": {
+"answer1": {
+"action": [["hp", "+10"]],
+"next": [5.0],
+"text": "Thank you. (heal 10 hp)"
+}
+},
+"id": 4.0,
+"text": " \" Even a choice not taken is a choice in itself. Dont worry i intent no harm. You may rest here for while\" "
+},
+"block5": {
+"answers": {
+"answer1": {
+"action": [],
+"next": [],
+"text": "..."
+}
+},
+"id": 5.0,
+"text": "After recovering you take youre leve"
+}
+}
+}

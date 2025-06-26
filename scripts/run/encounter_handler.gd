@@ -26,6 +26,12 @@ func start_encounter(encounter_data: Encounter):
 			add_child(battle_scene)
 			battle_scene.initialize(encounter_data)
 			current_encounter = battle_scene
+		Encounter.EncounterType.DIALOGUE:
+			var dialogue_encounter = preload("res://scenes/encounters/dialogue_encounter.tscn").instantiate()
+			
+			add_child(dialogue_encounter)
+			#dialogue_encounter.initialize(encounter_data)
+			current_encounter = dialogue_encounter
 		_:
 			print("Encounter type not implemented: ", encounter_data)
 

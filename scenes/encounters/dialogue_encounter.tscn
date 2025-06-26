@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://b473gmn7a3x5s"]
+
+[ext_resource type="Texture2D" uid="uid://dgaagv3k6cqil" path="res://assets/graphics/background/placeholder_canvas1.png" id="1_k1m5n"]
+[ext_resource type="Script" uid="uid://dssy6dc5ekwbk" path="res://scripts/encounters/dialogue_encounter.gd" id="1_werxo"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_q3wbl"]
+[ext_resource type="Script" uid="uid://rntvy6nvin1p" path="res://scripts/encounters/dialogue_ui.gd" id="2_wwx75"]
+
+[node name="DialogueEncounter" type="Node2D"]
+script = ExtResource("1_werxo")
+
+[node name="PlaceholderCanvas1" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_k1m5n")
+
+[node name="DialogueUI" type="Control" parent="PlaceholderCanvas1"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -320.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_q3wbl")
+script = ExtResource("2_wwx75")
+
+[node name="DialogueTextBox" type="RichTextLabel" parent="PlaceholderCanvas1/DialogueUI"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+offset_right = 500.0
+offset_bottom = 40.0
+theme_override_font_sizes/normal_font_size = 12
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus lacus elementum eleifend condimentum. Mauris venenatis, risus id tempor pharetra, ligula sapien sodales est, at cursus magna quam pellentesque diam. Integer pulvinar dolor leo, sit amet auctor sapien aliquam vel. Proin ultricies libero in nisi sollicitudin, in tristique augue posuere. Quisque tortor turpis, sodales sed sem et, semper scelerisque nunc. Proin nibh risus, mollis vitae varius ut, varius ac mi. Mauris eget porta lacus, vehicula tempor dolor. Maecenas vehicula sed ex vitae blandit. Cras mauris nisi, sollicitudin pharetra sem eu, blandit volutpat sapien. Nullam id lectus in nibh eleifend consequat in a erat. Cras mollis ultricies urna, non hendrerit dui volutpat et. Fusce in tincidunt tellus, at pretium lacus. Maecenas commodo dapibus orci, et condimentum libero pretium non. Suspendisse efficitur enim ut purus congue commodo. Nunc ac tincidunt diam. In accumsan risus id ligula fermentum aliquet.
+
+Praesent porta, nunc vitae mattis pretium, tellus metus feugiat dolor, id tempor nisi purus ac turpis. Nam elit ipsum, semper vitae pretium eget, bibendum vitae risus. Quisque in sodales dolor. Mauris mollis pellentesque posuere. Praesent laoreet imperdiet libero, vitae imperdiet ligula cursus nec. Donec a ultrices est. Quisque pulvinar vitae arcu ut consequat.
+
+Fusce eu est sapien. Morbi consequat nibh a est varius dapibus. Morbi nibh ipsum, malesuada sit amet sem in, sagittis consequat nibh. In lorem nisi, venenatis sed elit et, viverra venenatis lectus. Donec a commodo est, eu viverra turpis. Donec vestibulum et purus in iaculis. Nunc feugiat est quis porta elementum. Sed convallis vestibulum ligula et tincidunt. Ut in lectus eget dolor finibus ultricies. Etiam in luctus magna. Suspendisse feugiat in ante non lacinia. Morbi ligula tortor, lobortis eget accumsan vitae, suscipit vel ante. Aenean eget euismod quam. Nulla sed enim vel elit molestie porttitor a eu justo.
+
+Suspendisse ut magna eu ante gravida varius. Suspendisse consectetur, quam sed lacinia suscipit, massa libero porttitor turpis, a scelerisque velit risus sit amet ligula. Vestibulum sodales, nisi et elementum efficitur, lorem enim suscipit risus, ut sodales ante odio et ante. Sed rhoncus nulla odio, a consequat magna vehicula non. Ut in ante consequat, congue nisi in, scelerisque dolor. Vestibulum quis massa magna. Suspendisse potenti. Nullam id erat quis nisi feugiat suscipit eu auctor erat. Suspendisse nulla tellus, lobortis at viverra a, vulputate id lectus. Nunc eu malesuada velit.
+
+Vestibulum id tellus cursus, lacinia enim ut, consequat dolor. Fusce tempor arcu felis, at eleifend libero malesuada at. Nulla et urna mauris. Mauris rhoncus rutrum tortor, eget tincidunt orci dictum sed. Donec id mauris non risus faucibus congue in sit amet purus. Donec posuere leo at sapien tristique dictum. Maecenas id odio sed dui blandit venenatis ac vel est. Curabitur hendrerit vehicula nulla eu bibendum. Duis volutpat nisi vitae ipsum molestie aliquet. Pellentesque ac bibendum lorem, quis iaculis nulla. Aliquam posuere eleifend nisl ut rutrum. Integer imperdiet lorem et sollicitudin interdum. Integer eleifend felis ac elit semper, ut mattis enim blandit. Maecenas ipsum magna, mattis sodales cursus sed, mattis sit amet nunc. Vivamus eget accumsan neque. "
+
+[node name="AnswerChoices" type="VBoxContainer" parent="PlaceholderCanvas1/DialogueUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -90.0
+offset_right = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TestButton" type="Button" parent="PlaceholderCanvas1/DialogueUI/AnswerChoices"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Next..."
+
+[connection signal="an_action_occured" from="PlaceholderCanvas1/DialogueUI" to="." method="_on_dialogue_ui_an_action_occured"]
+[connection signal="end_dialogue" from="PlaceholderCanvas1/DialogueUI" to="." method="_on_dialogue_ui_end_dialogue"]
+[connection signal="button_up" from="PlaceholderCanvas1/DialogueUI/AnswerChoices/TestButton" to="PlaceholderCanvas1/DialogueUI" method="_on_test_button_button_up"]
