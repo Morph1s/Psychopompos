@@ -24,7 +24,7 @@ func set_initial_values(max_hp_value: int, current_hp_value: int, block_value: i
 	hp_bar.max_value = max_hp_value
 	current_hp = current_hp_value
 	hp_bar.value = current_hp_value
-	block_value = block_value
+	current_block = block_value
 	_update_display()
 
 func set_current_hp(value: int) -> void:
