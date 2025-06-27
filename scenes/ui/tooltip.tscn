@@ -21,3 +21,4 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+theme_override_constants/separation = 2
