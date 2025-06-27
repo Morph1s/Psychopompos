@@ -37,7 +37,9 @@ func initialize(entity: Node2D, amount: int) -> void:
 	
 	effect_owner = entity
 	add_stacks(amount)
-	tooltip.load_tooltips(tooltip_data)
+	await tooltip.load_tooltips(tooltip_data)
+	
+	tooltip.position.x -= max(0, self.global_position.x + tooltip.box_size.x - 316.0)
 
 ## removes the effect completely
 func remove() -> void:

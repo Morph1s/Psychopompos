@@ -26,6 +26,7 @@ const PLAYED_HEIGHT: int = 142
 @onready var card_shape: CollisionShape2D = $CardShape
 @onready var description: Node2D = $Description
 @onready var action_timer: Timer = $ActionTimer
+@onready var tooltip = $Tooltip
 
 ## all data about the kind of card this is and its visuals and effects
 var card_type: CardType
@@ -77,7 +78,9 @@ func initialize(card: CardType) -> void:
 			card_name.add_theme_color_override("font_color", Color.BLACK)
 			# load god boon frame here
 			card_frame.texture = load("res://assets/graphics/cards/hero/template_hero_card.png")
-
+	
+	await tooltip.load_tooltips(card_type.tooltips)
+	relocate_tooltip()
 
 ## function for CardHandler to handle card-state
 func highlight(mode: HighlightMode):
@@ -147,6 +150,10 @@ func play(target_id: int = -1) -> void:
 	if played_attack:
 		EventBusHandler.player_played_attack.emit()
 
+func relocate_tooltip() -> void:
+	tooltip.position.y = -32.0 - tooltip.box_size.y 
+	var tooltip_x_offset: float = max(0, self.global_position.x + tooltip.box_size.x - 338.0)
+	tooltip.position.x = -22 - tooltip_x_offset
 
 #region local functions
 

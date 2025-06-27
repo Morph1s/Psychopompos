@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://omtvob7lkl85"]
+[gd_scene load_steps=15 format=3 uid="uid://omtvob7lkl85"]
 
 [ext_resource type="Script" uid="uid://bpc17ymc5fvvv" path="res://scripts/card/card.gd" id="1_imta7"]
 [ext_resource type="Texture2D" uid="uid://7kvuwx2mgdce" path="res://assets/graphics/cards/card_highlight_hovered.png" id="2_kaf1t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dk4hslwqddrac" path="res://assets/graphics/cards/card_highlight_selected.png" id="4_b2sko"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="4_g65cd"]
 [ext_resource type="Texture2D" uid="uid://xrg1u7888w1q" path="res://assets/graphics/cards/common/template_common_card.png" id="5_kaf1t"]
+[ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="7_ri62e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kaf1t"]
 atlas = ExtResource("2_kaf1t")
@@ -102,6 +103,13 @@ position = Vector2(-13, 10)
 [node name="ActionTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="Tooltip" parent="." instance=ExtResource("7_ri62e")]
+visible = false
+offset_left = -20.0
+offset_top = -32.0
+offset_right = -20.0
+offset_bottom = -32.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

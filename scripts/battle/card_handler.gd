@@ -165,10 +165,11 @@ func _play_card(card: Card) -> void:
 
 # used to animate the cards to their respective position
 func _update_hand_positions() -> void:
-	var tween = get_tree().create_tween()
-	tween.set_parallel(true)
 	for i in hand.size():
+		var tween: Tween = get_tree().create_tween()
+		tween.set_parallel(false)
 		tween.tween_property(hand[i], "position", _calculate_card_position(i, hand.size()), CARD_DRAW_SPEED)
+		tween.tween_callback(hand[i].relocate_tooltip)
 
 func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 	hand[index].index = index
@@ -285,12 +286,10 @@ func _deselect_selected_card() -> void:
 	_set_mouse_cursor()
 
 func _set_tooltips() -> void:
+	for card in hand:
+		card.tooltip.hide()
 	if highlighted_card:
-		EventBusHandler.show_tooltips.emit(highlighted_card.card_type.tooltips)
-	elif selected_card:
-		EventBusHandler.show_tooltips.emit(selected_card.card_type.tooltips)
-	else:
-		EventBusHandler.hide_tooltips.emit()
+		highlighted_card.tooltip.show()
 
 func _set_player_control(controlable: bool) -> void:
 	for card in hand:
