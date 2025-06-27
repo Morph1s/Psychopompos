@@ -1,20 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://deaandfrgv8xp"]
+[gd_scene load_steps=6 format=3 uid="uid://deaandfrgv8xp"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_fejqu"]
+[ext_resource type="Texture2D" uid="uid://cujevvo6fssso" path="res://assets/graphics/battle_effects/with_border/effect_vigilant.png" id="2_5ps5w"]
 [ext_resource type="Script" uid="uid://ctuwaqpbv4d4o" path="res://scripts/effects/effect_instances/vigilant.gd" id="2_yu7aa"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_r6dus"]
-[ext_resource type="Resource" uid="uid://c4sumg4eugky1" path="res://resources/tooltips/vigilant_tooltip.tres" id="3_yu7aa"]
-
-[sub_resource type="Gradient" id="Gradient_fejqu"]
-colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yu7aa"]
-gradient = SubResource("Gradient_fejqu")
-width = 8
-height = 8
+[ext_resource type="Resource" uid="uid://c4sumg4eugky1" path="res://resources/tooltips/effect_tooltips/vigilant_tooltip.tres" id="3_yu7aa"]
 
 [node name="Vigilant" instance=ExtResource("1_fejqu")]
-texture = SubResource("GradientTexture2D_yu7aa")
+texture = ExtResource("2_5ps5w")
 script = ExtResource("2_yu7aa")
 effect_name = "Vigilant"
 stackable = true

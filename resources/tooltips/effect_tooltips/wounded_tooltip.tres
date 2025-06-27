@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://b1tf05u3cmtb2"]
+
+[ext_resource type="Texture2D" uid="uid://c0pulfg4u40ce" path="res://assets/graphics/battle_effects/borderless/effect_wounded_borderless.png" id="1_8uvvt"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_avkjq"]
+
+[resource]
+script = ExtResource("1_avkjq")
+icon = ExtResource("1_8uvvt")
+description = "WOUNDED: take damage when being attacked"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

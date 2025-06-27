@@ -32,8 +32,8 @@ func changed_stacks(previous, current):
 
 ## this function is called at the start of the entities turn 
 func start_of_turn():
-	pass
+	remove_stacks(1)
 
 ## this function is called ath the end of the entities turn s
 func end_of_turn():
-	remove_stacks(1)
+	pass

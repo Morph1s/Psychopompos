@@ -3,33 +3,28 @@ extends Node2D
 signal increment_pressed
 signal decrement_pressed
 
-const INCREMENT_SPRITE = preload("res://assets/graphics/ui/hud_pictograms/small_arrow_down.png")
-const INCREMENT_SPRITE_HIGHLIGHTED = preload("res://assets/graphics/ui/hud_pictograms/small_arrow_down_highlighted.png")
-const DECREMENT_SPRITE = preload("res://assets/graphics/ui/hud_pictograms/small_arrow_up.png")
-const DECREMENT_SPRITE_HIGHLIGHTED = preload("res://assets/graphics/ui/hud_pictograms/small_arrow_up_highlighted.png")
+const INCREMENT_SPRITE = preload("res://assets/graphics/hud/pictograms/small_arrow_down.png")
+const INCREMENT_SPRITE_HIGHLIGHTED = preload("res://assets/graphics/hud/pictograms/small_arrow_down_highlighted.png")
+const DECREMENT_SPRITE = preload("res://assets/graphics/hud/pictograms/small_arrow_up.png")
+const DECREMENT_SPRITE_HIGHLIGHTED = preload("res://assets/graphics/hud/pictograms/small_arrow_up_highlighted.png")
 
 @onready var increment_area = $IncrementArea
 @onready var decrement_area = $DecrementArea
 @onready var increment_sprite = $IncrementArea/IncrementSprite
 @onready var decrement_sprite = $DecrementArea/DecrementSprite
 
-#var increment_sprite_position: Vector2 = Vector2(0, 0)
-#var increment_sprite_position_highlighted: Vector2 = Vector2(0, 0)
-#var decrement_sprite_position: Vector2 = Vector2(0, 0)
-#var decrement_sprite_position_highlighted: Vector2 = Vector2(0, 0)
-
 
 func set_bottom_button_position(effects_bottom_boundary: int) -> void:
 	increment_area.position = Vector2(4, effects_bottom_boundary + 3)
 
-func set_increment_button_visibility(visible: bool) -> void:
-	if visible:
+func set_increment_button_visibility(visibility: bool) -> void:
+	if visibility:
 		increment_area.show()
 	else:
 		increment_area.hide()
 
-func set_decrement_button_visibility(visible: bool) -> void:
-	if visible:
+func set_decrement_button_visibility(visibility: bool) -> void:
+	if visibility:
 		decrement_area.show()
 	else:
 		decrement_area.hide()

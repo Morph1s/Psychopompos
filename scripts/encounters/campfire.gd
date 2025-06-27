@@ -1,6 +1,8 @@
 class_name Campfire
 extends Node2D
 
+const HEAL_VALUE: float = 0.3
+
 @onready var heal_button: Button = $HealButton
 @onready var remove_card: Button = $RemoveCardButton
 @onready var continue_button: Button = $ContinueButton
@@ -22,7 +24,9 @@ func remove_card_from_deck(card: CardType):
 	_finish_campfire()
 
 func heal():
-	RunData.player_stats.current_hitpoints += RunData.player_stats.maximum_hitpoints * 0.3
+	var health_healed: int = RunData.player_stats.maximum_hitpoints * HEAL_VALUE
+	health_healed += RunData.altered_values[RunData.AlteredValue.CAMPFIRE_HEAL]
+	RunData.player_stats.current_hitpoints += health_healed
 	_finish_campfire()
 
 func _finish_campfire():

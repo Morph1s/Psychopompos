@@ -1,20 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://csqftmwral1gc"]
+[gd_scene load_steps=6 format=3 uid="uid://csqftmwral1gc"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_iig7d"]
+[ext_resource type="Texture2D" uid="uid://81bdlji5n6uw" path="res://assets/graphics/battle_effects/with_border/effect_agile.png" id="2_5alv2"]
 [ext_resource type="Script" uid="uid://7wb2ocmb1avg" path="res://scripts/effects/effect_instances/agile.gd" id="2_8el0s"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_3kcvr"]
-[ext_resource type="Resource" uid="uid://g1i01gxgwbvs" path="res://resources/tooltips/agile_tooltip.tres" id="3_w6wxh"]
-
-[sub_resource type="Gradient" id="Gradient_8el0s"]
-colors = PackedColorArray(0.224328, 0.382368, 0.331382, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_w6wxh"]
-gradient = SubResource("Gradient_8el0s")
-width = 8
-height = 8
+[ext_resource type="Resource" uid="uid://g1i01gxgwbvs" path="res://resources/tooltips/effect_tooltips/agile_tooltip.tres" id="3_w6wxh"]
 
 [node name="Agile" instance=ExtResource("1_iig7d")]
-texture = SubResource("GradientTexture2D_w6wxh")
+texture = ExtResource("2_5alv2")
 script = ExtResource("2_8el0s")
 effect_name = "Agile"
 stackable = true

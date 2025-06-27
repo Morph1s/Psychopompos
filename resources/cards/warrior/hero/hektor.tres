@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_7w4nw"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_8o7b6"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_kipiy"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_jxi6l"]
-[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="6_b8hhb"]
+[ext_resource type="Texture2D" uid="uid://ccs4kelfv7buv" path="res://assets/graphics/cards/hero/card_hero_hector.png" id="4_2rgxa"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="6_b8hhb"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1mbk"]
 size = Vector2(8, 8)
@@ -21,7 +21,7 @@ script = ExtResource("2_7w4nw")
 card_name = "hektor"
 energy_cost = 2
 rarity = 2
-texture = ExtResource("4_jxi6l")
+texture = ExtResource("4_2rgxa")
 on_play_action = Array[ExtResource("1_81vne")]([SubResource("Resource_geweb")])
 on_graveyard_action = Array[ExtResource("1_81vne")]([])
 targeted = true

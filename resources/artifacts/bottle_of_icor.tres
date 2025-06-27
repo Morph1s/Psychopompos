@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=5 format=3 uid="uid://cn6t724q8esk8"]
+
+[ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_k0v7g"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_gb45q"]
+[ext_resource type="Resource" uid="uid://bvvmva13cfoxb" path="res://resources/tooltips/artifact_tooltips/bottle_of_icor_tooltip.tres" id="3_gb45q"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k0v7g"]
+size = Vector2(16, 16)
+
+[resource]
+script = ExtResource("1_k0v7g")
+name = "BOTTLE OF ICOR"
+texture = SubResource("PlaceholderTexture2D_k0v7g")
+amount = 1
+tooltip = Array[ExtResource("2_gb45q")]([ExtResource("3_gb45q")])
+effects_active = false
+effect = 0
+pickup_active = true
+pickup_effect = 2
+changes_active = false
+changed_value = 0
+metadata/_custom_type_script = "uid://booqawgjhy2ac"

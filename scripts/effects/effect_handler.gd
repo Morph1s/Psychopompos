@@ -1,8 +1,8 @@
 class_name EffectHandler
 extends Node2D
 
-const EFFECT_ICON_DISTANCE: int = 2
-const EFFECT_ICON_HEIGHT: int = 8
+const EFFECT_ICON_DISTANCE: int = 1
+const EFFECT_ICON_HEIGHT: int = 10
 
 @onready var effect_collection = $EffectCollection
 @onready var buttons = $Buttons

@@ -1,20 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy73ay50hm4o6"]
+[gd_scene load_steps=6 format=3 uid="uid://cy73ay50hm4o6"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_s45oi"]
 [ext_resource type="Script" uid="uid://bqikfo08wq7tx" path="res://scripts/effects/effect_instances/damokles_sword.gd" id="2_8tdnq"]
+[ext_resource type="Texture2D" uid="uid://d3o7n0gpg738q" path="res://assets/graphics/battle_effects/with_border/effect_damokles_sword.png" id="2_m683e"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_8t5fw"]
-[ext_resource type="Resource" uid="uid://bcq8tonghl4h6" path="res://resources/tooltips/damokles_sword_tooltip.tres" id="3_8tdnq"]
-
-[sub_resource type="Gradient" id="Gradient_s45oi"]
-colors = PackedColorArray(1, 1, 0, 1, 1, 1, 0.517647, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8tdnq"]
-gradient = SubResource("Gradient_s45oi")
-width = 8
-height = 8
+[ext_resource type="Resource" uid="uid://bcq8tonghl4h6" path="res://resources/tooltips/effect_tooltips/damokles_sword_tooltip.tres" id="3_8tdnq"]
 
 [node name="DamoklesSword" instance=ExtResource("1_s45oi")]
-texture = SubResource("GradientTexture2D_8tdnq")
+texture = ExtResource("2_m683e")
 script = ExtResource("2_8tdnq")
 effect_name = "DamoklesSword"
 stackable = true
