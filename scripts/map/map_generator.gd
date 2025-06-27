@@ -1,10 +1,11 @@
 class_name MapGenerator
 extends Node
 
-const MAX_NUM_NODES_PER_LAYER = 6
+const MAX_NUM_NODES_PER_LAYER = 5
 const NUM_LAYERS_BEFORE_MINI_BOSS = 4		# excluding starting layer
 const NUM_LAYERS_AFTER_MINI_BOSS = 5
 const NUM_GENERATED_PATHS = 6				# CANNOT BE SMALLER THAN 2! - number of iterations of the path generation
+const MAX_OVERLAPPING_NODES_IN_PATHS = 2
 
 var rng = RandomNumberGenerator.new()
 var map: Array[MapLayer] = []
@@ -12,7 +13,7 @@ var paths: Array[MapPath] = []
 
 ### NEW ALGORITHM ###
 func generate_map() -> Array[MapLayer]:
-	#rng.seed = 26082002
+	#rng.seed = 42
 	build_map_layers()
 	generate_map_paths()
 	hide_excluded_nodes()
@@ -91,7 +92,6 @@ func _generate_first_path():
 		if layer.type == MapLayer.MapLayerType.MINI_BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
-			previous_index = rng.randi_range(0, MAX_NUM_NODES_PER_LAYER / 2)
 			continue
 		
 		var min_index: int = max(0, previous_index - 1)
@@ -107,7 +107,6 @@ func _generate_first_path():
 func _generate_second_path():
 	var path: MapPath = MapPath.new()
 	var previous_index: int
-	var layer_index: int = 0
 	
 	for layer: MapLayer in map:
 		# when reaching the boss layer, break
@@ -123,15 +122,12 @@ func _generate_second_path():
 			var node: MapNode = nodes[rng.randi_range(first_path_first_node_index + 1, nodes.size() - 1)]
 			path.nodes.append(node)
 			previous_index = layer.nodes.find(node)
-			layer_index += 1
 			continue
 		
 		# for mini boss layer, choose the only encounter in layer.nodes
 		if layer.type == MapLayer.MapLayerType.MINI_BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
-			previous_index = rng.randi_range((MAX_NUM_NODES_PER_LAYER / 2) + 1, MAX_NUM_NODES_PER_LAYER - 1)
-			layer_index += 1
 			continue
 		
 		var min_index: int = max(_get_min_index_for_second_path(map.find(layer)), previous_index - 1)
@@ -140,8 +136,6 @@ func _generate_second_path():
 		var node: MapNode = layer.nodes[rng.randi_range(min_index, max_index)]
 		path.nodes.append(node)
 		previous_index = layer.nodes.find(node)
-		
-		layer_index += 1
 	
 	paths.append(path)
 	_add_connections_from_path(path)
@@ -156,7 +150,6 @@ func _get_min_index_for_second_path(layer_index: int) -> int:
 func _generate_single_path():
 	var path: MapPath = MapPath.new()
 	var previous_index: int
-	var layer_index: int
 	
 	for layer: MapLayer in map:
 		# when reaching the boss layer, break
@@ -167,8 +160,7 @@ func _generate_single_path():
 		
 		# for starting layer just choose a random node
 		if layer.type == MapLayer.MapLayerType.START:
-			var nodes: Array[MapNode] = layer.nodes.duplicate()
-			var node: MapNode = nodes[rng.randi_range(0, nodes.size() - 1)]
+			var node: MapNode = layer.nodes[rng.randi_range(0, layer.nodes.size() - 1)]
 			path.nodes.append(node)
 			previous_index = layer.nodes.find(node)
 			continue
@@ -177,11 +169,14 @@ func _generate_single_path():
 		if layer.type == MapLayer.MapLayerType.MINI_BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
-			previous_index = rng.randi_range(0, MAX_NUM_NODES_PER_LAYER - 1)
 			continue
 		
 		var min_index: int = max(_get_min_node_index(map.find(layer), previous_index), previous_index - 1)
 		var max_index: int = min(previous_index + 1, _get_max_node_index(map.find(layer), previous_index))
+		
+		var available_nodes: Array[MapNode] = layer.nodes.slice(min_index, max_index + 1)
+		var overlapping_paths: Array[MapPath] = _check_path_overlap(path, path.nodes.size() - 1)
+		_remove_nodes_from_overlapping_paths(overlapping_paths, available_nodes, path.nodes.size())
 		
 		var node: MapNode = layer.nodes[rng.randi_range(min_index, max_index)]
 		path.nodes.append(node)
@@ -200,14 +195,18 @@ func _get_nodes_in_path_in_layer(layer_index: int) -> Array[MapNode]:
 	return result
 
 func _get_min_node_index(layer_index: int, current_node_index: int) -> int:
-	var last_layer: MapLayer = map.get(layer_index - 1)
+	var last_layer_index: int = layer_index - 1
+	var last_layer: MapLayer = map.get(last_layer_index)
+	if last_layer.type == MapLayer.MapLayerType.MINI_BOSS:
+		last_layer = map.get(layer_index - 2)
+		last_layer_index = layer_index - 2
 	var current_layer: MapLayer = map.get(layer_index)
-	var nodes_in_path_in_last_layer: Array[MapNode] = _get_nodes_in_path_in_layer(layer_index - 1)
+	var nodes_in_path_in_last_layer: Array[MapNode] = _get_nodes_in_path_in_layer(last_layer_index)
 	var next_smaller_node_in_a_path: MapNode
 	var min_index: int = 0
 	
 	for node: MapNode in nodes_in_path_in_last_layer:
-		if last_layer.nodes.find(node) < current_node_index + 1:
+		if last_layer.nodes.find(node) < current_node_index:
 			if (next_smaller_node_in_a_path != null) and (last_layer.nodes.find(node) < last_layer.nodes.find(next_smaller_node_in_a_path)):
 				continue
 			next_smaller_node_in_a_path = node
@@ -220,9 +219,13 @@ func _get_min_node_index(layer_index: int, current_node_index: int) -> int:
 	return min_index
 
 func _get_max_node_index(layer_index: int, current_node_index: int) -> int:
-	var last_layer: MapLayer = map.get(layer_index - 1)
+	var last_layer_index: int = layer_index - 1
+	var last_layer: MapLayer = map.get(last_layer_index)
+	if last_layer.type == MapLayer.MapLayerType.MINI_BOSS:
+		last_layer = map.get(layer_index - 2)
+		last_layer_index = layer_index - 2
 	var current_layer: MapLayer = map.get(layer_index)
-	var nodes_in_path_in_last_layer: Array[MapNode] = _get_nodes_in_path_in_layer(layer_index - 1)
+	var nodes_in_path_in_last_layer: Array[MapNode] = _get_nodes_in_path_in_layer(last_layer_index)
 	var next_bigger_node_in_a_path: MapNode
 	var max_index: int = MAX_NUM_NODES_PER_LAYER - 1
 	
@@ -238,6 +241,24 @@ func _get_max_node_index(layer_index: int, current_node_index: int) -> int:
 				max_index = current_layer.nodes.find(node)
 	
 	return max_index
+
+func _check_path_overlap(current_path: MapPath, index: int) -> Array[MapPath]:
+	var result: Array[MapPath] = []
+	
+	for path: MapPath in paths:
+		if path.nodes[index] != current_path.nodes[index]:
+			continue
+		for i in MAX_OVERLAPPING_NODES_IN_PATHS - 1:
+			if path.nodes[index - i] != current_path.nodes[index - i]:
+				break
+			result.append(path)
+	
+	return result
+
+func _remove_nodes_from_overlapping_paths(paths: Array[MapPath], nodes: Array[MapNode], index: int):
+	for path: MapPath in paths:
+		if nodes.has(path.nodes[index]):
+			nodes.erase(path.nodes[index])
 
 func _add_connections_from_path(path: MapPath):
 	for node: MapNode in path.nodes:

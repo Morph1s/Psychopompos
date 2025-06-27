@@ -62,7 +62,8 @@ func load_layers(map_layers):
 	connection_drawer.set_connections(node_to_button)
 
 func lock_layer():
-	for button: Button in map_layer_container.get_child(current_layer).get_children():
+	for button_container: MarginContainer in map_layer_container.get_child(current_layer).get_children():
+		var button = button_container.get_child(0)
 		var node: MapNode = node_to_button.find_key(button)
 		button.disabled = true
 		if node == current_node:
@@ -72,7 +73,8 @@ func unlock_next_encounters():
 	if current_layer >= map_layer_container.get_child_count() - 1:
 		return
 	
-	for button in map_layer_container.get_child(current_layer + 1).get_children():
+	for button_container: MarginContainer in map_layer_container.get_child(current_layer + 1).get_children():
+		var button: Button = button_container.get_child(0)
 		var node: MapNode = node_to_button.find_key(button)
 		button.disabled = not current_node.next_nodes.has(node)
 		# change the appearance of already visited or the current encounter
