@@ -5,7 +5,7 @@ extends Control
 
 const MAX_LABEL_WIDTH: int = 100
 
-var box_size: Vector2 = Vector2(42, 42)
+var box_size: Vector2
 
 func load_tooltips(data: Array[TooltipData]) -> void:
 	box_size = Vector2(2, 0)
