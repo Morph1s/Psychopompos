@@ -11,6 +11,7 @@ signal enemy_died(Node)
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler = $EffectHandler
 @onready var highlights = $Highlights
+@onready var hit_frame_timer: Timer = $HitFrameTimer
 
 @export var stats: EnemyStats
 @export var enemy_hud: EnemyHud
@@ -21,7 +22,11 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var y_position: int = 55
 var size: Vector2
 
+
 func initialize() -> void:
+	
+	stats.initialize()
+	enemy_hud.set_initial_values(stats.maximum_hitpoints, stats.current_hitpoints, stats.block)
 	
 	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
@@ -41,8 +46,6 @@ func initialize() -> void:
 	stats.block_changed.connect(_on_block_changed)
 	stats.died.connect(_on_died)
 	
-	stats.initialize()
-	
 	effect_handler.initialize(self)
 
 func start_of_turn() -> void:
@@ -53,6 +56,8 @@ func end_of_turn() -> void:
 	effect_handler._on_unit_turn_end()
 
 func take_damage(amount:int) -> void:
+	image.material.set_shader_parameter("intensity", 1.0)
+	hit_frame_timer.start()
 	amount = modifier_handler.modify_value(amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(amount)
 
@@ -142,6 +147,8 @@ func _on_block_changed(new_block) -> void:
 	enemy_hud.set_block(new_block)
 
 func _on_died() -> void:
+	if hit_frame_timer.time_left:
+		await hit_frame_timer.timeout
 	enemy_died.emit(self)
 
 func _on_mouse_entered() -> void:
@@ -149,4 +156,8 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	mouse_exited_enemy.emit(self)
+
+func _on_hit_frame_timer_timeout():
+	image.material.set_shader_parameter("intensity", 0.0)
+
 #endregion

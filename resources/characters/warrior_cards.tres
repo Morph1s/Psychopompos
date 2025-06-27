@@ -25,7 +25,6 @@
 [ext_resource type="Resource" uid="uid://ch25cteno6qfm" path="res://resources/cards/warrior/common/hit.tres" id="23_okumc"]
 [ext_resource type="Resource" uid="uid://r53s3kohc8k0" path="res://resources/cards/warrior/common/guard.tres" id="24_2ip6v"]
 
-
 [resource]
 script = ExtResource("2_1siwy")
 starting_deck = Array[ExtResource("1_a6qaj")]([ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v")])

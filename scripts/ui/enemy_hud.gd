@@ -17,7 +17,7 @@ func set_intent(icon: Texture, value: int, amount: int = 1) -> void:
 		intent_value.text = "%d*%d" % [value, amount]
 
 func _set_hp_bar_border() -> void:
-	if block_value:
+	if current_block:
 		hp_bar.texture_over = ENTITY_DEFEND_BAR_OVER
 	else:
 		hp_bar.texture_over = ENEMY_HP_BAR_OVER
