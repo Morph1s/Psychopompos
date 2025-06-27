@@ -20,6 +20,8 @@ func generate_map() -> Array[MapLayer]:
 	place_encounters()
 	return map
 
+### GENERATE MAP LAYERS ###
+
 func build_map_layers():
 	# starting layer
 	var starting_layer: MapLayer = MapLayer.new()
@@ -61,6 +63,8 @@ func fill_map_layers():
 		# every other layer contains the max number of nodes
 		for n in MAX_NUM_NODES_PER_LAYER:
 			layer.nodes.append(MapNode.new())
+
+### GENERATE MAP PATHS ###
 
 func generate_map_paths():
 	_generate_first_path()
@@ -274,6 +278,8 @@ func hide_excluded_nodes():
 		for node: MapNode in layer.nodes:
 			if node.next_nodes.is_empty():
 				node.active = false
+
+### PLACE ENCOUNTERS ###
 
 func place_encounters():
 	_place_mini_boss_encounter()
