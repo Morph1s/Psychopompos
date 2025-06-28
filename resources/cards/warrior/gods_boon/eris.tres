@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_7yu7h"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_5bl2a"]
 [ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="2_x5gib"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="3_018a1"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_pial7"]
+[ext_resource type="Texture2D" uid="uid://coxto05031gbk" path="res://assets/graphics/cards/god/card_god_eris.png" id="4_x5gib"]
 [ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/action_tooltips/discard_random_tooltip.tres" id="5_x5gib"]
 [ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="6_48dm5"]
 
@@ -21,7 +21,7 @@ script = ExtResource("2_5bl2a")
 card_name = "eris"
 energy_cost = 0
 rarity = 3
-texture = ExtResource("3_018a1")
+texture = ExtResource("4_x5gib")
 on_play_action = Array[ExtResource("1_7yu7h")]([SubResource("Resource_48dm5")])
 on_graveyard_action = Array[ExtResource("1_7yu7h")]([])
 targeted = false
