@@ -2,7 +2,7 @@ extends Node
 
 signal artifact_selected(artifact: Artifact)
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_artifact"]
 
 var available_artifacts: Array[Artifact] = [
 	preload("res://resources/artifacts/ambrosia.tres"),

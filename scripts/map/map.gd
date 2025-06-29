@@ -7,7 +7,7 @@ signal encounter_selected(encounter_data)
 @onready var map_layer_container = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_map_visual"]
 var node_to_button: Dictionary = {}
 var current_node: MapNode
 var current_layer = 0

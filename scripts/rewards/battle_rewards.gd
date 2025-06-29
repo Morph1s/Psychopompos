@@ -19,7 +19,7 @@ enum RewardType {
 	ARTIFACT,
 }
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_battle_rewards"]
 var current_card_reward_button: Button
 var card_rewards_list: Array[Array] = []
 

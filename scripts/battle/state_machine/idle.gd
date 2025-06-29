@@ -6,13 +6,9 @@ func _ready():
 
 func enter():
 	print("Entered Idle")
-	
-	# check for card selected -> enter state card_highlighted
-	# check for end of turn button pressed -> enter state player_end_turn
 
 func exit():
 	print("Exited Idle")
-
 
 func _on_event_bus_end_turn_button_pressed() -> void:
 	state_machine.transition_to("PlayerEndTurn")
