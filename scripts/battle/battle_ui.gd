@@ -9,6 +9,8 @@ const HUD_NEGATIVE_ENERGY_BALL = preload("res://scenes/ui/hud_negative_energy_ba
 @onready var hitpoint_cost_label_container = $Energy/HitpointCostLabelContainer
 @onready var hitpoint_cost_text = $Energy/HitpointCostLabelContainer/HitpointCostText
 @onready var negative_energy_ball_container = $Energy/NegativeEnergyBallContainer
+@onready var card_handler: CardHandler = get_tree().get_first_node_in_group("card_piles")
+
 
 func _ready() -> void:
 	EventBusHandler.set_player_control.connect(_on_eventbus_set_player_control)
@@ -18,16 +20,18 @@ func _ready() -> void:
 	_spawn_energy_balls(RunData.player_stats.maximum_energy)
 
 func _on_discard_pile_gui_input(event: InputEvent) -> void:
-	if event.is_action_released("left_click") and not get_tree().get_first_node_in_group("card_piles").discard_pile.is_empty():
-		EventBusHandler.show_deck_view.emit(get_tree().get_first_node_in_group("card_piles").discard_pile)
+	if event.is_action_released("left_click") and not card_handler.discard_pile.is_empty():
+		EventBusHandler.show_deck_view.emit(card_handler.discard_pile)
 
 func _on_end_turn_button_button_up() -> void:
 	EventBusHandler.end_turn_button_pressed.emit()
 	end_turn_button.disabled = true
 
 func _on_draw_pile_gui_input(event: InputEvent) -> void:
-	if event.is_action_released("left_click") and not get_tree().get_first_node_in_group("card_piles").draw_pile.is_empty():
-		EventBusHandler.show_deck_view.emit(get_tree().get_first_node_in_group("card_piles").draw_pile)
+	if event.is_action_released("left_click") and not card_handler.draw_pile.is_empty():
+		var draw_pile_copy: Array[CardType] = card_handler.draw_pile.duplicate()
+		draw_pile_copy.shuffle()
+		EventBusHandler.show_deck_view.emit(draw_pile_copy)
 
 func _on_eventbus_set_player_control(value: bool) -> void:
 	end_turn_button.disabled = not value
