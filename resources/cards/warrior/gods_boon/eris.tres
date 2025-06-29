@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=10 format=3 uid="uid://ccfdqsl1eagpq"]
+[gd_resource type="Resource" script_class="CardType" load_steps=11 format=3 uid="uid://ccfdqsl1eagpq"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_7yu7h"]
+[ext_resource type="Texture2D" uid="uid://5h3fm2svfixd" path="res://assets/graphics/cards/card_effect_discard.png" id="1_bnx32"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_5bl2a"]
 [ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="2_x5gib"]
 [ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="3_018a1"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_pial7"]
+[ext_resource type="Texture2D" uid="uid://f4t16pq81ie5" path="res://assets/graphics/cards/card_effect_draw.png" id="5_l5b05"]
 [ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/action_tooltips/discard_random_tooltip.tres" id="5_x5gib"]
 [ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="6_48dm5"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bnx32"]
-size = Vector2(8, 8)
 
 [sub_resource type="Resource" id="Resource_48dm5"]
 script = ExtResource("2_x5gib")
@@ -25,9 +24,9 @@ texture = ExtResource("3_018a1")
 on_play_action = Array[ExtResource("1_7yu7h")]([SubResource("Resource_48dm5")])
 on_graveyard_action = Array[ExtResource("1_7yu7h")]([])
 targeted = false
-first_description_icon = SubResource("PlaceholderTexture2D_bnx32")
+first_description_icon = ExtResource("1_bnx32")
 first_description_text = "1-5"
-second_description_icon = SubResource("PlaceholderTexture2D_bnx32")
+second_description_icon = ExtResource("5_l5b05")
 second_description_text = "1-5"
 tooltips = Array[ExtResource("3_pial7")]([ExtResource("5_x5gib"), ExtResource("6_48dm5")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

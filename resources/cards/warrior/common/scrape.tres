@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="3_hv23o"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="4_avrgq"]
 [ext_resource type="Texture2D" uid="uid://c5esbfs1j8e86" path="res://assets/graphics/cards/common/card_common_scrape.png" id="5_ae2gf"]
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="6_hv23o"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="6_ytdy3"]
 [ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/effect_tooltips/wounded_tooltip.tres" id="7_ksj4j"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="8_3yqpr"]
@@ -23,9 +24,6 @@ damage_stat = 3
 target_type = 1
 metadata/_custom_type_script = "uid://gsab2qn21okq"
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_typwn"]
-size = Vector2(8, 8)
-
 [resource]
 script = ExtResource("4_avrgq")
 card_name = "scrape"
@@ -37,7 +35,7 @@ on_graveyard_action = Array[ExtResource("1_ae2gf")]([])
 targeted = true
 first_description_icon = ExtResource("1_qcvil")
 first_description_text = "1"
-second_description_icon = SubResource("PlaceholderTexture2D_typwn")
+second_description_icon = ExtResource("6_hv23o")
 second_description_text = "3"
 tooltips = Array[ExtResource("6_ytdy3")]([ExtResource("7_ksj4j"), ExtResource("8_3yqpr")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"
