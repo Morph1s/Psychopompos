@@ -41,8 +41,7 @@ func initialize(card: CardType) -> void:
 			card_frame.texture = load("res://assets/graphics/cards/hero/template_hero_card.png")
 		CardType.Rarity.GODS_BOON:
 			card_name.add_theme_color_override("font_color", Color.BLACK)
-			# load god boon frame here
-			card_frame.texture = load("res://assets/graphics/cards/hero/template_hero_card.png")
+			card_frame.texture = load("res://assets/graphics/cards/god/template_god_card.png")
 
 func _on_mouse_entered() -> void:
 	highlight.show()
