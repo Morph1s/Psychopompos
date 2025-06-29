@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_05px8"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_vtuot"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_yrx38"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_m6j5c"]
+[ext_resource type="Texture2D" uid="uid://cue0ttuan7s7e" path="res://assets/graphics/cards/god/card_god_ker.png" id="5_m6j5c"]
 [ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/effect_tooltips/wounded_tooltip.tres" id="6_1ugsn"]
 
 [sub_resource type="Resource" id="Resource_rxom3"]
@@ -20,7 +20,7 @@ script = ExtResource("2_vtuot")
 card_name = "ker"
 energy_cost = 2
 rarity = 3
-texture = ExtResource("4_m6j5c")
+texture = ExtResource("5_m6j5c")
 on_play_action = Array[ExtResource("1_vkfaf")]([SubResource("Resource_rxom3")])
 on_graveyard_action = Array[ExtResource("1_vkfaf")]([])
 targeted = false
