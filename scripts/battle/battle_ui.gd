@@ -27,7 +27,10 @@ func _on_end_turn_button_button_up() -> void:
 
 func _on_draw_pile_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and not get_tree().get_first_node_in_group("card_piles").draw_pile.is_empty():
-		EventBusHandler.show_deck_view.emit(get_tree().get_first_node_in_group("card_piles").draw_pile)
+		var draw_pile_copy: Array[CardType] = []
+		draw_pile_copy.append_array(get_tree().get_first_node_in_group("card_piles").draw_pile)
+		draw_pile_copy.shuffle()
+		EventBusHandler.show_deck_view.emit(draw_pile_copy)
 
 func _on_eventbus_set_player_control(value: bool) -> void:
 	end_turn_button.disabled = not value
