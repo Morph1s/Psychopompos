@@ -7,6 +7,8 @@ const NUM_LAYERS_BEFORE_MINI_BOSS: int = 4		# excluding starting layer
 const NUM_LAYERS_AFTER_MINI_BOSS: int = 5
 const NUM_GENERATED_PATHS: int = 6				# CANNOT BE SMALLER THAN 2! - number of iterations of the path generation
 const MAX_OVERLAPPING_NODES_IN_PATHS: int = 2
+const MAX_EQUAL_SIZE_LAYER_STREAK: int = 2		# max number of consecutive layers with the same amount of nodes
+const MAX_SINGLE_CONNECTION_STREAK: int = 3		# max number of consecutive nodes with only one next node
 
 # const values for encounter placement
 const MIN_NUM_CAMPFIRE_ENCOUNTERS: int = 2
@@ -24,13 +26,12 @@ var paths: Array[MapPath] = []
 func generate_map() -> Array[MapLayer]:
 	build_map_layers()
 	generate_map_paths()
-	hide_excluded_nodes()
 	place_encounters()
 	return map
 
 ### GENERATE MAP LAYERS ###
 
-func build_map_layers():
+func build_map_layers() -> void:
 	# starting layer
 	var starting_layer: MapLayer = MapLayer.new()
 	starting_layer.type = MapLayer.MapLayerType.START
@@ -61,7 +62,7 @@ func build_map_layers():
 	# fill the map with nodes
 	fill_map_layers()
 
-func fill_map_layers():
+func fill_map_layers() -> void:
 	for layer: MapLayer in map:
 		# mini boss and boss layers only contain one encounter each
 		if layer.type == MapLayer.MapLayerType.MINI_BOSS or layer.type == MapLayer.MapLayerType.BOSS:
@@ -74,16 +75,16 @@ func fill_map_layers():
 
 ### GENERATE MAP PATHS ###
 
-func generate_map_paths():
+func generate_map_paths() -> void:
 	_generate_first_path()
 	_generate_second_path()
 	
 	for path in NUM_GENERATED_PATHS - 3:
 		_generate_single_path()
 	
-	_generate_single_path()
+	_generate_last_path()
 
-func _generate_first_path():
+func _generate_first_path() -> void:
 	var path: MapPath = MapPath.new()
 	var previous_index: int
 	
@@ -92,6 +93,7 @@ func _generate_first_path():
 		if layer.type == MapLayer.MapLayerType.BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
+			node.active = true
 			break
 		
 		# for starting layer just choose a random node
@@ -99,6 +101,7 @@ func _generate_first_path():
 			var nodes: Array[MapNode] = layer.nodes.duplicate()
 			var node: MapNode = nodes[rng.randi_range(0, nodes.size() - 2)]
 			path.nodes.append(node)
+			node.active = true
 			previous_index = layer.nodes.find(node)
 			continue
 		
@@ -106,6 +109,7 @@ func _generate_first_path():
 		if layer.type == MapLayer.MapLayerType.MINI_BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
+			node.active = true
 			continue
 		
 		var min_index: int = max(0, previous_index - 1)
@@ -113,12 +117,13 @@ func _generate_first_path():
 		
 		var node: MapNode = layer.nodes[rng.randi_range(min_index, max_index)]
 		path.nodes.append(node)
+		node.active = true
 		previous_index = layer.nodes.find(node)
 	
 	paths.append(path)
 	_add_connections_from_path(path)
 
-func _generate_second_path():
+func _generate_second_path() -> void:
 	var path: MapPath = MapPath.new()
 	var previous_index: int
 	
@@ -127,6 +132,7 @@ func _generate_second_path():
 		if layer.type == MapLayer.MapLayerType.BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
+			node.active = true
 			break
 		
 		# for starting layer, choose a random point
@@ -135,6 +141,7 @@ func _generate_second_path():
 			var first_path_first_node_index: int = layer.nodes.find(paths[0].nodes[0])
 			var node: MapNode = nodes[rng.randi_range(first_path_first_node_index + 1, nodes.size() - 1)]
 			path.nodes.append(node)
+			node.active = true
 			previous_index = layer.nodes.find(node)
 			continue
 		
@@ -142,6 +149,7 @@ func _generate_second_path():
 		if layer.type == MapLayer.MapLayerType.MINI_BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
+			node.active = true
 			continue
 		
 		var min_index: int = max(_get_min_index_for_second_path(map.find(layer)), previous_index - 1)
@@ -149,6 +157,7 @@ func _generate_second_path():
 		
 		var node: MapNode = layer.nodes[rng.randi_range(min_index, max_index)]
 		path.nodes.append(node)
+		node.active = true
 		previous_index = layer.nodes.find(node)
 	
 	paths.append(path)
@@ -161,7 +170,7 @@ func _get_min_index_for_second_path(layer_index: int) -> int:
 	
 	return current_layer.nodes.find(node_first_path_current_layer) + 1
 
-func _generate_single_path():
+func _generate_single_path() -> void:
 	var path: MapPath = MapPath.new()
 	var previous_index: int
 	
@@ -170,12 +179,14 @@ func _generate_single_path():
 		if layer.type == MapLayer.MapLayerType.BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
+			node.active = true
 			break
 		
 		# for starting layer just choose a random node
 		if layer.type == MapLayer.MapLayerType.START:
 			var node: MapNode = layer.nodes[rng.randi_range(0, layer.nodes.size() - 1)]
 			path.nodes.append(node)
+			node.active = true
 			previous_index = layer.nodes.find(node)
 			continue
 		
@@ -183,6 +194,7 @@ func _generate_single_path():
 		if layer.type == MapLayer.MapLayerType.MINI_BOSS:
 			var node: MapNode = layer.nodes[0]
 			path.nodes.append(node)
+			node.active = true
 			continue
 		
 		var min_index: int = max(_get_min_node_index(map.find(layer), previous_index), previous_index - 1)
@@ -194,9 +206,86 @@ func _generate_single_path():
 		
 		var node: MapNode = layer.nodes[rng.randi_range(min_index, max_index)]
 		path.nodes.append(node)
+		node.active = true
 		previous_index = layer.nodes.find(node)
 	
 	paths.append(path)
+	_add_connections_from_path(path)
+
+func _generate_last_path() -> void:
+	var path: MapPath = MapPath.new()
+	var previous_index: int
+	var equal_layer_streak: int = 1
+	var last_layer_size: int = 0
+	
+	paths.append(path)
+	
+	for layer: MapLayer in map:
+		var node: MapNode
+		
+		# when reaching the boss layer, break
+		if layer.type == MapLayer.MapLayerType.BOSS:
+			node = layer.nodes[0]
+			path.nodes.append(node)
+			node.active = true
+			break
+		
+		# for starting layer just choose a random node
+		if layer.type == MapLayer.MapLayerType.START:
+			var available_nodes: Array[MapNode] = _get_nodes_in_path_in_layer(0)
+			node = available_nodes[rng.randi_range(0, available_nodes.size() - 1)]
+			path.nodes.append(node)
+			node.active = true
+			previous_index = layer.nodes.find(node)
+			last_layer_size = _get_nodes_in_path_in_layer(0).size()
+			continue
+		
+		# for mini boss layer, choose the only encounter in layer.nodes
+		if layer.type == MapLayer.MapLayerType.MINI_BOSS:
+			node = layer.nodes[0]
+			path.nodes.append(node)
+			node.active = true
+			equal_layer_streak = 1
+			last_layer_size = 1
+			continue
+		
+		# check layer size streak
+		if _get_nodes_in_path_in_layer(map.find(layer)).size() == last_layer_size:
+			equal_layer_streak += 1
+		else:
+			equal_layer_streak = 1
+			last_layer_size = _get_nodes_in_path_in_layer(map.find(layer)).size()
+		
+		var min_index: int = max(_get_min_node_index(map.find(layer), previous_index), previous_index - 1)
+		var max_index: int = min(previous_index + 1, _get_max_node_index(map.find(layer), previous_index))
+		
+		var available_nodes: Array[MapNode] = layer.nodes.slice(min_index, max_index + 1)
+		
+		if equal_layer_streak > MAX_EQUAL_SIZE_LAYER_STREAK:
+			var nodes_not_in_path: Array[MapNode] = []
+			
+			for node_to_check: MapNode in available_nodes:
+				if _get_paths_containing_node(node_to_check).size() == 0:
+					nodes_not_in_path.append(node_to_check)
+			
+			if nodes_not_in_path.size() > 0:
+				node = nodes_not_in_path[rng.randi_range(0, nodes_not_in_path.size() - 1)]
+				path.nodes.append(node)
+				node.active = true
+				previous_index = layer.nodes.find(node)
+				equal_layer_streak = 1
+				last_layer_size = _get_nodes_in_path_in_layer(map.find(layer)).size()
+				continue
+		
+		for i: int in range(available_nodes.size() - 1, -1, -1):
+			if not available_nodes[i].active and available_nodes.size() > 1:
+				available_nodes.remove_at(i)
+		
+		node = available_nodes[randi_range(0, available_nodes.size() - 1)]
+		path.nodes.append(node)
+		node.active = true
+		previous_index = layer.nodes.find(node)
+	
 	_add_connections_from_path(path)
 
 func _get_min_node_index(layer_index: int, current_node_index: int) -> int:
@@ -219,7 +308,7 @@ func _get_min_node_index(layer_index: int, current_node_index: int) -> int:
 	
 	# edge case: if last layer is mini boss layer
 	if map.get(layer_index - 1).type == MapLayer.MapLayerType.MINI_BOSS:
-		var paths_containing_node: Array[MapPath] = _get_all_paths_containing_node(next_smaller_node_in_a_path)
+		var paths_containing_node: Array[MapPath] = _get_paths_containing_node(next_smaller_node_in_a_path)
 		for path: MapPath in paths_containing_node:
 			if not next_nodes.has(path.nodes[layer_index]):
 				next_nodes.append(path.nodes[layer_index])
@@ -253,7 +342,7 @@ func _get_max_node_index(layer_index: int, current_node_index: int) -> int:
 	
 	# edge case: if last layer is mini boss layer
 	if map.get(layer_index - 1).type == MapLayer.MapLayerType.MINI_BOSS:
-		var paths_containing_node: Array[MapPath] = _get_all_paths_containing_node(next_bigger_node_in_a_path)
+		var paths_containing_node: Array[MapPath] = _get_paths_containing_node(next_bigger_node_in_a_path)
 		for path: MapPath in paths_containing_node:
 			if not next_nodes.has(path.nodes[layer_index]):
 				next_nodes.append(path.nodes[layer_index])
@@ -270,18 +359,9 @@ func _get_max_node_index(layer_index: int, current_node_index: int) -> int:
 func _get_nodes_in_path_in_layer(layer_index: int) -> Array[MapNode]:
 	var result: Array[MapNode] = []
 	
-	for path: MapPath in paths:
-		if not result.has(path.nodes[layer_index]):
-			result.append(path.nodes[layer_index])
-	
-	return result
-
-func _get_all_paths_containing_node(node: MapNode) -> Array[MapPath]:
-	var result: Array[MapPath] = []
-	
-	for path: MapPath in paths:
-		if path.nodes.has(node):
-			result.append(path)
+	for node: MapNode in map[layer_index].nodes:
+		if node.active:
+			result.append(node)
 	
 	return result
 
@@ -307,16 +387,6 @@ func _add_connections_from_path(path: MapPath):
 	for node: MapNode in path.nodes:
 		if (path.nodes.find(node) + 1) < path.nodes.size() and not node.next_nodes.has(path.nodes.get(path.nodes.find(node) + 1)):
 			node.next_nodes.append(path.nodes.get(path.nodes.find(node) + 1))
-
-func hide_excluded_nodes():
-	for layer: MapLayer in map:
-		# skip boss layer
-		if layer.type == MapLayer.MapLayerType.BOSS:
-			break
-		
-		for node: MapNode in layer.nodes:
-			if node.next_nodes.is_empty():
-				node.active = false
 
 ### PLACE ENCOUNTERS ###
 

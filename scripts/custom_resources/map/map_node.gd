@@ -2,7 +2,7 @@ class_name MapNode
 extends Resource
 
 var encounter: Encounter = null		# the encounter of this node
-var active: bool = true				# whether or not the node is shown on the map
+var active: bool = false				# whether or not the node is shown on the map
 var next_nodes: Array[MapNode]		# connected nodes from the next layer
 var encounter_weights: Dictionary[Encounter.EncounterType, int] = {
 	Encounter.EncounterType.BATTLE: 65,

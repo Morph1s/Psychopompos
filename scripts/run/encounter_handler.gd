@@ -44,6 +44,14 @@ func start_encounter(encounter_data: Encounter):
 			add_child(boss_battle_scene)
 			boss_battle_scene.initialize(load("res://resources/encounters/test_battle_1.tres"))
 			current_encounter = boss_battle_scene
+		# TODO: replace with actual random encounter logic
+		Encounter.EncounterType.RANDOM:
+			var battle_scene = load("res://scenes/encounters/battle.tscn").instantiate()
+			battle_scene.load_game_over_screen.connect(_load_game_over_screen)
+			battle_scene.load_battle_rewards.connect(_load_reward_screen)
+			add_child(battle_scene)
+			battle_scene.initialize(load("res://resources/encounters/test_battle_1.tres"))
+			current_encounter = battle_scene
 		_:
 			print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter_data.type))
 

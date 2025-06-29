@@ -61,6 +61,20 @@ func load_layers(map_layers):
 	# fill the node_to_button Dictionary
 	connection_drawer.set_connections(node_to_button)
 
+func _scroll_to_current_layer():
+	var scroll_container: ScrollContainer = $TopMargin/MapIconsMargin/MapScrollContainer
+	var layer_container := $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
+	
+	var layer := layer_container.get_child(current_layer + 1)
+	var layer_pos = layer.position.x
+	var layer_width = layer.size.x
+	var scroll_width = scroll_container.size.x
+	
+	var target_scroll = layer_pos + layer_width / 2 - scroll_width / 2
+	target_scroll = clamp(target_scroll, 0, scroll_container.get_h_scroll_bar().max_value)
+	
+	scroll_container.set_h_scroll(target_scroll)
+
 func lock_layer():
 	for button_container: MarginContainer in map_layer_container.get_child(current_layer).get_children():
 		var button = button_container.get_child(0)
@@ -86,6 +100,8 @@ func unlock_next_encounters():
 			button.disabled = true
 		else:
 			button.modulate = Color(1, 1, 1)
+	
+	_scroll_to_current_layer()
 
 func close_map() -> bool:
 	if can_close:

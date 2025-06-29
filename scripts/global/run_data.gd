@@ -29,7 +29,7 @@ var altered_values: Dictionary = {
 
 func start_run(character: Characters):
 	rng_master = RandomNumberGenerator.new()
-	#rng_master.seed = 42
+	#rng_master.seed = -8717263499465901576
 	master_seed = rng_master.seed
 	_generate_sub_rngs()
 	
