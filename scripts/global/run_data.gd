@@ -10,7 +10,7 @@ enum AlteredValue {
 
 var master_seed: int
 var rng_master: RandomNumberGenerator = RandomNumberGenerator.new()
-var sub_rngs: Dictionary = {
+var sub_rngs: Dictionary[String, RandomNumberGenerator] = {
 	"rng_map_gen": RandomNumberGenerator.new(),
 	"rng_map_visual": RandomNumberGenerator.new(),
 	"rng_card_target": RandomNumberGenerator.new(),

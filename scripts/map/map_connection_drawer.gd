@@ -4,7 +4,7 @@ extends Control
 var connections: Array[Dictionary] = []
 
 # creates a Dictionary for each connection line that contains the buttons that should be connected
-func set_connections(node_to_button: Dictionary):
+func set_connections(node_to_button: Dictionary[MapNode, Button]):
 	connections.clear()
 	
 	for node: MapNode in node_to_button.keys():

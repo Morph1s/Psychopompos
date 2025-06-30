@@ -29,7 +29,7 @@ func generate_map() -> Array[MapLayer]:
 	place_encounters()
 	return map
 
-### GENERATE MAP LAYERS ###
+#region ### GENERATE MAP LAYERS ###
 
 func build_map_layers() -> void:
 	# starting layer
@@ -73,7 +73,9 @@ func fill_map_layers() -> void:
 		for n in MAX_NUM_NODES_PER_LAYER:
 			layer.nodes.append(MapNode.new())
 
-### GENERATE MAP PATHS ###
+#endregion
+
+#region ### GENERATE MAP PATHS ###
 
 func generate_map_paths() -> void:
 	_generate_first_path()
@@ -388,7 +390,9 @@ func _add_connections_from_path(path: MapPath):
 		if (path.nodes.find(node) + 1) < path.nodes.size() and not node.next_nodes.has(path.nodes.get(path.nodes.find(node) + 1)):
 			node.next_nodes.append(path.nodes.get(path.nodes.find(node) + 1))
 
-### PLACE ENCOUNTERS ###
+#endregion
+
+#region ### PLACE ENCOUNTERS ###
 
 func place_encounters():
 	_place_mini_boss_encounter()
@@ -568,3 +572,5 @@ func _adjust_encounter_weights(node: MapNode, weight: Encounter.EncounterType, v
 			node.encounter_weights[Encounter.EncounterType.BATTLE] += current_weight % (node.encounter_weights.size() - 1)
 		else:
 			node.encounter_weights[Encounter.EncounterType.RANDOM] += current_weight % (node.encounter_weights.size() - 1)
+
+#endregion

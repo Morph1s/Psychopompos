@@ -6,9 +6,11 @@ signal encounter_selected(encounter_data)
 @onready var exit_button: Button = $TopMargin/ExitButton
 @onready var map_layer_container = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
+@onready var scroll_container: ScrollContainer = $TopMargin/MapIconsMargin/MapScrollContainer
+@onready var layer_container: HBoxContainer = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_map_visual"]
-var node_to_button: Dictionary = {}
+var node_to_button: Dictionary[MapNode, Button] = {}
 var current_node: MapNode
 var current_layer = 0
 var can_close: bool = false:
@@ -49,9 +51,8 @@ func load_layers(map_layers):
 			if layer.type != MapLayer.MapLayerType.START:
 				button.disabled = true
 			
-			if node.encounter != null:
-				button.icon = node.encounter.icon
-				button.pressed.connect(func(): _on_encounter_pressed(node))
+			button.icon = node.encounter.icon
+			button.pressed.connect(func(): _on_encounter_pressed(node))
 			
 			button_container.add_child(button)
 			
@@ -62,9 +63,6 @@ func load_layers(map_layers):
 	connection_drawer.set_connections(node_to_button)
 
 func _scroll_to_current_layer():
-	var scroll_container: ScrollContainer = $TopMargin/MapIconsMargin/MapScrollContainer
-	var layer_container := $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
-	
 	var layer := layer_container.get_child(current_layer + 1)
 	var layer_pos = layer.position.x
 	var layer_width = layer.size.x
