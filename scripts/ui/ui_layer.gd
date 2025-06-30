@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var map: Map = $Map
 @onready var run_ui = $RunUI
-@onready var deck_view = $DeckView
+@onready var deck_view: DeckView = $DeckView
 
 var battle_ui_reference: BattleUI
 
@@ -14,6 +14,8 @@ func _ready() -> void:
 	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
 	EventBusHandler.battle_ended.connect(_on_event_bus_battle_ended)
 	EventBusHandler.show_deck_view.connect(_on_eventbus_open_deck_view)
+	EventBusHandler.show_deck_view_with_action.connect(_on_eventbus_open_deck_view_with_action)
+	EventBusHandler.campfire_finished.connect(_on_eventbus_campfire_finished)
 
 func load_battle_rewards():
 	var battle_rewards: BattleRewards = BATTLE_REWARDS.instantiate()
@@ -72,8 +74,28 @@ func _on_eventbus_open_deck_view(deck: Array[CardType]) -> void:
 	if battle_ui_reference:
 		battle_ui_reference.hide()
 
+func _on_eventbus_open_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable) -> void:
+	if map.visible or deck_view.visible:
+		map.close_map()
+		_close_deck_view()
+		return
+	
+	deck_view.show()
+	deck_view.load_cards(deck)
+	deck_view.add_card_action(on_card_selected_action)
+	
+	if battle_ui_reference:
+		battle_ui_reference.hide()
+
 func _close_deck_view():
 	deck_view.hide()
 	EventBusHandler.back_to_battle.emit()
 	if battle_ui_reference:
 		battle_ui_reference.show()
+
+func _on_eventbus_campfire_finished():
+	map.current_encounter.completed = true
+	map.unlock_next_encounters()
+	map.current_layer += 1
+	map.can_close = false
+	map.show()

@@ -27,6 +27,8 @@ func _resolve_eris(card_handler: CardHandler) -> void:
 	var cards_to_draw: int = rng.randi_range(1, 5)
 	
 	for i in cards_to_discard:
+		if card_handler.hand.is_empty():
+			break
 		await card_handler.discard_card(card_handler.hand[rng.randi_range(0, card_handler.hand.size() - 1)])
 	print("eris discarded ", cards_to_discard, "cards")
 	
@@ -35,6 +37,6 @@ func _resolve_eris(card_handler: CardHandler) -> void:
 
 ## double gather
 func _resolve_thanatos(player_effect_handler: EffectHandler) -> void:
-	for effect: Effect in player_effect_handler.get_children():
+	for effect: Effect in player_effect_handler.effect_collection.get_children():
 		if effect.effect_name == "Gather":
 			player_effect_handler.apply_effect("Gather", effect.stacks)

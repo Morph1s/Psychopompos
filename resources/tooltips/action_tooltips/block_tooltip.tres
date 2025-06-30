@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://c8mfsxfya7fu3"]
+
+[ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="1_4bww3"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_7atm3"]
+
+[resource]
+script = ExtResource("1_7atm3")
+icon = ExtResource("1_4bww3")
+description = "BLOCK: avoid damage"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

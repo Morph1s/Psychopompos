@@ -4,11 +4,14 @@ signal card_selected(card: CardType)
 signal show_tooltip(data: Array[TooltipData])
 signal hide_tooltip
 
+const CARD_ENERGY_BALL = preload("res://assets/graphics/cards/card_energy_ball.png")
+
+@onready var card_frame = $CardFrame
 @onready var highlight = $Highlight
 @onready var card_image = $CardImage
-@onready var energy_cost = $EnergyCost
 @onready var card_name = $Name
 @onready var description_box = $DescriptionBox
+@onready var energy_ball_container = $EnergyBallContainer
 
 var card_type: CardType
 
@@ -20,7 +23,7 @@ func initialize(card: CardType) -> void:
 	card_type = card
 	card_image.texture = card_type.texture
 	card_name.text = card_type.card_name
-	energy_cost.text = str(card_type.energy_cost)
+	_create_energy_cost_balls(card_type.energy_cost)
 	
 	_set_description(card_type.first_description_icon, card_type.first_description_text)
 	_set_description(card_type.second_description_icon, card_type.second_description_text)
@@ -29,12 +32,16 @@ func initialize(card: CardType) -> void:
 	match card_type.rarity:
 		CardType.Rarity.STARTING_CARD:
 			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/common/template_common_card.png")
 		CardType.Rarity.COMMON_CARD:
 			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/common/template_common_card.png")
 		CardType.Rarity.HERO_CARD:
-			card_name.add_theme_color_override("font_color", Color.MEDIUM_PURPLE)
+			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/hero/template_hero_card.png")
 		CardType.Rarity.GODS_BOON:
-			card_name.add_theme_color_override("font_color", Color.GOLD)
+			card_name.add_theme_color_override("font_color", Color.BLACK)
+			card_frame.texture = load("res://assets/graphics/cards/god/template_god_card.png")
 
 func _on_mouse_entered() -> void:
 	highlight.show()
@@ -67,3 +74,9 @@ func _set_description(icon: Texture, text: String) -> void:
 		container.add_child(label)
 	
 	description_box.add_child(container)
+
+func _create_energy_cost_balls(amount: int) -> void:
+	for i in amount:
+		var new_ball = TextureRect.new()
+		new_ball.texture = CARD_ENERGY_BALL
+		energy_ball_container.add_child(new_ball)

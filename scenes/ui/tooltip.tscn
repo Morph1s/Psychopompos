@@ -4,10 +4,9 @@
 [ext_resource type="Script" uid="uid://b1eik2f1yxgp3" path="res://scripts/ui/tooltip.gd" id="1_mtwet"]
 
 [node name="Tooltip" type="Control"]
+z_index = 90
 layout_mode = 3
 anchors_preset = 0
-offset_right = 89.0
-offset_bottom = 8.0
 mouse_filter = 2
 theme = ExtResource("1_b5j4s")
 script = ExtResource("1_mtwet")
@@ -22,3 +21,4 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+theme_override_constants/separation = 2

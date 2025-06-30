@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=2 format=3 uid="uid://b0dq78a1sy43p"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_2iy2g"]
+
+[resource]
+script = ExtResource("1_2iy2g")
+description = "NECTAR: regenerate HP at the start of battle"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

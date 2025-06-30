@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://chk74fdryfg7x"]
+
+[ext_resource type="Texture2D" uid="uid://f4t16pq81ie5" path="res://assets/graphics/cards/card_effect_draw.png" id="1_15qt4"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_ony2o"]
+
+[resource]
+script = ExtResource("1_ony2o")
+icon = ExtResource("1_15qt4")
+description = "CARD DRAW: draw cards from draw pile"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://bn2pxsug5qhl4"]
 
+[ext_resource type="Texture2D" uid="uid://bcgaxelc6174c" path="res://assets/graphics/battle_effects/borderless/effect_furry_borderless.png" id="1_dy85v"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_p12vb"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_dy85v"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_5phop"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_8jaf3"]
+[ext_resource type="Texture2D" uid="uid://dh3fgsutqoxmw" path="res://assets/graphics/cards/hero/card_hero_idas.png" id="4_p12vb"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_gddir"]
-[ext_resource type="Resource" uid="uid://qo0nfo00b6vb" path="res://resources/tooltips/warriors_furry_tooltip.tres" id="6_aqrcg"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1nfj"]
-size = Vector2(8, 8)
+[ext_resource type="Resource" uid="uid://qo0nfo00b6vb" path="res://resources/tooltips/effect_tooltips/warriors_furry_tooltip.tres" id="6_aqrcg"]
 
 [sub_resource type="Resource" id="Resource_nh1d0"]
 script = ExtResource("2_dy85v")
@@ -22,11 +20,11 @@ script = ExtResource("3_5phop")
 card_name = "idas"
 energy_cost = 1
 rarity = 2
-texture = ExtResource("4_8jaf3")
+texture = ExtResource("4_p12vb")
 on_play_action = Array[ExtResource("1_p12vb")]([SubResource("Resource_nh1d0")])
 on_graveyard_action = Array[ExtResource("1_p12vb")]([])
 targeted = false
-first_description_icon = SubResource("PlaceholderTexture2D_o1nfj")
+first_description_icon = ExtResource("1_dy85v")
 first_description_text = "2"
 second_description_text = ""
 tooltips = Array[ExtResource("5_gddir")]([ExtResource("6_aqrcg")])

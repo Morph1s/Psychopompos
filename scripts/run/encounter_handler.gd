@@ -20,7 +20,7 @@ func start_encounter(encounter_data: Encounter):
 	# Load requested encounter if implemented
 	match encounter_data.type:
 		Encounter.EncounterType.BATTLE:
-			var battle_scene = preload("res://scenes/encounters/battle.tscn").instantiate()
+			var battle_scene = load("res://scenes/encounters/battle.tscn").instantiate()
 			battle_scene.load_game_over_screen.connect(_load_game_over_screen)
 			battle_scene.load_battle_rewards.connect(_load_reward_screen)
 			add_child(battle_scene)
@@ -32,6 +32,10 @@ func start_encounter(encounter_data: Encounter):
 			add_child(dialogue_encounter)
 			#dialogue_encounter.initialize(encounter_data)
 			current_encounter = dialogue_encounter
+		Encounter.EncounterType.CAMPFIRE:
+			var campfire_scene = load("res://scenes/encounters/campfire.tscn").instantiate()
+			add_child(campfire_scene)
+			current_encounter = campfire_scene
 		_:
 			print("Encounter type not implemented: ", encounter_data)
 

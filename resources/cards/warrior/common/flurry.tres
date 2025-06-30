@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://bstj6148e5h46"]
 
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_3huey"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_4ip2j"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_3huey"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_esfnr"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_swn51"]
+[ext_resource type="Texture2D" uid="uid://cg8i3524fx7hq" path="res://assets/graphics/cards/common/card_common_flurry.png" id="4_4ip2j"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_l6ttd"]
-[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="6_gokbj"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6nlup"]
-size = Vector2(8, 8)
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="6_gokbj"]
 
 [sub_resource type="Resource" id="Resource_r43t0"]
 script = ExtResource("2_3huey")
@@ -21,11 +19,11 @@ script = ExtResource("3_esfnr")
 card_name = "flurry"
 energy_cost = 1
 rarity = 1
-texture = ExtResource("4_swn51")
+texture = ExtResource("4_4ip2j")
 on_play_action = Array[ExtResource("1_4ip2j")]([SubResource("Resource_r43t0"), SubResource("Resource_r43t0"), SubResource("Resource_r43t0")])
 on_graveyard_action = Array[ExtResource("1_4ip2j")]([])
 targeted = true
-first_description_icon = SubResource("PlaceholderTexture2D_6nlup")
+first_description_icon = ExtResource("1_3huey")
 first_description_text = "3*2"
 second_description_text = ""
 tooltips = Array[ExtResource("5_l6ttd")]([ExtResource("6_gokbj")])

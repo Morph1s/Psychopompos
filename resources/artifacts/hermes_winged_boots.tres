@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://6mk43sp6d1mm"]
+
+[ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_6fhqp"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_x13s8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6fhqp"]
+size = Vector2(16, 16)
+
+[resource]
+script = ExtResource("1_6fhqp")
+name = "WINGED BOOTS"
+texture = SubResource("PlaceholderTexture2D_6fhqp")
+amount = 2
+tooltip = Array[ExtResource("2_x13s8")]([])
+effects_active = true
+effect = 0
+pickup_active = false
+pickup_effect = 0
+changes_active = false
+changed_value = 0
+metadata/_custom_type_script = "uid://booqawgjhy2ac"

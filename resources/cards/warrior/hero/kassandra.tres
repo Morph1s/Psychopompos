@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=11 format=3 uid="uid://bducaavaxj0of"]
+[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://bducaavaxj0of"]
 
+[ext_resource type="Texture2D" uid="uid://5h3fm2svfixd" path="res://assets/graphics/cards/card_effect_discard.png" id="1_vqc4w"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_wkh6x"]
 [ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="2_f4ea3"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_vqc4w"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="4_8tcyx"]
+[ext_resource type="Texture2D" uid="uid://caxgrovs64bbm" path="res://assets/graphics/cards/hero/card_hero_kassandra.png" id="4_wkh6x"]
+[ext_resource type="Texture2D" uid="uid://f4t16pq81ie5" path="res://assets/graphics/cards/card_effect_draw.png" id="5_8tcyx"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_hb4dy"]
-[ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/discard_random.tres" id="6_7sjlp"]
-[ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/card_draw.tres" id="7_mnsx6"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7o4jg"]
-size = Vector2(8, 8)
+[ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/action_tooltips/discard_random_tooltip.tres" id="6_7sjlp"]
+[ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="7_mnsx6"]
 
 [sub_resource type="Resource" id="Resource_budai"]
 script = ExtResource("2_f4ea3")
@@ -28,13 +27,13 @@ script = ExtResource("3_vqc4w")
 card_name = "kasandra"
 energy_cost = 0
 rarity = 2
-texture = ExtResource("4_8tcyx")
+texture = ExtResource("4_wkh6x")
 on_play_action = Array[ExtResource("1_wkh6x")]([SubResource("Resource_budai"), SubResource("Resource_nl3qy")])
 on_graveyard_action = Array[ExtResource("1_wkh6x")]([])
 targeted = false
-first_description_icon = SubResource("PlaceholderTexture2D_7o4jg")
+first_description_icon = ExtResource("1_vqc4w")
 first_description_text = "1"
-second_description_icon = SubResource("PlaceholderTexture2D_7o4jg")
+second_description_icon = ExtResource("5_8tcyx")
 second_description_text = "2"
 tooltips = Array[ExtResource("5_hb4dy")]([ExtResource("6_7sjlp"), ExtResource("7_mnsx6")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

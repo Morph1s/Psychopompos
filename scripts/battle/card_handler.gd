@@ -1,13 +1,16 @@
 class_name CardHandler
 extends Node2D
 
+signal display_play_area_highlights(visibility: bool)
+signal display_enemy_highlights(visibility: bool)
+
 ## card scene
 const CARD = preload("res://scenes/card/card.tscn")
 
 # Assets preload for mouse_changes
-const UNAIMED_CURSOR = preload("res://assets/graphics/ui/cursor_unaimed.png")
-const LOCKON_CURSOR = preload("res://assets/graphics/ui/cursor_lockOn.png")
-const DEFAULT_CURSOR = preload("res://assets/graphics/ui/cursor_default.png")
+const UNAIMED_CURSOR = preload("res://assets/graphics/cursors/cursor_unaimed.png")
+const LOCKON_CURSOR = preload("res://assets/graphics/cursors/cursor_lock_on.png")
+const DEFAULT_CURSOR = preload("res://assets/graphics/cursors/cursor_default.png")
 
 # constants for quick adjusting
 const DRAW_PILE_COORDS: Vector2 = Vector2(24.0, 148.0)
@@ -49,26 +52,34 @@ func initialize() -> void:
 
 #region card drawing and adding
 
-## draws "amount" cards from the drawpile to hand
+## draws "amount" cards from the drawpile
 func draw_cards(amount: int) -> void:
+	
+	# alter the value
+	amount += RunData.altered_values[RunData.AlteredValue.CARDS_DRAWN]
+	
+	# limit the amount of cards drawn to meet the maximum hand size
+	amount = clamp(amount, 0, MAX_HAND_SIZE - hand.size())
+	
 	for i in range(amount):
 		
 		# if the drawpile is empty, shuffle discard pile
 		if draw_pile.size() == 0:
 			if discard_pile.size() == 0:
+				_set_player_control(true)
 				return
 			else:
 				shuffle_discard_pile_into_draw_pile()
 		
 		# create a card
 		var front_card_card_type: CardType = draw_pile.pop_front()
-		var success: bool = add_card_to_hand(front_card_card_type)
-		if not success:
-			return
+		add_card_to_hand(front_card_card_type)
 		
 		# wait for hand to be updated
 		var timer = get_tree().create_timer(CARD_DRAW_SPEED)
 		await timer.timeout
+	
+	EventBusHandler.cards_drawn.emit()
 	
 	if not playing_card:
 		_set_player_control(true)
@@ -132,11 +143,16 @@ func _play_card(card: Card) -> void:
 	playing_card = true
 	_set_player_control(false)
 	
+	display_enemy_highlights.emit(false)
+	display_play_area_highlights.emit(false)
+	
 	card.highlight(Card.HighlightMode.PLAYED)
 	selected_card = null
 	hand.erase(card)
 	
 	await card.play(hovered_enemy_id)
+	
+	EventBusHandler.card_deselected.emit()
 	
 	await discard_card(card)
 	
@@ -149,10 +165,11 @@ func _play_card(card: Card) -> void:
 
 # used to animate the cards to their respective position
 func _update_hand_positions() -> void:
-	var tween = get_tree().create_tween()
-	tween.set_parallel(true)
 	for i in hand.size():
+		var tween: Tween = get_tree().create_tween()
+		tween.set_parallel(false)
 		tween.tween_property(hand[i], "position", _calculate_card_position(i, hand.size()), CARD_DRAW_SPEED)
+		tween.tween_callback(hand[i].relocate_tooltip)
 
 func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 	hand[index].index = index
@@ -168,7 +185,7 @@ func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 ## handels state after mouseinput
 func _input(event: InputEvent) -> void:
 	# set card as an selected card
-	if  event.is_action_released("left_click") && highlighted_card: 
+	if  event.is_action_pressed("left_click") && highlighted_card: 
 		_select_card()
 	
 	# realeses selected card
@@ -235,9 +252,23 @@ func _hover_card(card: Card) -> void:
 func _select_card() -> void:
 	if selected_card:  
 		selected_card.highlight(Card.HighlightMode.NONE)
+		
+		EventBusHandler.card_deselected.emit()
+		
+		if selected_card.card_type.targeted:
+			display_enemy_highlights.emit(false)
+		else:
+			display_play_area_highlights.emit(false)
+	
 	highlighted_card.highlight(Card.HighlightMode.SELECTED)
 	selected_card = highlighted_card
-	# maybe add feedback whether the card is targeted or untargeted
+	
+	EventBusHandler.card_selected.emit(selected_card.card_type.energy_cost)
+	
+	if selected_card.card_type.targeted:
+		display_enemy_highlights.emit(true)
+	else:
+		display_play_area_highlights.emit(true)
 
 func _deselect_selected_card() -> void:
 	if selected_card == highlighted_card:
@@ -247,15 +278,18 @@ func _deselect_selected_card() -> void:
 		selected_card.highlight(Card.HighlightMode.NONE)
 		selected_card = null
 	
+	display_enemy_highlights.emit(false)
+	display_play_area_highlights.emit(false)
+	
+	EventBusHandler.card_deselected.emit()
+	
 	_set_mouse_cursor()
 
 func _set_tooltips() -> void:
+	for card in hand:
+		card.tooltip.hide()
 	if highlighted_card:
-		EventBusHandler.show_tooltips.emit(highlighted_card.card_type.tooltips)
-	elif selected_card:
-		EventBusHandler.show_tooltips.emit(selected_card.card_type.tooltips)
-	else:
-		EventBusHandler.hide_tooltips.emit()
+		highlighted_card.tooltip.show()
 
 func _set_player_control(controlable: bool) -> void:
 	for card in hand:
@@ -263,8 +297,7 @@ func _set_player_control(controlable: bool) -> void:
 	EventBusHandler.set_player_control.emit(controlable)
 	
 	if not controlable and selected_card:
-		selected_card.highlight(Card.HighlightMode.NONE)
-		selected_card = null
+		_deselect_selected_card()
 	
 	_set_mouse_cursor()
 

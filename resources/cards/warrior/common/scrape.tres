@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://dhfd6kku1alih"]
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://dhfd6kku1alih"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_ae2gf"]
+[ext_resource type="Texture2D" uid="uid://c0pulfg4u40ce" path="res://assets/graphics/battle_effects/borderless/effect_wounded_borderless.png" id="1_qcvil"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_qcvil"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="3_hv23o"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="4_avrgq"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="5_0q6q4"]
+[ext_resource type="Texture2D" uid="uid://c5esbfs1j8e86" path="res://assets/graphics/cards/common/card_common_scrape.png" id="5_ae2gf"]
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="6_hv23o"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="6_ytdy3"]
-[ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/wounded_tooltip.tres" id="7_ksj4j"]
-[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/attack_tooltip.tres" id="8_3yqpr"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_typwn"]
-size = Vector2(8, 8)
+[ext_resource type="Resource" uid="uid://b1tf05u3cmtb2" path="res://resources/tooltips/effect_tooltips/wounded_tooltip.tres" id="7_ksj4j"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="8_3yqpr"]
 
 [sub_resource type="Resource" id="Resource_wc6sj"]
 script = ExtResource("2_qcvil")
@@ -30,13 +29,13 @@ script = ExtResource("4_avrgq")
 card_name = "scrape"
 energy_cost = 1
 rarity = 1
-texture = ExtResource("5_0q6q4")
+texture = ExtResource("5_ae2gf")
 on_play_action = Array[ExtResource("1_ae2gf")]([SubResource("Resource_wc6sj"), SubResource("Resource_3fgwe")])
 on_graveyard_action = Array[ExtResource("1_ae2gf")]([])
 targeted = true
-first_description_icon = SubResource("PlaceholderTexture2D_typwn")
+first_description_icon = ExtResource("1_qcvil")
 first_description_text = "1"
-second_description_icon = SubResource("PlaceholderTexture2D_typwn")
+second_description_icon = ExtResource("6_hv23o")
 second_description_text = "3"
 tooltips = Array[ExtResource("6_ytdy3")]([ExtResource("7_ksj4j"), ExtResource("8_3yqpr")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

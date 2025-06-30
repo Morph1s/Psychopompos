@@ -1,18 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://qt4c3qny3tqw"]
+[gd_scene load_steps=6 format=3 uid="uid://qt4c3qny3tqw"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_cs1jq"]
 [ext_resource type="Script" uid="uid://ti6vm7x55sdt" path="res://scripts/effects/effect_instances/gather.gd" id="2_gssq4"]
-
-[sub_resource type="Gradient" id="Gradient_gssq4"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qj08p"]
-gradient = SubResource("Gradient_gssq4")
-width = 8
-height = 8
+[ext_resource type="Texture2D" uid="uid://byt7ehv4lqyqh" path="res://assets/graphics/battle_effects/with_border/effect_gather.png" id="2_pdlwd"]
+[ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="3_qj08p"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_yxty4"]
 
 [node name="Gather" instance=ExtResource("1_cs1jq")]
-texture = SubResource("GradientTexture2D_qj08p")
+texture = ExtResource("2_pdlwd")
 script = ExtResource("2_gssq4")
 effect_name = "Gather"
 stackable = true
+tooltip_data = Array[ExtResource("3_yxty4")]([ExtResource("3_qj08p")])

@@ -1,6 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnyj4jetklh6b"]
+[gd_scene load_steps=6 format=3 uid="uid://bnyj4jetklh6b"]
 
 [ext_resource type="Script" uid="uid://i6uo14i3k58v" path="res://scripts/effects/effect_handler.gd" id="1_2n1p5"]
+[ext_resource type="Texture2D" uid="uid://bc2sjmtraidpr" path="res://assets/graphics/hud/pictograms/small_arrow_down.png" id="2_1hvhw"]
+[ext_resource type="Script" uid="uid://nkmafsrfcyew" path="res://scripts/effects/effect_handler_buttons.gd" id="2_na21o"]
+[ext_resource type="Texture2D" uid="uid://2fnai2i2hjcx" path="res://assets/graphics/hud/pictograms/small_arrow_up.png" id="3_na21o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n1p5"]
+size = Vector2(8, 6)
 
 [node name="EffectHandler" type="Node2D"]
 script = ExtResource("1_2n1p5")
+
+[node name="EffectCollection" type="Node2D" parent="."]
+
+[node name="Buttons" type="Node2D" parent="."]
+script = ExtResource("2_na21o")
+
+[node name="IncrementArea" type="Area2D" parent="Buttons"]
+visible = false
+position = Vector2(4, 5)
+
+[node name="IncrementSprite" type="Sprite2D" parent="Buttons/IncrementArea"]
+texture = ExtResource("2_1hvhw")
+
+[node name="IncrementShape" type="CollisionShape2D" parent="Buttons/IncrementArea"]
+shape = SubResource("RectangleShape2D_2n1p5")
+
+[node name="DecrementArea" type="Area2D" parent="Buttons"]
+visible = false
+position = Vector2(4, -3)
+
+[node name="DecrementSprite" type="Sprite2D" parent="Buttons/DecrementArea"]
+texture = ExtResource("3_na21o")
+
+[node name="DecrementShape" type="CollisionShape2D" parent="Buttons/DecrementArea"]
+shape = SubResource("RectangleShape2D_2n1p5")
+
+[connection signal="decrement_pressed" from="Buttons" to="." method="_on_buttons_decrement_pressed"]
+[connection signal="increment_pressed" from="Buttons" to="." method="_on_buttons_increment_pressed"]
+[connection signal="input_event" from="Buttons/IncrementArea" to="Buttons" method="_on_increment_area_input_event"]
+[connection signal="mouse_entered" from="Buttons/IncrementArea" to="Buttons" method="_on_increment_area_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/IncrementArea" to="Buttons" method="_on_increment_area_mouse_exited"]
+[connection signal="input_event" from="Buttons/DecrementArea" to="Buttons" method="_on_decrement_area_input_event"]
+[connection signal="mouse_entered" from="Buttons/DecrementArea" to="Buttons" method="_on_decrement_area_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/DecrementArea" to="Buttons" method="_on_decrement_area_mouse_exited"]

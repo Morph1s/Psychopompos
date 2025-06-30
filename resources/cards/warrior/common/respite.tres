@@ -1,16 +1,15 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://r43h6r5htgjp"]
 
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_atd0v"]
+[ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="1_iofpj"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_jw6ef"]
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="2_xiw73"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_coxiv"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_d7rfk"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="5_coxiv"]
-[ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/block_tooltip.tres" id="6_p2vp2"]
-[ext_resource type="Resource" uid="uid://dlyl21r76fp54" path="res://resources/tooltips/regeneration_tooltip.tres" id="7_rfejf"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lpp6t"]
-size = Vector2(8, 8)
+[ext_resource type="Texture2D" uid="uid://dtb8ehw8vxjhl" path="res://assets/graphics/battle_effects/borderless/effect_regeneration_borderless.png" id="5_8psqu"]
+[ext_resource type="Texture2D" uid="uid://dbuo4uylsacuq" path="res://assets/graphics/cards/common/card_common_respite.png" id="5_l6rkm"]
+[ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/action_tooltips/block_tooltip.tres" id="6_p2vp2"]
+[ext_resource type="Resource" uid="uid://dlyl21r76fp54" path="res://resources/tooltips/effect_tooltips/regeneration_tooltip.tres" id="7_rfejf"]
 
 [sub_resource type="Resource" id="Resource_kk01k"]
 script = ExtResource("2_xiw73")
@@ -25,21 +24,18 @@ effect_value = 1
 target_type = 0
 metadata/_custom_type_script = "uid://2e4l2jfud28l"
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bbib5"]
-size = Vector2(8, 8)
-
 [resource]
 script = ExtResource("2_jw6ef")
 card_name = "respite"
 energy_cost = 2
 rarity = 1
-texture = ExtResource("5_coxiv")
+texture = ExtResource("5_l6rkm")
 on_play_action = Array[ExtResource("1_atd0v")]([SubResource("Resource_kk01k"), SubResource("Resource_okt2f")])
 on_graveyard_action = Array[ExtResource("1_atd0v")]([])
 targeted = false
-first_description_icon = SubResource("PlaceholderTexture2D_lpp6t")
+first_description_icon = ExtResource("1_iofpj")
 first_description_text = "8"
-second_description_icon = SubResource("PlaceholderTexture2D_bbib5")
+second_description_icon = ExtResource("5_8psqu")
 second_description_text = "1"
 tooltips = Array[ExtResource("3_d7rfk")]([ExtResource("6_p2vp2"), ExtResource("7_rfejf")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

@@ -1,15 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm301jgeenuu"]
+[gd_scene load_steps=5 format=3 uid="uid://bm301jgeenuu"]
 
 [ext_resource type="Script" uid="uid://blljvxi03h4k2" path="res://scripts/effects/effect_interface.gd" id="1_mlygs"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_635jn"]
+[ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="3_uthg0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_635jn"]
+size = Vector2(10, 10)
 
 [node name="EffectInterface" type="Sprite2D"]
 centered = false
 script = ExtResource("1_mlygs")
 
 [node name="Counter" type="Label" parent="."]
-offset_left = 10.0
+offset_left = 11.0
 offset_top = 2.0
-offset_right = 22.0
+offset_right = 23.0
 offset_bottom = 8.0
 theme = ExtResource("2_635jn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_635jn")
+
+[node name="Tooltip" parent="." instance=ExtResource("3_uthg0")]
+visible = false
+anchors_preset = -1
+offset_top = 11.0
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

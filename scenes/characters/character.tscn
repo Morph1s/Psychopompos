@@ -1,20 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://b086lic3ys2g6"]
+[gd_scene load_steps=8 format=3 uid="uid://b086lic3ys2g6"]
 
 [ext_resource type="Script" uid="uid://batcfmukfigsj" path="res://scripts/characters/player.gd" id="1_x31xa"]
 [ext_resource type="PackedScene" uid="uid://bye227bai3ofb" path="res://scenes/ui/player_hud.tscn" id="2_1bdar"]
 [ext_resource type="Texture2D" uid="uid://dswkxd5k64ba1" path="res://assets/graphics/characters/placeHolder_player1.png" id="2_ma1fs"]
+[ext_resource type="Shader" uid="uid://bov3iq1ic36sq" path="res://resources/shaders/hit_frame_shader.gdshader" id="2_yscb1"]
 [ext_resource type="PackedScene" uid="uid://bnyj4jetklh6b" path="res://scenes/effects/effect_handler.tscn" id="3_2qjml"]
 [ext_resource type="PackedScene" uid="uid://cc705r0vhke8v" path="res://scenes/modifiers/modifier_handler.tscn" id="3_e22cc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysl2u"]
+shader = ExtResource("2_yscb1")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/intensity = 0.0
 
 [node name="Character" type="Node2D" groups=["player"]]
 script = ExtResource("1_x31xa")
 
 [node name="CharacterImage" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ysl2u")
 texture = ExtResource("2_ma1fs")
 centered = false
 
 [node name="PlayerHud" parent="." instance=ExtResource("2_1bdar")]
 
 [node name="EffectHandler" parent="." instance=ExtResource("3_2qjml")]
+position = Vector2(-8, 0)
 
 [node name="ModifierHandler" parent="." instance=ExtResource("3_e22cc")]
+
+[node name="HitFrameTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="timeout" from="HitFrameTimer" to="." method="_on_hit_frame_timer_timeout"]

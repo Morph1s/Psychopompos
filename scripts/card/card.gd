@@ -12,18 +12,21 @@ signal mouse_entered_card(Node)
 signal mouse_exited_card(Node)
 
 const MAIN_THEME = preload("res://resources/theme/main_theme.tres")
+const CARD_ENERGY_BALL = preload("res://assets/graphics/cards/card_energy_ball.png")
 
 const NORMAL_HEIGHT: int = 150
 const SELECTED_HEIGHT: int = 146
 const PLAYED_HEIGHT: int = 142
 
+@onready var card_frame = $CardFrame
 @onready var card_image: Sprite2D = $CardImage
-@onready var card_highlight: Sprite2D = $CardHighlight
-@onready var energy_cost: Label = $EnergyCost
+@onready var card_highlight: AnimatedSprite2D = $CardHighlight
+@onready var energy_ball_container = $EnergyBallContainer
 @onready var card_name: Label = $Name
 @onready var card_shape: CollisionShape2D = $CardShape
 @onready var description: Node2D = $Description
 @onready var action_timer: Timer = $ActionTimer
+@onready var tooltip = $Tooltip
 
 ## all data about the kind of card this is and its visuals and effects
 var card_type: CardType
@@ -53,9 +56,8 @@ func initialize(card: CardType) -> void:
 	card_type.set_modifier_handler(get_tree().get_first_node_in_group("player").modifier_handler)
 	
 	# load card visuals
-	
 	card_image.texture = card_type.texture
-	energy_cost.text = str(card_type.energy_cost)
+	_create_energy_cost_balls(card_type.energy_cost)
 	card_type.energy_cost_changed.connect(_on_card_type_energy_cost_changed)
 	card_name.text = card_type.card_name
 	_set_description(card_type.first_description_icon, card_type.first_description_text,0)
@@ -65,13 +67,19 @@ func initialize(card: CardType) -> void:
 	match card_type.rarity:
 		CardType.Rarity.STARTING_CARD:
 			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/common/template_common_card.png")
 		CardType.Rarity.COMMON_CARD:
 			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/common/template_common_card.png")
 		CardType.Rarity.HERO_CARD:
-			card_name.add_theme_color_override("font_color", Color.PURPLE)
+			card_name.add_theme_color_override("font_color", Color.WHITE)
+			card_frame.texture = load("res://assets/graphics/cards/hero/template_hero_card.png")
 		CardType.Rarity.GODS_BOON:
-			card_name.add_theme_color_override("font_color", Color.GOLD)
-
+			card_name.add_theme_color_override("font_color", Color.BLACK)
+			card_frame.texture = load("res://assets/graphics/cards/god/template_god_card.png")
+	
+	await tooltip.load_tooltips(card_type.tooltips)
+	relocate_tooltip()
 
 ## function for CardHandler to handle card-state
 func highlight(mode: HighlightMode):
@@ -88,6 +96,7 @@ func highlight(mode: HighlightMode):
 			position.y = NORMAL_HEIGHT
 			
 			self.z_index = 10
+			card_highlight.play("hovered")
 			card_highlight.show()
 		
 		HighlightMode.SELECTED:
@@ -95,10 +104,14 @@ func highlight(mode: HighlightMode):
 			position.y = SELECTED_HEIGHT
 			
 			self.z_index = 11
+			card_highlight.play("selected")
 			card_highlight.show()
 		
 		HighlightMode.PLAYED:
 			position.y = PLAYED_HEIGHT
+			
+			card_highlight.play("played")
+			card_highlight.show()
 
 
 ## function to be called on playing the card
@@ -107,8 +120,7 @@ func highlight(mode: HighlightMode):
 func play(target_id: int = -1) -> void:
 	
 	# pay energy cost
-	for energy in card_type.energy_cost:
-		RunData.player_stats.lose_one_energy()
+	RunData.player_stats.pay_energy(card_type.energy_cost)
 	
 	# return if the card cost killed the player
 	if RunData.player_stats.current_hitpoints < 1:
@@ -137,6 +149,10 @@ func play(target_id: int = -1) -> void:
 	if played_attack:
 		EventBusHandler.player_played_attack.emit()
 
+func relocate_tooltip() -> void:
+	tooltip.position.y = -32.0 - tooltip.box_size.y 
+	var tooltip_x_offset: float = max(0, self.global_position.x + tooltip.box_size.x - 338.0)
+	tooltip.position.x = -22 - tooltip_x_offset
 
 #region local functions
 
@@ -190,6 +206,12 @@ func _set_description(icon: Texture, text: String, description_index: int) -> vo
 		label.position = Vector2(9, (9 * description_index) + 2)
 		description.add_child(label)
 
+func _create_energy_cost_balls(amount: int) -> void:
+	for i in amount:
+		var new_ball = TextureRect.new()
+		new_ball.texture = CARD_ENERGY_BALL
+		energy_ball_container.add_child(new_ball)
+
 #endregion
 
 #region signal functions
@@ -201,6 +223,9 @@ func _on_mouse_exited() -> void:
 	mouse_exited_card.emit(self)
 
 func _on_card_type_energy_cost_changed(new_value: int) -> void:
-	energy_cost.text = str(new_value)
+	for energy_ball in energy_ball_container.get_children():
+		energy_ball.queue_free()
+	
+	_create_energy_cost_balls(new_value)
 
 #endregion
