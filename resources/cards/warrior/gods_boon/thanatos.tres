@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="2_6whb6"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_bxexo"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_5c2y6"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="3_6whb6"]
+[ext_resource type="Texture2D" uid="uid://cs4cji6kohtii" path="res://assets/graphics/cards/god/card_god_thanatos.png" id="5_0mdlm"]
 [ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="5_boj4b"]
 
 [sub_resource type="Resource" id="Resource_boj4b"]
@@ -18,7 +18,7 @@ script = ExtResource("2_bxexo")
 card_name = "thanatos"
 energy_cost = 1
 rarity = 3
-texture = ExtResource("3_6whb6")
+texture = ExtResource("5_0mdlm")
 on_play_action = Array[ExtResource("1_fy8dn")]([SubResource("Resource_boj4b")])
 on_graveyard_action = Array[ExtResource("1_fy8dn")]([])
 targeted = false

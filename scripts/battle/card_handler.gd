@@ -297,8 +297,7 @@ func _set_player_control(controlable: bool) -> void:
 	EventBusHandler.set_player_control.emit(controlable)
 	
 	if not controlable and selected_card:
-		selected_card.highlight(Card.HighlightMode.NONE)
-		selected_card = null
+		_deselect_selected_card()
 	
 	_set_mouse_cursor()
 
