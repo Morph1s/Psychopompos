@@ -11,7 +11,7 @@ enum SpecialEffects {
 var card_handler: CardHandler
 var player_effect_handler: EffectHandler
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_special_action"]
 
 func resolve(targets: Array[Node2D]) -> void:
 	# the first target is the CardHandler for eris, the second is the player for thanatos 

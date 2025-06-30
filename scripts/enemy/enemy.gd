@@ -18,7 +18,7 @@ signal enemy_died(Node)
 
 var id: int = 0
 var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_enemy"]
 var y_position: int = 55
 var size: Vector2
 

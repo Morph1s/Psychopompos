@@ -10,7 +10,7 @@ var card_library: CardLibrary
 var current_deck: Array[CardType] = []
 
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_deck_handler"]
 
 func start_run_setup() -> void:
 	card_library = null

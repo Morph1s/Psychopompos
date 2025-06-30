@@ -4,14 +4,14 @@ extends Control
 var connections: Array[Dictionary] = []
 
 # creates a Dictionary for each connection line that contains the buttons that should be connected
-func set_connections(encounter_to_button: Dictionary):
+func set_connections(node_to_button: Dictionary[MapNode, Button]):
 	connections.clear()
 	
-	for encounter: Encounter in encounter_to_button.keys():
-		var button_from = encounter_to_button[encounter]        # pos 1
-		for target in encounter.connections_to:
-			if target in encounter_to_button:
-				var button_to = encounter_to_button[target]     # pos 2
+	for node: MapNode in node_to_button.keys():
+		var button_from = node_to_button[node]				# pos 1
+		for target in node.next_nodes:
+			if target in node_to_button:
+				var button_to = node_to_button[target]		# pos 2
 				connections.append({
 					"from": button_from,
 					"to": button_to,
