@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://djm0xrjedkx5"]
 
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_hrmra"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_34tpb"]
-size = Vector2(8, 8)
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_y2j1a"]
 
 [resource]
 script = ExtResource("1_hrmra")
-icon = SubResource("PlaceholderTexture2D_34tpb")
+icon = ExtResource("1_y2j1a")
 description = "ATTACK: deal damage"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

@@ -1,13 +1,12 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://c0kf21jvrxk0a"]
 
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_lumf3"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_uy6uf"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_44t4l"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_p2gno"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_7qwwq"]
 [ext_resource type="Texture2D" uid="uid://o4ydo2rocley" path="res://assets/graphics/cards/god/card_god_hades.png" id="4_44t4l"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="6_gor4m"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i1oy6"]
 
 [sub_resource type="Resource" id="Resource_gpe51"]
 script = ExtResource("2_44t4l")
@@ -24,7 +23,7 @@ texture = ExtResource("4_44t4l")
 on_play_action = Array[ExtResource("1_uy6uf")]([SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51")])
 on_graveyard_action = Array[ExtResource("1_uy6uf")]([])
 targeted = false
-first_description_icon = SubResource("PlaceholderTexture2D_i1oy6")
+first_description_icon = ExtResource("1_lumf3")
 first_description_text = "2*5"
 second_description_text = ""
 tooltips = Array[ExtResource("3_7qwwq")]([ExtResource("6_gor4m")])
