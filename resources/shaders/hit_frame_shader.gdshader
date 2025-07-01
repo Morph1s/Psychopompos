@@ -13,7 +13,7 @@ const vec2[4] DIRECTIONS = {
 };
 
 // returns 1.0 if input > 0, else 0.0
-float gtz(float input) { 
+float gtz(float input) {
 	return max(0, sign(input));
 }
 
@@ -35,7 +35,7 @@ void fragment() {
 		vec4(fill_color, COLOR.a),
 		outline_color,
 		check(TEXTURE, UV, TEXTURE_PIXEL_SIZE) * (1.0 - gtz(COLOR.a)));
-	
+
 	// apply the hitframe color based on the intensity
 	COLOR = mix(COLOR, hit_frame_color, intensity);
 }
