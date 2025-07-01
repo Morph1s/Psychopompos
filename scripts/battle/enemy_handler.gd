@@ -4,9 +4,8 @@ extends Node2D
 signal all_enemies_died
 
 const ENEMY = preload("res://scenes/enemy/enemy.tscn")
-const ENEMY_WIDTH: int = 82
-const ENEMY_PLACEMENT_CENTER_X: int = 320 - 100
-const SPEED: float = 0.5
+const ENEMY_MINIMUM_DISTANCE: int = 68
+const ENEMY_PLACEMENT_CENTER_X: int = 220
 @onready var card_handler: CardHandler = $"../CardHandler"
 
 var enemies_stats: Array[EnemyStats]
@@ -20,7 +19,8 @@ func initialize(enemies_data: Array[EnemyStats]) -> void:
 	load_enemies(enemies_stats)
 
 func load_enemies(loading_enemies: Array[EnemyStats]) :
-	for enemy in loading_enemies:
+	var index: int = 0
+	for enemy: EnemyStats in loading_enemies:
 		var new_enemy: Enemy = ENEMY.instantiate() as Enemy
 		self.add_child(new_enemy)
 		new_enemy.stats = enemy.duplicate()
@@ -29,24 +29,14 @@ func load_enemies(loading_enemies: Array[EnemyStats]) :
 		new_enemy.mouse_entered_enemy.connect(_on_enemy_enterd)
 		new_enemy.mouse_exited_enemy.connect(_on_enemy_exited)
 		new_enemy.enemy_died.connect(_an_enemy_died)
-		random_y_position = rng.randi_range(1,180)
-		new_enemy.position = Vector2(340,random_y_position)
+		new_enemy.position = Vector2(_calculate_enemy_x_position(index, loading_enemies.size()), new_enemy.y_position)
 		enemies.append(new_enemy)
-	place_enemy_in_scene()
+		index += 1
 
-
-
-func place_enemy_in_scene():
-	var tween = get_tree().create_tween()
-	tween.set_parallel(true)
-	for enemy in enemies:
-		var new_position: Vector2 = _calculate_enemy_position(enemy.get_index(), enemies.size())
-		tween.tween_property(enemy, "position", new_position ,SPEED)
-
-func _calculate_enemy_position(index: int, enemy_count: int) -> Vector2:
-	var enemy_distance: int = ENEMY_WIDTH - round(enemy_count / 2) * 2
-	var enemy_x_position = ENEMY_PLACEMENT_CENTER_X + index * enemy_distance - enemy_distance * (enemy_count - 1) / 2
-	return Vector2(enemy_x_position, enemies[index].y_position)
+func _calculate_enemy_x_position(index: int, enemy_count: int) -> int:
+	var enemies_total_width: int = ENEMY_MINIMUM_DISTANCE * enemy_count
+	var enemy_x_position = (ENEMY_PLACEMENT_CENTER_X - enemies_total_width / 2) + ENEMY_MINIMUM_DISTANCE * index
+	return enemy_x_position
 
 func resolve_intent():
 	for enemy in enemies:
