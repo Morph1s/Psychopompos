@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dswkxd5k64ba1"
-path="res://.godot/imported/placeHolder_player1.png-a77d0a2f39c36545c72aa87497991b67.ctex"
+uid="uid://g14mgksi5npx"
+path="res://.godot/imported/protagonist_v1.png-9cd4d6dc5ee097da32572d782bd5ed8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/characters/placeHolder_player1.png"
-dest_files=["res://.godot/imported/placeHolder_player1.png-a77d0a2f39c36545c72aa87497991b67.ctex"]
+source_file="res://assets/graphics/characters/protagonist_v1.png"
+dest_files=["res://.godot/imported/protagonist_v1.png-9cd4d6dc5ee097da32572d782bd5ed8a.ctex"]
 
 [params]
 
