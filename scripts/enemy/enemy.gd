@@ -24,12 +24,12 @@ var size: Vector2
 
 
 func initialize() -> void:
-	
 	stats.initialize()
 	enemy_hud.set_initial_values(stats.maximum_hitpoints, stats.current_hitpoints, stats.block)
 	
 	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
+	image.material = image.material.duplicate()
 	
 	size = image.texture.get_size()
 	shape.shape.size = size
