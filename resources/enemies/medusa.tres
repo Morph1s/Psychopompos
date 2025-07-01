@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://6nj31xcc2ic1" path="res://assets/graphics/enemies/intents/intent_debuff.png" id="4_52oyc"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="5_usgna"]
 [ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="6_8e0ah"]
-[ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="7_7sw6t"]
+[ext_resource type="Texture2D" uid="uid://dk2rjmjqhxd21" path="res://assets/graphics/enemies/boss_medusa.png" id="7_x6ynl"]
 
 [sub_resource type="Resource" id="Resource_rq56w"]
 script = ExtResource("3_blqtc")
@@ -75,7 +75,7 @@ metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [resource]
 script = ExtResource("2_0mfjq")
-enemy_sprite = ExtResource("7_7sw6t")
+enemy_sprite = ExtResource("7_x6ynl")
 action_pattern = 1
 actions = Array[ExtResource("1_gf7xl")]([SubResource("Resource_ri7ax"), SubResource("Resource_er6ty"), SubResource("Resource_iga3s"), SubResource("Resource_ckdi4")])
 maximum_hitpoints = 300

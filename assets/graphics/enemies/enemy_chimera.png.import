@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djdkpgcalvgny"
-path="res://.godot/imported/enemy_chimaere.png-862c8d2c5bafd64bbc9f8f360606c26b.ctex"
+path="res://.godot/imported/enemy_chimera.png-68e16b6de8140fdcced2bc7454de7f93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/enemies/enemy_chimaere.png"
-dest_files=["res://.godot/imported/enemy_chimaere.png-862c8d2c5bafd64bbc9f8f360606c26b.ctex"]
+source_file="res://assets/graphics/enemies/enemy_chimera.png"
+dest_files=["res://.godot/imported/enemy_chimera.png-68e16b6de8140fdcced2bc7454de7f93.ctex"]
 
 [params]
 
