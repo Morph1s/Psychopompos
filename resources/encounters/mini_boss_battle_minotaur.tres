@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MiniBossEncounter" load_steps=4 format=3 uid="uid://4tbxtw8q0qen"]
+
+[ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="1_fpucu"]
+[ext_resource type="Resource" uid="uid://cp733qsv8syje" path="res://resources/enemies/minotaur.tres" id="2_8obp8"]
+[ext_resource type="Script" uid="uid://3p85qbmov3f7" path="res://scripts/custom_resources/map/mini_boss_encounter.gd" id="3_nvt26"]
+
+[resource]
+script = ExtResource("3_nvt26")
+enemies = Array[ExtResource("1_fpucu")]([ExtResource("2_8obp8")])
+metadata/_custom_type_script = "uid://dcebhtlbetxd1"

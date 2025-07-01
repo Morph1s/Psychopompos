@@ -12,7 +12,7 @@ signal encounter_selected(encounter_data)
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_map_visual"]
 var node_to_button: Dictionary[MapNode, Button] = {}
 var current_node: MapNode
-var current_layer = 0
+var current_layer: int = 0
 var can_close: bool = false:
 	set(value):
 		if value:
