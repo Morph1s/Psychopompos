@@ -52,8 +52,9 @@ stretch_mode = 2
 [node name="IconsLeft" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(60, 18)
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 16.0
+offset_top = -1.0
+offset_right = 60.0
+offset_bottom = 17.0
 alignment = 2
 
 [node name="HPIcon" type="TextureRect" parent="IconsLeft"]
