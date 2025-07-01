@@ -2,6 +2,7 @@ class_name RunUI
 extends TextureRect
 
 signal open_map
+signal open_deck_view
 
 @onready var tooltip = $Tooltip
 @onready var hitpoints = $IconsLeft/HPLabel
@@ -13,7 +14,7 @@ func initialize() -> void:
 
 func _on_deck_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
-		EventBusHandler.show_deck_view.emit(DeckHandler.current_deck)
+		open_deck_view.emit()
 
 func _on_map_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
