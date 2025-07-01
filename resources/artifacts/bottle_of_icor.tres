@@ -2,15 +2,13 @@
 
 [ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_k0v7g"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_gb45q"]
+[ext_resource type="Texture2D" uid="uid://bq6tkxygd2i61" path="res://assets/graphics/relics/relic_bottle_of_ichor.png" id="2_rhd6h"]
 [ext_resource type="Resource" uid="uid://bvvmva13cfoxb" path="res://resources/tooltips/artifact_tooltips/bottle_of_icor_tooltip.tres" id="3_gb45q"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k0v7g"]
-size = Vector2(16, 16)
 
 [resource]
 script = ExtResource("1_k0v7g")
 name = "BOTTLE OF ICOR"
-texture = SubResource("PlaceholderTexture2D_k0v7g")
+texture = ExtResource("2_rhd6h")
 amount = 1
 tooltip = Array[ExtResource("2_gb45q")]([ExtResource("3_gb45q")])
 effects_active = false
