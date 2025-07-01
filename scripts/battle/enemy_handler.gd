@@ -35,7 +35,7 @@ func load_enemies(loading_enemies: Array[EnemyStats]) :
 
 func _calculate_enemy_x_position(index: int, enemy_count: int) -> int:
 	var enemies_total_width: int = ENEMY_MINIMUM_DISTANCE * enemy_count
-	var enemy_x_position = (ENEMY_PLACEMENT_CENTER_X - enemies_total_width / 2) + ENEMY_MINIMUM_DISTANCE * index
+	var enemy_x_position: int = (ENEMY_PLACEMENT_CENTER_X - enemies_total_width / 2) + ENEMY_MINIMUM_DISTANCE * index
 	return enemy_x_position
 
 func resolve_intent():
