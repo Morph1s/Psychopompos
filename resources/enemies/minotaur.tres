@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cx71dc3ocqabi" path="res://assets/graphics/enemies/intents/intent_buff.png" id="4_7ruqa"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="5_gfaaa"]
 [ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="6_rvj4q"]
-[ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="7_a2lwg"]
+[ext_resource type="Texture2D" uid="uid://dh0a4b2jcaajx" path="res://assets/graphics/enemies/mini_boss_minotaur.png" id="7_hnrvt"]
 
 [sub_resource type="Resource" id="Resource_u47oq"]
 script = ExtResource("3_s6t2b")
@@ -55,7 +55,7 @@ metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [resource]
 script = ExtResource("2_cwftc")
-enemy_sprite = ExtResource("7_a2lwg")
+enemy_sprite = ExtResource("7_hnrvt")
 action_pattern = 1
 actions = Array[ExtResource("1_qiugy")]([SubResource("Resource_n4ota"), SubResource("Resource_avwxc"), SubResource("Resource_l2ou2")])
 maximum_hitpoints = 15

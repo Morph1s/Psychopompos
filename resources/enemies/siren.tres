@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="5_r7c3a"]
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="6_j1ipo"]
 [ext_resource type="Texture2D" uid="uid://jpitba6gq5tt" path="res://assets/graphics/enemies/intents/intent_block.png" id="7_wi3jj"]
-[ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="8_fmeid"]
+[ext_resource type="Texture2D" uid="uid://c7yggg3wfwhqd" path="res://assets/graphics/enemies/enemy_sirene.png" id="9_vfwur"]
 
 [sub_resource type="Resource" id="Resource_bp817"]
 script = ExtResource("3_vfwur")
@@ -70,7 +70,7 @@ metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [resource]
 script = ExtResource("2_dnrcc")
-enemy_sprite = ExtResource("8_fmeid")
+enemy_sprite = ExtResource("9_vfwur")
 action_pattern = 0
 actions = Array[ExtResource("1_qln16")]([SubResource("Resource_gf8ss"), SubResource("Resource_c1kit"), SubResource("Resource_fgral")])
 maximum_hitpoints = 40
