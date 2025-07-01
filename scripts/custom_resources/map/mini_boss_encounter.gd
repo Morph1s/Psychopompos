@@ -1,5 +1,5 @@
 class_name MiniBossEncounter
-extends Encounter
+extends BattleEncounter
 
 func _init() -> void:
 	type = EncounterType.MINI_BOSS

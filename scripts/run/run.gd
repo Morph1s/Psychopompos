@@ -1,17 +1,19 @@
 class_name Run
 extends Node2D
 
+signal load_main_menu
+
 @onready var ui_layer: CanvasLayer = $UILayer
 @onready var run_ui: RunUI = $UILayer/RunUI
 @onready var encounter_handler = $EncounterHandler
 @onready var map = $UILayer/Map
 @onready var map_generator = $MapGenerator
 
-signal load_main_menu
+var map_layers: Array[MapLayer] = []
 
 func _ready():
 	RunData.start_run(RunData.Characters.WARRIOR)
-	var map_layers = map_generator.generate_map()
+	map_layers = map_generator.generate_map()
 	map.load_layers(map_layers)
 	DeckHandler.start_run_setup()
 	run_ui.initialize()
@@ -26,6 +28,6 @@ func _on_map_encounter_selected(encounter_data):
 func _on_encounter_handler_load_main_menu() -> void:
 	load_main_menu.emit()
 
-func _on_encounter_handler_load_rewards() -> void:
-	ui_layer.load_battle_rewards()
+func _on_encounter_handler_load_rewards(boss_rewards: bool) -> void:
+	ui_layer.load_battle_rewards(boss_rewards)
 #endregion

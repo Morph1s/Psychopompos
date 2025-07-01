@@ -17,9 +17,13 @@ func _ready() -> void:
 	EventBusHandler.show_deck_view_with_action.connect(_on_eventbus_open_deck_view_with_action)
 	EventBusHandler.campfire_finished.connect(_on_eventbus_campfire_finished)
 
-func load_battle_rewards():
+func load_battle_rewards(boss_rewards: bool):
 	var battle_rewards: BattleRewards = BATTLE_REWARDS.instantiate()
-	battle_rewards.load_common_rewards()
+	
+	if boss_rewards:
+		battle_rewards.load_boss_rewards()
+	else:
+		battle_rewards.load_common_rewards()
 	battle_rewards.finished_selecting.connect(_on_battle_rewards_finished_selecting)
 	add_child(battle_rewards)
 

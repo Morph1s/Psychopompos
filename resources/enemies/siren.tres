@@ -73,6 +73,6 @@ script = ExtResource("2_dnrcc")
 enemy_sprite = ExtResource("8_fmeid")
 action_pattern = 0
 actions = Array[ExtResource("1_qln16")]([SubResource("Resource_gf8ss"), SubResource("Resource_c1kit"), SubResource("Resource_fgral")])
-maximum_hitpoints = 1
+maximum_hitpoints = 40
 current_hitpoints = 1
 metadata/_custom_type_script = "uid://bq170hnpyow8i"
