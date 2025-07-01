@@ -78,16 +78,6 @@ func _on_eventbus_open_deck_view(deck: Array[CardType]) -> void:
 		battle_ui_reference.hide()
 
 func _on_eventbus_open_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable) -> void:
-	if deck_view.visible:
-		_close_deck_view()
-		if not map.can_close:
-			#map.
-			pass
-	if map.visible or deck_view.visible:
-		map.close_map()
-		_close_deck_view()
-		return
-	
 	deck_view.show()
 	deck_view.load_cards(deck)
 	deck_view.add_card_action(on_card_selected_action)
