@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_xxbqd")
 icon = ExtResource("1_4vcy2")
-description_pre_value = "REGENERATION: regain hitpoints the at the start of your next"
+description_pre_value = "REGENERATION: regain hitpoints at the start of your next"
 use_value = true
+default_value = 1
 description_after_value = "turns"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"
