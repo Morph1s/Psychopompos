@@ -4,5 +4,8 @@
 
 [resource]
 script = ExtResource("1_etctu")
-description = "BOTTLE OF ICOR: gain 1 max energy when picking up"
+description_pre_value = "BOTTLE OF ICOR: gain 1 maximum energy"
+use_value = false
+default_value = 1
+description_after_value = ""
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

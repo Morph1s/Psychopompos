@@ -4,5 +4,8 @@
 
 [resource]
 script = ExtResource("1_4h4kx")
-description = "TWIG OF LETHE: heal 15 more at campfires "
+description_pre_value = "TWIG OF LETHE: heal all hitpoints when resting at a campfire"
+use_value = false
+default_value = 1
+description_after_value = ""
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

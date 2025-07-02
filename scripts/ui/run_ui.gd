@@ -28,6 +28,9 @@ func _on_stats_hp_changed(current_hp: int, max_hp: int):
 	hitpoints.text = "%d/%d" % [current_hp, max_hp]
 
 func _on_artifact_handler_artifact_selected(artifact: Artifact) -> void:
+	for tooltip_entry in artifact.tooltip:
+		tooltip_entry.set_description()
+	
 	var artifact_visualization: TextureRect = TextureRect.new()
 	
 	# set parameters

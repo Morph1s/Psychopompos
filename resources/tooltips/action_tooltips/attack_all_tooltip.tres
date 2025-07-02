@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://c0bqjh5i2u6kc"]
+
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_vnwac"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_2yb6y"]
+
+[resource]
+script = ExtResource("2_2yb6y")
+icon = ExtResource("1_vnwac")
+description_pre_value = "ATTACK ALL: deal"
+use_value = true
+description_after_value = "damage to all enemies"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

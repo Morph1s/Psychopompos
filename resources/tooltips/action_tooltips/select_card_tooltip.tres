@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource("1_oo656")
-description = "select 1 of 3 cards to add to your deck permanently"
+description_pre_value = "SELECT CARD: add one of 3 random cards to your deck"
+use_value = false
+description_after_value = ""
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

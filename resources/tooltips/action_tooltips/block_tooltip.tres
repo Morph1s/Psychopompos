@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_7atm3")
 icon = ExtResource("1_4bww3")
-description = "BLOCK: avoid damage"
+description_pre_value = "BLOCK: avoid"
+use_value = true
+description_after_value = "damage for this turn"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

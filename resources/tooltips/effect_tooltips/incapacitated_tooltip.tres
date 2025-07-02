@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_5q1dt")
 icon = ExtResource("1_onhtv")
-description = "INCAPACITATED: draw less cards"
+description_pre_value = "INCAPACITATED: draw 1 less card the next"
+use_value = true
+description_after_value = "times you draw a card"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

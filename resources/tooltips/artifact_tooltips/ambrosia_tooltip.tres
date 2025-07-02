@@ -4,5 +4,8 @@
 
 [resource]
 script = ExtResource("1_jdajy")
-description = "AMBROSIA: gain 15 max HP when picking up"
+description_pre_value = "AMBROSIA: gain 15 maximum hitpoints"
+use_value = false
+default_value = 1
+description_after_value = ""
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

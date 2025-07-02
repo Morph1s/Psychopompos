@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_mtyvc")
 icon = ExtResource("1_4sjxd")
-description = "AGILE: draw more cards"
+description_pre_value = "AGILE: draw 1 more card the next"
+use_value = true
+default_value = 3
+description_after_value = "times you draw a card"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

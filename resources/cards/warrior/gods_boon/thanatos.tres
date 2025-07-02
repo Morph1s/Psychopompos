@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://btbjki4ou2ghp"]
+[gd_resource type="Resource" script_class="CardType" load_steps=10 format=3 uid="uid://btbjki4ou2ghp"]
 
 [ext_resource type="Texture2D" uid="uid://dtybxhbu703gj" path="res://assets/graphics/battle_effects/borderless/effect_gather_borderless.png" id="1_boj4b"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_fy8dn"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_bxexo"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_5c2y6"]
 [ext_resource type="Texture2D" uid="uid://cs4cji6kohtii" path="res://assets/graphics/cards/god/card_god_thanatos.png" id="5_0mdlm"]
-[ext_resource type="Resource" uid="uid://dnr8wpj2xhpy0" path="res://resources/tooltips/effect_tooltips/gather_tooltip.tres" id="5_boj4b"]
+[ext_resource type="Resource" uid="uid://dfvcuefm8ltyl" path="res://resources/tooltips/special_tooltips/thanatos_tooltip.tres" id="7_boj4b"]
+[ext_resource type="Resource" uid="uid://dujmbc5xoopbv" path="res://resources/tooltips/special_tooltips/tahnatos_gather_tooltip.tres" id="8_0mdlm"]
 
 [sub_resource type="Resource" id="Resource_boj4b"]
 script = ExtResource("2_6whb6")
@@ -25,5 +26,5 @@ targeted = false
 first_description_icon = ExtResource("1_boj4b")
 first_description_text = "X2"
 second_description_text = ""
-tooltips = Array[ExtResource("3_5c2y6")]([ExtResource("5_boj4b")])
+tooltips = Array[ExtResource("3_5c2y6")]([ExtResource("7_boj4b"), ExtResource("8_0mdlm")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"
