@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_avkjq")
 icon = ExtResource("1_8uvvt")
-description_pre_value = "WOUNDED: take"
+description_pre_value = "WOUNDED: unit loses"
 use_value = true
 default_value = 1
-description_after_value = "additional damage when you get attacked"
+description_after_value = "hitpoints when it gets attacked"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

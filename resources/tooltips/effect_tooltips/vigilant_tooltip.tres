@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_awwof")
 icon = ExtResource("1_8ddsv")
-description_pre_value = "VIGILANT: take 50% less damage for"
+description_pre_value = "VIGILANT: unit takes 50% less damage for"
 use_value = true
 default_value = 1
 description_after_value = "turns"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://cfvfkg37b28i6"]
+
+[ext_resource type="Texture2D" uid="uid://dtybxhbu703gj" path="res://assets/graphics/battle_effects/borderless/effect_gather_borderless.png" id="1_fx3lh"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_xvg17"]
+
+[resource]
+script = ExtResource("2_xvg17")
+icon = ExtResource("1_fx3lh")
+description_pre_value = "GATHER: deal"
+use_value = true
+default_value = 1
+description_after_value = "more damage the next time it attacks"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

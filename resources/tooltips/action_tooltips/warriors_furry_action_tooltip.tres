@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://d2k2mb2qr08b"]
+
+[ext_resource type="Texture2D" uid="uid://bcgaxelc6174c" path="res://assets/graphics/battle_effects/borderless/effect_furry_borderless.png" id="1_ecxke"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_rqt3w"]
+
+[resource]
+script = ExtResource("2_rqt3w")
+icon = ExtResource("1_ecxke")
+description_pre_value = "FURY: deal 50% and take 25% more damage for"
+use_value = true
+default_value = 1
+description_after_value = "turns"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_hacm5")
 icon = ExtResource("1_jlc5n")
-description_pre_value = "FURY: deal 50% and take 25% more damage for"
+description_pre_value = "FURY: unit deals 50% and takes 25% more damage for"
 use_value = true
 default_value = 1
 description_after_value = "turns"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://b5a6iemsg03xg"]
+
+[ext_resource type="Texture2D" uid="uid://5q8v2urdridx" path="res://assets/graphics/battle_effects/borderless/effect_vigilant_borderless.png" id="1_dl6ej"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_q27wr"]
+
+[resource]
+script = ExtResource("2_q27wr")
+icon = ExtResource("1_dl6ej")
+description_pre_value = "VIGILANT: take 50% less damage for"
+use_value = true
+default_value = 1
+description_after_value = "turns"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
