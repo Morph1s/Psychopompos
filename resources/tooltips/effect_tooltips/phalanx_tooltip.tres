@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_hudtv")
 icon = ExtResource("1_lceqq")
-description = "PHALANX: gain more block"
+description_pre_value = "PHALANX: gain 50% more block for"
+use_value = true
+default_value = 1
+description_after_value = "turns"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

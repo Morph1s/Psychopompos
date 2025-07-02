@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://bst17557hkwk4" path="res://assets/graphics/relics/relic_hermes_winged_boots.png" id="2_7o2e2"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_x13s8"]
 [ext_resource type="Resource" uid="uid://4uadjcuv8ght" path="res://resources/tooltips/artifact_tooltips/hermes_winged_boots_tooltip.tres" id="3_p4elm"]
-[ext_resource type="Resource" uid="uid://g1i01gxgwbvs" path="res://resources/tooltips/effect_tooltips/agile_tooltip.tres" id="4_7o2e2"]
+[ext_resource type="Resource" uid="uid://bqyjvpy6dy22q" path="res://resources/tooltips/special_tooltips/hermes_winged_boots_agile_tooltip.tres" id="5_7o2e2"]
 
 [resource]
 script = ExtResource("1_6fhqp")
 name = "WINGED BOOTS"
 texture = ExtResource("2_7o2e2")
 amount = 2
-tooltip = Array[ExtResource("2_x13s8")]([ExtResource("3_p4elm"), ExtResource("4_7o2e2")])
+tooltip = Array[ExtResource("2_x13s8")]([ExtResource("3_p4elm"), ExtResource("5_7o2e2")])
 effects_active = true
 effect = 0
 pickup_active = false

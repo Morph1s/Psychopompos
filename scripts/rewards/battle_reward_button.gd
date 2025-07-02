@@ -22,10 +22,12 @@ func set_rewards(reward_type: BattleRewards.RewardType, amount: int) -> void:
 	match type:
 		BattleRewards.RewardType.CARDS:
 			text = "CHOOSE CARD"
+			SELECT_CARD_TOOLTIP[0].set_description()
 			tooltip.load_tooltips(SELECT_CARD_TOOLTIP)
 		
 		#BattleRewards.RewardType.COINS:
 			#text = str(count) + " COINS"
+			#COINS_TOOLTIP[0].set_description()
 			#tooltip.load_tooltips(COINS_TOOLTIP)
 		
 		BattleRewards.RewardType.ARTIFACT:
@@ -35,6 +37,10 @@ func set_rewards(reward_type: BattleRewards.RewardType, amount: int) -> void:
 				return
 			
 			text = artifact_reward.name
+			
+			for tooltip_entry in artifact_reward.tooltip:
+				tooltip_entry.set_description()
+			
 			tooltip.load_tooltips(artifact_reward.tooltip)
 
 func _on_button_up():

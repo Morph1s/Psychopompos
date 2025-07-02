@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_l5yub")
 icon = ExtResource("1_o1ypd")
-description = "GATHER: attack for more, then lose stacks"
+description_pre_value = "GATHER: Deal"
+use_value = true
+default_value = 1
+description_after_value = "more damage the next time you attack"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

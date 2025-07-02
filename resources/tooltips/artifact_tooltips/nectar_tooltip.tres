@@ -4,5 +4,8 @@
 
 [resource]
 script = ExtResource("1_2iy2g")
-description = "NECTAR: regenerate HP at the start of battle"
+description_pre_value = "NECTAR: regenerate hitpoints at the start of each combat"
+use_value = false
+default_value = 1
+description_after_value = ""
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

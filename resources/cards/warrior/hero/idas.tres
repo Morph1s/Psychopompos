@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_5phop"]
 [ext_resource type="Texture2D" uid="uid://dh3fgsutqoxmw" path="res://assets/graphics/cards/hero/card_hero_idas.png" id="4_p12vb"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_gddir"]
-[ext_resource type="Resource" uid="uid://qo0nfo00b6vb" path="res://resources/tooltips/effect_tooltips/warriors_furry_tooltip.tres" id="6_aqrcg"]
+[ext_resource type="Resource" uid="uid://d2k2mb2qr08b" path="res://resources/tooltips/action_tooltips/warriors_furry_action_tooltip.tres" id="7_dy85v"]
 
 [sub_resource type="Resource" id="Resource_nh1d0"]
 script = ExtResource("2_dy85v")
@@ -27,5 +27,5 @@ targeted = false
 first_description_icon = ExtResource("1_dy85v")
 first_description_text = "2"
 second_description_text = ""
-tooltips = Array[ExtResource("5_gddir")]([ExtResource("6_aqrcg")])
+tooltips = Array[ExtResource("5_gddir")]([ExtResource("7_dy85v")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://bqyjvpy6dy22q"]
+
+[ext_resource type="Texture2D" uid="uid://cnrod70xm6tfy" path="res://assets/graphics/battle_effects/borderless/effect_agile_borderless.png" id="1_0fa21"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_fo03q"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_fo03q")
+icon = ExtResource("1_0fa21")
+description_pre_value = "AGILE: draw 1 more card the next"
+use_value = true
+default_value = 3
+description_after_value = "times you draw a card"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

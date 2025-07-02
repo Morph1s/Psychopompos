@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_ony2o")
 icon = ExtResource("1_15qt4")
-description = "CARD DRAW: draw cards from draw pile"
+description_pre_value = "DRAW CARD: draw"
+use_value = true
+default_value = 1
+description_after_value = "cards"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"
