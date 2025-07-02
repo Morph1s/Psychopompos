@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_pial7"]
 [ext_resource type="Texture2D" uid="uid://coxto05031gbk" path="res://assets/graphics/cards/god/card_god_eris.png" id="4_x5gib"]
 [ext_resource type="Texture2D" uid="uid://f4t16pq81ie5" path="res://assets/graphics/cards/card_effect_draw.png" id="5_l5b05"]
-[ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/action_tooltips/discard_random_tooltip.tres" id="5_x5gib"]
-[ext_resource type="Resource" uid="uid://chk74fdryfg7x" path="res://resources/tooltips/action_tooltips/card_draw_tooltip.tres" id="6_48dm5"]
+[ext_resource type="Resource" uid="uid://dae0r7wwsho2l" path="res://resources/tooltips/special_tooltips/eris_discard_tooltip.tres" id="8_bnx32"]
+[ext_resource type="Resource" uid="uid://bihsh723m8bto" path="res://resources/tooltips/special_tooltips/eris_draw_tooltip.tres" id="9_l5b05"]
 
 [sub_resource type="Resource" id="Resource_48dm5"]
 script = ExtResource("2_x5gib")
@@ -28,5 +28,5 @@ first_description_icon = ExtResource("1_bnx32")
 first_description_text = "1-5"
 second_description_icon = ExtResource("5_l5b05")
 second_description_text = "1-5"
-tooltips = Array[ExtResource("3_pial7")]([ExtResource("5_x5gib"), ExtResource("6_48dm5")])
+tooltips = Array[ExtResource("3_pial7")]([ExtResource("8_bnx32"), ExtResource("9_l5b05")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_5qd0d")
 icon = ExtResource("1_iy57k")
-description = "DISCARD RANDOM: move random card from hand to discard pile"
+description_pre_value = "DISCARD RANDOM CARD: discard"
+use_value = true
+default_value = 1
+description_after_value = "random cards"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

@@ -78,8 +78,26 @@ func initialize(card: CardType) -> void:
 			card_name.add_theme_color_override("font_color", Color.BLACK)
 			card_frame.texture = load("res://assets/graphics/cards/god/template_god_card.png")
 	
+	for index in card_type.tooltips.size():
+		if index in range(card_type.on_play_action.size()):
+			_set_tooltip_of_index(index)
+		else:
+			card_type.tooltips[index].set_description()
+	
 	await tooltip.load_tooltips(card_type.tooltips)
 	relocate_tooltip()
+
+func _set_tooltip_of_index(index: int) -> void:
+	if card_type.on_play_action[index] is AttackAction:
+		card_type.tooltips[index].set_description(card_type.on_play_action[index].damage_stat)
+	elif card_type.on_play_action[index] is DefendAction:
+		card_type.tooltips[index].set_description(card_type.on_play_action[index].block_stat)
+	elif card_type.on_play_action[index] is EffectAction:
+		card_type.tooltips[index].set_description(card_type.on_play_action[index].effect_value)
+	elif card_type.on_play_action[index] is SpecialAction:
+		card_type.tooltips[index].set_description()
+	elif card_type.on_play_action[index] is CardManipulationAction:
+		card_type.tooltips[index].set_description(card_type.on_play_action[index].count)
 
 ## function for CardHandler to handle card-state
 func highlight(mode: HighlightMode):

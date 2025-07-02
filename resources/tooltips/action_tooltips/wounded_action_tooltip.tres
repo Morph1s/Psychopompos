@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://su3pit3bgs8d"]
+
+[ext_resource type="Texture2D" uid="uid://c0pulfg4u40ce" path="res://assets/graphics/battle_effects/borderless/effect_wounded_borderless.png" id="1_8wdny"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_fkc6k"]
+
+[resource]
+script = ExtResource("2_fkc6k")
+icon = ExtResource("1_8wdny")
+description_pre_value = "WOUNDED: target enemy loses"
+use_value = true
+default_value = 1
+description_after_value = "hitpoints when it gets attacked"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

@@ -29,6 +29,10 @@ var stacks: int = 0:
 			counter.text = str(value)
 		else:
 			counter.text = ""
+		
+		for tooltip_entry in tooltip_data:
+			tooltip_entry.set_description(stacks)
+		tooltip.load_tooltips(tooltip_data)
 
 ## called to setup the effects functionality
 func initialize(entity: Node2D, amount: int) -> void:
@@ -37,6 +41,10 @@ func initialize(entity: Node2D, amount: int) -> void:
 	
 	effect_owner = entity
 	add_stacks(amount)
+	
+	for tooltip_entry in tooltip_data:
+		tooltip_entry.set_description(stacks)
+	
 	await tooltip.load_tooltips(tooltip_data)
 	
 	tooltip.position.x -= max(0, self.global_position.x + tooltip.box_size.x - 316.0)

@@ -17,6 +17,8 @@ signal back_to_battle
 signal cards_drawn
 signal card_selected(cost: int)
 signal card_deselected
+signal card_piles_card_count_changed(draw_pile_card_count: int, discard_pile_card_count: int)
+signal dialogue_finished
 
 
 ## disposes all connections of all events
@@ -29,3 +31,6 @@ func clear_all_battle_events() -> void:
 	
 	for function in set_player_control.get_connections():
 		set_player_control.disconnect(function["callable"])
+	
+	for function in card_piles_card_count_changed.get_connections():
+		card_piles_card_count_changed.disconnect(function["callable"])

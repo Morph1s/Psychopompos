@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://b473gmn7a3x5s"]
+
+[ext_resource type="Script" uid="uid://dssy6dc5ekwbk" path="res://scripts/encounters/dialogue.gd" id="1_bxehw"]
+[ext_resource type="Texture2D" uid="uid://bv4srl865j4k1" path="res://assets/graphics/background/wallpaper_battle_scene.png" id="2_m3cvh"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="3_a4cqp"]
+[ext_resource type="Script" uid="uid://rntvy6nvin1p" path="res://scripts/encounters/dialogue_ui.gd" id="4_guor1"]
+[ext_resource type="PackedScene" uid="uid://b086lic3ys2g6" path="res://scenes/characters/character.tscn" id="5_m3cvh"]
+
+[node name="Dialogue" type="Node2D"]
+script = ExtResource("1_bxehw")
+
+[node name="PlaceholderCanvas1" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("2_m3cvh")
+
+[node name="DialogueUI" type="Control" parent="PlaceholderCanvas1"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -160.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_a4cqp")
+script = ExtResource("4_guor1")
+
+[node name="DialogueTextBox" type="RichTextLabel" parent="PlaceholderCanvas1/DialogueUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -45.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 6
+
+[node name="AnswerChoices" type="VBoxContainer" parent="PlaceholderCanvas1/DialogueUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -201.0
+offset_top = -61.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TestButton" type="Button" parent="PlaceholderCanvas1/DialogueUI/AnswerChoices"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Next..."
+
+[node name="Character" parent="." instance=ExtResource("5_m3cvh")]
+position = Vector2(31, 57)
+
+[connection signal="an_action_occured" from="PlaceholderCanvas1/DialogueUI" to="." method="_on_dialogue_ui_an_action_occured"]
+[connection signal="end_dialogue" from="PlaceholderCanvas1/DialogueUI" to="." method="_on_dialogue_ui_end_dialogue"]
+[connection signal="button_up" from="PlaceholderCanvas1/DialogueUI/AnswerChoices/TestButton" to="PlaceholderCanvas1/DialogueUI" method="_on_test_button_button_up"]
+[connection signal="player_died" from="Character" to="." method="_on_character_player_died"]

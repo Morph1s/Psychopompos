@@ -2,6 +2,7 @@ class_name Battle
 extends Node2D
 
 signal  load_game_over_screen
+signal  load_win_screen
 signal  load_battle_rewards(boss_rewards: bool)
 
 @onready var card_handler: CardHandler = $CardHandler
@@ -11,6 +12,7 @@ signal  load_battle_rewards(boss_rewards: bool)
 @onready var play_area_highlights = $PlayArea/Highlights
 
 var boss_battle: bool = false
+var the_end: bool = false
 
 func initialize(data: BattleEncounter) -> void:
 	player_character.initialize()
@@ -20,6 +22,8 @@ func initialize(data: BattleEncounter) -> void:
 	
 	if data.type == Encounter.EncounterType.MINI_BOSS or data.type == Encounter.EncounterType.BOSS:
 		boss_battle = true
+	if data.type == Encounter.EncounterType.BOSS:
+		the_end = true
 
 func _exit_tree() -> void:
 	state_machine.transition_to("Exit")
@@ -43,6 +47,12 @@ func _on_player_end_turn_player_ends_turn() -> void:
 func _on_player_end_turn_discard_hand():
 	card_handler.discard_hand()
 
+func _on_idle_entered_idle():
+	card_handler.player_turn = true
+
+func _on_idle_exited_idle():
+	card_handler.player_turn = false
+
 #endregion
 
 #region enemy turn
@@ -63,6 +73,9 @@ func _on_player_character_player_died() -> void:
 	load_game_over_screen.emit()
 
 func _on_enemy_handler_all_enemies_died() -> void:
+	if the_end:
+		load_win_screen.emit()
+		return 
 	load_battle_rewards.emit(boss_battle)
 
 func _on_card_handler_display_play_area_highlights(visibility: bool) -> void:
