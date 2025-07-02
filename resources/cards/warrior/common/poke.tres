@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_pvuh7"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_pvuh7"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_ps0ax"]
-[ext_resource type="Texture2D" uid="uid://llr707e4p3fj" path="res://assets/graphics/cards/common/card_common_poke.png" id="4_nb3ep"]
+[ext_resource type="Texture2D" uid="uid://cgenlfyatiykl" path="res://assets/graphics/cards/common/card_common_poke.png" id="4_nb3ep"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_2vo64"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="6_kpipf"]
 
