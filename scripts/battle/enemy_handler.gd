@@ -58,6 +58,7 @@ func display_enemy_highlights(visibility: bool) -> void:
 
 # removes enemy and checks for win
 func _an_enemy_died(dead_enemy: Enemy):
+	card_handler.hovered_enemy_id = -1
 	enemies.erase(dead_enemy)
 	remove_child(dead_enemy)
 	dead_enemy.queue_free()
