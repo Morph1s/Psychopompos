@@ -58,6 +58,10 @@ func _load_reward_screen(boss_rewards: bool):
 	current_encounter.queue_free()
 	load_rewards.emit(boss_rewards)
 
+func _end_encounter():
+	current_encounter.queue_free()
+	EventBusHandler.dialogue_finished.emit()
+
 func _on_back_to_main_menu_pressed():
 	load_main_menu.emit()
 
