@@ -36,5 +36,5 @@ func load_tooltips(data: Array[TooltipData]) -> void:
 		label.custom_minimum_size = label_size
 		entry_container.add_child(label)
 		
-		box_size.y += max(label_size.y, 8)  + 2
+		box_size.y += max(label_size.y, 8)  + 5
 		box_size.x = max(box_size.x, label_size.x + 14)

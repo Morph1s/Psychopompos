@@ -18,6 +18,7 @@ signal cards_drawn
 signal card_selected(cost: int)
 signal card_deselected
 signal card_piles_card_count_changed(draw_pile_card_count: int, discard_pile_card_count: int)
+signal dialogue_finished
 
 
 ## disposes all connections of all events

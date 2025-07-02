@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_hrmra")
 icon = ExtResource("1_y2j1a")
-description = "ATTACK: deal damage"
+description_pre_value = "ATTACK: deal"
+use_value = true
+default_value = 1
+description_after_value = "damage to the selected enemy"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://6nj31xcc2ic1" path="res://assets/graphics/enemies/intents/intent_debuff.png" id="4_cil06"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="5_dvxkm"]
 [ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="6_n0ika"]
-[ext_resource type="Texture2D" uid="uid://d4kxr58ym4xn2" path="res://assets/graphics/enemies/enemy_orthos.png" id="7_jkphv"]
+[ext_resource type="Texture2D" uid="uid://ccgcop7xvb7ah" path="res://assets/graphics/enemies/enemy_orthos.png" id="7_jkphv"]
 
 [sub_resource type="Resource" id="Resource_fh1qr"]
 script = ExtResource("3_cf3yp")

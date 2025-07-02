@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://dae0r7wwsho2l"]
+
+[ext_resource type="Texture2D" uid="uid://5h3fm2svfixd" path="res://assets/graphics/cards/card_effect_discard.png" id="1_d2wl0"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_h5s1r"]
+
+[resource]
+script = ExtResource("2_h5s1r")
+icon = ExtResource("1_d2wl0")
+description_pre_value = "DISCARD RANDOM: discard between 1 and 5 random cards"
+use_value = false
+default_value = 1
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

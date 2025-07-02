@@ -14,6 +14,13 @@ shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/outline_thickness = 1.0
 shader_parameter/intensity = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysl2u"]
+shader = ExtResource("2_yscb1")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/intensity = 0.0
+
 [node name="Character" type="Node2D" groups=["player"]]
 script = ExtResource("1_x31xa")
 

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://dujmbc5xoopbv"]
+
+[ext_resource type="Texture2D" uid="uid://dtybxhbu703gj" path="res://assets/graphics/battle_effects/borderless/effect_gather_borderless.png" id="1_8qng1"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_u0oku"]
+
+[resource]
+script = ExtResource("2_u0oku")
+icon = ExtResource("1_8qng1")
+description_pre_value = "GATHER: deal x more damage the next time you attack"
+use_value = false
+default_value = 1
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

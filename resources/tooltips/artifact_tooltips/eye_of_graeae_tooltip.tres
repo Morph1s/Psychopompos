@@ -4,5 +4,8 @@
 
 [resource]
 script = ExtResource("1_jpc8w")
-description = "EYE OF GRAEAE: draw 1 more card at the start of your turn"
+description_pre_value = "EYE OF GRAEAE: draw 1 more card at the start of your turn"
+use_value = false
+default_value = 1
+description_after_value = ""
 metadata/_custom_type_script = "uid://dwi74aotc4cae"
