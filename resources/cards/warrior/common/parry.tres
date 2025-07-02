@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=11 format=3 uid="uid://csyccqc8xusme"]
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://darsdborhxwp5"]
 
 [ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="1_k683c"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_w4jen"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="2_66r4s"]
 [ext_resource type="Texture2D" uid="uid://du8o5xlf0ax2b" path="res://assets/graphics/cards/common/card_common_parry.png" id="3_0w2sx"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_66r4s"]
-[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="4_jnrfm"]
 [ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/action_tooltips/block_tooltip.tres" id="8_ekm2b"]
 
 [sub_resource type="Resource" id="Resource_tfiga"]
@@ -15,20 +14,13 @@ block_stat = 10
 target_type = 0
 metadata/_custom_type_script = "uid://riw8fvdo6pdh"
 
-[sub_resource type="Resource" id="Resource_f7bmn"]
-script = ExtResource("4_jnrfm")
-effect = 0
-effect_value = 1
-target_type = 0
-metadata/_custom_type_script = "uid://2e4l2jfud28l"
-
 [resource]
 script = ExtResource("2_0w2sx")
 card_name = "parry"
 energy_cost = 1
 rarity = 0
 texture = ExtResource("3_0w2sx")
-on_play_action = Array[ExtResource("1_w4jen")]([SubResource("Resource_tfiga"), SubResource("Resource_f7bmn")])
+on_play_action = Array[ExtResource("1_w4jen")]([SubResource("Resource_tfiga")])
 on_graveyard_action = Array[ExtResource("1_w4jen")]([])
 targeted = false
 first_description_icon = ExtResource("1_k683c")
