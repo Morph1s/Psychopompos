@@ -16,6 +16,7 @@ visible = false
 layout_mode = 0
 offset_top = -10.0
 offset_right = 32.0
+theme_override_constants/separation = 1
 
 [node name="IntentIcon" type="TextureRect" parent="IntentContainer" index="0"]
 layout_mode = 2
@@ -26,3 +27,6 @@ stretch_mode = 2
 [node name="IntentValue" type="Label" parent="IntentContainer" index="1"]
 layout_mode = 2
 text = "1*3"
+
+[node name="IntentAmount" type="Label" parent="IntentContainer" index="2"]
+layout_mode = 2

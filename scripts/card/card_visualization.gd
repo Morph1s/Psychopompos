@@ -5,6 +5,7 @@ signal show_tooltip(data: Array[TooltipData])
 signal hide_tooltip
 
 const CARD_ENERGY_BALL = preload("res://assets/graphics/cards/card_energy_ball.png")
+const ATTACK_LABEL_COLOR: Color = Color.RED
 
 @onready var card_frame = $CardFrame
 @onready var highlight = $Highlight
@@ -25,8 +26,18 @@ func initialize(card: CardType) -> void:
 	card_name.text = card_type.card_name
 	_create_energy_cost_balls(card_type.energy_cost)
 	
-	_set_description(card_type.first_description_icon, card_type.first_description_text)
-	_set_description(card_type.second_description_icon, card_type.second_description_text)
+	var first_description_color: Color = Color.WHITE
+	if card_type.on_play_action[0] is AttackAction:
+		first_description_color = ATTACK_LABEL_COLOR
+	
+	_set_description(card_type.first_description_icon, card_type.first_description_text_value, first_description_color, card_type.first_description_text_addon)
+	
+	if card_type.on_play_action.size() > 1:
+		var second_description_color: Color = Color.WHITE
+		if card_type.on_play_action[1] is AttackAction:
+			second_description_color = ATTACK_LABEL_COLOR
+		
+		_set_description(card_type.second_description_icon, card_type.second_description_text_value, second_description_color, card_type.second_description_text_addon)
 	
 	# set visuals based on rarity
 	match card_type.rarity:
@@ -74,7 +85,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		card_selected.emit(card_type)
 		print("ofheivbwefiepfpqiehgipipeh")
 
-func _set_description(icon: Texture, text: String) -> void:
+func _set_description(icon: Texture, value_text: String, value_text_color: Color, addon_text: String) -> void:
 	var container = HBoxContainer.new()
 	container.add_theme_constant_override("separation", 1)
 	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -85,9 +96,16 @@ func _set_description(icon: Texture, text: String) -> void:
 		sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		container.add_child(sprite)
 	
-	if text:
+	if value_text:
 		var label = Label.new()
-		label.text = text
+		label.add_theme_color_override("font_color", value_text_color)
+		label.text = value_text
+		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		container.add_child(label)
+	
+	if addon_text:
+		var label = Label.new()
+		label.text = addon_text
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		container.add_child(label)
 	

@@ -17,6 +17,7 @@ const CARD_ENERGY_BALL = preload("res://assets/graphics/cards/card_energy_ball.p
 const NORMAL_HEIGHT: int = 150
 const SELECTED_HEIGHT: int = 146
 const PLAYED_HEIGHT: int = 142
+const ATTACK_LABEL_COLOR: Color = Color.RED
 
 @onready var card_frame = $CardFrame
 @onready var card_image: Sprite2D = $CardImage
@@ -60,8 +61,19 @@ func initialize(card: CardType) -> void:
 	_create_energy_cost_balls(card_type.energy_cost)
 	card_type.energy_cost_changed.connect(_on_card_type_energy_cost_changed)
 	card_name.text = card_type.card_name
-	_set_description(card_type.first_description_icon, card_type.first_description_text,0)
-	_set_description(card_type.second_description_icon, card_type.second_description_text, 1)
+	
+	var first_description_color: Color = Color.WHITE
+	if card_type.on_play_action[0] is AttackAction:
+		first_description_color = ATTACK_LABEL_COLOR
+	
+	_set_description(card_type.first_description_icon, card_type.first_description_text_value, first_description_color, card_type.first_description_text_addon, 0)
+	
+	if card_type.on_play_action.size() > 1:
+		var second_description_color: Color = Color.WHITE
+		if card_type.on_play_action[1] is AttackAction:
+			second_description_color = ATTACK_LABEL_COLOR
+		
+		_set_description(card_type.second_description_icon, card_type.second_description_text_value, second_description_color, card_type.second_description_text_addon, 1)
 	
 	# set visuals based on rarity
 	match card_type.rarity:
@@ -205,7 +217,7 @@ func _get_targets(targeting_mode: TargetedAction.TargetType, target_id: int) -> 
 	return to_return
 
 
-func _set_description(icon: Texture, text: String, description_index: int) -> void:
+func _set_description(icon: Texture, value_text: String, value_text_color: Color, addon_text: String, description_index: int) -> void:
 	if 2 < description_index:
 		push_error("too many descriptions for card: ", card_type.card_name)
 		return
@@ -217,11 +229,22 @@ func _set_description(icon: Texture, text: String, description_index: int) -> vo
 		sprite.position = Vector2(0, 9 * description_index)
 		description.add_child(sprite)
 	
-	if text:
+	var addon_text_offset: Vector2 = Vector2(9, (9 * description_index) + 2)
+	
+	if value_text:
 		var label = Label.new()
 		label.theme = MAIN_THEME
-		label.text = text
+		label.add_theme_color_override("font_color", value_text_color)
+		label.text = value_text
 		label.position = Vector2(9, (9 * description_index) + 2)
+		addon_text_offset.x += MAIN_THEME.default_font.get_multiline_string_size(value_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 6).x
+		description.add_child(label)
+	
+	if addon_text:
+		var label = Label.new()
+		label.theme = MAIN_THEME
+		label.text = addon_text
+		label.position = addon_text_offset
 		description.add_child(label)
 
 func _create_energy_cost_balls(amount: int) -> void:
