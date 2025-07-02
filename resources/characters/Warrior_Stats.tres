@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_kkhma")
+starting_card_draw_amount = 5
 maximum_energy = 3
 current_energy = 0
-card_draw_amount = 5
 coins = 0
-maximum_hitpoints = 50
+starting_maximum_hitpoints = 60
 current_hitpoints = 1
 metadata/_custom_type_script = "uid://bxxpdijpxt8sn"
