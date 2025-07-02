@@ -8,5 +8,4 @@
 [resource]
 script = ExtResource("2_g253s")
 enemies = Array[ExtResource("1_ogaxp")]([ExtResource("2_pibfc"), ExtResource("3_8g0gl")])
-difficulty = 0
 metadata/_custom_type_script = "uid://dcebhtlbetxd1"
