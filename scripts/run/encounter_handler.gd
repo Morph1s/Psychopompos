@@ -27,11 +27,12 @@ func start_encounter(encounter_data: Encounter):
 			battle_scene.initialize(encounter_data)
 			current_encounter = battle_scene
 		Encounter.EncounterType.DIALOGUE:
-			var dialogue_encounter = preload("res://scenes/encounters/dialogue_encounter.tscn").instantiate()
-			
-			add_child(dialogue_encounter)
-			#dialogue_encounter.initialize(encounter_data)
-			current_encounter = dialogue_encounter
+			var dialogue_scene:Dialogue = load("res://scenes/encounters/dialogue.tscn").instantiate()
+			add_child(dialogue_scene)
+			dialogue_scene.ended.connect(_end_encounter)
+			dialogue_scene.player_died.connect(_load_game_over_screen)
+			dialogue_scene.initilaze()
+			current_encounter = dialogue_scene
 		Encounter.EncounterType.CAMPFIRE:
 			var campfire_scene = load("res://scenes/encounters/campfire.tscn").instantiate()
 			add_child(campfire_scene)
@@ -48,6 +49,10 @@ func _load_game_over_screen():
 func _load_reward_screen():
 	current_encounter.queue_free()
 	load_rewards.emit()
+
+func _end_encounter():
+	current_encounter.queue_free()
+	EventBusHandler.dialogue_finished.emit()
 
 func _on_back_to_main_menu_pressed():
 	load_main_menu.emit()

@@ -1,13 +1,13 @@
 class_name DialogueResponse
 extends Resource
 
-var displayed_response: String
+signal player_died
 
-#var consequences_types: Array[ConsequenceType]
-#var consequences_values: Array
+@export var displayed_response: String
+var rng:RandomNumberGenerator = RandomNumberGenerator.new()
+@export var next_block:Array[int]
 
-
-var consequences:Dictionary[ConsequenceType,Variant]  
+@export var consequences:Dictionary[ConsequenceType,Variant]  
 
 enum ConsequenceType {
 	GET_SPEZIFIC_CARD,
@@ -15,8 +15,8 @@ enum ConsequenceType {
 	LOSE_CARDS, 
 	HP, 
 	MAX_HP, 
-	SPEZIFIC_RELIC, 
-	RANDOM_RELIC}
+	SPEZIFIC_ARTIFACT, 
+	RANDOM_ARTIFACT}
 
 
 func resolve_consequences():
@@ -29,8 +29,23 @@ func resolve_consequences():
 					push_error("consequenzes is implemented wrong")
 					return
 				DeckHandler.add_card_to_deck(value)
+			ConsequenceType.GET_RANDOM_CARDS:
+				if value is not int:
+					push_error("consequenzes is implemented wrong")
+					return
+				var cards = DeckHandler.get_cards_for_card_rewards(value)
+				for card in cards:
+					DeckHandler.add_card_to_deck(card)
 			ConsequenceType.LOSE_CARDS: # verliere value Karten
-				print("somthing")
+				if value is not int:
+					push_error("consequenzes is implemented wrong")
+					return
+				var counter:int = 0
+				var discarded_card:CardType
+				while  counter<value :
+					discarded_card = DeckHandler.current_deck[rng.randi_range(0,DeckHandler.current_deck.size() - 1)]
+					DeckHandler.remove_card_from_deck(discarded_card)
+					counter += 1
 			ConsequenceType.HP: # verliere/bekomme value momentane hp 
 				if value is not int:
 					push_error("consequenzes is implemented wrong")
@@ -44,6 +59,18 @@ func resolve_consequences():
 					push_error("consequenzes is implemented wrong")
 					return
 				RunData.player_stats.maximum_hitpoints += value
-			ConsequenceType.SPEZIFIC_RELIC:
+			ConsequenceType.SPEZIFIC_ARTIFACT:
+				if value is not Artifact:
+					push_error("consequenzes is implemented wrong")
+					return
+				for artifact in ArtifactHandler.available_artifacts:
+					if value == artifact:
+						ArtifactHandler.select_artifact(value)
 				
+			ConsequenceType.RANDOM_ARTIFACT:
+				ArtifactHandler.select_artifact(ArtifactHandler.get_random_artifact())
+			_:
+				push_error("not availabel action")
+			
+		
 	

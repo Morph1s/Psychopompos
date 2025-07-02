@@ -1,0 +1,138 @@
+[gd_resource type="Resource" script_class="DialogueTree" load_steps=21 format=3 uid="uid://bq72epo1ycl58"]
+
+[ext_resource type="Script" uid="uid://c0ndlj6hy1clx" path="res://scripts/encounters/dialogue_block.gd" id="1_gxjb1"]
+[ext_resource type="Script" uid="uid://b72vshd8jhlxi" path="res://scripts/encounters/dialogue_response.gd" id="2_6awv3"]
+[ext_resource type="Script" uid="uid://crvdqpvr4nrg1" path="res://scripts/encounters/dialogue_tree.gd" id="2_63t20"]
+[ext_resource type="Resource" uid="uid://c7opeqh2c23n8" path="res://resources/artifacts/eye_of_graeae.tres" id="3_uya0r"]
+
+[sub_resource type="Resource" id="Resource_r1xvo"]
+resource_name = "pick up"
+script = ExtResource("2_6awv3")
+displayed_response = "pick it up..."
+next_block = Array[int]([1])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_b2tos"]
+resource_name = "leave"
+script = ExtResource("2_6awv3")
+displayed_response = "leave them be..."
+next_block = Array[int]([])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_o7eph"]
+resource_name = "grey_sisters_entrence"
+script = ExtResource("1_gxjb1")
+text_block = "You arrive at a clearing. Three gray hags sit around a tree stump, bickering with each other. Their argument escalates until they begin fighting. In the midst of the scuffle, a small orb flies out and lands at your feet. It’s an eye."
+possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_r1xvo"), SubResource("Resource_b2tos")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_qhfu0"]
+resource_name = "give"
+script = ExtResource("2_6awv3")
+displayed_response = "\"Sure thing. Here you go\""
+next_block = Array[int]([2])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_4ij6y"]
+resource_name = "keep"
+script = ExtResource("2_6awv3")
+displayed_response = "\"No, I think I will keep it\" (get Artifakt)"
+next_block = Array[int]([3])
+consequences = Dictionary[int, Variant]({
+5: ExtResource("3_uya0r")
+})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_r6ovo"]
+resource_name = "haggel"
+script = ExtResource("2_6awv3")
+displayed_response = "\"What wil you give me for it?\""
+next_block = Array[int]([4])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_bi1ic"]
+resource_name = "grey_sister_decision"
+script = ExtResource("1_gxjb1")
+text_block = "The sisters turn arond and hollow eyesockets stare towards you. One of them aproches you with a singel tooth dangeling from there mouth. \"My good sir. Would you please be so kind and give me our eye back?\""
+possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_qhfu0"), SubResource("Resource_4ij6y"), SubResource("Resource_r6ovo")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_6awv3"]
+script = ExtResource("2_6awv3")
+displayed_response = "\"Godbye\" leave.. (get a random card)"
+next_block = Array[int]([])
+consequences = Dictionary[int, Variant]({
+1: 1
+})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_uya0r"]
+resource_name = "grey_sisters_give_back"
+script = ExtResource("1_gxjb1")
+text_block = "\"Have thanks good sir. May youre jorney be blessed.\" "
+possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_6awv3")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_jqsth"]
+script = ExtResource("2_6awv3")
+displayed_response = "leave.. (lose a random card)"
+next_block = Array[int]([])
+consequences = Dictionary[int, Variant]({
+2: 1
+})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_updb5"]
+resource_name = "grey_sisters_keep_it"
+script = ExtResource("1_gxjb1")
+text_block = "\"May the gods curse you.\""
+possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_jqsth")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_2lh8w"]
+resource_name = "give_back"
+script = ExtResource("2_6awv3")
+displayed_response = "Why not (get 10 maxHp)"
+next_block = Array[int]([5])
+consequences = Dictionary[int, Variant]({
+4: 10
+})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_ra6p3"]
+resource_name = "keep_it"
+script = ExtResource("2_6awv3")
+displayed_response = "\"No, I think I will keep it\" (get Artifakt)"
+next_block = Array[int]([3])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_oi17l"]
+resource_name = "grey_sister_haggel"
+script = ExtResource("1_gxjb1")
+text_block = "\"We could give you a potion of  vitality\""
+possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_2lh8w"), SubResource("Resource_ra6p3")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_56o5w"]
+script = ExtResource("2_6awv3")
+displayed_response = "leave..."
+next_block = Array[int]([])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_0bvnc"]
+resource_name = "grey_sisters_end"
+script = ExtResource("1_gxjb1")
+text_block = "\"Thank you.\" And with that the bickering continues. As does your jorney."
+possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_56o5w")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[resource]
+script = ExtResource("2_63t20")
+dialogue_tree = Array[ExtResource("1_gxjb1")]([SubResource("Resource_o7eph"), SubResource("Resource_bi1ic"), SubResource("Resource_uya0r"), SubResource("Resource_updb5"), SubResource("Resource_oi17l"), SubResource("Resource_0bvnc")])
+metadata/_custom_type_script = "uid://crvdqpvr4nrg1"

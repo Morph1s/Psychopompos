@@ -17,7 +17,7 @@ signal back_to_battle
 signal cards_drawn
 signal card_selected(cost: int)
 signal card_deselected
-
+signal dialogue_finished
 
 ## disposes all connections of all events
 func clear_all_battle_events() -> void:
