@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="DialogueTree" load_steps=16 format=3 uid="uid://bjncra0hpdvgd"]
 
-[ext_resource type="Script" uid="uid://c0ndlj6hy1clx" path="res://scripts/encounters/dialogue_block.gd" id="1_aph7s"]
-[ext_resource type="Script" uid="uid://crvdqpvr4nrg1" path="res://scripts/encounters/dialogue_tree.gd" id="1_lj3vk"]
-[ext_resource type="Script" uid="uid://b72vshd8jhlxi" path="res://scripts/encounters/dialogue_response.gd" id="2_4553w"]
+[ext_resource type="Script" uid="uid://c0ndlj6hy1clx" path="res://scripts/encounters/dialogue_block.gd" id="1_vtbyr"]
+[ext_resource type="Script" uid="uid://b72vshd8jhlxi" path="res://scripts/encounters/dialogue_response.gd" id="2_o361c"]
+[ext_resource type="Script" uid="uid://crvdqpvr4nrg1" path="res://scripts/encounters/dialogue_tree.gd" id="3_uimk6"]
 
 [sub_resource type="Resource" id="Resource_i2ndk"]
-script = ExtResource("2_4553w")
+script = ExtResource("2_o361c")
 displayed_response = "I choose vitality (lose 15 hp)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
@@ -14,7 +14,7 @@ consequences = Dictionary[int, Variant]({
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_mxira"]
-script = ExtResource("2_4553w")
+script = ExtResource("2_o361c")
 displayed_response = "I choose power (lose 10 maxHp)"
 next_block = Array[int]([2])
 consequences = Dictionary[int, Variant]({
@@ -23,7 +23,7 @@ consequences = Dictionary[int, Variant]({
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_ybw4k"]
-script = ExtResource("2_4553w")
+script = ExtResource("2_o361c")
 displayed_response = "I refuse to choose"
 next_block = Array[int]([3])
 consequences = Dictionary[int, Variant]({})
@@ -31,13 +31,13 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_tdgxq"]
 resource_name = "hecate_enter"
-script = ExtResource("1_aph7s")
-text_block = "You come to an shrine of hecate. On the alter are two daggers -one blue the other red- and a bronze braizer with a dancing green flamme. A ghostly voice arises \"choose youre reward and pay the price.\""
-possible_answers = Array[ExtResource("2_4553w")]([SubResource("Resource_i2ndk"), SubResource("Resource_mxira"), SubResource("Resource_ybw4k")])
+script = ExtResource("1_vtbyr")
+text_block = "You come to a shrine of Hecate. On the altar lie two daggers -one blue, the other red- and a bronze brazier with a dancing green flame. A ghostly voice rises:\"Choose your reward… and pay the price.\""
+possible_answers = Array[ExtResource("2_o361c")]([SubResource("Resource_i2ndk"), SubResource("Resource_mxira"), SubResource("Resource_ybw4k")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [sub_resource type="Resource" id="Resource_4553w"]
-script = ExtResource("2_4553w")
+script = ExtResource("2_o361c")
 displayed_response = "Was it worth it? (gain 20 maxHp)"
 next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
@@ -47,13 +47,13 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_yj7hr"]
 resource_name = "blue_dagger"
-script = ExtResource("1_aph7s")
-text_block = "You reach for the blue dagger and cut the inlay of your hand open. As dropletts of red-gold soul-essence fall into the braizer, the flames flare up und you feel a littel healthier."
-possible_answers = Array[ExtResource("2_4553w")]([SubResource("Resource_4553w")])
+script = ExtResource("1_vtbyr")
+text_block = "You reach for the blue dagger and slice open the inlay of your hand.As droplets of red-gold soul essence fall into the brazier, the flames flare up- and you feel a little healthier."
+possible_answers = Array[ExtResource("2_o361c")]([SubResource("Resource_4553w")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [sub_resource type="Resource" id="Resource_antl5"]
-script = ExtResource("2_4553w")
+script = ExtResource("2_o361c")
 displayed_response = "Was it worth it...? (get a random artifact)"
 next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
@@ -63,13 +63,13 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_p4xrp"]
 resource_name = "red_dagger"
-script = ExtResource("1_aph7s")
+script = ExtResource("1_vtbyr")
 text_block = "You reach for the red dagger and cut your chest open. As you reach within and take a portion of youre essence; casting it into the fire, the flammes flare up and vanish leaving a relic behind..."
-possible_answers = Array[ExtResource("2_4553w")]([SubResource("Resource_antl5")])
+possible_answers = Array[ExtResource("2_o361c")]([SubResource("Resource_antl5")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [sub_resource type="Resource" id="Resource_o517h"]
-script = ExtResource("2_4553w")
+script = ExtResource("2_o361c")
 displayed_response = "Have my thanks. (restore 10 hp)"
 next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
@@ -79,13 +79,13 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_qilc8"]
 resource_name = "no_choice"
-script = ExtResource("1_aph7s")
-text_block = "\"Even a choise not made is a choice itself. Don`t worry. You may rest here for a while\""
-possible_answers = Array[ExtResource("2_4553w")]([SubResource("Resource_o517h")])
+script = ExtResource("1_vtbyr")
+text_block = "\"Even a choice not made is a choice itself. Don't worry- you may rest here for a while.\""
+possible_answers = Array[ExtResource("2_o361c")]([SubResource("Resource_o517h")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [sub_resource type="Resource" id="Resource_a7pey"]
-script = ExtResource("2_4553w")
+script = ExtResource("2_o361c")
 displayed_response = "leave..."
 next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({})
@@ -93,12 +93,12 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_vjqcc"]
 resource_name = "hecate_exit"
-script = ExtResource("1_aph7s")
-text_block = "You continue youre jorney."
-possible_answers = Array[ExtResource("2_4553w")]([SubResource("Resource_a7pey")])
+script = ExtResource("1_vtbyr")
+text_block = "You continue your journey."
+possible_answers = Array[ExtResource("2_o361c")]([SubResource("Resource_a7pey")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [resource]
-script = ExtResource("1_lj3vk")
-dialogue_tree = Array[ExtResource("1_aph7s")]([SubResource("Resource_tdgxq"), SubResource("Resource_yj7hr"), SubResource("Resource_p4xrp"), SubResource("Resource_qilc8"), SubResource("Resource_vjqcc")])
+script = ExtResource("3_uimk6")
+dialogue_tree = Array[ExtResource("1_vtbyr")]([SubResource("Resource_tdgxq"), SubResource("Resource_yj7hr"), SubResource("Resource_p4xrp"), SubResource("Resource_qilc8"), SubResource("Resource_vjqcc")])
 metadata/_custom_type_script = "uid://crvdqpvr4nrg1"

@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 [sub_resource type="Resource" id="Resource_o7eph"]
 resource_name = "grey_sisters_entrence"
 script = ExtResource("1_gxjb1")
-text_block = "You arrive at a clearing. Three gray hags sit around a tree stump, bickering with each other. Their argument escalates until they begin fighting. In the midst of the scuffle, a small orb flies out and lands at your feet. It’s an eye."
+text_block = "You arrive at a clearing. Three gray hags sit around a tree stump, bickering furiously. Their argument escalates into a violent scuffle. In the chaos, a small orb is flung from their midst and lands at your feet. It’s an eye."
 possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_r1xvo"), SubResource("Resource_b2tos")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
@@ -57,7 +57,7 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 [sub_resource type="Resource" id="Resource_bi1ic"]
 resource_name = "grey_sister_decision"
 script = ExtResource("1_gxjb1")
-text_block = "The sisters turn arond and hollow eyesockets stare towards you. One of them aproches you with a singel tooth dangeling from there mouth. \"My good sir. Would you please be so kind and give me our eye back?\""
+text_block = "The sisters turn around, their hollow eye sockets staring straight at you. One of them approaches, a single tooth dangling from her mouth.“My good sir, would you be so kind as to return our eye?”"
 possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_qhfu0"), SubResource("Resource_4ij6y"), SubResource("Resource_r6ovo")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
@@ -73,7 +73,7 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 [sub_resource type="Resource" id="Resource_uya0r"]
 resource_name = "grey_sisters_give_back"
 script = ExtResource("1_gxjb1")
-text_block = "\"Have thanks good sir. May youre jorney be blessed.\" "
+text_block = "\"Thanks be to you, good sir. May your journey be blessed.\""
 possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_6awv3")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
@@ -114,7 +114,7 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 [sub_resource type="Resource" id="Resource_oi17l"]
 resource_name = "grey_sister_haggel"
 script = ExtResource("1_gxjb1")
-text_block = "\"We could give you a potion of  vitality\""
+text_block = "\"We could give you a potion of vitality for your trouble.\""
 possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_2lh8w"), SubResource("Resource_ra6p3")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
@@ -128,7 +128,7 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 [sub_resource type="Resource" id="Resource_0bvnc"]
 resource_name = "grey_sisters_end"
 script = ExtResource("1_gxjb1")
-text_block = "\"Thank you.\" And with that the bickering continues. As does your jorney."
+text_block = "\"Thank you.\" And with that, the bickering continues... as does your journey."
 possible_answers = Array[ExtResource("2_6awv3")]([SubResource("Resource_56o5w")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 

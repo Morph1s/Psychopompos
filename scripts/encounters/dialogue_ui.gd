@@ -1,3 +1,4 @@
+class_name DialogueUI
 extends Control
 
 signal end_dialogue
@@ -7,27 +8,23 @@ signal an_action_occured(action:String,value: String,)
 @onready var dialogue_text_box: RichTextLabel = $DialogueTextBox
 @onready var answer_choices: VBoxContainer = $AnswerChoices
 
-# for testing pourpouse
+# loading ressource
 const HEKATES_CHOICE = preload("res://resources/dialogue/Hekates_Choice.tres")
 const THREE_SISTERS = preload("res://resources/dialogue/three_sisters.tres")
-const PRESEPHONES_BANKET = preload("res://resources/dialogue/persephones_banket.tres")
+const PRESEPHONES_BANQUET = preload("res://resources/dialogue/persephones_banquet.tres")
 const THE_HIGH_PRIESTESS = preload("res://resources/dialogue/the_high_priestess.tres")
 
-const encounters:Array = [HEKATES_CHOICE,THREE_SISTERS, PRESEPHONES_BANKET, THE_HIGH_PRIESTESS]
+const encounters:Array = [HEKATES_CHOICE,THREE_SISTERS, PRESEPHONES_BANQUET, THE_HIGH_PRIESTESS]
 
 var tree:DialogueTree
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-
-# basicaly dynamic memory for everithing in the jason-tree
-var current_text_box: String = "Hello world"
+var current_text_box: String 
 var current_block_indent:int = 0
 
 
 func _ready() -> void:
-	#something... something... to fill dialogue_tree with proper file
+	#fill dialogue_tree with proper file
 	tree = encounters[rng.randi_range(0,encounters.size()-1)]
-	
-	
 	# set initial text
 	current_text_box = tree.dialogue_tree[current_block_indent].text_block
 	update_text_box()
@@ -36,7 +33,7 @@ func _ready() -> void:
 
 
 
-func update_Dialogue_Encounter(possible_events: Array, triggering_response: DialogueResponse):
+func update_dialogue_encounter(possible_events: Array, triggering_response: DialogueResponse):
 	# resolve respons' consequences
 	triggering_response.resolve_consequences()
 	
@@ -57,7 +54,7 @@ func update_Dialogue_Encounter(possible_events: Array, triggering_response: Dial
 
 #region Helper Functions
 # takes one random thing out of an array
-func spin_the_wheel (pool : Array) -> int:
+func spin_the_wheel(pool : Array) -> int:
 	var result = rng.randi_range(0 , pool.size()-1)
 	result = pool[result]
 	return result
@@ -77,7 +74,7 @@ func update_answers():
 	# create new button for each Answer in possibleAnswers
 	for response in tree.dialogue_tree[current_block_indent].possible_answers:
 		var new_response : Button = Button.new()
-		# Aussehen des Buttons
+		# lappearance of button
 		new_response.text = response.displayed_response
 		new_response.add_theme_font_size_override("font_size",6)
 		new_response.alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -92,9 +89,8 @@ func update_answers():
 #region Signals
 
 func _on_answer_pressed() -> void:
-	#update_Dialogue_Encounter()
 	pass
 
 func _on_some_answer_pressed(next_blocks: Array, trigger: DialogueResponse):
-	update_Dialogue_Encounter(next_blocks, trigger)
+	update_dialogue_encounter(next_blocks, trigger)
 #endregion

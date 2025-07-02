@@ -1,34 +1,34 @@
 [gd_resource type="Resource" script_class="DialogueTree" load_steps=12 format=3 uid="uid://b3af1wpwh56nf"]
 
-[ext_resource type="Script" uid="uid://c0ndlj6hy1clx" path="res://scripts/encounters/dialogue_block.gd" id="1_tp7j2"]
-[ext_resource type="Script" uid="uid://crvdqpvr4nrg1" path="res://scripts/encounters/dialogue_tree.gd" id="2_60r5l"]
-[ext_resource type="Script" uid="uid://b72vshd8jhlxi" path="res://scripts/encounters/dialogue_response.gd" id="2_ahoab"]
-[ext_resource type="Resource" uid="uid://c7joixtqv71br" path="res://resources/artifacts/ambrosia.tres" id="3_kow0x"]
-[ext_resource type="Resource" uid="uid://bvxii13vc73u5" path="res://resources/artifacts/nectar.tres" id="4_enn88"]
+[ext_resource type="Script" uid="uid://c0ndlj6hy1clx" path="res://scripts/encounters/dialogue_block.gd" id="1_h0wqq"]
+[ext_resource type="Script" uid="uid://b72vshd8jhlxi" path="res://scripts/encounters/dialogue_response.gd" id="2_6r88f"]
+[ext_resource type="Resource" uid="uid://c7joixtqv71br" path="res://resources/artifacts/ambrosia.tres" id="3_h8lxm"]
+[ext_resource type="Resource" uid="uid://bvxii13vc73u5" path="res://resources/artifacts/nectar.tres" id="4_f3i8x"]
+[ext_resource type="Script" uid="uid://crvdqpvr4nrg1" path="res://scripts/encounters/dialogue_tree.gd" id="5_rsjds"]
 
 [sub_resource type="Resource" id="Resource_kow0x"]
 resource_name = "choose_ambrosia"
-script = ExtResource("2_ahoab")
+script = ExtResource("2_6r88f")
 displayed_response = "Take ambrosia (get artifact)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
-5: ExtResource("3_kow0x")
+5: ExtResource("3_h8lxm")
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_enn88"]
 resource_name = "choose_nectar"
-script = ExtResource("2_ahoab")
+script = ExtResource("2_6r88f")
 displayed_response = "take nectar (get artifact)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
-5: ExtResource("4_enn88")
+5: ExtResource("4_f3i8x")
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_2xwu3"]
 resource_name = "choose_pomegranate_juice"
-script = ExtResource("2_ahoab")
+script = ExtResource("2_6r88f")
 displayed_response = "drink pomegranate juice (+10 hp)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
@@ -38,14 +38,14 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_cph8b"]
 resource_name = "persephone_enter"
-script = ExtResource("1_tp7j2")
-text_block = "You came to a clearing with a beatiful pavilon. Theres a feast celebrated in it. Many nature spirits and a gracful woman attend to it. \"Come feast with us there is plenty to eat and drink\""
-possible_answers = Array[ExtResource("2_ahoab")]([SubResource("Resource_kow0x"), SubResource("Resource_enn88"), SubResource("Resource_2xwu3")])
+script = ExtResource("1_h0wqq")
+text_block = "You come to a clearing with a beautiful pavilion.A feast is being celebrated inside. Many nature spirits and a graceful woman are in attendance.\"Come, feast with us- there is a plenty to eat and drink.\""
+possible_answers = Array[ExtResource("2_6r88f")]([SubResource("Resource_kow0x"), SubResource("Resource_enn88"), SubResource("Resource_2xwu3")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [sub_resource type="Resource" id="Resource_usoql"]
 resource_name = "leave"
-script = ExtResource("2_ahoab")
+script = ExtResource("2_6r88f")
 displayed_response = "leave..."
 next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({})
@@ -53,13 +53,13 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_udlsl"]
 resource_name = "persephone_exit"
-script = ExtResource("1_tp7j2")
-text_block = "\"I hope you liked it. Be sure to come by again.\""
-possible_answers = Array[ExtResource("2_ahoab")]([SubResource("Resource_usoql")])
+script = ExtResource("1_h0wqq")
+text_block = "\"I trust you enjoyed yourself. Do return again sometime.\""
+possible_answers = Array[ExtResource("2_6r88f")]([SubResource("Resource_usoql")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [resource]
 resource_name = "presephones_banket"
-script = ExtResource("2_60r5l")
-dialogue_tree = Array[ExtResource("1_tp7j2")]([SubResource("Resource_cph8b"), SubResource("Resource_udlsl")])
+script = ExtResource("5_rsjds")
+dialogue_tree = Array[ExtResource("1_h0wqq")]([SubResource("Resource_cph8b"), SubResource("Resource_udlsl")])
 metadata/_custom_type_script = "uid://crvdqpvr4nrg1"

@@ -8,12 +8,12 @@ signal player_died
 
 
 
-func initilaze():
+func initialize():
 	character.initialize()
 	
 
 func _on_dialogue_ui_end_dialogue() -> void:
-	ended.emit() # Replace with function body.
+	ended.emit()
 
 
 func _on_character_player_died() -> void:

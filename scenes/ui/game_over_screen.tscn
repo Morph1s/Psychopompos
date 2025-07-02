@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_dnrai"]
 [ext_resource type="Script" uid="uid://cuenyajfcmnq7" path="res://scripts/ui/game_over_screen.gd" id="2_sopbp"]
 
-
 [node name="GameOverScreen" type="Control"]
 top_level = true
 layout_mode = 3
