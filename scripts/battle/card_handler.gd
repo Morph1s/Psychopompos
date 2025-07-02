@@ -49,6 +49,7 @@ func initialize() -> void:
 	EventBusHandler.show_deck_view.connect(func(_parameter): _set_player_control(false))
 	EventBusHandler.show_map.connect(func(): _set_player_control(false))
 	EventBusHandler.back_to_battle.connect(func(): _set_player_control(true))
+	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
 
 #region card drawing and adding
 
@@ -75,6 +76,8 @@ func draw_cards(amount: int) -> void:
 		var front_card_card_type: CardType = draw_pile.pop_front()
 		add_card_to_hand(front_card_card_type)
 		
+		EventBusHandler.card_piles_card_count_changed.emit(draw_pile.size(), discard_pile.size())
+		
 		# wait for hand to be updated
 		var timer = get_tree().create_timer(CARD_DRAW_SPEED)
 		await timer.timeout
@@ -91,7 +94,7 @@ func add_card_to_hand(card_type: CardType) -> bool:
 	if hand.size() == MAX_HAND_SIZE:
 		print("hand size limit reached")
 		return false
-		
+	
 	# instantiate new Card to CardHandler
 	var new_card: Card = CARD.instantiate() as Card
 	new_card.initialize(card_type)
@@ -133,6 +136,8 @@ func discard_card(card: Card) -> void:
 	
 	if not hand.is_empty():
 		_update_hand_positions()
+	
+	EventBusHandler.card_piles_card_count_changed.emit(draw_pile.size(), discard_pile.size())
 
 #endregion
 
@@ -330,4 +335,8 @@ func _set_mouse_cursor() -> void:
 		Input.set_custom_mouse_cursor(UNAIMED_CURSOR)
 	else:
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR)
+
+func _on_event_bus_battle_started() -> void:
+	EventBusHandler.card_piles_card_count_changed.emit(draw_pile.size(), discard_pile.size())
+
 #endregion

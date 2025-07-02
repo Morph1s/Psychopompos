@@ -10,12 +10,15 @@ const HUD_NEGATIVE_ENERGY_BALL = preload("res://scenes/ui/hud_negative_energy_ba
 @onready var hitpoint_cost_text = $Energy/HitpointCostLabelContainer/HitpointCostText
 @onready var negative_energy_ball_container = $Energy/NegativeEnergyBallContainer
 @onready var card_handler: CardHandler = get_tree().get_first_node_in_group("card_piles")
+@onready var draw_pile_card_count_label = $DrawPile/DrawPileCardCount
+@onready var discard_pile_card_count_label = $DiscardPile/DiscardPileCardCount
 
 
 func _ready() -> void:
 	EventBusHandler.set_player_control.connect(_on_eventbus_set_player_control)
 	EventBusHandler.card_selected.connect(_on_event_bus_card_selected)
 	EventBusHandler.card_deselected.connect(_on_event_bus_card_deselected)
+	EventBusHandler.card_piles_card_count_changed.connect(_on_event_bus_card_piles_card_count_changed)
 	RunData.player_stats.energy_changed.connect(_on_run_data_player_stats_energy_changed)
 	_spawn_energy_balls(RunData.player_stats.maximum_energy)
 
@@ -35,6 +38,10 @@ func _on_draw_pile_gui_input(event: InputEvent) -> void:
 
 func _on_eventbus_set_player_control(value: bool) -> void:
 	end_turn_button.disabled = not value
+
+func _on_event_bus_card_piles_card_count_changed(draw_pile_card_count: int, discard_pile_card_count: int) -> void:
+	draw_pile_card_count_label.text = str(draw_pile_card_count)
+	discard_pile_card_count_label.text = str(discard_pile_card_count)
 
 #region energy hud
 
