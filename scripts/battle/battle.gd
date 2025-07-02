@@ -47,6 +47,12 @@ func _on_player_end_turn_player_ends_turn() -> void:
 func _on_player_end_turn_discard_hand():
 	card_handler.discard_hand()
 
+func _on_idle_entered_idle():
+	card_handler.player_turn = true
+
+func _on_idle_exited_idle():
+	card_handler.player_turn = false
+
 #endregion
 
 #region enemy turn

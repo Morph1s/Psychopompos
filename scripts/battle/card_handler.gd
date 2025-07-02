@@ -39,6 +39,10 @@ var hovered_enemy_id: int = -1:
 		hovered_enemy_id = value
 		_set_mouse_cursor()
 var mouse_on_play_area: bool = false
+var player_turn: bool = false:
+	set(value):
+		player_turn = value
+		_set_player_control(value)
 
 
 ## handels setup at beginning of battle.
@@ -297,6 +301,9 @@ func _set_tooltips() -> void:
 		highlighted_card.tooltip.show()
 
 func _set_player_control(controlable: bool) -> void:
+	if not player_turn and controlable:
+		return
+	
 	for card in hand:
 		card.playable = controlable
 	EventBusHandler.set_player_control.emit(controlable)
