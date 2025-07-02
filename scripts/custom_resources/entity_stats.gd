@@ -5,8 +5,9 @@ signal hitpoints_changed(new_hp: int, max_hp: int)
 signal block_changed(new_block: int)
 signal died()
 
+@export var starting_maximum_hitpoints: int = 1
 
-@export var maximum_hitpoints: int = 1:
+var maximum_hitpoints: int = 1:
 	set(value):
 		maximum_hitpoints = value
 		current_hitpoints = clamp(current_hitpoints, 0, maximum_hitpoints) # limit hp if maxhp get reduced
@@ -32,6 +33,7 @@ var block: int = 0:
 			block_changed.emit(block)
 
 func initialize() -> void:
+	maximum_hitpoints = starting_maximum_hitpoints
 	current_hitpoints = maximum_hitpoints
 
 func create_instance() -> EntityStats:
@@ -44,10 +46,10 @@ func take_damage(damage_value: int) -> void:
 		return
 	
 	var actual_damage: int = damage_value - block
+	block -= damage_value
+	
 	if actual_damage > 0:
 		lose_hp(actual_damage)
-	
-	block -= damage_value
 
 func lose_hp(hp_loss) -> void:
 	if current_hitpoints <= 0:

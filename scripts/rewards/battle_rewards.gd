@@ -5,21 +5,21 @@ signal finished_selecting
 
 const CARDS_PER_CARD_REWARD: int = 3
 # common reward constants for balancing
-const COMMON_COIN_CHANCE: float = 0.5
-const COMMON_COIN_AMOUNT_MAX: int = 50
-const COMMON_COIN_AMOUNT_MIN: int = 20
+#const COMMON_COIN_CHANCE: float = 0.5
+#const COMMON_COIN_AMOUNT_MAX: int = 50
+#const COMMON_COIN_AMOUNT_MIN: int = 20
 # boss reward constants for balancing
-const BOSS_COIN_CHANCE: float = 0.7
-const BOSS_COIN_AMOUNT_MAX: int = 70
-const BOSS_COIN_AMOUNT_MIN: int = 50
+#const BOSS_COIN_CHANCE: float = 0.7
+#const BOSS_COIN_AMOUNT_MAX: int = 70
+#const BOSS_COIN_AMOUNT_MIN: int = 50
 
 enum RewardType {
 	CARDS,
-	COINS,
+	#COINS,
 	ARTIFACT,
 }
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_battle_rewards"]
 var current_card_reward_button: Button
 var card_rewards_list: Array[Array] = []
 
@@ -39,11 +39,11 @@ func load_common_rewards() -> void:
 	card_reward.reward_selected.connect(_on_reward_button_reward_selected)
 	rewards_container.add_child(card_reward)
 	
-	if rng.randf_range(0, 1) < COMMON_COIN_CHANCE:
-		var coin_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
-		coin_reward.set_rewards(RewardType.COINS, rng.randi_range(COMMON_COIN_AMOUNT_MIN, COMMON_COIN_AMOUNT_MAX))
-		coin_reward.reward_selected.connect(_on_reward_button_reward_selected)
-		rewards_container.add_child(coin_reward)
+	#if rng.randf_range(0, 1) < COMMON_COIN_CHANCE:
+		#var coin_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
+		#coin_reward.set_rewards(RewardType.COINS, rng.randi_range(COMMON_COIN_AMOUNT_MIN, COMMON_COIN_AMOUNT_MAX))
+		#coin_reward.reward_selected.connect(_on_reward_button_reward_selected)
+		#rewards_container.add_child(coin_reward)
 
 func load_boss_rewards() -> void:
 	if not is_node_ready():
@@ -55,15 +55,15 @@ func load_boss_rewards() -> void:
 	
 	var card_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
 	card_reward.set_rewards(RewardType.CARDS, card_rewards_list.size())
-	card_rewards_list.append(DeckHandler.get_cards_for_card_rewards(CARDS_PER_CARD_REWARD))
+	card_rewards_list.append(DeckHandler.get_cards_for_boss_card_rewards(CARDS_PER_CARD_REWARD))
 	card_reward.reward_selected.connect(_on_reward_button_reward_selected)
 	rewards_container.add_child(card_reward)
 	
-	if rng.randf_range(0, 1) < BOSS_COIN_CHANCE:
-		var coin_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
-		coin_reward.set_rewards(RewardType.COINS, rng.randi_range(BOSS_COIN_AMOUNT_MIN, BOSS_COIN_AMOUNT_MAX))
-		coin_reward.reward_selected.connect(_on_reward_button_reward_selected)
-		rewards_container.add_child(coin_reward)
+	#if rng.randf_range(0, 1) < BOSS_COIN_CHANCE:
+		#var coin_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
+		#coin_reward.set_rewards(RewardType.COINS, rng.randi_range(BOSS_COIN_AMOUNT_MIN, BOSS_COIN_AMOUNT_MAX))
+		#coin_reward.reward_selected.connect(_on_reward_button_reward_selected)
+		#rewards_container.add_child(coin_reward)
 
 
 func _on_reward_button_reward_selected(type: RewardType, count: int, button: BattleRewardButton) -> void:
@@ -72,9 +72,9 @@ func _on_reward_button_reward_selected(type: RewardType, count: int, button: Bat
 			select_card_screen.initialize(card_rewards_list[count])
 			select_card_screen.show()
 			current_card_reward_button = button
-		RewardType.COINS:
-			print("selected ", count, " coins (not implemented)")
-			button.queue_free()
+		#RewardType.COINS:
+			#print("selected ", count, " coins (not implemented)")
+			#button.queue_free()
 		RewardType.ARTIFACT:
 			ArtifactHandler.select_artifact(button.artifact_reward)
 			button.queue_free()

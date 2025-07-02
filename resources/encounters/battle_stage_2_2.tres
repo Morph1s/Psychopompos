@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattleEncounter" load_steps=5 format=3 uid="uid://ngjiwtcjw50f"]
+
+[ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="1_ogaxp"]
+[ext_resource type="Script" uid="uid://dcebhtlbetxd1" path="res://scripts/custom_resources/map/battle_encounter.gd" id="2_g253s"]
+[ext_resource type="Resource" uid="uid://bx3b7kefcmivc" path="res://resources/enemies/chimera.tres" id="2_pibfc"]
+[ext_resource type="Resource" uid="uid://c40jat7vgjch0" path="res://resources/enemies/gorgone.tres" id="3_8g0gl"]
+
+[resource]
+script = ExtResource("2_g253s")
+enemies = Array[ExtResource("1_ogaxp")]([ExtResource("2_pibfc"), ExtResource("3_8g0gl")])
+metadata/_custom_type_script = "uid://dcebhtlbetxd1"

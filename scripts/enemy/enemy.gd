@@ -18,18 +18,21 @@ signal enemy_died(Node)
 
 var id: int = 0
 var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_enemy"]
 var y_position: int = 55
 var size: Vector2
 
 
 func initialize() -> void:
+	stats.initialize()
+	enemy_hud.set_initial_values(stats.maximum_hitpoints, stats.current_hitpoints, stats.block)
 	
 	stats.initialize()
 	enemy_hud.set_initial_values(stats.maximum_hitpoints, stats.current_hitpoints, stats.block)
 	
 	stats.set_modifier_handler(modifier_handler)
 	image.texture = stats.enemy_sprite
+	image.material = image.material.duplicate()
 	
 	size = image.texture.get_size()
 	shape.shape.size = size

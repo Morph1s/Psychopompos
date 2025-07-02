@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BossEncounter" load_steps=4 format=3 uid="uid://ca3npr75wg4yk"]
+
+[ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="1_0mqms"]
+[ext_resource type="Resource" uid="uid://c3wv7cup452gj" path="res://resources/enemies/medusa.tres" id="2_xvior"]
+[ext_resource type="Script" uid="uid://b15s5rpjvq86p" path="res://scripts/custom_resources/map/boss_encounter.gd" id="3_qkv3l"]
+
+[resource]
+script = ExtResource("3_qkv3l")
+enemies = Array[ExtResource("1_0mqms")]([ExtResource("2_xvior")])
+metadata/_custom_type_script = "uid://dcebhtlbetxd1"

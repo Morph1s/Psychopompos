@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_cl3t1"]
 [ext_resource type="Texture2D" uid="uid://cx71dc3ocqabi" path="res://assets/graphics/enemies/intents/intent_buff.png" id="4_1x8jg"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="5_au0uy"]
-[ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="5_t4fw2"]
 [ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="6_iyhf2"]
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="7_lxmj4"]
 [ext_resource type="Texture2D" uid="uid://jpitba6gq5tt" path="res://assets/graphics/enemies/intents/intent_block.png" id="8_kfqwn"]
+[ext_resource type="Texture2D" uid="uid://djdkpgcalvgny" path="res://assets/graphics/enemies/enemy_chimera.png" id="9_au0uy"]
 
 [sub_resource type="Resource" id="Resource_au0uy"]
 script = ExtResource("3_cl3t1")
@@ -70,9 +70,9 @@ metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [resource]
 script = ExtResource("2_5er4v")
-enemy_sprite = ExtResource("5_t4fw2")
+enemy_sprite = ExtResource("9_au0uy")
 action_pattern = 0
 actions = Array[ExtResource("1_h0xng")]([SubResource("Resource_lxmj4"), SubResource("Resource_jmda6"), SubResource("Resource_180wy")])
-maximum_hitpoints = 1
+starting_maximum_hitpoints = 90
 current_hitpoints = 1
 metadata/_custom_type_script = "uid://bq170hnpyow8i"

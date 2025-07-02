@@ -44,7 +44,7 @@ var index: int = 0:
 		index = value
 
 var card_mode: HighlightMode = HighlightMode.NONE # for card-selecting/-hovering
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_card_target"]
 
 
 func initialize(card: CardType) -> void:

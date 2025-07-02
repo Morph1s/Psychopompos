@@ -10,7 +10,7 @@ var card_library: CardLibrary
 var current_deck: Array[CardType] = []
 
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_deck_handler"]
 
 func start_run_setup() -> void:
 	card_library = null
@@ -61,6 +61,23 @@ func get_cards_for_card_rewards(amount: int) -> Array[CardType]:
 		card_library.gods_boon_cards.append_array(selected_gods_boon_cards)
 	
 	return selected_gods_boon_cards + selected_hero_cards + selected_common_cards  
+
+func get_cards_for_boss_card_rewards(amount: int) -> Array[CardType]:
+	if amount <= 0:
+		return []
+	
+	# setup temporary array
+	var selected_cards: Array[CardType] = []
+	
+	# selecting amount cards and removing selected cards from the pool
+	for i in range(amount):
+		var card_index: int = _get_card_index_by_rarity(CardType.Rarity.GODS_BOON)
+		selected_cards.append(card_library.gods_boon_cards.pop_at(card_index))
+	
+	# adding removed cards back into the pool
+	card_library.gods_boon_cards.append_array(selected_cards)
+	
+	return selected_cards
 
 #region local helper functions
 

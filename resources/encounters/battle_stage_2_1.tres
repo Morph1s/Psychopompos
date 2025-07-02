@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattleEncounter" load_steps=4 format=3 uid="uid://byvebcwspy441"]
+
+[ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="1_mqj20"]
+[ext_resource type="Resource" uid="uid://cbe3312stmi0c" path="res://resources/enemies/orthos.tres" id="2_8erhx"]
+[ext_resource type="Script" uid="uid://dcebhtlbetxd1" path="res://scripts/custom_resources/map/battle_encounter.gd" id="2_k75rt"]
+
+[resource]
+script = ExtResource("2_k75rt")
+enemies = Array[ExtResource("1_mqj20")]([ExtResource("2_8erhx"), ExtResource("2_8erhx")])
+metadata/_custom_type_script = "uid://dcebhtlbetxd1"

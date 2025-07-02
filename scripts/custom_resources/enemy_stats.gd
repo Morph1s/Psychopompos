@@ -17,5 +17,13 @@ func set_modifier_handler(modifier_handler: ModifierHandler) -> void:
 			action_instance.modifier_handler = modifier_handler
 
 func initialize() -> void:
-	print("enemy initialized")
 	super.initialize()
+	
+	# creating a true deep copy of the resource because .duplacate(true) doesn't deep copy arrays
+	actions = actions.duplicate(true)
+	
+	for i in actions.size():
+		actions[i] = actions[i].duplicate(true)
+		
+		for index in actions[i].action_catalogue.size():
+			actions[i].action_catalogue[index] = actions[i].action_catalogue[index].duplicate(true)

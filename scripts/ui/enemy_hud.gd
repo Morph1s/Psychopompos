@@ -11,7 +11,9 @@ const ENEMY_HP_BAR_OVER = preload("res://assets/graphics/hud/hp_bar/enemy_hp_bar
 func set_intent(icon: Texture, value: int, amount: int = 1) -> void:
 	intent_container.show()
 	intent_icon.texture = icon
-	if amount == 1:
+	if value == 0:
+		intent_value.text = ""
+	elif amount == 1:
 		intent_value.text = str(value)
 	else:
 		intent_value.text = "%d*%d" % [value, amount]

@@ -8,5 +8,6 @@ enum MapLayerType {
 	BOSS,
 	}
 
-@export var type: MapLayerType
-@export var encounters: Array[Encounter]
+var type: MapLayerType
+var nodes: Array[MapNode]
+var layer_index: int

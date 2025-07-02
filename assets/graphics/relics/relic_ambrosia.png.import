@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dswkxd5k64ba1"
-path="res://.godot/imported/placeHolder_player1.png-a77d0a2f39c36545c72aa87497991b67.ctex"
+uid="uid://dgmh3e51p5ne4"
+path="res://.godot/imported/relic_ambrosia.png-248024fb804e9c1e94be0b01b7d61d28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/characters/placeHolder_player1.png"
-dest_files=["res://.godot/imported/placeHolder_player1.png-a77d0a2f39c36545c72aa87497991b67.ctex"]
+source_file="res://assets/graphics/relics/relic_ambrosia.png"
+dest_files=["res://.godot/imported/relic_ambrosia.png-248024fb804e9c1e94be0b01b7d61d28.ctex"]
 
 [params]
 
