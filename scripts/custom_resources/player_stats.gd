@@ -3,7 +3,9 @@ extends EntityStats
 
 signal energy_changed(new_energy: int, maximum_energy: int)
 
-@export var maximum_energy: int = 3:
+@export var starting_card_draw_amount: int = 5
+@export var starting_maximum_energy: int = 3
+var maximum_energy: int = 1:
 	set(value):
 		maximum_energy = value
 		energy_changed.emit(current_energy, maximum_energy)
@@ -13,9 +15,13 @@ signal energy_changed(new_energy: int, maximum_energy: int)
 		current_energy = value
 		energy_changed.emit(current_energy, maximum_energy)
 
-@export var card_draw_amount: int = 5
+var card_draw_amount: int = 5
 @export var coins: int = 0
 
+func initialize() -> void:
+	super.initialize()
+	card_draw_amount = starting_card_draw_amount
+	maximum_energy = starting_maximum_energy
 
 func pay_energy(amount: int) -> void:
 	current_energy -= amount

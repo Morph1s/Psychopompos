@@ -16,6 +16,7 @@ func _ready():
 	map_layers = map_generator.generate_map()
 	map.load_layers(map_layers)
 	DeckHandler.start_run_setup()
+	ArtifactHandler.start_of_run_setup()
 	run_ui.initialize()
 	RunData.player_stats.initialize()
 	map.show()
