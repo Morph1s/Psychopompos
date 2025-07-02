@@ -10,7 +10,6 @@ signal encounter_selected(encounter_data)
 @onready var layer_container: HBoxContainer = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_map_visual"]
-var map: Array[MapLayer] = []
 var node_to_button: Dictionary[MapNode, Button] = {}
 var current_node: MapNode
 var current_layer: int = 0
@@ -30,9 +29,7 @@ func _process(_delta: float) -> void:
 func load_layers(map_layers):
 	for child in map_layer_container.get_children():
 		child.queue_free()
-	
-	map = map_layers
-	
+		
 	# each layer gets a VBoxContainer for displaying its encounters
 	for layer: MapLayer in map_layers:
 		var layer_container = VBoxContainer.new()
@@ -97,7 +94,6 @@ func unlock_next_encounters():
 	
 	for button_container: MarginContainer in map_layer_container.get_child(current_layer + 1).get_children():
 		var button: Button = button_container.get_child(0)
-		var completed_icon: TextureRect = button_container.get_child(1)
 		var node: MapNode = node_to_button.find_key(button)
 		button.disabled = not current_node.next_nodes.has(node)
 		# change the appearance of already visited or the current encounter
@@ -111,8 +107,13 @@ func unlock_next_encounters():
 			button.modulate = Color(1, 1, 1)
 	
 	# display a cross on top of the encounter button to indicate that it is completed
-	var current_node_button_container = map_layer_container.get_child(current_layer).get_child(map[current_layer].nodes.find(current_node))
-	current_node_button_container.get_child(1).show()
+	for button_container: MarginContainer in map_layer_container.get_child(current_layer).get_children():
+		var button: Button = button_container.get_child(0)
+		var node: MapNode = node_to_button.find_key(button)
+		var completed: TextureRect = button_container.get_child(1)
+		
+		if node.encounter.completed:
+			completed.show()
 	
 	_scroll_to_current_layer()
 
