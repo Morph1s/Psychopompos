@@ -40,6 +40,12 @@ grow_vertical = 0
 texture = ExtResource("3_7sxqq")
 stretch_mode = 2
 
+[node name="DrawPileCardCount" type="Label" parent="DrawPile"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 6.0
+text = "10"
+
 [node name="DiscardPile" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -53,6 +59,12 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("4_2kidt")
 stretch_mode = 2
+
+[node name="DiscardPileCardCount" type="Label" parent="DiscardPile"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 6.0
+text = "10"
 
 [node name="Energy" type="Control" parent="."]
 anchors_preset = 0
