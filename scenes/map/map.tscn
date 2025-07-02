@@ -1,21 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhrw1q2m7p5fa"]
+[gd_scene load_steps=5 format=3 uid="uid://dhrw1q2m7p5fa"]
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_a2pkv"]
 [ext_resource type="Script" uid="uid://cf0ptkb7xnhj" path="res://scripts/map/map.gd" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://cd6mpm7b2dnb" path="res://scripts/map/map_connection_drawer.gd" id="2_tqkkf"]
-
-[sub_resource type="Gradient" id="Gradient_a2pkv"]
-colors = PackedColorArray(1, 0.788235, 0.498039, 0.878431, 1, 0.788235, 0.498039, 0.878431)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ph54e"]
-gradient = SubResource("Gradient_a2pkv")
+[ext_resource type="Texture2D" uid="uid://ldxb6li1pp6t" path="res://assets/graphics/map/map_sprite.png" id="3_ph54e"]
 
 [node name="Map" type="Control"]
-z_index = 2
+z_index = -1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -35,7 +32,7 @@ theme_override_constants/margin_top = 20
 [node name="MapBackground" type="TextureRect" parent="TopMargin"]
 layout_mode = 2
 mouse_filter = 2
-texture = SubResource("GradientTexture1D_ph54e")
+texture = ExtResource("3_ph54e")
 
 [node name="MapIconsMargin" type="MarginContainer" parent="TopMargin"]
 layout_mode = 2
