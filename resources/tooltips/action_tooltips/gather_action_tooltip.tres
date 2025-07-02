@@ -9,5 +9,5 @@ icon = ExtResource("1_fx3lh")
 description_pre_value = "GATHER: deal"
 use_value = true
 default_value = 1
-description_after_value = "more damage the next time it attacks"
+description_after_value = "more damage the next time you attack"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"
