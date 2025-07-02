@@ -79,7 +79,7 @@ func _create_hp_change_label(change: int) -> void:
 	
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(label, "self_modulate", Color.TRANSPARENT, 2.0)
+	tween.tween_property(label, "self_modulate", Color.TRANSPARENT, 2.5)
 	tween.tween_callback(label.queue_free)
 
 func _create_block_change_label(change: int) -> void:

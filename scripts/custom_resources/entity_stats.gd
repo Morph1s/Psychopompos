@@ -46,10 +46,10 @@ func take_damage(damage_value: int) -> void:
 		return
 	
 	var actual_damage: int = damage_value - block
+	block -= damage_value
+	
 	if actual_damage > 0:
 		lose_hp(actual_damage)
-	
-	block -= damage_value
 
 func lose_hp(hp_loss) -> void:
 	if current_hitpoints <= 0:
