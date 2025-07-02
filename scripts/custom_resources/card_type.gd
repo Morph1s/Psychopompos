@@ -23,11 +23,13 @@ signal energy_cost_changed(new_value: int)
 ## Icons for description box.
 @export var first_description_icon: Texture
 ## Text for description box.
-@export var first_description_text: String
+@export var first_description_text_value: String
+@export var first_description_text_addon: String
 ## Icons for description box.
 @export var second_description_icon: Texture
 ## Text for description box.
-@export var second_description_text: String
+@export var second_description_text_value: String
+@export var second_description_text_addon: String
 @export var tooltips: Array[TooltipData]
 
 ## has to be called when adding a new card to the deck

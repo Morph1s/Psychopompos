@@ -6,6 +6,9 @@ signal mouse_entered_enemy(Node)
 signal mouse_exited_enemy(Node)
 signal enemy_died(Node)
 
+const INTENT_COLOR_ATTACK: Color = Color.RED
+const INTENT_COLOR_BLOCK: Color = Color.SKY_BLUE
+
 @onready var image: Sprite2D = $EnemyImage
 @onready var shape: CollisionShape2D = $EnemyShape
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
@@ -101,7 +104,13 @@ func choose_intent() -> void:
 	elif stats.action_pattern == stats.ActionPattern.RANDOM: 
 		intent = rng.randi_range(0,stats.actions.size()-1)
 	
-	enemy_hud.set_intent(stats.actions[intent].intent_sprite, stats.actions[intent].value, stats.actions[intent].count)
+	var intent_color: Color = Color.WHITE
+	if stats.actions[intent].action_catalogue[0] is AttackAction:
+		intent_color = INTENT_COLOR_ATTACK
+	elif stats.actions[intent].action_catalogue[0] is DefendAction:
+		intent_color = INTENT_COLOR_BLOCK
+	
+	enemy_hud.set_intent(stats.actions[intent].intent_sprite, stats.actions[intent].value, intent_color, stats.actions[intent].count)
 
 func show_highlights() -> void:
 	highlights.show()

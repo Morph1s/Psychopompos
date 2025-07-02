@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_k0v7g"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_gb45q"]
-[ext_resource type="Texture2D" uid="uid://bq6tkxygd2i61" path="res://assets/graphics/relics/relic_bottle_of_ichor.png" id="2_rhd6h"]
+[ext_resource type="Texture2D" uid="uid://b8igt506x30sd" path="res://assets/graphics/relics/relic_bottle_of_ichor.png" id="2_rhd6h"]
 [ext_resource type="Resource" uid="uid://bvvmva13cfoxb" path="res://resources/tooltips/artifact_tooltips/bottle_of_icor_tooltip.tres" id="3_gb45q"]
 
 [resource]
