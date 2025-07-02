@@ -19,6 +19,7 @@ func _ready():
 	ArtifactHandler.start_of_run_setup()
 	run_ui.initialize()
 	RunData.player_stats.initialize()
+	run_ui.hitpoints.text = "%d/%d" % [RunData.player_stats.current_hitpoints, RunData.player_stats.maximum_hitpoints]
 	map.show()
 
 # Uses the EncounterHandler to load the requested encounter
