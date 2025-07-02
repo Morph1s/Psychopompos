@@ -8,6 +8,8 @@ signal load_rewards(boss_rewards: bool)
 @onready var map: Map = $"../UILayer/Map"
 
 const GAME_OVER_SCREEN: PackedScene = preload("res://scenes/ui/game_over_screen.tscn")
+const WIN_SCREEN = preload("res://scenes/ui/win_screen.tscn")
+
 const BATTLE_STAGE_0: BattleEncounter = preload("res://resources/encounters/battle_stage_0.tres")
 const BATTLES_STAGE_1: Array[BattleEncounter] = [
 	preload("res://resources/encounters/battle_stage_1_1.tres"),
@@ -47,6 +49,12 @@ func start_encounter(encounter_data: Encounter):
 			_load_random_encounter()
 		_:
 			print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter_data.type))
+
+func _load_win_screen():
+	current_encounter.queue_free()
+	var win_screen: GameOverScreen  = WIN_SCREEN.instantiate()
+	self.add_child(win_screen)
+	win_screen.back_to_main_menu_pressed.connect(_on_back_to_main_menu_pressed)
 
 func _load_game_over_screen():
 	current_encounter.queue_free()
@@ -105,9 +113,10 @@ func _load_mini_boss_encounter():
 	is_stage_2 = true
 
 func _load_boss_encounter():
-	var boss_battle_scene = load("res://scenes/encounters/battle.tscn").instantiate()
+	var boss_battle_scene: Battle = load("res://scenes/encounters/battle.tscn").instantiate()
 	boss_battle_scene.load_game_over_screen.connect(_load_game_over_screen)
 	boss_battle_scene.load_battle_rewards.connect(_load_reward_screen)
+	boss_battle_scene.load_win_screen.connect(_load_win_screen)
 	add_child(boss_battle_scene)
 	boss_battle_scene.initialize(load("res://resources/encounters/boss_battle_medusa.tres"))
 	current_encounter = boss_battle_scene

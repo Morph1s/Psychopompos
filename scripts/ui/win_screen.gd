@@ -1,5 +1,5 @@
 extends Control
-class_name WinScreen
+class_name GameOverScreen
 
 signal back_to_main_menu_pressed
 
