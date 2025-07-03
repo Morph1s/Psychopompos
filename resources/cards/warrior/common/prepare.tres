@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_lvs4i"]
 script = ExtResource("2_xy00l")
 effect = 2
-effect_value = 3
+effect_value = 4
 target_type = 0
 metadata/_custom_type_script = "uid://2e4l2jfud28l"
 
@@ -25,7 +25,7 @@ on_play_action = Array[ExtResource("1_l15jk")]([SubResource("Resource_lvs4i")])
 on_graveyard_action = Array[ExtResource("1_l15jk")]([])
 targeted = false
 first_description_icon = ExtResource("1_88cxa")
-first_description_text_value = "3"
+first_description_text_value = "4"
 first_description_text_addon = ""
 second_description_text_value = ""
 second_description_text_addon = ""
