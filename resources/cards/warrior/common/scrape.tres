@@ -20,7 +20,7 @@ metadata/_custom_type_script = "uid://2e4l2jfud28l"
 
 [sub_resource type="Resource" id="Resource_3fgwe"]
 script = ExtResource("3_hv23o")
-damage_stat = 3
+damage_stat = 4
 target_type = 1
 metadata/_custom_type_script = "uid://gsab2qn21okq"
 
@@ -37,7 +37,7 @@ first_description_icon = ExtResource("1_qcvil")
 first_description_text_value = "1"
 first_description_text_addon = ""
 second_description_icon = ExtResource("6_hv23o")
-second_description_text_value = "3"
+second_description_text_value = "4"
 second_description_text_addon = ""
 tooltips = Array[ExtResource("6_ytdy3")]([ExtResource("9_hv23o"), ExtResource("8_3yqpr")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

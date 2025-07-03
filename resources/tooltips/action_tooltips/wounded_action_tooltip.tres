@@ -9,5 +9,5 @@ icon = ExtResource("1_8wdny")
 description_pre_value = "WOUNDED: target enemy loses"
 use_value = true
 default_value = 1
-description_after_value = "hitpoints when it gets attacked"
+description_after_value = "additional hitpoints when it gets attacked"
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

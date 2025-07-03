@@ -40,14 +40,14 @@ metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [sub_resource type="Resource" id="Resource_mswnt"]
 script = ExtResource("5_usgna")
-damage_stat = 3
+damage_stat = 2
 target_type = 0
 metadata/_custom_type_script = "uid://gsab2qn21okq"
 
 [sub_resource type="Resource" id="Resource_iga3s"]
 script = ExtResource("1_gf7xl")
 intent_sprite = ExtResource("6_8e0ah")
-value = 3
+value = 2
 count = 10
 action_catalogue = Array[ExtResource("2_x6ynl")]([SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt"), SubResource("Resource_mswnt")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
@@ -61,7 +61,7 @@ metadata/_custom_type_script = "uid://gsab2qn21okq"
 [sub_resource type="Resource" id="Resource_bnqa2"]
 script = ExtResource("3_blqtc")
 effect = 8
-effect_value = 2
+effect_value = 1
 target_type = 0
 metadata/_custom_type_script = "uid://2e4l2jfud28l"
 
@@ -78,6 +78,6 @@ script = ExtResource("2_0mfjq")
 enemy_sprite = ExtResource("7_x6ynl")
 action_pattern = 1
 actions = Array[ExtResource("1_gf7xl")]([SubResource("Resource_ri7ax"), SubResource("Resource_er6ty"), SubResource("Resource_iga3s"), SubResource("Resource_ckdi4")])
-starting_maximum_hitpoints = 250
+starting_maximum_hitpoints = 220
 current_hitpoints = 1
 metadata/_custom_type_script = "uid://bq170hnpyow8i"

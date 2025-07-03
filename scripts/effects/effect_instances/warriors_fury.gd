@@ -6,8 +6,8 @@ extends Effect
 
 # implement all functions relevant for your effect
 
-const DAMAGE_DEALT_INCREASE: float = 2.0
-const DAMAGE_TAKEN_INCREASE: float = 1.5
+const DAMAGE_DEALT_INCREASE: float = 1.5
+const DAMAGE_TAKEN_INCREASE: float = 1.25
 
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
