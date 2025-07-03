@@ -17,7 +17,7 @@ script = ExtResource("1_8w67t")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_top = 18.0
+offset_top = 23.0
 offset_right = 320.0
 offset_bottom = 180.0
 mouse_filter = 2
@@ -56,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 22
+theme_override_constants/margin_top = 26
 theme_override_constants/margin_right = 4
 
 [node name="Exit" type="Button" parent="UIMargin"]
