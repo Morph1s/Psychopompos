@@ -68,12 +68,12 @@ func initialize(card: CardType) -> void:
 	
 	_set_description(card_type.first_description_icon, card_type.first_description_text_value, first_description_color, card_type.first_description_text_addon, 0)
 	
+	var second_description_color: Color = Color.WHITE
 	if card_type.on_play_action.size() > 1:
-		var second_description_color: Color = Color.WHITE
 		if card_type.on_play_action[1] is AttackAction:
 			second_description_color = ATTACK_LABEL_COLOR
-		
-		_set_description(card_type.second_description_icon, card_type.second_description_text_value, second_description_color, card_type.second_description_text_addon, 1)
+	
+	_set_description(card_type.second_description_icon, card_type.second_description_text_value, second_description_color, card_type.second_description_text_addon, 1)
 	
 	# set visuals based on rarity
 	match card_type.rarity:
