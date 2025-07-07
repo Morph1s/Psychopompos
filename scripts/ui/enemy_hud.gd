@@ -10,6 +10,8 @@ const ENEMY_HP_BAR_OVER = preload("res://assets/graphics/hud/hp_bar/enemy_hp_bar
 
 
 func set_intent(icon: Texture, value: int, value_text_color: Color, amount: int = 1) -> void:
+	intent_container.size.x = custom_minimum_size.x
+	
 	intent_container.show()
 	intent_icon.texture = icon
 	
