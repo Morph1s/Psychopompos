@@ -53,15 +53,9 @@ offset_top = -61.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TestButton" type="Button" parent="PlaceholderCanvas1/DialogueUI/AnswerChoices"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Next..."
-
 [node name="Character" parent="." instance=ExtResource("5_m3cvh")]
 position = Vector2(31, 57)
 
 [connection signal="an_action_occured" from="PlaceholderCanvas1/DialogueUI" to="." method="_on_dialogue_ui_an_action_occured"]
 [connection signal="end_dialogue" from="PlaceholderCanvas1/DialogueUI" to="." method="_on_dialogue_ui_end_dialogue"]
-[connection signal="button_up" from="PlaceholderCanvas1/DialogueUI/AnswerChoices/TestButton" to="PlaceholderCanvas1/DialogueUI" method="_on_test_button_button_up"]
 [connection signal="player_died" from="Character" to="." method="_on_character_player_died"]

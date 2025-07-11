@@ -6,10 +6,10 @@ signal player_died
 @onready var stats: PlayerStats = preload("res://resources/characters/Warrior_Stats.tres")
 
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
-@onready var effect_handler = $EffectHandler
-@onready var character_image = $CharacterImage
+@onready var effect_handler: EffectHandler = $EffectHandler
+@onready var character_image: Sprite2D = $CharacterImage
 @onready var player_hud: EntityHud = $PlayerHud
-@onready var hit_frame_timer = $HitFrameTimer
+@onready var hit_frame_timer: Timer = $HitFrameTimer
 
 var size: Vector2
 
@@ -51,7 +51,14 @@ func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
 	effect_handler._on_unit_get_attacked()
 
+func hide_character_hud() -> void:
+	player_hud.hide()
+
+func show_character_hud() -> void:
+	player_hud.show()
+
 #region Signal methods
+
 func _on_died() -> void:
 	if hit_frame_timer.time_left:
 		await hit_frame_timer.timeout
