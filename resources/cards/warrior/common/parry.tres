@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://darsdborhxwp5"]
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://csyccqc8xusme"]
 
 [ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="1_k683c"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_w4jen"]
@@ -29,4 +29,5 @@ first_description_text_addon = ""
 second_description_text_value = ""
 second_description_text_addon = ""
 tooltips = Array[ExtResource("3_66r4s")]([ExtResource("8_ekm2b")])
+card_value = 50
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

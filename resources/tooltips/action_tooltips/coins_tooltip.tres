@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_q6jpx")
-description_pre_value = "this is so dead"
-use_value = false
+description_pre_value = "Earn"
+use_value = true
 default_value = 1
-description_after_value = ""
+description_after_value = "coins as a reward."
 metadata/_custom_type_script = "uid://dwi74aotc4cae"
