@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://brl1xwjjdvivu"]
+
+[ext_resource type="Texture2D" uid="uid://bct8ua2n57ro0" path="res://assets/graphics/background/placeholder_shop_background.png" id="1_q5qej"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_1hjcp"]
+
+[node name="Shop" type="Node2D"]
+
+[node name="ShopBackground" type="Sprite2D" parent="."]
+texture = ExtResource("1_q5qej")
+centered = false
+
+[node name="ShopLayer" type="CanvasLayer" parent="."]
+
+[node name="ShopUI" type="Control" parent="ShopLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_1hjcp")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopLayer/ShopUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="ShopLayer/ShopUI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 2
+
+[node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TradePanel" type="PanelContainer" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="LeaveButton" type="Button" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Leave"
