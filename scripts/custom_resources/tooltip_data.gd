@@ -22,7 +22,7 @@ func set_description(value: int = -1) -> void:
 			we_have_string_builders_at_home = we_have_string_builders_at_home + " " + str(value)
 	
 	if dynamic_plural:
-		if value > 1:
+		if value > 1 or value == -1 and default_value > 1:
 			we_have_string_builders_at_home = we_have_string_builders_at_home + " " + singular + "s"
 		elif not hide_value_when_singular:
 			we_have_string_builders_at_home = we_have_string_builders_at_home + " " + singular
