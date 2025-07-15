@@ -4,11 +4,11 @@ extends Control
 signal finished_selecting
 
 const CARDS_PER_CARD_REWARD: int = 3
- #common reward constants for balancing
-const COMMON_COIN_CHANCE: float = 0.5
+# common reward constants for balancing
+const COMMON_COIN_CHANCE: float = 0.7
 const COMMON_COIN_AMOUNT_MAX: int = 50
 const COMMON_COIN_AMOUNT_MIN: int = 20
- #boss reward constants for balancing
+# boss reward constants for balancing
 const BOSS_COIN_CHANCE: float = 0.7
 const BOSS_COIN_AMOUNT_MAX: int = 70
 const BOSS_COIN_AMOUNT_MIN: int = 50
@@ -79,9 +79,8 @@ func _on_reward_button_reward_selected(type: RewardType, count: int, button: Bat
 			select_card_screen.show()
 			current_card_reward_button = button
 		RewardType.COINS:
-			print("selected ", count, " coins (not implemented)")
+			print("selected ", count, " coins")
 			RunData.player_stats.coins += count
-			print(RunData.player_stats.coins)
 			button.queue_free()
 		RewardType.ARTIFACT:
 			ArtifactHandler.select_artifact(button.artifact_reward)

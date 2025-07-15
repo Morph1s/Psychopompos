@@ -425,7 +425,7 @@ func _place_encounters():
 				continue
 			
 			var encounter = _choose_weighted_encounter(node)
-			encounter = Encounter.EncounterType.SHOP
+			#encounter = Encounter.EncounterType.SHOP
 			
 			match encounter:
 				Encounter.EncounterType.BATTLE:
@@ -440,7 +440,7 @@ func _place_encounters():
 					print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter))
 					break
 			
-			#_update_encounter_weights_up(node)
+			_update_encounter_weights_up(node)
 
 func _choose_random_node_for_encounter_in_path(path: MapPath, min_layer_index: int, type: Encounter.EncounterType) -> MapNode:
 	var viable_nodes: Array[MapNode] = path.nodes.duplicate()
@@ -529,7 +529,7 @@ func _update_encounter_weights_up(current_node: MapNode) -> void:
 			adjusting_value = -100
 		
 		# battle rules
-		if current_node.encounter.type == Encounter.EncounterType.BATTLE:
+		elif current_node.encounter.type == Encounter.EncounterType.BATTLE:
 			for i in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_BATTLES - 1), -1):
 				if path.nodes[i].encounter.type != Encounter.EncounterType.BATTLE:
 					break
@@ -537,7 +537,7 @@ func _update_encounter_weights_up(current_node: MapNode) -> void:
 				adjusting_value = -100
 		
 		# random encounter rules
-		if current_node.encounter.type == Encounter.EncounterType.RANDOM:
+		elif current_node.encounter.type == Encounter.EncounterType.RANDOM:
 			for i in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_RANDOM_ENCOUNTERS - 1), -1):
 				if path.nodes[i].encounter.type != Encounter.EncounterType.RANDOM:
 					break

@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddxaph8h8nmji"]
 
-[ext_resource type="Script" uid="uid://dos7m6ocnaf47" path="res://scenes/battle_rewards.gd" id="1_cx4uy"]
+[ext_resource type="Script" uid="uid://dos7m6ocnaf47" path="res://scripts/rewards/battle_rewards.gd" id="1_cx4uy"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_ophfa"]
 [ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="2_ipgjk"]
+
 
 [node name="BattleRewards" type="Control"]
 layout_mode = 3

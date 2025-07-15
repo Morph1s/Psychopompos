@@ -64,11 +64,11 @@ func get_card_selection(amount: int, rarity_dist: Dictionary = rarity_distributi
 func _get_card_rarity(rarity_dist: Dictionary) -> CardType.Rarity:
 	var rarity_roll = rng.randi_range(0, 100)
 	
-	for key in rarity_distribution:
-		if rarity_roll <= rarity_distribution[key]:
+	for key in rarity_dist:
+		if rarity_roll <= rarity_dist[key]:
 			return key
 		else:
-			rarity_roll -= rarity_distribution[key]
+			rarity_roll -= rarity_dist[key]
 	
 	# failsafe
 	push_error("error when selecting card rarity")
