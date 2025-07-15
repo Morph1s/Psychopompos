@@ -17,6 +17,7 @@ func _ready() -> void:
 	EventBusHandler.show_deck_view_with_action.connect(_on_eventbus_open_deck_view_with_action)
 	EventBusHandler.campfire_finished.connect(_on_eventbus_campfire_finished)
 	EventBusHandler.dialogue_finished.connect(_on_eventbus_dialogue_finished)
+	EventBusHandler.shop_finished.connect(_on_eventbus_shop_finished)
 
 func load_battle_rewards(boss_rewards: bool):
 	var battle_rewards: BattleRewards = BATTLE_REWARDS.instantiate()
@@ -103,6 +104,13 @@ func _close_deck_view():
 		battle_ui_reference.show()
 
 func _on_eventbus_campfire_finished():
+	map.current_node.encounter.completed = true
+	map.unlock_next_encounters()
+	map.current_layer += 1
+	map.can_close = false
+	map.show()
+
+func _on_eventbus_shop_finished():
 	map.current_node.encounter.completed = true
 	map.unlock_next_encounters()
 	map.current_layer += 1

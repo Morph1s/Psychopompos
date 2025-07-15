@@ -45,6 +45,8 @@ func start_encounter(encounter_data: Encounter):
 			_load_mini_boss_encounter()
 		Encounter.EncounterType.BOSS:
 			_load_boss_encounter()
+		Encounter.EncounterType.SHOP:
+			_load_shop_encounter()
 		Encounter.EncounterType.RANDOM:
 			_load_random_encounter()
 		_:
@@ -69,6 +71,9 @@ func _load_reward_screen(boss_rewards: bool):
 func _end_encounter():
 	current_encounter.queue_free()
 	EventBusHandler.dialogue_finished.emit()
+
+func _end_shop():
+	current_encounter.queue_free()
 
 func _on_back_to_main_menu_pressed():
 	load_main_menu.emit()
@@ -128,6 +133,13 @@ func _load_boss_encounter():
 func _load_dialogue_encounter():
 	# TODO: change to dialogue encounter loading once implemented
 	_load_battle_encounter()
+
+func _load_shop_encounter():
+	var shop_scene = load("res://scenes/encounters/shop.tscn").instantiate()
+	shop_scene.shop_finished.connect(_end_shop)
+	add_child(shop_scene)
+	shop_scene.initialize()
+	current_encounter = shop_scene
 
 func _load_random_encounter():
 	# weights are shown in percentage values (must add up to 100)

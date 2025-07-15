@@ -328,7 +328,6 @@ func _on_play_area_mouse_entered() -> void:
 	mouse_on_play_area = true 
 	_set_mouse_cursor()
 
-
 func _on_play_area_mouse_exited() -> void:
 	mouse_on_play_area = false
 	_set_mouse_cursor()

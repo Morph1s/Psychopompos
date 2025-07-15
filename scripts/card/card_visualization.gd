@@ -1,6 +1,7 @@
+class_name CardVisualization
 extends Control
 
-signal card_selected(card: CardType)
+signal card_selected(card: CardType, scene: CardVisualization)
 signal show_tooltip(data: Array[TooltipData])
 signal hide_tooltip
 
@@ -15,6 +16,7 @@ const ATTACK_LABEL_COLOR: Color = Color.RED
 @onready var energy_ball_container = $EnergyBallContainer
 
 var card_type: CardType
+var is_perma_highlighted: bool = false
 
 func initialize(card: CardType) -> void:
 	if not is_node_ready():
@@ -77,12 +79,13 @@ func _on_mouse_entered() -> void:
 	show_tooltip.emit(card_type.tooltips)
 
 func _on_mouse_exited() -> void:
-	highlight.hide()
+	if not is_perma_highlighted:
+		highlight.hide()
 	hide_tooltip.emit()
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event.is_action_released("left_click"):
-		card_selected.emit(card_type)
+	if event.is_action_pressed("left_click"):
+		card_selected.emit(card_type, self)
 		print("ofheivbwefiepfpqiehgipipeh")
 
 func _set_description(icon: Texture, value_text: String, value_text_color: Color, addon_text: String) -> void:

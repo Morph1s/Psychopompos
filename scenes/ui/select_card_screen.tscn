@@ -40,11 +40,20 @@ text = "SELECT A CARD"
 layout_mode = 2
 alignment = 1
 
-[node name="SkipCards" type="Button" parent="HorizontalContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="HorizontalContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="SkipCards" type="Button" parent="HorizontalContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "SKIP"
+
+[node name="SelectCards" type="Button" parent="HorizontalContainer/ButtonContainer"]
+layout_mode = 2
+text = "SELECT"
 
 [node name="Tooltip" parent="." instance=ExtResource("3_pc2vm")]
 visible = false
@@ -53,4 +62,5 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 8.0
 
-[connection signal="button_up" from="HorizontalContainer/SkipCards" to="." method="_on_skip_cards_button_up"]
+[connection signal="button_up" from="HorizontalContainer/ButtonContainer/SkipCards" to="." method="_on_skip_cards_button_up"]
+[connection signal="button_up" from="HorizontalContainer/ButtonContainer/SelectCards" to="." method="_on_select_cards_button_up"]

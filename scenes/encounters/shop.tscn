@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://brl1xwjjdvivu"]
+[gd_scene load_steps=8 format=3 uid="uid://brl1xwjjdvivu"]
 
+[ext_resource type="Script" uid="uid://bwbeshn5gmhsj" path="res://scripts/encounters/shop.gd" id="1_a2l51"]
 [ext_resource type="Texture2D" uid="uid://bct8ua2n57ro0" path="res://assets/graphics/background/placeholder_shop_background.png" id="1_q5qej"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_1hjcp"]
+[ext_resource type="Script" uid="uid://b0hh1vttrirkw" path="res://scripts/shop/card_packs_panel.gd" id="3_272ib"]
+[ext_resource type="Script" uid="uid://dxnsjlg40a4w1" path="res://scripts/shop/card_pack_handler.gd" id="4_a2l51"]
+[ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="6_87tic"]
+[ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="6_rl7h0"]
 
 [node name="Shop" type="Node2D"]
+script = ExtResource("1_a2l51")
 
 [node name="ShopBackground" type="Sprite2D" parent="."]
 texture = ExtResource("1_q5qej")
@@ -21,7 +27,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_1hjcp")
 
-[node name="MarginContainer" type="MarginContainer" parent="ShopLayer/ShopUI"]
+[node name="ShopUIMargin" type="MarginContainer" parent="ShopLayer/ShopUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,21 +39,47 @@ theme_override_constants/margin_top = 26
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="GridContainer" type="GridContainer" parent="ShopLayer/ShopUI/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="ShopLayer/ShopUI/ShopUIMargin"]
 layout_mode = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 2
 
-[node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+[node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2
 
-[node name="TradePanel" type="PanelContainer" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+[node name="TradePanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2
 
-[node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+[node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+script = ExtResource("3_272ib")
+
+[node name="PacksMargin" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="PacksContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
 layout_mode = 2
 
-[node name="LeaveButton" type="Button" parent="ShopLayer/ShopUI/MarginContainer/GridContainer"]
+[node name="LeaveButton" type="Button" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2
 text = "Leave"
+
+[node name="Tooltip" parent="ShopLayer" instance=ExtResource("6_rl7h0")]
+visible = false
+offset_left = 2.0
+offset_top = 26.0
+offset_right = 2.0
+offset_bottom = 26.0
+
+[node name="SelectCardScreen" parent="ShopLayer" instance=ExtResource("6_87tic")]
+visible = false
+
+[node name="CardPackHandler" type="Node" parent="."]
+script = ExtResource("4_a2l51")
+
+[connection signal="pressed" from="ShopLayer/ShopUI/ShopUIMargin/GridContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="cards_selected" from="ShopLayer/SelectCardScreen" to="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel" method="_on_select_card_screen_cards_selected"]

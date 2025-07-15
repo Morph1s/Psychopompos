@@ -35,7 +35,7 @@ func load_common_rewards() -> void:
 		await ready
 	var card_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
 	card_reward.set_rewards(RewardType.CARDS, card_rewards_list.size())
-	card_rewards_list.append(DeckHandler.get_cards_for_card_rewards(CARDS_PER_CARD_REWARD))
+	card_rewards_list.append(DeckHandler.get_card_selection(CARDS_PER_CARD_REWARD))
 	card_reward.reward_selected.connect(_on_reward_button_reward_selected)
 	rewards_container.add_child(card_reward)
 	
@@ -48,14 +48,20 @@ func load_common_rewards() -> void:
 func load_boss_rewards() -> void:
 	if not is_node_ready():
 		await ready
-	var artefact_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
-	artefact_reward.set_rewards(RewardType.ARTIFACT, 0)
-	artefact_reward.reward_selected.connect(_on_reward_button_reward_selected)
-	rewards_container.add_child(artefact_reward)
+	var artifact_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
+	artifact_reward.set_rewards(RewardType.ARTIFACT, 0)
+	artifact_reward.reward_selected.connect(_on_reward_button_reward_selected)
+	rewards_container.add_child(artifact_reward)
+	
+	var god_cards_distribution := {
+		CardType.Rarity.COMMON_CARD: 0,
+		CardType.Rarity.HERO_CARD: 0,
+		CardType.Rarity.GODS_BOON: 100
+	}
 	
 	var card_reward: BattleRewardButton = BATTLE_REWARD_BUTTON.instantiate()
 	card_reward.set_rewards(RewardType.CARDS, card_rewards_list.size())
-	card_rewards_list.append(DeckHandler.get_cards_for_boss_card_rewards(CARDS_PER_CARD_REWARD))
+	card_rewards_list.append(DeckHandler.get_card_selection(CARDS_PER_CARD_REWARD, god_cards_distribution))
 	card_reward.reward_selected.connect(_on_reward_button_reward_selected)
 	rewards_container.add_child(card_reward)
 	
@@ -69,7 +75,7 @@ func load_boss_rewards() -> void:
 func _on_reward_button_reward_selected(type: RewardType, count: int, button: BattleRewardButton) -> void:
 	match type:
 		RewardType.CARDS:
-			select_card_screen.initialize(card_rewards_list[count])
+			select_card_screen.initialize(card_rewards_list[count], 1)
 			select_card_screen.show()
 			current_card_reward_button = button
 		#RewardType.COINS:
@@ -98,3 +104,16 @@ func _on_rewards_container_child_exiting_tree(_node):
 		print("all rewards selected")
 		finished_selecting.emit()
 		queue_free()
+
+
+func _on_select_card_screen_cards_selected(cards: Array[CardType]) -> void:
+	select_card_screen.hide()
+	
+	if cards.is_empty():
+		return
+	
+	for card: CardType in cards:
+		DeckHandler.add_card_to_deck(card)
+		print("Add card ", card.card_name, " to deck")
+	
+	current_card_reward_button.queue_free()

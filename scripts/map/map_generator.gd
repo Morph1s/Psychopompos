@@ -425,19 +425,22 @@ func _place_encounters():
 				continue
 			
 			var encounter = _choose_weighted_encounter(node)
+			encounter = Encounter.EncounterType.SHOP
 			
 			match encounter:
 				Encounter.EncounterType.BATTLE:
 					node.encounter = BattleEncounter.new()
 				Encounter.EncounterType.CAMPFIRE:
 					node.encounter = CampfireEncounter.new()
+				Encounter.EncounterType.SHOP:
+					node.encounter = ShopEncounter.new()
 				Encounter.EncounterType.RANDOM:
 					node.encounter = RandomEncounter.new()
 				_:
 					print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter))
 					break
 			
-			_update_encounter_weights_up(node)
+			#_update_encounter_weights_up(node)
 
 func _choose_random_node_for_encounter_in_path(path: MapPath, min_layer_index: int, type: Encounter.EncounterType) -> MapNode:
 	var viable_nodes: Array[MapNode] = path.nodes.duplicate()
