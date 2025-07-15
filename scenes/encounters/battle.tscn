@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bxigu8nv1jbme" path="res://scripts/battle/state_machine/enemy_turn.gd" id="7_7id2p"]
 [ext_resource type="Script" uid="uid://c758m1ohji7ep" path="res://scripts/battle/state_machine/enemy_end_turn.gd" id="8_tt5ef"]
 [ext_resource type="Script" uid="uid://d4l21cq278qpt" path="res://scripts/battle/state_machine/exit.gd" id="9_mqlpk"]
-[ext_resource type="Shader" uid="uid://dyuda5yv5qog2" path="res://resources/shaders/river_shader.gdshader" id="10_7id2p"]
+[ext_resource type="Shader" path="res://resources/shaders/river_shader.gdshader" id="10_7id2p"]
 [ext_resource type="Texture2D" uid="uid://bv4srl865j4k1" path="res://assets/graphics/background/wallpaper_battle_scene.png" id="10_luffw"]
 [ext_resource type="Texture2D" uid="uid://dt555eshdw22b" path="res://assets/graphics/background/wallpaper_battle_scene_river.png" id="11_qhkyp"]
 [ext_resource type="Texture2D" uid="uid://dbch1ucf4lgk3" path="res://assets/graphics/hud/play_area_highlight/highlight_top_left.png" id="14_dqn5d"]

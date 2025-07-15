@@ -31,6 +31,8 @@ signal energy_cost_changed(new_value: int)
 @export var second_description_text_value: String
 @export var second_description_text_addon: String
 @export var tooltips: Array[TooltipData]
+## Coin value for shop
+@export var card_value: int
 
 ## has to be called when adding a new card to the deck
 func create_instance() -> CardType:
