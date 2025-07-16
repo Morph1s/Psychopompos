@@ -42,7 +42,7 @@ func _on_card_show_toopltip(data: Array[TooltipData]) -> void:
 func _on_card_hide_toopltip() -> void:
 	tooltip.hide()
 
-func _on_card_selected(card: CardType) -> void:
+func _on_card_selected(card: CardType, _card_visual: CardVisualization) -> void:
 	for card_vis in card_container.get_children():
 		card_vis.queue_free()
 	card_selected_action.call(card)

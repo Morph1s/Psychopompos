@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b421431h80p3u"]
+[gd_scene load_steps=10 format=3 uid="uid://b421431h80p3u"]
 
 [ext_resource type="Texture2D" uid="uid://ciqym2av8hur" path="res://assets/graphics/background/box_top.png" id="1_6gjgj"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_mjeky"]
 [ext_resource type="Script" uid="uid://c5ce77d6k6b44" path="res://scripts/ui/run_ui.gd" id="3_jynbq"]
 [ext_resource type="Texture2D" uid="uid://cebue34oflpey" path="res://assets/graphics/hud/pictograms/hud_deck.png" id="4_5gf5s"]
 [ext_resource type="Texture2D" uid="uid://sd8rqg6aw3mu" path="res://assets/graphics/hud/pictograms/hud_map.png" id="5_0uoht"]
+[ext_resource type="Texture2D" uid="uid://ct8f1mocnhn48" path="res://assets/graphics/hud/pictograms/hud_coins.png" id="5_tfb4m"]
 [ext_resource type="Texture2D" uid="uid://bduccqq4plm5j" path="res://assets/graphics/hud/pictograms/hud_settings.png" id="6_tfb4m"]
 [ext_resource type="Texture2D" uid="uid://drmvh8f1at8my" path="res://assets/graphics/hud/pictograms/hud_life.png" id="7_5gf5s"]
 [ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="8_5gf5s"]
@@ -20,72 +21,80 @@ texture = ExtResource("1_6gjgj")
 stretch_mode = 2
 script = ExtResource("3_jynbq")
 
-[node name="IconsRight" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(60, 18)
+[node name="TopBarMargin" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -63.0
-offset_top = -1.0
-offset_right = -3.0
-offset_bottom = 17.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
 
-[node name="DeckIcon" type="TextureRect" parent="IconsRight"]
+[node name="TopBarHBox" type="HBoxContainer" parent="TopBarMargin"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_5gf5s")
-stretch_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="MapIcon" type="TextureRect" parent="IconsRight"]
+[node name="IconsLeft" type="HBoxContainer" parent="TopBarMargin/TopBarHBox"]
+custom_minimum_size = Vector2(88, 18)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("5_0uoht")
-stretch_mode = 2
 
-[node name="SettingsIcon" type="TextureRect" parent="IconsRight"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_tfb4m")
-stretch_mode = 2
-
-[node name="IconsLeft" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(60, 18)
-layout_mode = 1
-offset_top = -1.0
-offset_right = 60.0
-offset_bottom = 17.0
-alignment = 2
-
-[node name="HPIcon" type="TextureRect" parent="IconsLeft"]
+[node name="HPIcon" type="TextureRect" parent="TopBarMargin/TopBarHBox/IconsLeft"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("7_5gf5s")
 stretch_mode = 2
 
-[node name="HPLabel" type="Label" parent="IconsLeft"]
+[node name="HPLabel" type="Label" parent="TopBarMargin/TopBarHBox/IconsLeft"]
 layout_mode = 2
 text = "42/69"
 
-[node name="ArtifactContainer" type="HBoxContainer" parent="."]
+[node name="CoinsIcon" type="TextureRect" parent="TopBarMargin/TopBarHBox/IconsLeft"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_tfb4m")
+stretch_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="TopBarMargin/TopBarHBox/IconsLeft"]
+layout_mode = 2
+text = "ARMUT"
+
+[node name="ArtifactContainer" type="HBoxContainer" parent="TopBarMargin/TopBarHBox"]
 custom_minimum_size = Vector2(90, 18)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_top = 2.0
-offset_right = 45.0
-offset_bottom = 20.0
-grow_horizontal = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 2
+
+[node name="IconsRight" type="HBoxContainer" parent="TopBarMargin/TopBarHBox"]
+custom_minimum_size = Vector2(60, 18)
+layout_mode = 2
+alignment = 2
+
+[node name="DeckIcon" type="TextureRect" parent="TopBarMargin/TopBarHBox/IconsRight"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_5gf5s")
+stretch_mode = 2
+
+[node name="MapIcon" type="TextureRect" parent="TopBarMargin/TopBarHBox/IconsRight"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_0uoht")
+stretch_mode = 2
+
+[node name="SettingsIcon" type="TextureRect" parent="TopBarMargin/TopBarHBox/IconsRight"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_tfb4m")
+stretch_mode = 2
 
 [node name="Tooltip" parent="." instance=ExtResource("8_5gf5s")]
 visible = false
@@ -95,6 +104,6 @@ offset_top = 19.0
 offset_right = 2.0
 offset_bottom = 19.0
 
-[connection signal="gui_input" from="IconsRight/DeckIcon" to="." method="_on_deck_icon_gui_input"]
-[connection signal="gui_input" from="IconsRight/MapIcon" to="." method="_on_map_icon_gui_input"]
-[connection signal="gui_input" from="IconsRight/SettingsIcon" to="." method="_on_settings_icon_gui_input"]
+[connection signal="gui_input" from="TopBarMargin/TopBarHBox/IconsRight/DeckIcon" to="." method="_on_deck_icon_gui_input"]
+[connection signal="gui_input" from="TopBarMargin/TopBarHBox/IconsRight/MapIcon" to="." method="_on_map_icon_gui_input"]
+[connection signal="gui_input" from="TopBarMargin/TopBarHBox/IconsRight/SettingsIcon" to="." method="_on_settings_icon_gui_input"]

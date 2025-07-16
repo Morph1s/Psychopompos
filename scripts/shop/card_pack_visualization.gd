@@ -19,9 +19,7 @@ func initialize(pack: CardPack):
 	card_pack = pack
 	pack_image.texture = _get_pack_image()
 	price_tag.text = str(card_pack.price)
-	price_tag.add_theme_color_override("font_color", Color.WHITE)
-	if card_pack.price > RunData.player_stats.coins:
-		price_tag.add_theme_color_override("font_color", Color.RED)
+	set_price_label_color()
 
 func _get_pack_image() -> Texture2D:
 	match card_pack.pack_rarity:
@@ -32,14 +30,16 @@ func _get_pack_image() -> Texture2D:
 	
 	return load("res://assets/graphics/cards/card_pack_common_placeholder.png")
 
+func set_price_label_color():
+	price_tag.add_theme_color_override("font_color", Color.WHITE)
+	if card_pack.price > RunData.player_stats.coins:
+		price_tag.add_theme_color_override("font_color", Color.RED)
 
 func _on_mouse_entered() -> void:
 	show_tooltip.emit(card_pack.tooltips)
 
-
 func _on_mouse_exited() -> void:
 	hide_tooltip.emit()
-
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):

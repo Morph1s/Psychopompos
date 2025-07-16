@@ -61,6 +61,8 @@ func _on_card_pack_pack_selected(pack: CardPack):
 	if pack.price > RunData.player_stats.coins:
 		return
 	
+	RunData.player_stats.coins -= pack.price
+	
 	print("Selected a ", CardPack.PackRarity.find_key(pack.pack_rarity), " pack for the price of ", pack.price, " coins.")
 	select_cards_screen.initialize(pack.cards, NUM_CARDS_TO_SELECT)
 	select_cards_screen.show()
@@ -77,3 +79,4 @@ func _on_select_card_screen_cards_selected(cards: Array[CardType]) -> void:
 	for pack: CardPackVisualization in packs_container.get_children():
 		if pack.card_pack == current_card_pack:
 			pack.queue_free()
+		pack.set_price_label_color()

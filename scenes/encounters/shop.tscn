@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://brl1xwjjdvivu"]
+[gd_scene load_steps=10 format=3 uid="uid://brl1xwjjdvivu"]
 
 [ext_resource type="Script" uid="uid://bwbeshn5gmhsj" path="res://scripts/encounters/shop.gd" id="1_a2l51"]
 [ext_resource type="Texture2D" uid="uid://bct8ua2n57ro0" path="res://assets/graphics/background/placeholder_shop_background.png" id="1_q5qej"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_1hjcp"]
 [ext_resource type="Script" uid="uid://b0hh1vttrirkw" path="res://scripts/shop/card_packs_panel.gd" id="3_272ib"]
 [ext_resource type="Script" uid="uid://dxnsjlg40a4w1" path="res://scripts/shop/card_pack_handler.gd" id="4_a2l51"]
+[ext_resource type="Script" uid="uid://bithascay8ui8" path="res://scripts/shop/trade_panel.gd" id="4_v4nyk"]
+[ext_resource type="Texture2D" uid="uid://btfbscpklyxby" path="res://assets/graphics/hud/pictograms/trade_icon_placeholder.png" id="5_7dbcr"]
 [ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="6_87tic"]
 [ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="6_rl7h0"]
 
@@ -16,6 +18,7 @@ texture = ExtResource("1_q5qej")
 centered = false
 
 [node name="ShopLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="ShopUI" type="Control" parent="ShopLayer"]
 layout_mode = 3
@@ -34,6 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 26
 theme_override_constants/margin_right = 2
@@ -41,6 +45,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="GridContainer" type="GridContainer" parent="ShopLayer/ShopUI/ShopUIMargin"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 2
@@ -50,6 +55,26 @@ layout_mode = 2
 
 [node name="TradePanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2
+script = ExtResource("4_v4nyk")
+
+[node name="TradePanelMargin" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TradeContainer" type="VBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin"]
+layout_mode = 2
+
+[node name="TradeIcon" type="TextureRect" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
+layout_mode = 2
+texture = ExtResource("5_7dbcr")
+
+[node name="TradeLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
+layout_mode = 2
+text = "GAMBAA"
+horizontal_alignment = 1
 
 [node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 custom_minimum_size = Vector2(136, 0)
@@ -66,6 +91,8 @@ layout_mode = 2
 
 [node name="LeaveButton" type="Button" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Leave"
 
 [node name="Tooltip" parent="ShopLayer" instance=ExtResource("6_rl7h0")]
