@@ -13,23 +13,25 @@ extends Resource
 var description: String = ""
 
 func set_description(value: int = -1) -> void:
-	var we_have_string_builders_at_home: String = description_pre_value
+	# "mom can we have string buiders?
+	# "no we have string builders at home!"
+	var string_builders_at_home: String = description_pre_value
 	
 	if use_value:
 		if value == -1:
-			we_have_string_builders_at_home = we_have_string_builders_at_home + " " + str(default_value)
+			string_builders_at_home = string_builders_at_home + " " + str(default_value)
 		else:
-			we_have_string_builders_at_home = we_have_string_builders_at_home + " " + str(value)
+			string_builders_at_home = string_builders_at_home + " " + str(value)
 	
 	if dynamic_plural:
 		if value > 1 or value == -1 and default_value > 1:
-			we_have_string_builders_at_home = we_have_string_builders_at_home + " " + singular + "s"
+			string_builders_at_home = string_builders_at_home + " " + singular + "s"
 		elif not hide_value_when_singular:
-			we_have_string_builders_at_home = we_have_string_builders_at_home + " " + singular
+			string_builders_at_home = string_builders_at_home + " " + singular
 		else: 
-			we_have_string_builders_at_home = description_pre_value + " " + singular
+			string_builders_at_home = description_pre_value + " " + singular
 	
 	if not description_after_value.is_empty():
-		we_have_string_builders_at_home = we_have_string_builders_at_home + " " + description_after_value
+		string_builders_at_home = string_builders_at_home + " " + description_after_value
 	
-	description = we_have_string_builders_at_home
+	description = string_builders_at_home
