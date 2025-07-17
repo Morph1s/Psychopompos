@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://hbqw7odpxssl"]
+[gd_scene load_steps=7 format=3 uid="uid://hbqw7odpxssl"]
 
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_tilqd"]
 [ext_resource type="Script" uid="uid://mp5frlmm2bys" path="res://scripts/card/card_visualization.gd" id="1_wl1ke"]
 [ext_resource type="Texture2D" uid="uid://dk4hslwqddrac" path="res://assets/graphics/cards/card_highlight_selected.png" id="3_8rjyk"]
+[ext_resource type="Material" uid="uid://c0ouvn6b0m0kj" path="res://resources/shaders/color_settings.tres" id="4_7taqi"]
 [ext_resource type="Texture2D" uid="uid://xrg1u7888w1q" path="res://assets/graphics/cards/common/template_common_card.png" id="4_8rjyk"]
+[ext_resource type="Texture2D" uid="uid://dd7xo82ry0wfg" path="res://assets/graphics/cards/price_sticker_red.png" id="5_isn1s"]
 
 [node name="CardVisualization" type="Control"]
+material = ExtResource("4_7taqi")
 custom_minimum_size = Vector2(44, 64)
 layout_mode = 3
 anchors_preset = 8
@@ -41,6 +44,7 @@ texture = ExtResource("3_8rjyk")
 stretch_mode = 2
 
 [node name="CardImage" type="TextureRect" parent="."]
+material = ExtResource("4_7taqi")
 custom_minimum_size = Vector2(32, 24)
 layout_mode = 0
 offset_left = 6.0
@@ -50,6 +54,7 @@ offset_bottom = 30.0
 stretch_mode = 2
 
 [node name="CardFrame" type="TextureRect" parent="."]
+material = ExtResource("4_7taqi")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,6 +71,7 @@ texture = ExtResource("4_8rjyk")
 stretch_mode = 2
 
 [node name="EnergyBallContainer" type="VBoxContainer" parent="."]
+material = ExtResource("4_7taqi")
 layout_mode = 0
 offset_left = 1.0
 offset_top = 3.0
@@ -86,6 +92,7 @@ text_overrun_behavior = 1
 uppercase = true
 
 [node name="DescriptionBox" type="VBoxContainer" parent="."]
+material = ExtResource("4_7taqi")
 custom_minimum_size = Vector2(26, 18)
 layout_mode = 0
 offset_left = 9.0
@@ -93,6 +100,25 @@ offset_top = 42.0
 offset_right = 35.0
 offset_bottom = 60.0
 theme_override_constants/separation = 2
+
+[node name="PriceTag" type="TextureRect" parent="."]
+visible = false
+material = ExtResource("4_7taqi")
+layout_mode = 0
+offset_left = 31.0
+offset_top = -1.0
+offset_right = 49.0
+offset_bottom = 12.0
+texture = ExtResource("5_isn1s")
+
+[node name="Price" type="Label" parent="PriceTag"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 15.0
+offset_bottom = 11.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

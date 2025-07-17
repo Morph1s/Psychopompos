@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://brl1xwjjdvivu"]
+[gd_scene load_steps=11 format=3 uid="uid://brl1xwjjdvivu"]
 
 [ext_resource type="Script" uid="uid://bwbeshn5gmhsj" path="res://scripts/encounters/shop.gd" id="1_a2l51"]
 [ext_resource type="Texture2D" uid="uid://bct8ua2n57ro0" path="res://assets/graphics/background/placeholder_shop_background.png" id="1_q5qej"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_1hjcp"]
 [ext_resource type="Script" uid="uid://b0hh1vttrirkw" path="res://scripts/shop/card_packs_panel.gd" id="3_272ib"]
+[ext_resource type="Script" uid="uid://vnjpeuy7kifl" path="res://scripts/shop/direct_buy_panel.gd" id="4_2r8dp"]
 [ext_resource type="Script" uid="uid://dxnsjlg40a4w1" path="res://scripts/shop/card_pack_handler.gd" id="4_a2l51"]
 [ext_resource type="Script" uid="uid://bithascay8ui8" path="res://scripts/shop/trade_panel.gd" id="4_v4nyk"]
 [ext_resource type="Texture2D" uid="uid://btfbscpklyxby" path="res://assets/graphics/hud/pictograms/trade_icon_placeholder.png" id="5_7dbcr"]
@@ -51,7 +52,23 @@ theme_override_constants/v_separation = 2
 columns = 2
 
 [node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
+custom_minimum_size = Vector2(185, 0)
 layout_mode = 2
+script = ExtResource("4_2r8dp")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel"]
+layout_mode = 2
+
+[node name="CardContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NoCardsLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "No more cards remain.
+Seek the shop again when the stars align."
+horizontal_alignment = 1
 
 [node name="TradePanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2
@@ -88,6 +105,7 @@ theme_override_constants/margin_right = 2
 
 [node name="PacksContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
 layout_mode = 2
+alignment = 1
 
 [node name="LeaveButton" type="Button" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2

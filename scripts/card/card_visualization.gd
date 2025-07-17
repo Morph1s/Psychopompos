@@ -14,6 +14,12 @@ const ATTACK_LABEL_COLOR: Color = Color.RED
 @onready var card_name = $Name
 @onready var description_box = $DescriptionBox
 @onready var energy_ball_container = $EnergyBallContainer
+@onready var price_tag: TextureRect = $PriceTag
+@onready var price: Label = $PriceTag/Price
+
+# material is added to CardImage, CardFrame and DescriptionBox as well!
+var mat: ShaderMaterial
+var shared_mat: ShaderMaterial
 
 var card_type: CardType
 var is_perma_highlighted: bool = false
@@ -56,6 +62,7 @@ func initialize(card: CardType) -> void:
 			card_name.add_theme_color_override("font_color", Color.BLACK)
 			card_frame.texture = load("res://assets/graphics/cards/god/template_god_card.png")
 	
+
 	for index in card_type.tooltips.size():
 		if index in range(card_type.on_play_action.size()):
 			_set_tooltip_of_index(index)
@@ -119,3 +126,39 @@ func _create_energy_cost_balls(amount: int) -> void:
 		var new_ball = TextureRect.new()
 		new_ball.texture = CARD_ENERGY_BALL
 		energy_ball_container.add_child(new_ball)
+
+func set_price_tag() -> void:
+	if not is_node_ready():
+		await ready
+	
+	print("DEBUG: Coins =", RunData.player_stats.coins)
+
+	if card_type.card_value > RunData.player_stats.coins:
+		price.add_theme_color_override("font_color", Color.BLACK)
+		mat.set_shader_parameter("saturation", 0)
+	else:
+		price.add_theme_color_override("font_color", Color.WHITE)
+		mat.set_shader_parameter("saturation", 1)
+	
+	price.text = str(card_type.card_value)
+	price_tag.show()
+
+func apply_material(sm: ShaderMaterial) -> void:
+	if not is_node_ready():
+		await ready
+
+	mat = sm.duplicate()
+	
+	for ball in energy_ball_container.get_children():
+		ball.material = mat
+	
+	for child in description_box.get_child(0).get_children():
+		child.material = mat
+		
+	for child in description_box.get_child(1).get_children():
+		child.material = mat
+	
+	$PriceTag.material = mat
+	$CardImage.material = mat
+	$CardFrame.material = mat
+	$DescriptionBox.material = mat
