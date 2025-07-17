@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_p2gno"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_7qwwq"]
 [ext_resource type="Texture2D" uid="uid://o4ydo2rocley" path="res://assets/graphics/cards/god/card_god_hades.png" id="4_44t4l"]
-[ext_resource type="Resource" uid="uid://c0bqjh5i2u6kc" path="res://resources/tooltips/action_tooltips/attack_all_tooltip.tres" id="7_lumf3"]
+[ext_resource type="Resource" uid="uid://ragqmygj4w1k" path="res://resources/tooltips/special_tooltips/hades_tooltip.tres" id="7_lumf3"]
 
 [sub_resource type="Resource" id="Resource_gpe51"]
 script = ExtResource("2_44t4l")
