@@ -9,8 +9,16 @@ signal died()
 
 var maximum_hitpoints: int = 1:
 	set(value):
+		var maximum_hitpoint_gain: int = value - maximum_hitpoints
+		
 		maximum_hitpoints = value
-		current_hitpoints = clamp(current_hitpoints, 0, maximum_hitpoints) # limit hp if maxhp get reduced
+		
+		if maximum_hitpoint_gain > 0:
+			# gain hp
+			current_hitpoints += maximum_hitpoint_gain
+		else:
+			current_hitpoints = clamp(current_hitpoints, 0, maximum_hitpoints) # limit hp if maxhp get reduced
+		
 		# call hitpoint changed eventbus
 		hitpoints_changed.emit(current_hitpoints, maximum_hitpoints)
 
