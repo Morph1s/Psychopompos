@@ -40,8 +40,8 @@ func _calculate_enemy_x_position(index: int, enemy_count: int) -> int:
 
 func resolve_intent():
 	for enemy in enemies:
-		enemy.resolve_intent()
-		var timer = get_tree().create_timer(1)
+		await enemy.resolve_intent()
+		var timer = get_tree().create_timer(0.8)
 		await timer.timeout
 
 func choose_intent():
