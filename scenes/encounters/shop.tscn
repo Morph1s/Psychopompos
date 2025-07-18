@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://brl1xwjjdvivu"]
+[gd_scene load_steps=14 format=3 uid="uid://brl1xwjjdvivu"]
 
 [ext_resource type="Script" uid="uid://bwbeshn5gmhsj" path="res://scripts/encounters/shop.gd" id="1_a2l51"]
 [ext_resource type="Texture2D" uid="uid://bct8ua2n57ro0" path="res://assets/graphics/background/placeholder_shop_background.png" id="1_q5qej"]
@@ -58,7 +58,7 @@ theme_override_constants/v_separation = 2
 columns = 2
 
 [node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
-custom_minimum_size = Vector2(185, 0)
+custom_minimum_size = Vector2(192, 69)
 layout_mode = 2
 script = ExtResource("4_2r8dp")
 
@@ -101,19 +101,30 @@ text = "GAMBAA"
 horizontal_alignment = 1
 
 [node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
-custom_minimum_size = Vector2(136, 0)
+custom_minimum_size = Vector2(192, 73)
 layout_mode = 2
 script = ExtResource("3_272ib")
 
 [node name="PacksMargin" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel"]
-custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_right = 2
 
 [node name="PacksContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
 alignment = 1
+
+[node name="NoPacksLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
+visible = false
+layout_mode = 2
+text = "Looks like the gods are out of gifts today.
+No card packs left in this shop!"
+horizontal_alignment = 1
+
+[node name="CardPackHandler" type="Node" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel"]
+script = ExtResource("4_a2l51")
 
 [node name="LeaveButton" type="Button" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
 layout_mode = 2
@@ -133,9 +144,6 @@ visible = false
 
 [node name="ShopTradingInterface" parent="ShopLayer" instance=ExtResource("9_2r8dp")]
 visible = false
-
-[node name="CardPackHandler" type="Node" parent="."]
-script = ExtResource("4_a2l51")
 
 [connection signal="gui_input" from="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer/TradeIcon" to="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel" method="_on_trade_icon_gui_input"]
 [connection signal="pressed" from="ShopLayer/ShopUI/ShopUIMargin/GridContainer/LeaveButton" to="." method="_on_leave_button_pressed"]

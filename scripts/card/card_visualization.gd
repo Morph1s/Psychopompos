@@ -18,11 +18,12 @@ const ATTACK_LABEL_COLOR: Color = Color.RED
 @onready var price: Label = $PriceTag/Price
 
 # material is added to CardImage, CardFrame and DescriptionBox as well!
-var mat: ShaderMaterial
-var shared_mat: ShaderMaterial
-
+var shared_material: ShaderMaterial
 var card_type: CardType
 var is_perma_highlighted: bool = false
+var is_shop: bool = false
+var is_animating: bool = false
+
 
 func initialize(card: CardType) -> void:
 	if not is_node_ready():
@@ -62,7 +63,6 @@ func initialize(card: CardType) -> void:
 			card_name.add_theme_color_override("font_color", Color.BLACK)
 			card_frame.texture = load("res://assets/graphics/cards/god/template_god_card.png")
 	
-
 	for index in card_type.tooltips.size():
 		if index in range(card_type.on_play_action.size()):
 			_set_tooltip_of_index(index)
@@ -92,6 +92,8 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
+		if card_type.card_value > RunData.player_stats.coins and is_shop:
+			play_shake_animation()
 		card_selected.emit(card_type, self)
 		print("ofheivbwefiepfpqiehgipipeh")
 
@@ -127,38 +129,60 @@ func _create_energy_cost_balls(amount: int) -> void:
 		new_ball.texture = CARD_ENERGY_BALL
 		energy_ball_container.add_child(new_ball)
 
-func set_price_tag() -> void:
-	if not is_node_ready():
-		await ready
-	
-	print("DEBUG: Coins =", RunData.player_stats.coins)
-
+func update_price_tag() -> void:
+	price.add_theme_color_override("font_color", Color.WHITE)
+	shared_material.set_shader_parameter("desaturation", 0.0)
 	if card_type.card_value > RunData.player_stats.coins:
 		price.add_theme_color_override("font_color", Color.BLACK)
-		mat.set_shader_parameter("saturation", 0)
-	else:
-		price.add_theme_color_override("font_color", Color.WHITE)
-		mat.set_shader_parameter("saturation", 1)
+		shared_material.set_shader_parameter("desaturation", 0.8)
 	
 	price.text = str(card_type.card_value)
 	price_tag.show()
 
-func apply_material(sm: ShaderMaterial) -> void:
+func apply_material() -> void:
 	if not is_node_ready():
 		await ready
 
-	mat = sm.duplicate()
+	shared_material = ShaderMaterial.new()
+	shared_material.shader = load("res://resources/shaders/desaturate_icon_shader.gdshader")
 	
 	for ball in energy_ball_container.get_children():
-		ball.material = mat
+		ball.material = shared_material
 	
 	for child in description_box.get_child(0).get_children():
-		child.material = mat
+		child.material = shared_material
 		
 	for child in description_box.get_child(1).get_children():
-		child.material = mat
+		child.material = shared_material
 	
-	$PriceTag.material = mat
-	$CardImage.material = mat
-	$CardFrame.material = mat
-	$DescriptionBox.material = mat
+	price_tag.material = shared_material
+	card_image.material = shared_material
+	card_frame.material = shared_material
+
+func play_shake_animation():
+	if is_animating:
+		return
+	
+	is_perma_highlighted = true
+	is_animating = true
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_loops(2)
+	
+	var shake_amount := 4
+	var original_position := position
+	
+	tween.tween_property(self, "position:x", original_position.x - shake_amount, 0.02)
+	tween.tween_property(self, "position:x", original_position.x + shake_amount, 0.04)
+	tween.tween_property(self, "position:x", original_position.x, 0.02)
+	
+	tween.connect("finished", _on_shake_animation_finished)
+
+
+func _on_shake_animation_finished():
+	is_perma_highlighted = false
+	is_animating = false
+	mouse_filter = Control.MOUSE_FILTER_STOP

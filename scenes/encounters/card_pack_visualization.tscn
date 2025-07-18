@@ -1,11 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwi5wnurii164"]
+[gd_scene load_steps=9 format=3 uid="uid://bwi5wnurii164"]
 
 [ext_resource type="Script" uid="uid://deboikml0dxi" path="res://scripts/shop/card_pack_visualization.gd" id="1_6qghn"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_fsh47"]
 [ext_resource type="Texture2D" uid="uid://vuyxd3vw523i" path="res://assets/graphics/cards/card_pack_common_placeholder.png" id="2_fsh47"]
+[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturate_icon_shader.gdshader" id="3_jv2ka"]
+[ext_resource type="Texture2D" uid="uid://dd7xo82ry0wfg" path="res://assets/graphics/cards/price_sticker_red.png" id="4_vlnxj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cssnh"]
+shader = ExtResource("3_jv2ka")
+shader_parameter/desaturation = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbves"]
+shader = ExtResource("3_jv2ka")
+shader_parameter/desaturation = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sy7kk"]
+shader = ExtResource("3_jv2ka")
+shader_parameter/desaturation = 0.0
 
 [node name="CardPackVisualization" type="Control"]
-custom_minimum_size = Vector2(44, 73)
+custom_minimum_size = Vector2(44, 66)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -15,35 +29,39 @@ anchor_bottom = 0.5
 offset_left = -160.0
 offset_top = -90.0
 offset_right = -116.0
-offset_bottom = -17.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fsh47")
 script = ExtResource("1_6qghn")
 
 [node name="PackImage" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -36.5
-offset_right = 22.0
-offset_bottom = 29.5
-grow_horizontal = 2
-grow_vertical = 2
+material = SubResource("ShaderMaterial_cssnh")
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 66.0
 texture = ExtResource("2_fsh47")
 
-[node name="Price" type="Label" parent="."]
-custom_minimum_size = Vector2(44, 0)
+[node name="PriceTag" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_cbves")
 layout_mode = 0
-offset_top = 67.0
-offset_right = 44.0
-offset_bottom = 73.0
-text = "PRICEy"
+offset_left = 33.0
+offset_top = -2.0
+offset_right = 51.0
+offset_bottom = 11.0
+texture = ExtResource("4_vlnxj")
+stretch_mode = 2
+
+[node name="Price" type="Label" parent="PriceTag"]
+material = SubResource("ShaderMaterial_sy7kk")
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 16.0
+offset_bottom = 11.0
+text = "PRy"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

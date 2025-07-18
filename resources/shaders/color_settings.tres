@@ -1,9 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c0ouvn6b0m0kj"]
-
-[ext_resource type="Shader" uid="uid://dfeckw0fr1c62" path="res://resources/shaders/pricetag.gdshader" id="1_4eypm"]
-
-[resource]
-shader = ExtResource("1_4eypm")
-shader_parameter/tint_color = Vector4(1, 1, 1, 1)
-shader_parameter/brightness = 1.0
-shader_parameter/saturation = 1.0

@@ -13,7 +13,6 @@ var can_trade: bool = true
 func initialize():
 	trading_interface.change_card_selection.connect(_show_trading_deck_view)
 	trading_interface.traded.connect(_disable_trading)
-	trade.material = trade.material.duplicate()
 	trade.material.set_shader_parameter("desaturation", 0.0)
 
 func _on_trade_icon_gui_input(event: InputEvent) -> void:
@@ -23,6 +22,7 @@ func _on_trade_icon_gui_input(event: InputEvent) -> void:
 func select_card(card: CardType, card_visual: CardVisualization, deck_view: DeckView):
 	# don't allow starting cards to be traded
 	if card.rarity == CardType.Rarity.STARTING_CARD:
+		card_visual.play_shake_animation()
 		return
 	
 	if not selected_cards.has(card):
@@ -56,4 +56,4 @@ func _show_trading_deck_view():
 
 func _disable_trading():
 	can_trade = false
-	trade.material.set_shader_parameter("desaturation", 0.7)
+	trade.material.set_shader_parameter("desaturation", 0.8)

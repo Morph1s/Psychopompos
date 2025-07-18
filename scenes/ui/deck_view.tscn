@@ -76,7 +76,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "ACTION"
+text = "SELECT"
 
 [connection signal="pressed" from="UIMargin/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="UIMargin/ActionButton" to="." method="_on_action_pressed"]

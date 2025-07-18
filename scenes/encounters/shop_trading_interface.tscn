@@ -95,25 +95,25 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="PlusOneButton" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1"]
-layout_mode = 2
-text = "+1"
-
 [node name="MinusOneButton" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1"]
 layout_mode = 2
 text = "-1"
+
+[node name="PlusOneButton" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1"]
+layout_mode = 2
+text = "+1"
 
 [node name="AdjustCoins10" type="HBoxContainer" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea"]
 layout_mode = 2
 alignment = 1
 
-[node name="Plus10Button" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10"]
-layout_mode = 2
-text = "+10"
-
 [node name="Minus10Button" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10"]
 layout_mode = 2
 text = "-10"
+
+[node name="Plus10Button" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10"]
+layout_mode = 2
+text = "+10"
 
 [node name="EqualsPart" type="TextureRect" parent="MarginContainer/TradingEquationContainer"]
 layout_mode = 2
@@ -155,9 +155,9 @@ size_flags_vertical = 8
 text = "Trade"
 
 [connection signal="pressed" from="MarginContainer/TradingEquationContainer/CardsPart/ChangeCardSelectionButton" to="." method="_on_change_card_selection_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1/PlusOneButton" to="." method="_on_plus_one_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1/MinusOneButton" to="." method="_on_minus_one_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10/Plus10Button" to="." method="_on_plus_10_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1/PlusOneButton" to="." method="_on_plus_one_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10/Minus10Button" to="." method="_on_minus_10_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10/Plus10Button" to="." method="_on_plus_10_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="MarginContainer/Trade" to="." method="_on_trade_pressed"]

@@ -1,10 +1,12 @@
 class_name CardPackPanel
 extends PanelContainer
 
-@onready var card_pack_handler: CardPackHandler = $"../../../../../CardPackHandler"
+@onready var card_pack_handler: CardPackHandler = $CardPackHandler
 @onready var packs_container: HBoxContainer = $PacksMargin/PacksContainer
 @onready var tooltip: Tooltip = $"../../../../Tooltip"
 @onready var select_cards_screen: SelectCardsScreen = $"../../../../SelectCardScreen"
+@onready var direct_buy_panel: DirectBuyPanel = $"../DirectBuyPanel"
+@onready var no_packs_label: Label = $PacksMargin/NoPacksLabel
 
 const NUM_PACKS: int = 3
 const NUM_CARDS_TO_SELECT: int = 2
@@ -45,19 +47,22 @@ func _fill_packs_panel() -> void:
 		if pack:
 			var pack_visual = CARD_PACK_VISUALIZATION.instantiate()
 			pack_visual.initialize(pack)
+			pack_visual.apply_material()
 			pack_visual.show_tooltip.connect(_on_card_pack_show_tooltip)
 			pack_visual.hide_tooltip.connect(_on_card_pack_hide_tooltip)
 			pack_visual.pack_selected.connect(_on_card_pack_pack_selected)
 			packs_container.add_child(pack_visual)
+	
+	update_price_tags()
 
-func _on_card_pack_show_tooltip(data: Array[TooltipData]):
+func _on_card_pack_show_tooltip(data: Array[TooltipData]) -> void:
 	tooltip.load_tooltips(data)
 	tooltip.show()
 
-func _on_card_pack_hide_tooltip():
+func _on_card_pack_hide_tooltip() -> void:
 	tooltip.hide()
 
-func _on_card_pack_pack_selected(pack: CardPack):
+func _on_card_pack_pack_selected(pack: CardPack) -> void:
 	if pack.price > RunData.player_stats.coins:
 		return
 	
@@ -78,5 +83,15 @@ func _on_select_card_screen_cards_selected(cards: Array[CardType]) -> void:
 	
 	for pack: CardPackVisualization in packs_container.get_children():
 		if pack.card_pack == current_card_pack:
+			packs.erase(pack.card_pack)
 			pack.queue_free()
-		pack.set_price_label_color()
+	
+	update_price_tags()
+	direct_buy_panel.update_price_tags()
+	
+	if packs.is_empty():
+		no_packs_label.show()
+
+func update_price_tags() -> void:
+	for pack: CardPackVisualization in packs_container.get_children():
+		pack.update_price_tag()

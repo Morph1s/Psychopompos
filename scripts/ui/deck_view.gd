@@ -41,6 +41,7 @@ func add_button_action(on_button_pressed_action: Callable) -> void:
 func _on_exit_pressed() -> void:
 	for card: CardVisualization in card_container.get_children():
 		card.queue_free()
+	action.hide()
 	close_deck_view.emit()
 
 func _on_card_show_toopltip(data: Array[TooltipData]) -> void:
@@ -68,4 +69,5 @@ func _on_action_pressed() -> void:
 	button_action.call()
 	for card: CardVisualization in card_container.get_children():
 		card.queue_free()
+	action.hide()
 	close_deck_view.emit()
