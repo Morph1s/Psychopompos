@@ -88,6 +88,8 @@ func resolve_intent() -> void:
 			action.resolve([get_tree().get_first_node_in_group("card_piles")])
 		if action is AttackAction:
 			attacked = true
+		
+		await get_tree().create_timer(0.2).timeout
 	
 	enemy_hud.intent_container.hide()
 	
