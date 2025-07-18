@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brl1xwjjdvivu"]
+[gd_scene load_steps=13 format=3 uid="uid://brl1xwjjdvivu"]
 
 [ext_resource type="Script" uid="uid://bwbeshn5gmhsj" path="res://scripts/encounters/shop.gd" id="1_a2l51"]
 [ext_resource type="Texture2D" uid="uid://bct8ua2n57ro0" path="res://assets/graphics/background/placeholder_shop_background.png" id="1_q5qej"]
@@ -7,8 +7,14 @@
 [ext_resource type="Script" uid="uid://dxnsjlg40a4w1" path="res://scripts/shop/card_pack_handler.gd" id="4_a2l51"]
 [ext_resource type="Script" uid="uid://bithascay8ui8" path="res://scripts/shop/trade_panel.gd" id="4_v4nyk"]
 [ext_resource type="Texture2D" uid="uid://btfbscpklyxby" path="res://assets/graphics/hud/pictograms/trade_icon_placeholder.png" id="5_7dbcr"]
+[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturate_icon_shader.gdshader" id="5_jwvl2"]
 [ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="6_87tic"]
 [ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="6_rl7h0"]
+[ext_resource type="PackedScene" uid="uid://g83ni5mqmfl6" path="res://scenes/encounters/shop_trading_interface.tscn" id="9_2r8dp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffoeh"]
+shader = ExtResource("5_jwvl2")
+shader_parameter/desaturation = 0.0
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_a2l51")
@@ -68,6 +74,7 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 
 [node name="TradeIcon" type="TextureRect" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
+material = SubResource("ShaderMaterial_ffoeh")
 layout_mode = 2
 texture = ExtResource("5_7dbcr")
 
@@ -82,6 +89,7 @@ layout_mode = 2
 script = ExtResource("3_272ib")
 
 [node name="PacksMargin" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel"]
+custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_right = 2
@@ -105,8 +113,12 @@ offset_bottom = 26.0
 [node name="SelectCardScreen" parent="ShopLayer" instance=ExtResource("6_87tic")]
 visible = false
 
+[node name="ShopTradingInterface" parent="ShopLayer" instance=ExtResource("9_2r8dp")]
+visible = false
+
 [node name="CardPackHandler" type="Node" parent="."]
 script = ExtResource("4_a2l51")
 
+[connection signal="gui_input" from="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer/TradeIcon" to="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel" method="_on_trade_icon_gui_input"]
 [connection signal="pressed" from="ShopLayer/ShopUI/ShopUIMargin/GridContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
 [connection signal="cards_selected" from="ShopLayer/SelectCardScreen" to="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel" method="_on_select_card_screen_cards_selected"]

@@ -19,7 +19,7 @@ func _on_remove_card_button_pressed() -> void:
 func open_remove_card_view():
 	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "remove_card_from_deck"))
 
-func remove_card_from_deck(card: CardType):
+func remove_card_from_deck(card: CardType, _card_visual: CardVisualization, _deck_view: DeckView):
 	DeckHandler.remove_card_from_deck(card)
 	_finish_campfire()
 

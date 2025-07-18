@@ -86,10 +86,13 @@ func _on_eventbus_open_deck_view(deck: Array[CardType]) -> void:
 	if battle_ui_reference:
 		battle_ui_reference.hide()
 
-func _on_eventbus_open_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable) -> void:
+func _on_eventbus_open_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable, has_button: bool = false, on_button_pressed_action: Callable = Callable()) -> void:
 	deck_view.show()
 	deck_view.load_cards(deck)
 	deck_view.add_card_action(on_card_selected_action)
+	deck_view.has_action_button = has_button
+	deck_view.toggle_action_button()
+	deck_view.add_button_action(on_button_pressed_action)
 	
 	if battle_ui_reference:
 		battle_ui_reference.hide()

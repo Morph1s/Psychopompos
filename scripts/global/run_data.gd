@@ -21,6 +21,7 @@ var sub_rngs: Dictionary[String, RandomNumberGenerator] = {
 	"rng_battle_rewards": RandomNumberGenerator.new(),
 	"rng_card_pack_handler": RandomNumberGenerator.new(),
 	"rng_card_pack_panel": RandomNumberGenerator.new(),
+	"rng_shop_trade": RandomNumberGenerator.new(),
 }
 var selected_character: Characters = Characters.WARRIOR
 var player_stats: PlayerStats
