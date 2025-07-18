@@ -51,7 +51,7 @@ func calculate_result():
 	var all_available_cards: Array[CardType] = DeckHandler.card_library.common_cards + DeckHandler.card_library.hero_cards + DeckHandler.card_library.gods_boon_cards
 	
 	# remove selected cards from the pool of possible trade results
-	all_available_cards.filter(func(card: CardType): 
+	all_available_cards = all_available_cards.filter(func(card: CardType): 
 		for selected_card: CardType in selected_cards:
 			if card.card_name == selected_card.card_name:
 				return false

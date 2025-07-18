@@ -13,6 +13,7 @@ const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 var selected_cards: Array[CardType] = []
 var num_cards_to_choose: int
 
+
 func initialize(cards: Array[CardType], choosable_count: int = 1) -> void:
 	for child in card_container.get_children():
 		child.queue_free()
