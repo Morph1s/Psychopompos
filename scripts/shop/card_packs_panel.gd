@@ -74,12 +74,17 @@ func _on_card_pack_pack_selected(pack: CardPack) -> void:
 	
 	current_card_pack = pack
 
-func _on_select_card_screen_cards_selected(cards: Array[CardType]) -> void:
+func _on_select_card_screen_cards_selected(cards: Array[CardType], card_visuals: Array[CardVisualization]) -> void:
 	select_cards_screen.hide()
+	
+	var positions: Array[Vector2] = []
 	
 	for card: CardType in cards:
 		DeckHandler.add_card_to_deck(card)
+		positions.append(card_visuals[cards.find(card)].global_position)
 		print("Add card ", card.card_name, " to deck")
+	
+	EventBusHandler.card_picked_for_deck_add.emit(cards, positions)
 	
 	for pack: CardPackVisualization in packs_container.get_children():
 		if pack.card_pack == current_card_pack:

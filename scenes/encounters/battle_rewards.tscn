@@ -4,7 +4,6 @@
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_ophfa"]
 [ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="2_ipgjk"]
 
-
 [node name="BattleRewards" type="Control"]
 layout_mode = 3
 anchors_preset = 15

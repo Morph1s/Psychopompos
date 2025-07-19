@@ -12,6 +12,8 @@ const COMMON_COIN_AMOUNT_MIN: int = 20
 const BOSS_COIN_CHANCE: float = 0.7
 const BOSS_COIN_AMOUNT_MAX: int = 70
 const BOSS_COIN_AMOUNT_MIN: int = 50
+# card visualization for the collect animation
+const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 
 enum RewardType {
 	CARDS,
@@ -107,14 +109,18 @@ func _on_rewards_container_child_exiting_tree(_node):
 		queue_free()
 
 
-func _on_select_card_screen_cards_selected(cards: Array[CardType]) -> void:
+func _on_select_card_screen_cards_selected(cards: Array[CardType], card_visuals: Array[CardVisualization]) -> void:
 	select_card_screen.hide()
 	
 	if cards.is_empty():
 		return
 	
+	var positions: Array[Vector2] = []
+	
 	for card: CardType in cards:
 		DeckHandler.add_card_to_deck(card)
+		positions.append(card_visuals[cards.find(card)].global_position)
 		print("Add card ", card.card_name, " to deck")
 	
+	EventBusHandler.card_picked_for_deck_add.emit(cards, positions)
 	current_card_reward_button.queue_free()

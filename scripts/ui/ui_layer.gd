@@ -3,12 +3,15 @@ extends CanvasLayer
 @onready var map: Map = $Map
 @onready var run_ui = $RunUI
 @onready var deck_view: DeckView = $DeckView
+@onready var deck_icon: TextureRect =  $RunUI/TopBarMargin/TopBarHBox/IconsRight/DeckIcon
+@onready var run: Run = $".."
 
 var battle_ui_reference: BattleUI
 
 const BATTLE_UI = preload("res://scenes/ui/battle_ui.tscn")
 const BATTLE_REWARDS : PackedScene = preload("res://scenes/encounters/battle_rewards.tscn")
 const DECK_VIEW = preload("res://scenes/ui/deck_view.tscn")
+const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 
 func _ready() -> void:
 	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
@@ -18,6 +21,7 @@ func _ready() -> void:
 	EventBusHandler.campfire_finished.connect(_on_eventbus_campfire_finished)
 	EventBusHandler.dialogue_finished.connect(_on_eventbus_dialogue_finished)
 	EventBusHandler.shop_finished.connect(_on_eventbus_shop_finished)
+	EventBusHandler.card_picked_for_deck_add.connect(_on_eventbus_card_picked_for_deck_add)
 
 func load_battle_rewards(boss_rewards: bool):
 	var battle_rewards: BattleRewards = BATTLE_REWARDS.instantiate()
@@ -125,3 +129,16 @@ func _on_run_ui_open_deck_view():
 		_close_deck_view()
 	else:
 		EventBusHandler.show_deck_view.emit(DeckHandler.current_deck)
+
+func _on_eventbus_card_picked_for_deck_add(cards: Array[CardType], positions: Array[Vector2]):
+	var card_visuals: Array[CardVisualization] = []
+	for card: CardType in cards:
+		var card_visual: CardVisualization = CARD_VISUALIZATION.instantiate()
+		card_visual.initialize(card)
+		add_child(card_visual)
+		card_visual.position = positions[cards.find(card)]
+		card_visuals.append(card_visual)
+	
+	for card_visual: CardVisualization in card_visuals:
+		card_visual.animate_card_collection(card_visual.global_position, deck_icon.global_position)
+		await get_tree().create_timer(0.2).timeout

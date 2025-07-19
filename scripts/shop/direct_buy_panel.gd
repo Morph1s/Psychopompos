@@ -45,6 +45,10 @@ func _on_card_selected(card: CardType, scene: CardVisualization) -> void:
 	
 	DeckHandler.add_card_to_deck(card)
 	
+	var card_array: Array[CardType] = [card]
+	var position_array: Array[Vector2] = [scene.global_position]
+	EventBusHandler.card_picked_for_deck_add.emit(card_array, position_array)
+	
 	update_price_tags()
 	packs_panel.update_price_tags()
 

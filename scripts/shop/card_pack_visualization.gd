@@ -44,7 +44,7 @@ func apply_material():
 		await ready
 	
 	shared_material = ShaderMaterial.new()
-	shared_material.shader = load("res://resources/shaders/desaturate_icon_shader.gdshader")
+	shared_material.shader = load("res://resources/shaders/desaturation_shader.gdshader")
 	
 	pack_image.material = shared_material
 	price_tag.material = shared_material

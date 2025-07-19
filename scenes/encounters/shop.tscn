@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dxnsjlg40a4w1" path="res://scripts/shop/card_pack_handler.gd" id="4_a2l51"]
 [ext_resource type="Script" uid="uid://bithascay8ui8" path="res://scripts/shop/trade_panel.gd" id="4_v4nyk"]
 [ext_resource type="Texture2D" uid="uid://btfbscpklyxby" path="res://assets/graphics/hud/pictograms/trade_icon_placeholder.png" id="5_7dbcr"]
-[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturate_icon_shader.gdshader" id="5_jwvl2"]
+[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturation_shader.gdshader" id="5_jwvl2"]
 [ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="6_87tic"]
 [ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="6_rl7h0"]
 [ext_resource type="PackedScene" uid="uid://g83ni5mqmfl6" path="res://scenes/encounters/shop_trading_interface.tscn" id="9_2r8dp"]
@@ -112,7 +112,6 @@ theme_override_constants/margin_right = 2
 
 [node name="PacksContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
 layout_mode = 2
-size_flags_vertical = 4
 theme_override_constants/separation = 8
 alignment = 1
 

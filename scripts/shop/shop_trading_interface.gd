@@ -32,6 +32,8 @@ var trading_value: int = 0:
 		calculate_result()
 var possible_trade_results: Dictionary[CardType, int]
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_shop_trade"]
+var card_visual: CardVisualization
+
 
 func set_selected_cards(cards: Array[CardType]):
 	selected_cards = cards
@@ -82,7 +84,7 @@ func calculate_result():
 		if weight > highest_weight:
 			highest_weight = weight
 	
-	var card_visual: CardVisualization = CARD_VISUALIZATION.instantiate()
+	card_visual = CARD_VISUALIZATION.instantiate()
 	card_visual.initialize(possible_trade_results.find_key(highest_weight))
 	card_display.add_child(card_visual)
 	
@@ -103,6 +105,10 @@ func choose_weighted_trade_result():
 		if w >= random_index:
 			card_result = cards[cum_weights.find(w)]
 			break
+	
+	var card_array: Array[CardType] = [card_result]
+	var position_array: Array[Vector2] = [card_visual.global_position]
+	EventBusHandler.card_picked_for_deck_add.emit(card_array, position_array)
 	
 	DeckHandler.add_card_to_deck(card_result)
 	for card: CardType in selected_cards:

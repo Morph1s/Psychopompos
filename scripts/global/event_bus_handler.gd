@@ -20,6 +20,7 @@ signal card_deselected
 signal card_piles_card_count_changed(draw_pile_card_count: int, discard_pile_card_count: int)
 signal dialogue_finished
 signal shop_finished
+signal card_picked_for_deck_add(cards: Array[CardType], positions: Array[Vector2])
 
 
 ## disposes all connections of all events
