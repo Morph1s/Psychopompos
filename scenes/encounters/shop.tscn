@@ -58,7 +58,7 @@ theme_override_constants/v_separation = 2
 columns = 2
 
 [node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
-custom_minimum_size = Vector2(192, 69)
+custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 script = ExtResource("4_2r8dp")
 
@@ -101,12 +101,13 @@ text = "GAMBAA"
 horizontal_alignment = 1
 
 [node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
-custom_minimum_size = Vector2(192, 73)
+custom_minimum_size = Vector2(192, 83)
 layout_mode = 2
 script = ExtResource("3_272ib")
 
 [node name="PacksMargin" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_right = 2
 
