@@ -74,7 +74,7 @@ func _on_battle_rewards_finished_selecting() -> void:
 	map.show()
 
 func _on_eventbus_dialogue_finished():
-	map.current_encounter.completed = true
+	map.current_node.encounter.completed = true
 	map.unlock_next_encounters()
 	map.current_layer += 1
 	map.can_close = false

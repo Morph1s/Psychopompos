@@ -16,6 +16,7 @@ var the_end: bool = false
 
 func initialize(data: BattleEncounter) -> void:
 	player_character.initialize()
+	player_character.show_character_hud()
 	card_handler.initialize()
 	enemy_handler.initialize(data.enemies)
 	state_machine.initialize()
