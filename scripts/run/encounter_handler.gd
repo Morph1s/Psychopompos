@@ -8,7 +8,7 @@ signal load_rewards(boss_rewards: bool)
 @onready var map: Map = $"../UILayer/Map"
 
 const GAME_OVER_SCREEN: PackedScene = preload("res://scenes/ui/game_over_screen.tscn")
-const WIN_SCREEN = preload("res://scenes/ui/win_screen.tscn")
+const WIN_SCREEN: PackedScene = preload("res://scenes/ui/win_screen.tscn")
 
 const BATTLE_STAGE_0: BattleEncounter = preload("res://resources/encounters/battle_stage_0.tres")
 const BATTLES_STAGE_1: Array[BattleEncounter] = [
@@ -57,7 +57,7 @@ func start_encounter(encounter_data: Encounter):
 
 func _load_win_screen():
 	current_encounter.queue_free()
-	var win_screen: GameOverScreen  = WIN_SCREEN.instantiate()
+	var win_screen: WinScreen = WIN_SCREEN.instantiate()
 	self.add_child(win_screen)
 	win_screen.back_to_main_menu_pressed.connect(_on_back_to_main_menu_pressed)
 
