@@ -140,5 +140,5 @@ func _on_eventbus_card_picked_for_deck_add(cards: Array[CardType], positions: Ar
 		card_visuals.append(card_visual)
 	
 	for card_visual: CardVisualization in card_visuals:
-		card_visual.animate_card_collection(card_visual.global_position, deck_icon.global_position)
+		card_visual.animate_card_collection(deck_icon.global_position)
 		await get_tree().create_timer(0.2).timeout

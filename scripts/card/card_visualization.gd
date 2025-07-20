@@ -186,15 +186,15 @@ func _on_shake_animation_finished():
 	is_animating = false
 	mouse_filter = Control.MOUSE_FILTER_STOP
 
-func animate_card_collection(from: Vector2, to: Vector2):
+func animate_card_collection(to: Vector2):
 	if is_animating:
 		return
 	is_animating = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	var tween = create_tween().set_parallel(true)
-	tween.tween_property(self, "global_position", to, 0.4)
-	tween.tween_property(self, "scale", Vector2(0.2, 0.2), 0.4)
+	tween.tween_property(self, "global_position", to, 0.3)
+	tween.tween_property(self, "scale", Vector2(0.2, 0.2), 0.3)
 	
 	tween.finished.connect(_on_card_collection_animation_finished)
 
