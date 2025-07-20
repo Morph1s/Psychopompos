@@ -11,7 +11,7 @@ signal player_played_attack
 signal set_player_control(value: bool)
 signal open_settings
 signal show_deck_view(deck: Array[CardType])
-signal show_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable, has_button: bool, on_button_pressed_action: Callable)
+signal show_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable, has_button: bool, on_button_pressed_action: Callable, on_exit_pressed_action: Callable)
 signal show_map
 signal back_to_battle
 signal cards_drawn

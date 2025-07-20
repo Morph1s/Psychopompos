@@ -12,12 +12,15 @@ const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 var card_selected_action: Callable
 var has_action_button: bool = false
 var button_action: Callable
+var exit_action: Callable
 
 func load_cards(card_pile: Array[CardType]) -> void:
 	if not is_node_ready():
 		await ready
 	
 	action.disabled = true
+	button_action = Callable()
+	exit_action = Callable()
 	
 	for card in card_container.get_children():
 		card.queue_free()
@@ -38,9 +41,14 @@ func add_card_action(on_card_selected_action: Callable) -> void:
 func add_button_action(on_button_pressed_action: Callable) -> void:
 	button_action = on_button_pressed_action
 
+func add_exit_action(on_exit_pressed_action: Callable) -> void:
+	exit_action = on_exit_pressed_action
+
 func _on_exit_pressed() -> void:
 	for card: CardVisualization in card_container.get_children():
 		card.queue_free()
+	if exit_action:
+		exit_action.call()
 	action.hide()
 	close_deck_view.emit()
 

@@ -1,7 +1,7 @@
 class_name ShopTradingInterface
 extends Control
 
-signal change_card_selection
+signal change_card_selection(selected_cards: Array[CardType])
 signal traded
 
 @onready var selected_cards_container: HBoxContainer = $MarginContainer/TradingEquationContainer/CardsPart/SelectedCardsContainer
@@ -36,6 +36,9 @@ var card_visual: CardVisualization
 
 
 func set_selected_cards(cards: Array[CardType]):
+	for card: CardVisualization in selected_cards_container.get_children():
+		card.queue_free()
+	
 	selected_cards = cards
 	trading_value = 0
 	total_card_value = 0
@@ -99,7 +102,7 @@ func choose_weighted_trade_result():
 		if 0 < w:
 			cum_weights[w] += cum_weights[w - 1]
 	
-	var random_index: int = rng.randi_range(0, cum_weights.back())
+	var random_index: int = randi64(cum_weights.back())
 	
 	for w in cum_weights:
 		if w >= random_index:
@@ -113,17 +116,23 @@ func choose_weighted_trade_result():
 	DeckHandler.add_card_to_deck(card_result)
 	for card: CardType in selected_cards:
 		DeckHandler.remove_card_from_deck(card)
+	RunData.player_stats.coins -= coins
+
+func randi64(max_value: int) -> int:
+	var hi := rng.randi()
+	var lo := rng.randi()
+	var combined: int = (hi << 32) | lo
+	return combined % max_value
 
 func _on_exit_pressed() -> void:
 	coins = 0
+	total_card_value = 0
 	for card: CardVisualization in selected_cards_container.get_children():
 		card.queue_free()
 	self.hide()
 
 func _on_change_card_selection_button_pressed() -> void:
-	for card: CardVisualization in selected_cards_container.get_children():
-		card.queue_free()
-	change_card_selection.emit()
+	change_card_selection.emit(selected_cards)
 
 func _on_plus_one_button_pressed() -> void:
 	coins += 1

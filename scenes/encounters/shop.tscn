@@ -58,7 +58,7 @@ theme_override_constants/v_separation = 2
 columns = 2
 
 [node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
-custom_minimum_size = Vector2(192, 0)
+custom_minimum_size = Vector2(192, 69)
 layout_mode = 2
 script = ExtResource("4_2r8dp")
 

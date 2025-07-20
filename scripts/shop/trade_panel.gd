@@ -7,6 +7,7 @@ extends PanelContainer
 const MAX_NUM_CARDS_TO_TRADE: int = 2
 
 var selected_cards: Array[CardType] = []
+var previously_selected_cards: Array[CardType] = []
 var can_trade: bool = true
 
 
@@ -17,7 +18,7 @@ func initialize():
 
 func _on_trade_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and can_trade:
-		_show_trading_deck_view()
+		_show_trading_deck_view(selected_cards)
 
 func select_card(card: CardType, card_visual: CardVisualization, deck_view: DeckView):
 	# don't allow starting cards to be traded
@@ -50,9 +51,17 @@ func set_selected_cards():
 	trading_interface.show()
 	trading_interface.set_selected_cards(selected_cards)
 
-func _show_trading_deck_view():
-	selected_cards.clear()
-	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "select_card"), true, Callable(self, "set_selected_cards"))
+func set_previously_selected_cards():
+	for card: CardType in previously_selected_cards:
+		print("Selected ", card.card_name, " to trade")
+	
+	trading_interface.show()
+	trading_interface.set_selected_cards(previously_selected_cards)
+
+func _show_trading_deck_view(selected_cards: Array[CardType]):
+	previously_selected_cards = selected_cards.duplicate()
+	self.selected_cards.clear()
+	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "select_card"), true, Callable(self, "set_selected_cards"), Callable(self, "set_previously_selected_cards"))
 
 func _disable_trading():
 	can_trade = false

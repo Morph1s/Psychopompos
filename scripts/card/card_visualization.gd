@@ -192,11 +192,23 @@ func animate_card_collection(to: Vector2):
 	is_animating = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-	var tween = create_tween().set_parallel(true)
-	tween.tween_property(self, "global_position", to, 0.3)
-	tween.tween_property(self, "scale", Vector2(0.2, 0.2), 0.3)
+	var overshoot_scale = Vector2(1.2, 1.2)
+	var mid_scale = Vector2(1.0, 1.0)
+	var final_scale = mid_scale * 0.2
+	var pop_dur = 0.2
+	var fly_dur = 0.4
 	
-	tween.finished.connect(_on_card_collection_animation_finished)
+	var tween_pop = create_tween()
+	
+	tween_pop.tween_property(self, "scale", overshoot_scale, pop_dur).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween_pop.chain().tween_property(self, "scale", mid_scale, pop_dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	tween_pop.finished.connect(func():
+		var tween_fly = create_tween().set_parallel()
+		tween_fly.tween_property(self, "global_position", to, fly_dur).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+		tween_fly.tween_property(self, "scale", final_scale, fly_dur).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+		tween_fly.finished.connect(_on_card_collection_animation_finished)
+	)
 
 func _on_card_collection_animation_finished():
 	queue_free()
