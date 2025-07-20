@@ -25,6 +25,11 @@ const BATTLES_STAGE_2: Array[BattleEncounter] = [
 var current_encounter: Node = null
 var previous_battle: BattleEncounter
 var is_stage_2: bool = false
+var random_encounter_weights: Dictionary[Encounter.EncounterType, int] = {
+	Encounter.EncounterType.BATTLE: 20,
+	Encounter.EncounterType.CAMPFIRE: 10,
+	Encounter.EncounterType.DIALOGUE: 70,
+}
 
 # Loads a requested encounter into the Run scene
 func start_encounter(encounter_data: Encounter):
@@ -131,8 +136,11 @@ func _load_boss_encounter():
 	current_encounter = boss_battle_scene
 
 func _load_dialogue_encounter():
-	# TODO: change to dialogue encounter loading once implemented
-	_load_battle_encounter()
+	var dialogue_scene: Dialogue = load("res://scenes/encounters/dialogue.tscn").instantiate()
+	dialogue_scene.ended.connect(_end_encounter)
+	add_child(dialogue_scene)
+	dialogue_scene.initialize()
+	current_encounter = dialogue_scene
 
 func _load_shop_encounter():
 	var shop_scene = load("res://scenes/encounters/shop.tscn").instantiate()
@@ -142,14 +150,8 @@ func _load_shop_encounter():
 	current_encounter = shop_scene
 
 func _load_random_encounter():
-	# weights are shown in percentage values (must add up to 100)
-	var possible_encounters: Dictionary[Encounter.EncounterType, int] = {
-		Encounter.EncounterType.BATTLE: 20,
-		Encounter.EncounterType.CAMPFIRE: 15,
-		Encounter.EncounterType.DIALOGUE: 65,
-	}
-	var encounters: Array[Encounter.EncounterType] = possible_encounters.keys()
-	var cum_weights: Array[int] = possible_encounters.values()
+	var encounters: Array[Encounter.EncounterType] = random_encounter_weights.keys()
+	var cum_weights: Array[int] = random_encounter_weights.values()
 	var chosen_encounter: Encounter.EncounterType
 	
 	for w in cum_weights.size():
@@ -161,14 +163,43 @@ func _load_random_encounter():
 	for w in cum_weights:
 		if w >= random_index:
 			chosen_encounter = encounters[cum_weights.find(w)]
+			break
 	
 	match chosen_encounter:
 		Encounter.EncounterType.CAMPFIRE:
-			print("Loading campfire from random")
+			print("Loading campfire from random encounter")
 			_load_campfire_encounter()
 		Encounter.EncounterType.DIALOGUE:
-			print("Loading dialogue from random")
+			print("Loading dialogue from random encounter")
 			_load_dialogue_encounter()
 		_:
-			print("Loading battle from random")
+			print("Loading battle from random encounter")
 			_load_battle_encounter()
+	
+	_adjust_random_encounter_weights(chosen_encounter)
+
+func _adjust_random_encounter_weights(type: Encounter.EncounterType) -> void:
+	match type:
+		Encounter.EncounterType.BATTLE:
+			var current_battle_weight: int = random_encounter_weights.get(type)
+			var combined_other_weights: int = 100 - current_battle_weight
+			var current_dialogue_weight: int = random_encounter_weights[Encounter.EncounterType.DIALOGUE]
+			var dialogue_share: float = float(current_dialogue_weight) / float(combined_other_weights)
+			var new_dialogue_weight = current_dialogue_weight + int((current_battle_weight - 20) * dialogue_share)
+			random_encounter_weights[type] = 20
+			random_encounter_weights[Encounter.EncounterType.DIALOGUE] = new_dialogue_weight
+			random_encounter_weights[Encounter.EncounterType.CAMPFIRE] = 80 - random_encounter_weights[Encounter.EncounterType.DIALOGUE]
+		Encounter.EncounterType.DIALOGUE:
+			var current_dialogue_weight = random_encounter_weights.get(type)
+			var new_dialogue_weight = int(current_dialogue_weight * 0.8)
+			random_encounter_weights[type] = new_dialogue_weight
+			random_encounter_weights[Encounter.EncounterType.BATTLE] = min(80, random_encounter_weights[Encounter.EncounterType.BATTLE] + 10)
+			random_encounter_weights[Encounter.EncounterType.CAMPFIRE] = 100 - new_dialogue_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
+		Encounter.EncounterType.CAMPFIRE:
+			var current_campfire_weight = random_encounter_weights.get(type)
+			var new_campfire_weight = int(current_campfire_weight * 0.4)
+			random_encounter_weights[type] = new_campfire_weight
+			random_encounter_weights[Encounter.EncounterType.BATTLE] = min(80, random_encounter_weights[Encounter.EncounterType.BATTLE] + 10)
+			random_encounter_weights[Encounter.EncounterType.DIALOGUE] = 100 - new_campfire_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
+	
+	print("new random encounter weights: ", random_encounter_weights)
