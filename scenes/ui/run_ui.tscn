@@ -31,10 +31,11 @@ grow_vertical = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 6
+theme_override_constants/margin_bottom = 8
 
 [node name="TopBarHBox" type="HBoxContainer" parent="TopBarMargin"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 8
 alignment = 1
 
@@ -50,8 +51,10 @@ texture = ExtResource("7_5gf5s")
 stretch_mode = 2
 
 [node name="HPLabel" type="Label" parent="TopBarMargin/TopBarHBox/IconsLeft"]
+custom_minimum_size = Vector2(0, 9)
 layout_mode = 2
 text = "42/69"
+vertical_alignment = 2
 
 [node name="CoinsIcon" type="TextureRect" parent="TopBarMargin/TopBarHBox/IconsLeft"]
 layout_mode = 2
@@ -61,10 +64,17 @@ texture = ExtResource("5_tfb4m")
 stretch_mode = 2
 
 [node name="CoinsLabel" type="Label" parent="TopBarMargin/TopBarHBox/IconsLeft"]
+custom_minimum_size = Vector2(0, 9)
 layout_mode = 2
-text = "ARMUT"
+text = "212"
+vertical_alignment = 2
 
-[node name="ArtifactContainer" type="HBoxContainer" parent="TopBarMargin/TopBarHBox"]
+[node name="ArtifactMargin" type="MarginContainer" parent="TopBarMargin/TopBarHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 6
+
+[node name="ArtifactContainer" type="HBoxContainer" parent="TopBarMargin/TopBarHBox/ArtifactMargin"]
 custom_minimum_size = Vector2(90, 18)
 layout_mode = 2
 size_flags_horizontal = 3
