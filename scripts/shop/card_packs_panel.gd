@@ -7,6 +7,11 @@ extends PanelContainer
 @onready var select_cards_screen: SelectCardsScreen = $"../../../../SelectCardScreen"
 @onready var direct_buy_panel: DirectBuyPanel = $"../DirectBuyPanel"
 @onready var no_packs_label: Label = $PacksMargin/NoPacksLabel
+@onready var pack_slots: Array[Control] = [
+	$PacksMargin/PacksContainer/Pack0,
+	$PacksMargin/PacksContainer/Pack1,
+	$PacksMargin/PacksContainer/Pack2
+]
 
 const NUM_PACKS: int = 3
 const NUM_CARDS_TO_SELECT: int = 2
@@ -43,7 +48,8 @@ func _get_pack_rarity() -> CardPack.PackRarity:
 	return CardPack.PackRarity.COMMON
 
 func _fill_packs_panel() -> void:
-	for pack: CardPack in packs:
+	for i in pack_slots.size():
+		var pack: CardPack = packs[i]
 		if pack:
 			var pack_visual = CARD_PACK_VISUALIZATION.instantiate()
 			pack_visual.initialize(pack)
@@ -51,8 +57,9 @@ func _fill_packs_panel() -> void:
 			pack_visual.show_tooltip.connect(_on_card_pack_show_tooltip)
 			pack_visual.hide_tooltip.connect(_on_card_pack_hide_tooltip)
 			pack_visual.pack_selected.connect(_on_card_pack_pack_selected)
-			packs_container.add_child(pack_visual)
-	
+			
+			pack_slots[i].add_child(pack_visual)
+			
 	update_price_tags()
 
 func _on_card_pack_show_tooltip(data: Array[TooltipData]) -> void:
@@ -86,10 +93,10 @@ func _on_select_card_screen_cards_selected(cards: Array[CardType], card_visuals:
 	
 	EventBusHandler.card_picked_for_deck_add.emit(cards, positions)
 	
-	for pack: CardPackVisualization in packs_container.get_children():
-		if pack.card_pack == current_card_pack:
-			packs.erase(pack.card_pack)
-			pack.queue_free()
+	for pack: Control in packs_container.get_children():
+		if pack.get_child(0).card_pack == current_card_pack:
+			packs.erase(pack.get_child(0).card_pack)
+			pack.get_child(0).queue_free()
 	
 	update_price_tags()
 	direct_buy_panel.update_price_tags()
@@ -98,5 +105,6 @@ func _on_select_card_screen_cards_selected(cards: Array[CardType], card_visuals:
 		no_packs_label.show()
 
 func update_price_tags() -> void:
-	for pack: CardPackVisualization in packs_container.get_children():
-		pack.update_price_tag()
+	for pack: Control in packs_container.get_children():
+		if pack.get_children().size() > 0:
+			pack.get_child(0).update_price_tag()

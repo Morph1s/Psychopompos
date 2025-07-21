@@ -4,6 +4,12 @@ extends PanelContainer
 @onready var card_container: HBoxContainer = $MarginContainer/CardContainer
 @onready var no_cards_label: Label = $MarginContainer/NoCardsLabel
 @onready var packs_panel: CardPackPanel = $"../PacksPanel"
+@onready var card_slots: Array[Control] = [
+	$MarginContainer/CardContainer/Slot0,
+	$MarginContainer/CardContainer/Slot1,
+	$MarginContainer/CardContainer/Slot2
+]
+
 
 const NUM_CARDS: int = 3
 const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
@@ -20,17 +26,21 @@ func initialize():
 	_create_cards()
 	_fill_cards_panel()
 
+
 func _fill_cards_panel() -> void:
-	for card: CardType in cards:
+	for i in card_slots.size():
+		var card: CardType = cards[i]
 		if card:
 			var card_visual: CardVisualization = CARD_VISUALIZATION.instantiate()
 			card_visual.initialize(card)
 			card_visual.is_shop = true
 			card_visual.apply_material()
 			card_visual.card_selected.connect(_on_card_selected)
-			card_container.add_child(card_visual)
-	
+			
+			card_slots[i].add_child(card_visual)
+			
 	update_price_tags()
+
 
 func _on_card_selected(card: CardType, scene: CardVisualization) -> void:
 	if card.card_value > RunData.player_stats.coins:
@@ -58,5 +68,6 @@ func _create_cards() -> void:
 		cards.append(card)
 
 func update_price_tags():
-	for card_visual: CardVisualization in card_container.get_children():
-		card_visual.update_price_tag()
+	for card_visual: Control in card_container.get_children():
+		if card_visual.get_children().size() > 0:
+			card_visual.get_child(0).update_price_tag()
