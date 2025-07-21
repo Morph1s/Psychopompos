@@ -11,6 +11,7 @@ next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
 3: -15
 })
+disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_mxira"]
@@ -20,13 +21,15 @@ next_block = Array[int]([2])
 consequences = Dictionary[int, Variant]({
 4: -10
 })
+disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_ybw4k"]
 script = ExtResource("2_o361c")
 displayed_response = "I refuse to choose"
 next_block = Array[int]([3])
-consequences = Dictionary[int, Variant]({})
+consequences = null
+disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_tdgxq"]
@@ -43,6 +46,7 @@ next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
 4: 20
 })
+disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_yj7hr"]
@@ -59,6 +63,7 @@ next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
 6: null
 })
+disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_p4xrp"]
@@ -75,6 +80,7 @@ next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
 3: 10
 })
+disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_qilc8"]
@@ -87,8 +93,9 @@ metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 [sub_resource type="Resource" id="Resource_a7pey"]
 script = ExtResource("2_o361c")
 displayed_response = "leave..."
-next_block = Array[int]([])
-consequences = Dictionary[int, Variant]({})
+next_block = null
+consequences = null
+disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_vjqcc"]

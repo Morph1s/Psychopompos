@@ -3,10 +3,12 @@ extends Resource
 
 signal player_died
 
+
 @export var displayed_response: String
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_dialogue_response"]
 @export var next_block: Array[int]
 @export var consequences: Dictionary[ConsequenceType, Variant]
+@export var disabled: bool = false
 
 enum ConsequenceType {
 	GET_SPECIFIC_CARD,
