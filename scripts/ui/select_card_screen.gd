@@ -20,6 +20,7 @@ func initialize(cards: Array[CardType], choosable_count: int = 1) -> void:
 		child.queue_free()
 	
 	selected_cards = []
+	selected_card_visuals = []
 	select_cards_button.disabled = true
 	
 	header.text = _set_header(choosable_count)
@@ -64,7 +65,8 @@ func _set_header(card_count: int) -> String:
 
 func _on_skip_cards_button_up():
 	selected_cards = []
-	cards_selected.emit(selected_cards)
+	selected_card_visuals = []
+	cards_selected.emit(selected_cards, selected_card_visuals)
 
 func _on_card_show_tooltip(data: Array[TooltipData]) -> void:
 	tooltip.load_tooltips(data)

@@ -67,6 +67,7 @@ layout_mode = 2
 
 [node name="CardContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 6
 alignment = 1
 
 [node name="NoCardsLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
