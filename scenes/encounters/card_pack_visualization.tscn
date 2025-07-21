@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://deboikml0dxi" path="res://scripts/shop/card_pack_visualization.gd" id="1_6qghn"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_fsh47"]
 [ext_resource type="Texture2D" uid="uid://vuyxd3vw523i" path="res://assets/graphics/cards/card_pack_common_placeholder.png" id="2_fsh47"]
-[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturation_shader.gdshader" id="3_jv2ka"]
+[ext_resource type="Shader" path="res://resources/shaders/desaturation_shader.gdshader" id="3_jv2ka"]
 [ext_resource type="Texture2D" uid="uid://dd7xo82ry0wfg" path="res://assets/graphics/cards/price_sticker_red.png" id="4_vlnxj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cssnh"]
@@ -26,10 +26,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -90.0
-offset_right = -116.0
-offset_bottom = -24.0
+offset_left = -24.0
+offset_top = -36.0
+offset_right = 24.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fsh47")

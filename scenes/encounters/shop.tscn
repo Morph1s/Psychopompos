@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://vnjpeuy7kifl" path="res://scripts/shop/direct_buy_panel.gd" id="4_2r8dp"]
 [ext_resource type="Script" uid="uid://dxnsjlg40a4w1" path="res://scripts/shop/card_pack_handler.gd" id="4_a2l51"]
 [ext_resource type="Script" uid="uid://bithascay8ui8" path="res://scripts/shop/trade_panel.gd" id="4_v4nyk"]
-[ext_resource type="Texture2D" uid="uid://btfbscpklyxby" path="res://assets/graphics/hud/pictograms/trade_icon_placeholder.png" id="5_7dbcr"]
-[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturation_shader.gdshader" id="5_jwvl2"]
+[ext_resource type="Shader" path="res://resources/shaders/desaturation_shader.gdshader" id="5_jwvl2"]
 [ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="6_87tic"]
 [ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="6_rl7h0"]
-[ext_resource type="PackedScene" uid="uid://g83ni5mqmfl6" path="res://scenes/encounters/shop_trading_interface.tscn" id="9_2r8dp"]
+[ext_resource type="Texture2D" uid="uid://110xauolevsl" path="res://assets/graphics/hud/pictograms/trade_icon.png" id="7_ffoeh"]
+[ext_resource type="PackedScene" path="res://scenes/encounters/shop_trading_interface.tscn" id="9_2r8dp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ffoeh"]
 shader = ExtResource("5_jwvl2")
@@ -64,10 +64,24 @@ script = ExtResource("4_2r8dp")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel"]
 layout_mode = 2
+theme_override_constants/margin_top = 4
 
 [node name="CardContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 alignment = 1
+
+[node name="Slot0" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer/CardContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="Slot1" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer/CardContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="Slot2" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer/CardContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
 
 [node name="NoCardsLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
 visible = false
@@ -93,7 +107,7 @@ layout_mode = 2
 [node name="TradeIcon" type="TextureRect" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
 material = SubResource("ShaderMaterial_ffoeh")
 layout_mode = 2
-texture = ExtResource("5_7dbcr")
+texture = ExtResource("7_ffoeh")
 
 [node name="TradeLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
 layout_mode = 2
@@ -115,6 +129,18 @@ theme_override_constants/margin_right = 2
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
+
+[node name="Pack0" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin/PacksContainer"]
+custom_minimum_size = Vector2(48, 72)
+layout_mode = 2
+
+[node name="Pack1" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin/PacksContainer"]
+custom_minimum_size = Vector2(48, 72)
+layout_mode = 2
+
+[node name="Pack2" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin/PacksContainer"]
+custom_minimum_size = Vector2(48, 72)
+layout_mode = 2
 
 [node name="NoPacksLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
 visible = false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btfbscpklyxby"
-path="res://.godot/imported/trade_icon_placeholder.png-2b8d0fbb8d506a5e18e1b6ac10b751c1.ctex"
+uid="uid://110xauolevsl"
+path="res://.godot/imported/trade_icon.png-866f4076aaf3b4c8a93219e23ed2de31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/hud/pictograms/trade_icon_placeholder.png"
-dest_files=["res://.godot/imported/trade_icon_placeholder.png-2b8d0fbb8d506a5e18e1b6ac10b751c1.ctex"]
+source_file="res://assets/graphics/hud/pictograms/trade_icon.png"
+dest_files=["res://.godot/imported/trade_icon.png-866f4076aaf3b4c8a93219e23ed2de31.ctex"]
 
 [params]
 
