@@ -66,6 +66,7 @@ func take_damage(amount:int) -> void:
 	hit_frame_timer.start()
 	amount = modifier_handler.modify_value(amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(amount)
+	effect_handler._on_unit_take_damage()
 
 func lose_hp(amount: int) -> void:
 	stats.lose_hp(amount)
