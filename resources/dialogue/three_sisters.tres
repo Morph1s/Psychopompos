@@ -11,7 +11,6 @@ script = ExtResource("2_6awv3")
 displayed_response = "pick it up..."
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({})
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_b2tos"]
@@ -20,7 +19,6 @@ script = ExtResource("2_6awv3")
 displayed_response = "leave them be..."
 next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({})
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_o7eph"]
@@ -36,7 +34,6 @@ script = ExtResource("2_6awv3")
 displayed_response = "\"Sure thing. Here you go\""
 next_block = Array[int]([2])
 consequences = Dictionary[int, Variant]({})
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_4ij6y"]
@@ -47,7 +44,6 @@ next_block = Array[int]([3])
 consequences = Dictionary[int, Variant]({
 5: ExtResource("3_uya0r")
 })
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_r6ovo"]
@@ -56,7 +52,6 @@ script = ExtResource("2_6awv3")
 displayed_response = "\"What wil you give me for it?\""
 next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({})
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_bi1ic"]
@@ -73,7 +68,6 @@ next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({
 1: 1
 })
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_uya0r"]
@@ -90,7 +84,6 @@ next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({
 2: 1
 })
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_updb5"]
@@ -108,7 +101,6 @@ next_block = Array[int]([5])
 consequences = Dictionary[int, Variant]({
 4: 10
 })
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_ra6p3"]
@@ -119,7 +111,6 @@ next_block = Array[int]([3])
 consequences = Dictionary[int, Variant]({
 5: ExtResource("3_uya0r")
 })
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_oi17l"]
@@ -134,7 +125,6 @@ script = ExtResource("2_6awv3")
 displayed_response = "leave..."
 next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({})
-disabled = false
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_0bvnc"]

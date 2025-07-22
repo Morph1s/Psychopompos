@@ -29,15 +29,6 @@ var current_block_indent: int = 0
 func _ready() -> void:
 	# fill dialogue_tree with proper file
 	tree = encounters[rng.randi_range(0,encounters.size()-1)]
-	
-	# check if response can give Artifakt
-	for block in tree.dialogue_tree:
-		for answer in block.possible_answers:
-			for consequence in answer.consequences.values():
-				if consequence is Artifact && ! ArtifactHandler.available_artifacts.has(consequence):
-					answer.disabled = true 
-					print("A response was disabled")
-	
 	# set initial text
 	current_text_box = tree.dialogue_tree[current_block_indent].text_block
 	update_text_box()
@@ -87,8 +78,11 @@ func update_answers():
 		new_response.text = response.displayed_response
 		new_response.add_theme_font_size_override("font_size", 6)
 		new_response.alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		new_response.disabled = response.disabled
-		print("Is button disabled?", new_response.disabled)
+		# check if response can give Artifakt
+		for consequence in response.consequences.values():
+				if consequence is Artifact && ! ArtifactHandler.available_artifacts.has(consequence):
+					new_response.disabled = true
+					print("A response was disabled")
 		
 		# connects the buttons with exeptional parameters
 		var next_block_ids = response.next_block
