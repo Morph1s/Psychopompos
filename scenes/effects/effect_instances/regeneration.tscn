@@ -10,6 +10,5 @@
 texture = ExtResource("2_ropfv")
 script = ExtResource("2_yho3i")
 effect_name = "Regeneration"
-type = 1
 stackable = true
 tooltip_data = Array[ExtResource("3_ys3r8")]([ExtResource("3_l74rh")])

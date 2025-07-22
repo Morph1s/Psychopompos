@@ -29,12 +29,12 @@ func start_of_turn() -> void:
 	stats.current_hitpoints += 2
 	remove_stacks(1)
 
-## this function is called ath the end of the entities turn s
+## this function is called at the end of the entities turn s
 func end_of_turn() -> void:
 	pass
 
 ## this function is called when an effect is applied
-func effect_applied(stacks_added:int, effec_added:Effect) -> void:
-	if effec_added.type == EffectType.DEBUFF:
+func effect_applied(stacks_added:int, effect_added:Effect) -> void:
+	if effect_added.type == EffectType.DEBUFF:
 		if randi_range(0,1) == 1:
-			effec_added.remove_stacks(stacks_added)
+			effect_added.remove_stacks(stacks_added)

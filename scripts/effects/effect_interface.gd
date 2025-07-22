@@ -101,7 +101,7 @@ func end_of_turn() -> void:
 	pass
 
 ## this function is called when an effect is applied
-func effect_applied(sacks_added:int, effec_added:Effect) -> void:
+func effect_applied(stacks_added:int, effect_added:Effect) -> void:
 	pass
 
 func _on_area_2d_mouse_entered():

@@ -26,10 +26,10 @@ func changed_stacks(previous: int, current: int) -> void:
 func start_of_turn() -> void:
 	pass
 
-## this function is called ath the end of the entities turn s
+## this function is called at the end of the entities turn s
 func end_of_turn() -> void:
 	pass
 
 ## this function is called when an effect is applied
-func effect_applied(stacks_added:int, effec_added:Effect) -> void:
+func effect_applied(stacks_added:int, effect_added:Effect) -> void:
 	pass

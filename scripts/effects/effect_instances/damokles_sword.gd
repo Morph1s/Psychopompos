@@ -28,6 +28,6 @@ func start_of_turn():
 	else:
 		push_warning("something went wrong with damokles_swords damage")
 
-## this function is called ath the end of the entities turn s
+## this function is called at the end of the entities turn s
 func end_of_turn():
 	pass
