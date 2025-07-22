@@ -152,6 +152,10 @@ func _on_unit_get_attacked() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.get_attacked()
 
+func _on_unit_take_damage() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.take_damage()
+
 func _on_unit_played_attack() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.played_attack()

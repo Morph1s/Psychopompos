@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://bwhov7g4cr2nr"]
+
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_qou7i"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_qp1my"]
+
+[resource]
+script = ExtResource("2_qp1my")
+icon = ExtResource("1_qou7i")
+description_pre_value = "ATTACK: deal"
+use_value = true
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = "damage to the selected enemy 3 times"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

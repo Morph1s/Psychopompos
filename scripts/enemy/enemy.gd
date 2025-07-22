@@ -66,6 +66,7 @@ func take_damage(amount:int) -> void:
 	hit_frame_timer.start()
 	amount = modifier_handler.modify_value(amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
 	stats.take_damage(amount)
+	effect_handler._on_unit_take_damage()
 
 func lose_hp(amount: int) -> void:
 	stats.lose_hp(amount)
@@ -88,6 +89,8 @@ func resolve_intent() -> void:
 			action.resolve([get_tree().get_first_node_in_group("card_piles")])
 		if action is AttackAction:
 			attacked = true
+		
+		await get_tree().create_timer(0.2).timeout
 	
 	enemy_hud.intent_container.hide()
 	

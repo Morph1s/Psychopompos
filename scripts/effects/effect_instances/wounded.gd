@@ -8,6 +8,10 @@ extends Effect
 
 ## this function is called when the entity was attacked
 func get_attacked():
+	pass
+
+## this function is called when the entity takes damage that is impacted by block
+func take_damage() -> void:
 	if effect_owner.has_method("lose_hp"):
 		effect_owner.lose_hp(stacks)
 		print("lost ", stacks, " hp to wound")
