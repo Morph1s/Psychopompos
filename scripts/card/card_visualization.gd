@@ -7,6 +7,7 @@ signal hide_tooltip
 
 const CARD_ENERGY_BALL = preload("res://assets/graphics/cards/card_energy_ball.png")
 const ATTACK_LABEL_COLOR: Color = Color.RED
+const CARD_PRICE_MODIFIER: float = 1.75
 
 @onready var card_frame = $CardFrame
 @onready var highlight = $Highlight
@@ -93,11 +94,10 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
-		if card_type.card_value > RunData.player_stats.coins and is_shop:
+		if (card_type.card_value * CARD_PRICE_MODIFIER) > RunData.player_stats.coins and is_shop:
 			play_shake_animation()
 			return
 		card_selected.emit(card_type, self)
-		print("ofheivbwefiepfpqiehgipipeh")
 
 func _set_description(icon: Texture, value_text: String, value_text_color: Color, addon_text: String) -> void:
 	var container = HBoxContainer.new()
@@ -131,11 +131,11 @@ func _create_energy_cost_balls(amount: int) -> void:
 		new_ball.texture = CARD_ENERGY_BALL
 		energy_ball_container.add_child(new_ball)
 
-func update_price_tag(modifier: float) -> void:
-	if card_type.card_value > RunData.player_stats.coins:
+func update_price_tag() -> void:
+	if (card_type.card_value * CARD_PRICE_MODIFIER) > RunData.player_stats.coins:
 		material.set_shader_parameter("desaturation", 0.8)
 	
-	price.text = str(int(card_type.card_value * modifier))
+	price.text = str(int(card_type.card_value * CARD_PRICE_MODIFIER))
 	price_tag.show()
 
 func apply_material() -> void:
