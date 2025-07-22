@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var trade: TextureRect = $TradePanelMargin/TradeContainer/TradeIcon
 @onready var trading_interface: ShopTradingInterface = $"../../../../ShopTradingInterface"
 
+
 const MAX_NUM_CARDS_TO_TRADE: int = 2
 
 var selected_cards: Array[CardType] = []
@@ -65,4 +66,5 @@ func _show_trading_deck_view(selected_cards: Array[CardType]):
 
 func _disable_trading():
 	can_trade = false
-	trade.material.set_shader_parameter("desaturation", 0.8)
+	#trade.material.set_shader_parameter("desaturation", 0.8)
+	trade.texture = load("res://assets/graphics/hud/pictograms/trade_icon_disabled.png")

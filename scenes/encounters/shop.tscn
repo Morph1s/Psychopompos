@@ -111,7 +111,7 @@ texture = ExtResource("7_ffoeh")
 
 [node name="TradeLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
 layout_mode = 2
-text = "GAMBAA"
+text = "TRADE"
 horizontal_alignment = 1
 
 [node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
