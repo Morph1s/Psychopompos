@@ -3,6 +3,7 @@ extends TargetedAction
 
 enum EffectType {
 	AGILE,
+	ARTEMIS,
 	DAMOKLES_SWORD,
 	GATHER,
 	INCAPACITATED,
@@ -15,6 +16,7 @@ enum EffectType {
  
 var effect_names: Dictionary = {
 	EffectType.AGILE: "Agile",
+	EffectType.ARTEMIS: "Artemis",
 	EffectType.DAMOKLES_SWORD: "DamoklesSword",
 	EffectType.GATHER: "Gather",
 	EffectType.INCAPACITATED: "Incapacitated",

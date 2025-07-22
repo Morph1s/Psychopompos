@@ -14,6 +14,7 @@ signal show_deck_view(deck: Array[CardType])
 signal show_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable)
 signal show_map
 signal back_to_battle
+signal card_drawn
 signal cards_drawn
 signal card_selected(cost: int)
 signal card_deselected

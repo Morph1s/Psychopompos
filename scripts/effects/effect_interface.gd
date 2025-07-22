@@ -39,6 +39,8 @@ func initialize(entity: Node2D, amount: int) -> void:
 	if not is_node_ready():
 		await ready
 	
+	EventBusHandler.card_drawn.connect(card_drawn)
+	
 	effect_owner = entity
 	add_stacks(amount)
 	
@@ -79,6 +81,10 @@ func take_damage() -> void:
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
 func played_attack() -> void:
+	pass
+
+## this function gets called whenever the player draws a card
+func card_drawn() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 

@@ -6,6 +6,9 @@ extends Effect
 
 # implement all functions relevant for your effect
 
+const DAMAGE_AMOUNT: int = 5
+
+
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
 	pass
@@ -20,7 +23,8 @@ func played_attack() -> void:
 
 ## this function gets called whenever the player draws a card
 func card_drawn() -> void:
-	pass
+	if effect_owner.has_method("take_damage"):
+		effect_owner.take_damage(DAMAGE_AMOUNT * stacks)
 
 ## this function is called when the amount of stacks changes 
 func changed_stacks(previous: int, current: int) -> void:
@@ -32,4 +36,4 @@ func start_of_turn() -> void:
 
 ## this function is called ath the end of the entities turn s
 func end_of_turn() -> void:
-	pass
+	remove_stacks(stacks)
