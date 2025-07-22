@@ -7,7 +7,7 @@ signal open_deck_view
 @onready var tooltip: Tooltip = $Tooltip
 @onready var hitpoints: Label = $TopBarMargin/TopBarHBox/IconsLeft/HPLabel
 @onready var coins: Label = $TopBarMargin/TopBarHBox/IconsLeft/CoinsLabel
-@onready var artifact_container: HBoxContainer = $TopBarMargin/TopBarHBox/ArtifactContainer
+@onready var artifact_container: HBoxContainer = $TopBarMargin/TopBarHBox/ArtifactMargin/ArtifactContainer
 
 func initialize() -> void:
 	RunData.player_stats.hitpoints_changed.connect(_on_stats_hp_changed)

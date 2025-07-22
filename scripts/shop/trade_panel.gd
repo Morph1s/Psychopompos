@@ -6,6 +6,7 @@ extends PanelContainer
 @onready var direct_buy_panel: DirectBuyPanel = $"../DirectBuyPanel"
 @onready var packs_panel: CardPackPanel = $"../PacksPanel"
 
+
 const MAX_NUM_CARDS_TO_TRADE: int = 2
 
 var selected_cards: Array[CardType] = []
@@ -67,6 +68,6 @@ func _show_trading_deck_view(selected_cards: Array[CardType]):
 
 func _on_traded():
 	can_trade = false
-	trade.material.set_shader_parameter("desaturation", 0.8)
+	trade.texture = load("res://assets/graphics/hud/pictograms/trade_icon_disabled.png")
 	direct_buy_panel.update_price_tags()
 	packs_panel.update_price_tags()
