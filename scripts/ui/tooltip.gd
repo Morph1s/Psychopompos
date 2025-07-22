@@ -3,7 +3,7 @@ extends Control
 
 @onready var descriptions_container = $Background/DescriptionsContainer
 
-const MAX_LABEL_WIDTH: int = 100
+const MAX_LABEL_WIDTH: int = 120
 
 var box_size: Vector2
 
