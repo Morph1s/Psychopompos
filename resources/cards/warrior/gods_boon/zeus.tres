@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=10 format=3 uid="uid://bp2ocy4rip78h"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_ol6kw"]
+[ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="2_2qw8q"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_7q1cr"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_2qw8q"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="3_7q1cr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2qw8q"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_0gwn8"]
+script = ExtResource("2_2qw8q")
+action_type = 3
+metadata/_custom_type_script = "uid://0budk8al2kwm"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0gwn8"]
+size = Vector2(8, 8)
+
+[sub_resource type="Resource" id="Resource_5grbc"]
+script = ExtResource("3_2qw8q")
+description_pre_value = "ZEUS: Cast 10-15 Lightnings on random enemies, dealing 2-5 damage each"
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
+
+[resource]
+script = ExtResource("2_7q1cr")
+card_name = "zeus"
+energy_cost = 3
+rarity = 3
+texture = ExtResource("3_7q1cr")
+on_play_action = Array[ExtResource("1_ol6kw")]([SubResource("Resource_0gwn8")])
+on_graveyard_action = Array[ExtResource("1_ol6kw")]([])
+targeted = false
+first_description_icon = SubResource("PlaceholderTexture2D_2qw8q")
+first_description_text_value = "2-5"
+first_description_text_addon = ""
+second_description_icon = SubResource("PlaceholderTexture2D_0gwn8")
+second_description_text_value = "10-15"
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_2qw8q")]([SubResource("Resource_5grbc")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
