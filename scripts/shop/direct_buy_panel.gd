@@ -10,7 +10,6 @@ extends PanelContainer
 	$MarginContainer/CardContainer/Slot2
 ]
 
-
 const NUM_CARDS: int = 3
 const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 
@@ -26,7 +25,6 @@ func initialize():
 	_create_cards()
 	_fill_cards_panel()
 
-
 func _fill_cards_panel() -> void:
 	for i in card_slots.size():
 		var card: CardType = cards[i]
@@ -40,7 +38,6 @@ func _fill_cards_panel() -> void:
 			card_slots[i].add_child(card_visual)
 			
 	update_price_tags()
-
 
 func _on_card_selected(card: CardType, scene: CardVisualization) -> void:
 	if card.card_value > RunData.player_stats.coins:

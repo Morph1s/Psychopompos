@@ -12,8 +12,6 @@ const COMMON_COIN_AMOUNT_MIN: int = 20
 const BOSS_COIN_CHANCE: float = 0.7
 const BOSS_COIN_AMOUNT_MAX: int = 70
 const BOSS_COIN_AMOUNT_MIN: int = 50
-# card visualization for the collect animation
-const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 
 enum RewardType {
 	CARDS,
@@ -92,13 +90,6 @@ func _on_skip_rewards_button_up() -> void:
 	print("skipped rewards")
 	finished_selecting.emit()
 	queue_free()
-
-func _on_select_card_screen_card_selected(card: CardType) -> void:
-	select_card_screen.hide()
-	if card:
-		DeckHandler.add_card_to_deck(card)
-		print("add card to deck")
-		current_card_reward_button.queue_free()
 
 func _on_rewards_container_child_exiting_tree(_node):
 	# this has to check for the child count being one instead of 0 

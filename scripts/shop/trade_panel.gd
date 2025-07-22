@@ -3,6 +3,8 @@ extends PanelContainer
 
 @onready var trade: TextureRect = $TradePanelMargin/TradeContainer/TradeIcon
 @onready var trading_interface: ShopTradingInterface = $"../../../../ShopTradingInterface"
+@onready var direct_buy_panel: DirectBuyPanel = $"../DirectBuyPanel"
+@onready var packs_panel: CardPackPanel = $"../PacksPanel"
 
 const MAX_NUM_CARDS_TO_TRADE: int = 2
 
@@ -13,7 +15,7 @@ var can_trade: bool = true
 
 func initialize():
 	trading_interface.change_card_selection.connect(_show_trading_deck_view)
-	trading_interface.traded.connect(_disable_trading)
+	trading_interface.traded.connect(_on_traded)
 	trade.material.set_shader_parameter("desaturation", 0.0)
 
 func _on_trade_icon_gui_input(event: InputEvent) -> void:
@@ -36,13 +38,13 @@ func select_card(card: CardType, card_visual: CardVisualization, deck_view: Deck
 		
 		card_visual.is_perma_highlighted = true
 		selected_cards.append(card)
-		deck_view.action.disabled = false
+		deck_view.action_button.disabled = false
 	
 	else:
 		card_visual.is_perma_highlighted = false
 		selected_cards.erase(card)
 		if selected_cards.is_empty():
-			deck_view.action.disabled = true
+			deck_view.action_button.disabled = true
 
 func set_selected_cards():
 	for card: CardType in selected_cards:
@@ -63,6 +65,8 @@ func _show_trading_deck_view(selected_cards: Array[CardType]):
 	self.selected_cards.clear()
 	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "select_card"), true, Callable(self, "set_selected_cards"), Callable(self, "set_previously_selected_cards"))
 
-func _disable_trading():
+func _on_traded():
 	can_trade = false
 	trade.material.set_shader_parameter("desaturation", 0.8)
+	direct_buy_panel.update_price_tags()
+	packs_panel.update_price_tags()

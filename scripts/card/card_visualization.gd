@@ -17,12 +17,11 @@ const ATTACK_LABEL_COLOR: Color = Color.RED
 @onready var price_tag: TextureRect = $PriceTag
 @onready var price: Label = $PriceTag/Price
 
-# material is added to CardImage, CardFrame and DescriptionBox as well!
-var shared_material: ShaderMaterial
 var card_type: CardType
 var is_perma_highlighted: bool = false
 var is_shop: bool = false
 var is_animating: bool = false
+var is_mouse_over: bool = false
 
 
 func initialize(card: CardType) -> void:
@@ -82,10 +81,12 @@ func _set_tooltip_of_index(index: int) -> void:
 		card_type.tooltips[index].set_description(card_type.on_play_action[index].count)
 
 func _on_mouse_entered() -> void:
+	is_mouse_over = true
 	highlight.show()
 	show_tooltip.emit(card_type.tooltips)
 
 func _on_mouse_exited() -> void:
+	is_mouse_over = false
 	if not is_perma_highlighted:
 		highlight.hide()
 	hide_tooltip.emit()
@@ -94,6 +95,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
 		if card_type.card_value > RunData.player_stats.coins and is_shop:
 			play_shake_animation()
+			return
 		card_selected.emit(card_type, self)
 		print("ofheivbwefiepfpqiehgipipeh")
 
@@ -130,11 +132,8 @@ func _create_energy_cost_balls(amount: int) -> void:
 		energy_ball_container.add_child(new_ball)
 
 func update_price_tag() -> void:
-	price.add_theme_color_override("font_color", Color.WHITE)
-	shared_material.set_shader_parameter("desaturation", 0.0)
 	if card_type.card_value > RunData.player_stats.coins:
-		price.add_theme_color_override("font_color", Color.BLACK)
-		shared_material.set_shader_parameter("desaturation", 0.8)
+		material.set_shader_parameter("desaturation", 0.8)
 	
 	price.text = str(card_type.card_value)
 	price_tag.show()
@@ -142,22 +141,18 @@ func update_price_tag() -> void:
 func apply_material() -> void:
 	if not is_node_ready():
 		await ready
-
-	shared_material = ShaderMaterial.new()
-	shared_material.shader = load("res://resources/shaders/desaturation_shader.gdshader")
 	
-	for ball in energy_ball_container.get_children():
-		ball.material = shared_material
+	material = ShaderMaterial.new()
+	material.shader = load("res://resources/shaders/desaturation_shader.gdshader")
+	material.set_shader_parameter("desaturation", 0.0)
 	
-	for child in description_box.get_child(0).get_children():
-		child.material = shared_material
-		
-	for child in description_box.get_child(1).get_children():
-		child.material = shared_material
+	for ball: TextureRect in energy_ball_container.get_children():
+		ball.use_parent_material = true
 	
-	price_tag.material = shared_material
-	card_image.material = shared_material
-	card_frame.material = shared_material
+	for description: HBoxContainer in description_box.get_children():
+		description.use_parent_material = true
+		for child: Control in description.get_children():
+			child.use_parent_material = true
 
 func play_shake_animation():
 	if is_animating:
@@ -172,18 +167,20 @@ func play_shake_animation():
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_loops(2)
 	
-	var shake_amount := 4
-	var original_position := position
+	var shake_amount: int = 4
+	var original_position: Vector2 = position
 	
 	tween.tween_property(self, "position:x", original_position.x - shake_amount, 0.02)
 	tween.tween_property(self, "position:x", original_position.x + shake_amount, 0.04)
 	tween.tween_property(self, "position:x", original_position.x, 0.02)
 	
-	tween.connect("finished", _on_shake_animation_finished)
+	tween.finished.connect(_on_shake_animation_finished)
 
 func _on_shake_animation_finished():
 	is_perma_highlighted = false
 	is_animating = false
+	if not is_mouse_over:
+		highlight.hide()
 	mouse_filter = Control.MOUSE_FILTER_STOP
 
 func animate_card_collection(to: Vector2):

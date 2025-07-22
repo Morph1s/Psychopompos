@@ -8,12 +8,15 @@ signal hide_tooltip
 @onready var pack_image: TextureRect = $PackImage
 @onready var price_label: Label = $PriceTag/Price
 @onready var price_tag: TextureRect = $PriceTag
+@onready var highlight: TextureRect = $Highlight
 
 const TOO_EXPENSIVE_LABEL_COLOR: Color = Color.RED
 
 var card_pack: CardPack
 var shared_material: ShaderMaterial
 var is_animating: bool = false
+var is_perma_highlighted: bool = false
+var is_mouse_over: bool = false
 
 func initialize(pack: CardPack):
 	if not is_node_ready():
@@ -26,11 +29,11 @@ func initialize(pack: CardPack):
 func _get_pack_image() -> Texture2D:
 	match card_pack.pack_rarity:
 		CardPack.PackRarity.RARE:
-			return load("res://assets/graphics/cards/card_pack_rare_placeholder.png")
+			return load("res://assets/graphics/cards/card_pack_rare.png")
 		CardPack.PackRarity.LEGENDARY:
-			return load("res://assets/graphics/cards/card_pack_legendary_placeholder.png")
+			return load("res://assets/graphics/cards/card_pack_legendary.png")
 	
-	return load("res://assets/graphics/cards/card_pack_common_placeholder.png")
+	return load("res://assets/graphics/cards/card_pack_common.png")
 
 func update_price_tag():
 	price_label.add_theme_color_override("font_color", Color.WHITE)
@@ -51,9 +54,14 @@ func apply_material():
 	price_label.material = shared_material
 
 func _on_mouse_entered() -> void:
+	is_mouse_over = true
+	highlight.show()
 	show_tooltip.emit(card_pack.tooltips)
 
 func _on_mouse_exited() -> void:
+	is_mouse_over = false
+	if not is_perma_highlighted:
+		highlight.hide()
 	hide_tooltip.emit()
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -67,6 +75,7 @@ func play_shake_animation():
 		return
 	
 	is_animating = true
+	is_perma_highlighted = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	var tween := create_tween()
@@ -81,9 +90,12 @@ func play_shake_animation():
 	tween.tween_property(self, "position:x", original_position.x + shake_amount, 0.04)
 	tween.tween_property(self, "position:x", original_position.x, 0.02)
 	
-	tween.connect("finished", _on_shake_animation_finished)
+	tween.finished.connect(_on_shake_animation_finished)
 
 
 func _on_shake_animation_finished():
 	is_animating = false
+	is_perma_highlighted = false
+	if not is_mouse_over:
+		highlight.hide()
 	mouse_filter = Control.MOUSE_FILTER_STOP

@@ -7,7 +7,7 @@ const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 
 @onready var card_container = $ScrollContainerMargin/CardScrollContainer/CardContainer
 @onready var tooltip = $UIMargin/Tooltip
-@onready var action: Button = $UIMargin/ActionButton
+@onready var action_button: Button = $UIMargin/ActionButton
 
 var card_selected_action: Callable
 var has_action_button: bool = false
@@ -18,7 +18,7 @@ func load_cards(card_pile: Array[CardType]) -> void:
 	if not is_node_ready():
 		await ready
 	
-	action.disabled = true
+	action_button.disabled = true
 	button_action = Callable()
 	exit_action = Callable()
 	
@@ -49,7 +49,7 @@ func _on_exit_pressed() -> void:
 		card.queue_free()
 	if exit_action:
 		exit_action.call()
-	action.hide()
+	action_button.hide()
 	close_deck_view.emit()
 
 func _on_card_show_toopltip(data: Array[TooltipData]) -> void:
@@ -68,14 +68,13 @@ func _on_card_selected(card: CardType, card_visual: CardVisualization) -> void:
 
 func toggle_action_button():
 	if has_action_button:
-		action.show()
+		action_button.show()
 	else:
-		action.hide()
+		action_button.hide()
 
 func _on_action_pressed() -> void:
-	print("trololol")
 	button_action.call()
 	for card: CardVisualization in card_container.get_children():
 		card.queue_free()
-	action.hide()
+	action_button.hide()
 	close_deck_view.emit()
