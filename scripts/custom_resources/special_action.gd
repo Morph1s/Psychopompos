@@ -4,7 +4,7 @@ extends Action
 enum SpecialEffects {
 	ERIS,
 	THANATOS,
-	POSSEIDON,
+	POSEIDON,
 }
 
 @export var action_type: SpecialEffects
@@ -27,8 +27,8 @@ func resolve(targets: Array[Node2D]) -> void:
 			await _resolve_eris()
 		SpecialEffects.THANATOS:
 			await _resolve_thanatos()
-		SpecialEffects.POSSEIDON:
-			await _resolve_posseidon()
+		SpecialEffects.POSEIDON:
+			await _resolve_poseidon()
 
 ## discard 1-5 random cards, then draw 1-5 cards
 func _resolve_eris() -> void:
@@ -50,7 +50,7 @@ func _resolve_thanatos() -> void:
 		if effect.effect_name == "Gather":
 			player.effect_handler.apply_effect("Gather", effect.stacks)
 
-func _resolve_posseidon() -> void:
+func _resolve_poseidon() -> void:
 	# remove previous actions from the card
 	if card_handler.played_card.card_type.on_play_action.size() > 1:
 		for i in card_handler.played_card.card_type.on_play_action.size() -1:
