@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://d1qaoswvagn0n"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_mv667"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mv667"]
+size = Vector2(8, 8)
+
+[resource]
+script = ExtResource("1_mv667")
+icon = SubResource("PlaceholderTexture2D_mv667")
+description_pre_value = "BLESSING: Heal 2 at start of turn. 50% chance to negate incoming debuffs for"
+use_value = true
+default_value = 1
+dynamic_plural = true
+hide_value_when_singular = true
+singular = "turn"
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

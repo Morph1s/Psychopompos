@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://dehqods63qrs6"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_btnkp"]
+[ext_resource type="Script" uid="uid://6c7kcpkb3r65" path="res://scripts/effects/effect_instances/blessing.gd" id="2_ddqu1"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_ueawf"]
+[ext_resource type="Resource" uid="uid://d1qaoswvagn0n" path="res://resources/tooltips/effect_tooltips/blessing_tooltip.tres" id="4_05rqm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_05rqm"]
+size = Vector2(10, 10)
+
+[node name="Blessing" instance=ExtResource("1_btnkp")]
+texture = SubResource("PlaceholderTexture2D_05rqm")
+script = ExtResource("2_ddqu1")
+stackable = true
+tooltip_data = Array[ExtResource("3_ueawf")]([ExtResource("4_05rqm")])

@@ -17,7 +17,8 @@ var effect_scenes: Dictionary = {
 	"Gather": preload("res://scenes/effects/effect_instances/gather.tscn"),
 	"DamoklesSword": preload("res://scenes/effects/effect_instances/damokles_sword.tscn"),
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
-}
+	"Blessing": preload("res://scenes/effects/effect_instances/blessing.tscn"),
+	}
 
 var parent_node: Node2D
 var max_effects_per_column: int
@@ -32,6 +33,7 @@ func initialize(parent: Node2D) -> void:
 	visible_range = Vector2i(0, max_effects_per_column - 1)
 	
 	buttons.set_bottom_button_position(max_effects_per_column * EFFECT_ICON_HEIGHT + (max_effects_per_column - 1) * EFFECT_ICON_DISTANCE)
+
 
 #region effect adding
 
@@ -65,6 +67,8 @@ func apply_effect(effect_name: String, amount: int) -> void:
 	effect_collection.add_child(new_effect)
 	new_effect.remove_effect.connect(_on_effect_remove_effect)
 	new_effect.initialize(parent_node, amount)
+	
+	_on_effect_applied(amount, new_effect)
 	
 	_change_visibility()
 
@@ -160,4 +164,7 @@ func _on_unit_played_attack() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.played_attack()
 
+func _on_effect_applied(stack_count:int, applied_effect:Effect) -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.effect_applied(stack_count,applied_effect)
 #endregion
