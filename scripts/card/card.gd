@@ -167,8 +167,9 @@ func play(target_id: int = -1) -> void:
 		elif action is CardManipulationAction:
 			await action.resolve([get_tree().get_first_node_in_group("card_piles")])
 		elif action is SpecialAction:
-			await action.resolve([get_tree().get_first_node_in_group("card_piles"), get_tree().get_first_node_in_group("player")])
-			
+			var target_array: Array[Node2D] = [get_tree().get_first_node_in_group("card_piles"), get_tree().get_first_node_in_group("player")]
+			target_array.append_array(get_tree().get_nodes_in_group("enemy"))
+			await action.resolve(target_array)
 		if action is AttackAction:
 			played_attack = true
 		
