@@ -31,7 +31,7 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 resource_name = "thanatos"
 script = ExtResource("2_p235y")
 displayed_response = "\"thanatos\" (get card)"
-next_block = Array[int]([])
+next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
 0: ExtResource("4_dues4")
 })

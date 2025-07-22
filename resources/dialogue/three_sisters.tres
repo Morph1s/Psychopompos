@@ -108,7 +108,9 @@ resource_name = "keep_it"
 script = ExtResource("2_6awv3")
 displayed_response = "\"No, I think I will keep it\" (get Artifakt)"
 next_block = Array[int]([3])
-consequences = Dictionary[int, Variant]({})
+consequences = Dictionary[int, Variant]({
+5: ExtResource("3_uya0r")
+})
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_oi17l"]
