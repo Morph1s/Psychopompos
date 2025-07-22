@@ -62,7 +62,7 @@ func _on_mouse_exited() -> void:
 	is_mouse_over = false
 	if not is_perma_highlighted:
 		highlight.hide()
-	hide_tooltip.emit()
+		hide_tooltip.emit()
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):

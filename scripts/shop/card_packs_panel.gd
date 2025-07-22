@@ -59,17 +59,17 @@ func _create_pack(rarity: CardPack.PackRarity) -> CardPack:
 	pack.pack_rarity = rarity
 	pack.price = _calculate_price(rarity)
 	pack.cards = DeckHandler.get_card_selection(PACK_SIZE, card_distributions[rarity])
-	var tooltip: TooltipData = TooltipData.new()
+	var pack_tooltip: TooltipData = TooltipData.new()
 	# TODO: make tooltip dynamic
-	tooltip.description = "Select 2 out of 5 random cards"
-	pack.tooltips.append(tooltip)
+	pack_tooltip.description = "Select 2 out of 5 random cards"
+	pack.tooltips.append(pack_tooltip)
 	return pack
 
 func _calculate_price(rarity: CardPack.PackRarity) -> int:
 	return {
-		CardPack.PackRarity.COMMON: rng.randi_range(50, 70),
-		CardPack.PackRarity.RARE: rng.randi_range(80, 100),
-		CardPack.PackRarity.LEGENDARY: rng.randi_range(120, 150)
+		CardPack.PackRarity.COMMON: rng.randi_range(80, 110),
+		CardPack.PackRarity.RARE: rng.randi_range(120, 150),
+		CardPack.PackRarity.LEGENDARY: rng.randi_range(160, 200)
 	}[rarity]
 
 func _get_pack_rarity() -> CardPack.PackRarity:

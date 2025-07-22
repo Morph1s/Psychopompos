@@ -12,12 +12,13 @@ extends PanelContainer
 
 const NUM_CARDS: int = 3
 const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
+const CARD_PRICE_MODIFIER: float = 1.75
 
 var cards: Array[CardType] = []
 var rarity_distribution: Dictionary[CardType.Rarity, int] = {
-	CardType.Rarity.COMMON_CARD: 100,
-	CardType.Rarity.HERO_CARD: 0,
-	CardType.Rarity.GODS_BOON: 0
+	CardType.Rarity.COMMON_CARD: 70,
+	CardType.Rarity.HERO_CARD: 25,
+	CardType.Rarity.GODS_BOON: 5
 }
 
 
@@ -43,7 +44,7 @@ func _on_card_selected(card: CardType, scene: CardVisualization) -> void:
 	if card.card_value > RunData.player_stats.coins:
 		return
 	
-	RunData.player_stats.coins -= card.card_value
+	RunData.player_stats.coins -= int(card.card_value * CARD_PRICE_MODIFIER)
 	
 	scene.queue_free()
 	cards.erase(card)
@@ -67,4 +68,4 @@ func _create_cards() -> void:
 func update_price_tags():
 	for card_visual: Control in card_container.get_children():
 		if card_visual.get_children().size() > 0:
-			card_visual.get_child(0).update_price_tag()
+			card_visual.get_child(0).update_price_tag(CARD_PRICE_MODIFIER)

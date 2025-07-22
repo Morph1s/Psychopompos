@@ -131,11 +131,11 @@ func _create_energy_cost_balls(amount: int) -> void:
 		new_ball.texture = CARD_ENERGY_BALL
 		energy_ball_container.add_child(new_ball)
 
-func update_price_tag() -> void:
+func update_price_tag(modifier: float) -> void:
 	if card_type.card_value > RunData.player_stats.coins:
 		material.set_shader_parameter("desaturation", 0.8)
 	
-	price.text = str(card_type.card_value)
+	price.text = str(int(card_type.card_value * modifier))
 	price_tag.show()
 
 func apply_material() -> void:

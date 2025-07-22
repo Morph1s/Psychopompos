@@ -14,6 +14,7 @@ const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 const MAX_DIFF_TRADING_VALUE: int = 50
 const MAX_NUM_POSSIBLE_TRADE_RESULTS: int = 6
 const MIN_NUM_POSSIBLE_TRADE_RESULTS: int = 3
+const CARD_VALUE_MODIFIER: float = 0.7
 
 var selected_cards: Array[CardType] = []
 var coins: int = 0:
@@ -24,7 +25,7 @@ var coins: int = 0:
 var total_card_value: int = 0:
 	set(value):
 		total_card_value = value
-		card_value_label.text = "Total value: %d coins" % total_card_value
+		card_value_label.text = "Trade value: %d coins" % total_card_value
 		trading_value = total_card_value + coins
 var trading_value: int = 0:
 	set(value):
@@ -47,7 +48,7 @@ func set_selected_cards(cards: Array[CardType]):
 		var card_visual: CardVisualization = CARD_VISUALIZATION.instantiate()
 		card_visual.initialize(card)
 		selected_cards_container.add_child(card_visual)
-		total_card_value += card.card_value
+		total_card_value += int(card.card_value * CARD_VALUE_MODIFIER)
 
 func calculate_result():
 	possible_trade_results.clear()
@@ -80,7 +81,7 @@ func calculate_result():
 			continue
 		var relative_diff: int = diff - min_diff
 		var weight_f: float = exp(- alpha * relative_diff)
-		var weight = int(pow(max(1, int(round(weight_f * w_scale))), 5))
+		var weight = int(pow(max(1, int(round(weight_f * w_scale))), 3))
 		
 		possible_trade_results[card] = weight
 		total_weight += weight
