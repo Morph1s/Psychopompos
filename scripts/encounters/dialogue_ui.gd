@@ -78,6 +78,10 @@ func update_answers():
 		new_response.text = response.displayed_response
 		new_response.add_theme_font_size_override("font_size", 6)
 		new_response.alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		# check if response can give Artifact
+		for consequence in response.consequences.values():
+			if consequence is Artifact and not ArtifactHandler.available_artifacts.has(consequence):
+				new_response.disabled = true
 		
 		# connects the buttons with exeptional parameters
 		var next_block_ids = response.next_block

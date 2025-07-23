@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=2 format=3 uid="uid://bomn8y85uof6d"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_ltvnf"]
+
+[resource]
+script = ExtResource("1_ltvnf")
+description_pre_value = "POSEIDON: deal 1 damage to all enemies for each card in your draw pile and gain 2 block for each card in your discard pile"
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

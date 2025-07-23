@@ -31,6 +31,7 @@ var discard_pile: Array[CardType] = []
 var highlighted_card: Card
 var second_card: Card
 var selected_card: Card
+var played_card: Card
 var playing_card: bool
 
 # determining targets
@@ -156,6 +157,7 @@ func _play_card(card: Card) -> void:
 	display_play_area_highlights.emit(false)
 	
 	card.highlight(Card.HighlightMode.PLAYED)
+	played_card = card
 	selected_card = null
 	hand.erase(card)
 	
@@ -165,6 +167,7 @@ func _play_card(card: Card) -> void:
 	
 	await discard_card(card)
 	
+	played_card = null
 	playing_card = false
 	_set_player_control(true)
 
@@ -327,7 +330,6 @@ func shuffle_discard_pile_into_draw_pile() -> void:
 func _on_play_area_mouse_entered() -> void:
 	mouse_on_play_area = true 
 	_set_mouse_cursor()
-
 
 func _on_play_area_mouse_exited() -> void:
 	mouse_on_play_area = false

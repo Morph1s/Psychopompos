@@ -37,8 +37,8 @@ texture = ExtResource("3_ph54e")
 [node name="MapIconsMargin" type="MarginContainer" parent="TopMargin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_right = 24
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
 
 [node name="MapConnectionDrawer" type="Control" parent="TopMargin/MapIconsMargin"]
 clip_contents = true

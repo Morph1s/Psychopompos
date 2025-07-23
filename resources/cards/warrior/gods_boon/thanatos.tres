@@ -29,4 +29,5 @@ first_description_text_addon = ""
 second_description_text_value = ""
 second_description_text_addon = ""
 tooltips = Array[ExtResource("3_5c2y6")]([ExtResource("7_boj4b"), ExtResource("8_0mdlm")])
+card_value = 235
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

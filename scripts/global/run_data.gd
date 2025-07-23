@@ -19,6 +19,8 @@ var sub_rngs: Dictionary[String, RandomNumberGenerator] = {
 	"rng_artifact": RandomNumberGenerator.new(),
 	"rng_deck_handler": RandomNumberGenerator.new(),
 	"rng_battle_rewards": RandomNumberGenerator.new(),
+	"rng_card_pack_panel": RandomNumberGenerator.new(),
+	"rng_shop_trade": RandomNumberGenerator.new(),
 	"rng_dialogue_ui": RandomNumberGenerator.new(),
 	"rng_dialogue_response": RandomNumberGenerator.new(),
 }
@@ -31,7 +33,7 @@ var altered_values: Dictionary = {
 
 func start_run(character: Characters):
 	rng_master = RandomNumberGenerator.new()
-	#rng_master.seed = 1842745705725295715
+	seed(rng_master.seed)
 	master_seed = rng_master.seed
 	_generate_sub_rngs()
 	

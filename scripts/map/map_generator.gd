@@ -431,6 +431,8 @@ func _place_encounters():
 					node.encounter = BattleEncounter.new()
 				Encounter.EncounterType.CAMPFIRE:
 					node.encounter = CampfireEncounter.new()
+				Encounter.EncounterType.SHOP:
+					node.encounter = ShopEncounter.new()
 				Encounter.EncounterType.RANDOM:
 					node.encounter = RandomEncounter.new()
 				_:
@@ -526,7 +528,7 @@ func _update_encounter_weights_up(current_node: MapNode) -> void:
 			adjusting_value = -100
 		
 		# battle rules
-		if current_node.encounter.type == Encounter.EncounterType.BATTLE:
+		elif current_node.encounter.type == Encounter.EncounterType.BATTLE:
 			for i in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_BATTLES - 1), -1):
 				if path.nodes[i].encounter.type != Encounter.EncounterType.BATTLE:
 					break
@@ -534,7 +536,7 @@ func _update_encounter_weights_up(current_node: MapNode) -> void:
 				adjusting_value = -100
 		
 		# random encounter rules
-		if current_node.encounter.type == Encounter.EncounterType.RANDOM:
+		elif current_node.encounter.type == Encounter.EncounterType.RANDOM:
 			for i in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_RANDOM_ENCOUNTERS - 1), -1):
 				if path.nodes[i].encounter.type != Encounter.EncounterType.RANDOM:
 					break

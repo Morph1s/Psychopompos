@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dtb8ehw8vxjhl" path="res://assets/graphics/battle_effects/borderless/effect_regeneration_borderless.png" id="5_8psqu"]
 [ext_resource type="Texture2D" uid="uid://dbuo4uylsacuq" path="res://assets/graphics/cards/common/card_common_respite.png" id="5_l6rkm"]
 [ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/action_tooltips/block_tooltip.tres" id="6_p2vp2"]
-[ext_resource type="Resource" uid="uid://bkcoa1guvcdbh" path="res://resources/tooltips/action_tooltips/regeneration_action_tooltip.tres" id="10_iofpj"]
+[ext_resource type="Resource" path="res://resources/tooltips/action_tooltips/regeneration_action_tooltip.tres" id="10_iofpj"]
 
 [sub_resource type="Resource" id="Resource_kk01k"]
 script = ExtResource("2_xiw73")
@@ -40,4 +40,5 @@ second_description_icon = ExtResource("5_8psqu")
 second_description_text_value = "1"
 second_description_text_addon = ""
 tooltips = Array[ExtResource("3_d7rfk")]([ExtResource("6_p2vp2"), ExtResource("10_iofpj")])
+card_value = 67
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

@@ -4,12 +4,14 @@ extends TextureRect
 signal open_map
 signal open_deck_view
 
-@onready var tooltip = $Tooltip
-@onready var hitpoints = $IconsLeft/HPLabel
-@onready var artifact_container = $ArtifactContainer
+@onready var tooltip: Tooltip = $Tooltip
+@onready var hitpoints: Label = $TopBarMargin/TopBarHBox/IconsLeft/HPLabel
+@onready var coins: Label = $TopBarMargin/TopBarHBox/IconsLeft/CoinsLabel
+@onready var artifact_container: HBoxContainer = $TopBarMargin/TopBarHBox/ArtifactMargin/ArtifactContainer
 
 func initialize() -> void:
 	RunData.player_stats.hitpoints_changed.connect(_on_stats_hp_changed)
+	RunData.player_stats.coins_changed.connect(_on_stats_coins_changed)
 	ArtifactHandler.artifact_selected.connect(_on_artifact_handler_artifact_selected)
 
 func _on_deck_icon_gui_input(event: InputEvent) -> void:
@@ -26,6 +28,9 @@ func _on_settings_icon_gui_input(event: InputEvent) -> void:
 
 func _on_stats_hp_changed(current_hp: int, max_hp: int):
 	hitpoints.text = "%d/%d" % [current_hp, max_hp]
+
+func _on_stats_coins_changed(current_coins: int):
+	coins.text = str(current_coins)
 
 func _on_artifact_handler_artifact_selected(artifact: Artifact) -> void:
 	for tooltip_entry in artifact.tooltip:

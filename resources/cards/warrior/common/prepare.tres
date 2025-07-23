@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="2_xy00l"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="4_lvs4i"]
 [ext_resource type="Texture2D" uid="uid://c3ler4glwctyq" path="res://assets/graphics/cards/common/card_common_prepare.png" id="4_mjlr8"]
-[ext_resource type="Resource" uid="uid://cfvfkg37b28i6" path="res://resources/tooltips/action_tooltips/gather_action_tooltip.tres" id="7_88cxa"]
+[ext_resource type="Resource" path="res://resources/tooltips/action_tooltips/gather_action_tooltip.tres" id="7_88cxa"]
 
 [sub_resource type="Resource" id="Resource_lvs4i"]
 script = ExtResource("2_xy00l")
@@ -30,4 +30,5 @@ first_description_text_addon = ""
 second_description_text_value = ""
 second_description_text_addon = ""
 tooltips = Array[ExtResource("4_lvs4i")]([ExtResource("7_88cxa")])
+card_value = 78
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

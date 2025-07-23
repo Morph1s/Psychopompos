@@ -20,6 +20,7 @@ func _ready():
 	run_ui.initialize()
 	RunData.player_stats.initialize()
 	run_ui.hitpoints.text = "%d/%d" % [RunData.player_stats.current_hitpoints, RunData.player_stats.maximum_hitpoints]
+	run_ui.coins.text = str(RunData.player_stats.coins)
 	map.show()
 
 # Uses the EncounterHandler to load the requested encounter

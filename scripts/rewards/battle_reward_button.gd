@@ -25,10 +25,10 @@ func set_rewards(reward_type: BattleRewards.RewardType, amount: int) -> void:
 			SELECT_CARD_TOOLTIP[0].set_description()
 			tooltip.load_tooltips(SELECT_CARD_TOOLTIP)
 		
-		#BattleRewards.RewardType.COINS:
-			#text = str(count) + " COINS"
-			#COINS_TOOLTIP[0].set_description()
-			#tooltip.load_tooltips(COINS_TOOLTIP)
+		BattleRewards.RewardType.COINS:
+			text = str(count) + " COINS"
+			COINS_TOOLTIP[0].set_description(amount)
+			tooltip.load_tooltips(COINS_TOOLTIP)
 		
 		BattleRewards.RewardType.ARTIFACT:
 			artifact_reward = ArtifactHandler.get_random_artifact()

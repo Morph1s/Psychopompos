@@ -58,6 +58,7 @@ mouse_filter = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 26
 theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="Exit" type="Button" parent="UIMargin"]
 layout_mode = 2
@@ -70,4 +71,12 @@ text = "x"
 visible = false
 layout_mode = 2
 
+[node name="ActionButton" type="Button" parent="UIMargin"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "SELECT"
+
 [connection signal="pressed" from="UIMargin/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UIMargin/ActionButton" to="." method="_on_action_pressed"]
