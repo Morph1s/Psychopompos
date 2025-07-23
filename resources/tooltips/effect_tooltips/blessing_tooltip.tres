@@ -8,7 +8,7 @@ size = Vector2(8, 8)
 [resource]
 script = ExtResource("1_mv667")
 icon = SubResource("PlaceholderTexture2D_mv667")
-description_pre_value = "BLESSING: Heal 2 at start of turn. 50% chance to negate incoming debuffs for"
+description_pre_value = "BLESSING: Heal 2 hitpoints at start of enteties turn. 50% chance to negate incoming debuffs for"
 use_value = true
 default_value = 1
 dynamic_plural = true
