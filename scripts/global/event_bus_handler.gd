@@ -16,6 +16,7 @@ signal show_map
 signal back_to_battle
 signal card_drawn
 signal cards_drawn
+signal card_discarded
 signal card_selected(cost: int)
 signal card_deselected
 signal card_piles_card_count_changed(draw_pile_card_count: int, discard_pile_card_count: int)

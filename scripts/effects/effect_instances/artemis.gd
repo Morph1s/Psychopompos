@@ -26,6 +26,10 @@ func card_drawn() -> void:
 	if effect_owner.has_method("take_damage"):
 		effect_owner.take_damage(DAMAGE_AMOUNT * stacks)
 
+## this function gets called whenever the player discards a card
+func card_discarded() -> void:
+	pass
+
 ## this function is called when the amount of stacks changes 
 func changed_stacks(previous: int, current: int) -> void:
 	pass
