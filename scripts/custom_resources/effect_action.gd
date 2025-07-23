@@ -11,6 +11,8 @@ enum EffectType {
 	VIGILANT,
 	WARRIORS_FURRY,
 	WOUNDED,
+	HELM_OF_HADES,
+	INVINCIBLE,
 }
  
 var effect_names: Dictionary = {
@@ -23,6 +25,8 @@ var effect_names: Dictionary = {
 	EffectType.VIGILANT: "Vigilant",
 	EffectType.WARRIORS_FURRY: "WarriorsFury",
 	EffectType.WOUNDED: "Wounded",
+	EffectType.HELM_OF_HADES: "HelmOfHades",
+	EffectType.INVINCIBLE: "Invincible",
 }
 
 @export var effect: EffectType

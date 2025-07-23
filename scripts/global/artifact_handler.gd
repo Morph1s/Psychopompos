@@ -11,6 +11,7 @@ var available_artifacts: Array[Artifact] = [
 	preload("res://resources/artifacts/hermes_winged_boots.tres"),
 	preload("res://resources/artifacts/nectar.tres"),
 	preload("res://resources/artifacts/twig_of_lethe.tres"),
+	preload("res://resources/artifacts/helm_of_hades.tres"),
 ]
 var selected_artifacts: Array[Artifact] = []
 
@@ -24,6 +25,8 @@ var effect_names: Dictionary = {
 	EffectAction.EffectType.VIGILANT: "Vigilant",
 	EffectAction.EffectType.WARRIORS_FURRY: "WarriorsFury",
 	EffectAction.EffectType.WOUNDED: "Wounded",
+	EffectAction.EffectType.HELM_OF_HADES: "HelmOfHades",
+	EffectAction.EffectType.INVINCIBLE: "Invincible",
 }
 
 

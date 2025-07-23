@@ -17,6 +17,8 @@ var effect_scenes: Dictionary = {
 	"Gather": preload("res://scenes/effects/effect_instances/gather.tscn"),
 	"DamoklesSword": preload("res://scenes/effects/effect_instances/damokles_sword.tscn"),
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
+	"HelmOfHades": preload("res://scenes/effects/effect_instances/helm_of_hades.tscn"),
+	"Invincible": preload("res://scenes/effects/effect_instances/invincible.tscn"),
 }
 
 var parent_node: Node2D
