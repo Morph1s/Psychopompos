@@ -148,6 +148,7 @@ func highlight(mode: HighlightMode):
 ## 
 ## if the card requires targeting an enemy, add its id as the parameter
 func play(target_id: int = -1) -> void:
+	EventBusHandler.player_started_playing_card.emit()
 	
 	# pay energy cost
 	RunData.player_stats.pay_energy(card_type.energy_cost)
@@ -173,8 +174,9 @@ func play(target_id: int = -1) -> void:
 		if action is AttackAction:
 			played_attack = true
 		
-		action_timer.start()
-		await action_timer.timeout
+		if not action == actions.back():
+			action_timer.start()
+			await action_timer.timeout
 	
 	# call the player played attack event if the card contains an attack
 	if played_attack:

@@ -6,13 +6,19 @@ extends Effect
 
 # implement all functions relevant for your effect
 
+var stacks_to_remove: int = 0
+
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
 	pass
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
 func played_attack() -> void:
-	remove_stacks(stacks)
+	remove_stacks(stacks_to_remove)
+
+## this function is called when the player plays a card, before all the card actions get resolved
+func started_playing_card() -> void:
+	stacks_to_remove = stacks
 
 ## this function is called when the amount of stacks changes 
 func changed_stacks(previous, current):
