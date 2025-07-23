@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=16 format=3 uid="uid://ljjcryottkwx"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_ddle8"]
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_re6nc"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_qa1h0"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="3_j6dl7"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_ubjf2"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="4_1ia8x"]
+[ext_resource type="Texture2D" uid="uid://dtybxhbu703gj" path="res://assets/graphics/battle_effects/borderless/effect_gather_borderless.png" id="6_dufbh"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="7_vqnj8"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="9_5qkeq"]
+[ext_resource type="Resource" uid="uid://cfvfkg37b28i6" path="res://resources/tooltips/action_tooltips/gather_action_tooltip.tres" id="10_j67mc"]
+
+[sub_resource type="Resource" id="Resource_8wc3q"]
+script = ExtResource("3_j6dl7")
+damage_stat = 2
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_v2pbc"]
+script = ExtResource("3_j6dl7")
+damage_stat = 2
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_wfe8s"]
+script = ExtResource("3_j6dl7")
+damage_stat = 2
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_xhpit"]
+script = ExtResource("3_j6dl7")
+damage_stat = 2
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_sqtlr"]
+script = ExtResource("4_1ia8x")
+effect = 2
+effect_value = 2
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[resource]
+script = ExtResource("2_qa1h0")
+card_name = "atalanta"
+energy_cost = 1
+rarity = 2
+texture = ExtResource("7_vqnj8")
+on_play_action = Array[ExtResource("1_ddle8")]([SubResource("Resource_8wc3q"), SubResource("Resource_v2pbc"), SubResource("Resource_wfe8s"), SubResource("Resource_xhpit"), SubResource("Resource_sqtlr")])
+on_graveyard_action = Array[ExtResource("1_ddle8")]([])
+targeted = true
+first_description_icon = ExtResource("1_re6nc")
+first_description_text_value = "2"
+first_description_text_addon = "*4"
+second_description_icon = ExtResource("6_dufbh")
+second_description_text_value = "2"
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_ubjf2")]([ExtResource("9_5qkeq"), ExtResource("10_j67mc")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
