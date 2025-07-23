@@ -3,11 +3,18 @@ extends Sprite2D
 
 signal remove_effect(effect: Effect)
 
+enum EffectType {
+	BUFF,
+	DEBUFF
+}
+
 @onready var counter = $Counter
 @onready var tooltip = $Tooltip
 
 ## unique idenifier for the effect
 @export var effect_name: String
+## Is Effect Buff or Debuff
+@export var type: EffectType
 ## can the effect have mutiple stacks at the same time?
 @export var stackable: bool
 ## set true if the effect can't be added to enemies
@@ -89,10 +96,13 @@ func changed_stacks(_previous: int, _current: int) -> void:
 func start_of_turn() -> void:
 	pass
 
-## this function is called ath the end of the entities turn s
+## this function is called at the end of the entities turn s
 func end_of_turn() -> void:
 	pass
 
+## this function is called when an effect is applied
+func effect_applied(stacks_added:int, effect_added:Effect) -> void:
+	pass
 
 func _on_area_2d_mouse_entered():
 	tooltip.show()

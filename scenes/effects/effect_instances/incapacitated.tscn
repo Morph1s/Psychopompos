@@ -10,6 +10,7 @@
 texture = ExtResource("2_2mw7b")
 script = ExtResource("2_uxbd3")
 effect_name = "Incapacitated"
+type = 1
 stackable = true
 player_only = true
 tooltip_data = Array[ExtResource("3_whfib")]([ExtResource("3_0rl4j")])

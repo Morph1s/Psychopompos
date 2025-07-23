@@ -56,6 +56,7 @@ func start_encounter(encounter_data: Encounter):
 			_load_random_encounter()
 		_:
 			print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter_data.type))
+			
 
 func _load_win_screen():
 	current_encounter.queue_free()

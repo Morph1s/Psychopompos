@@ -24,7 +24,10 @@ func changed_stacks(previous: int, current: int) -> void:
 
 ## this function is called at the start of the entities turn 
 func start_of_turn() -> void:
-	pass
+	var stats: EntityStats = effect_owner.stats
+	# for animations or sound this should be moved to a heal method:
+	stats.current_hitpoints += 2
+	remove_stacks(1)
 
 ## this function is called at the end of the entities turn s
 func end_of_turn() -> void:
@@ -32,4 +35,6 @@ func end_of_turn() -> void:
 
 ## this function is called when an effect is applied
 func effect_applied(stacks_added:int, effect_added:Effect) -> void:
-	pass
+	if effect_added.type == EffectType.DEBUFF:
+		if randi_range(0,1) == 1:
+			effect_added.remove_stacks(stacks_added)

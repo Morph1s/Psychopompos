@@ -10,5 +10,6 @@
 texture = ExtResource("2_0ect2")
 script = ExtResource("2_q87uk")
 effect_name = "Wounded"
+type = 1
 stackable = true
 tooltip_data = Array[ExtResource("3_7wpxn")]([ExtResource("3_qankt")])
