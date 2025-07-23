@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://bb5154o4v3q3e"]
+[gd_resource type="Resource" script_class="CardType" load_steps=12 format=3 uid="uid://mrjuffw0ejwv"]
 
 [ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_e16ov"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="2_28c4g"]
 [ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="3_31fsc"]
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="4_nxaa0"]
 [ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="5_r3ud8"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="6_5bqkq"]
+[ext_resource type="Texture2D" uid="uid://piwrcsolsrvd" path="res://assets/graphics/cards/god/card_god_poseidon.png" id="6_e16ov"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="7_oaoyy"]
-[ext_resource type="Resource" uid="uid://bomn8y85uof6d" path="res://resources/tooltips/special_tooltips/poseidon_tooltip.tres" id="8_kqb76"]
-[ext_resource type="Resource" uid="uid://do38gpijiblj2" path="res://resources/tooltips/special_tooltips/poseidon_attack_all_tooltip.tres" id="9_te5xk"]
-[ext_resource type="Resource" uid="uid://jritujs8l451" path="res://resources/tooltips/special_tooltips/poseidon_block_tooltip.tres" id="10_m6sk4"]
+[ext_resource type="Resource" path="res://resources/tooltips/special_tooltips/poseidon_tooltip.tres" id="8_kqb76"]
+[ext_resource type="Resource" path="res://resources/tooltips/special_tooltips/poseidon_attack_all_tooltip.tres" id="9_te5xk"]
+[ext_resource type="Resource" path="res://resources/tooltips/special_tooltips/poseidon_block_tooltip.tres" id="10_m6sk4"]
 
 [sub_resource type="Resource" id="Resource_heu5y"]
 script = ExtResource("3_31fsc")
@@ -21,7 +21,7 @@ script = ExtResource("4_nxaa0")
 card_name = "poseidon"
 energy_cost = 3
 rarity = 3
-texture = ExtResource("6_5bqkq")
+texture = ExtResource("6_e16ov")
 on_play_action = Array[ExtResource("2_28c4g")]([SubResource("Resource_heu5y")])
 on_graveyard_action = Array[ExtResource("2_28c4g")]([])
 targeted = false
@@ -32,4 +32,5 @@ second_description_icon = ExtResource("5_r3ud8")
 second_description_text_value = "2"
 second_description_text_addon = "*n"
 tooltips = Array[ExtResource("7_oaoyy")]([ExtResource("8_kqb76"), ExtResource("9_te5xk"), ExtResource("10_m6sk4")])
+card_value = 223
 metadata/_custom_type_script = "uid://4vek3hvofbhy"
