@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://cwh8uxdagkgif"]
+
+[ext_resource type="Texture2D" uid="uid://cfv4tjgc4ps2t" path="res://assets/graphics/battle_effects/borderless/effect_phalanx_borderless.png" id="1_1ms5g"]
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="2_yli8r"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_aomss"]
+[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="4_v6vqh"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="5_5i5vx"]
+[ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="6_vmjft"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="7_tbpq0"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="7_yli8r"]
+[ext_resource type="Resource" uid="uid://dbab5tm57ay2y" path="res://resources/tooltips/action_tooltips/phalanx_action_tooltip.tres" id="8_mynn0"]
+[ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/action_tooltips/block_tooltip.tres" id="9_nw1vq"]
+
+[sub_resource type="Resource" id="Resource_okxt1"]
+script = ExtResource("3_aomss")
+effect = 4
+effect_value = 2
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[sub_resource type="Resource" id="Resource_51nrj"]
+script = ExtResource("4_v6vqh")
+block_stat = 10
+target_type = 0
+metadata/_custom_type_script = "uid://riw8fvdo6pdh"
+
+[resource]
+script = ExtResource("5_5i5vx")
+card_name = "athena"
+energy_cost = 1
+rarity = 3
+texture = ExtResource("7_yli8r")
+on_play_action = Array[ExtResource("2_yli8r")]([SubResource("Resource_okxt1"), SubResource("Resource_51nrj")])
+on_graveyard_action = Array[ExtResource("2_yli8r")]([])
+targeted = false
+first_description_icon = ExtResource("1_1ms5g")
+first_description_text_value = "2"
+first_description_text_addon = ""
+second_description_icon = ExtResource("6_vmjft")
+second_description_text_value = "10"
+second_description_text_addon = ""
+tooltips = Array[ExtResource("7_tbpq0")]([ExtResource("8_mynn0"), ExtResource("9_nw1vq")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
