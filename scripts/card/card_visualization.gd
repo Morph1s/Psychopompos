@@ -160,7 +160,6 @@ func play_shake_animation():
 	
 	is_perma_highlighted = true
 	is_animating = true
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -181,7 +180,6 @@ func _on_shake_animation_finished():
 	is_animating = false
 	if not is_mouse_over:
 		highlight.hide()
-	mouse_filter = Control.MOUSE_FILTER_STOP
 
 func animate_card_collection(to: Vector2):
 	if is_animating:

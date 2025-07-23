@@ -9,7 +9,7 @@ const COMMON_COIN_CHANCE: float = 0.7
 const COMMON_COIN_AMOUNT_MAX: int = 50
 const COMMON_COIN_AMOUNT_MIN: int = 20
 # boss reward constants for balancing
-const BOSS_COIN_CHANCE: float = 0.7
+const BOSS_COIN_CHANCE: float = 1.0
 const BOSS_COIN_AMOUNT_MAX: int = 70
 const BOSS_COIN_AMOUNT_MIN: int = 50
 

@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var card_container: HBoxContainer = $MarginContainer/CardContainer
 @onready var no_cards_label: Label = $MarginContainer/NoCardsLabel
 @onready var packs_panel: CardPackPanel = $"../PacksPanel"
+@onready var tooltip: Tooltip = $"../../../../Tooltip"
 @onready var card_slots: Array[Control] = [
 	$MarginContainer/CardContainer/Slot0,
 	$MarginContainer/CardContainer/Slot1,
@@ -34,6 +35,8 @@ func _fill_cards_panel() -> void:
 			card_visual.is_shop = true
 			card_visual.apply_material()
 			card_visual.card_selected.connect(_on_card_selected)
+			card_visual.show_tooltip.connect(_on_card_show_tooltip)
+			card_visual.hide_tooltip.connect(_on_card_hide_tooltip)
 			
 			card_slots[i].add_child(card_visual)
 			
@@ -68,3 +71,10 @@ func update_price_tags():
 	for card_visual: Control in card_container.get_children():
 		if card_visual.get_children().size() > 0:
 			card_visual.get_child(0).update_price_tag()
+
+func _on_card_show_tooltip(data: Array[TooltipData]):
+	tooltip.load_tooltips(data)
+	tooltip.show()
+
+func _on_card_hide_tooltip():
+	tooltip.hide()

@@ -89,7 +89,6 @@ func _fill_packs_panel() -> void:
 		if pack:
 			var pack_visual: CardPackVisualization = CARD_PACK_VISUALIZATION.instantiate()
 			pack_visual.initialize(pack)
-			pack_visual.apply_material()
 			pack_visual.show_tooltip.connect(_on_card_pack_show_tooltip)
 			pack_visual.hide_tooltip.connect(_on_card_pack_hide_tooltip)
 			pack_visual.pack_selected.connect(_on_card_pack_pack_selected)

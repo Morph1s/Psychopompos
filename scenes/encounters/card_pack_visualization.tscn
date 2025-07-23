@@ -1,25 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwi5wnurii164"]
+[gd_scene load_steps=7 format=3 uid="uid://bwi5wnurii164"]
 
 [ext_resource type="Script" uid="uid://deboikml0dxi" path="res://scripts/shop/card_pack_visualization.gd" id="1_6qghn"]
 [ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_fsh47"]
 [ext_resource type="Texture2D" uid="uid://vuyxd3vw523i" path="res://assets/graphics/cards/card_pack_common.png" id="2_fsh47"]
 [ext_resource type="Texture2D" uid="uid://cljr3khla8432" path="res://assets/graphics/cards/card_pack_highlight.png" id="3_cssnh"]
-[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturation_shader.gdshader" id="3_jv2ka"]
 [ext_resource type="Texture2D" uid="uid://dd7xo82ry0wfg" path="res://assets/graphics/cards/price_sticker.png" id="4_vlnxj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cssnh"]
-shader = ExtResource("3_jv2ka")
-shader_parameter/desaturation = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbves"]
-shader = ExtResource("3_jv2ka")
-shader_parameter/desaturation = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sy7kk"]
-shader = ExtResource("3_jv2ka")
-shader_parameter/desaturation = 0.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jv2ka"]
 
 [node name="CardPackVisualization" type="Control"]
+material = SubResource("ShaderMaterial_jv2ka")
 custom_minimum_size = Vector2(50, 74)
 layout_mode = 3
 anchors_preset = 8
@@ -44,7 +34,7 @@ offset_bottom = 40.0
 texture = ExtResource("3_cssnh")
 
 [node name="PackImage" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_cssnh")
+use_parent_material = true
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -53,7 +43,7 @@ offset_bottom = 73.0
 texture = ExtResource("2_fsh47")
 
 [node name="PriceTag" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_cbves")
+use_parent_material = true
 layout_mode = 0
 offset_left = 36.0
 offset_right = 54.0
@@ -62,7 +52,7 @@ texture = ExtResource("4_vlnxj")
 stretch_mode = 2
 
 [node name="Price" type="Label" parent="PriceTag"]
-material = SubResource("ShaderMaterial_sy7kk")
+use_parent_material = true
 layout_mode = 0
 offset_left = 4.0
 offset_top = 3.0
