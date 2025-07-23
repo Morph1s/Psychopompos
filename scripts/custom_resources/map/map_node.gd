@@ -5,7 +5,8 @@ var encounter: Encounter = null		# the encounter of this node
 var active: bool = false			# whether or not the node is shown on the map
 var next_nodes: Array[MapNode]		# connected nodes from the next layer
 var encounter_weights: Dictionary[Encounter.EncounterType, int] = {
-	Encounter.EncounterType.BATTLE: 65,
+	Encounter.EncounterType.BATTLE: 55,
 	Encounter.EncounterType.CAMPFIRE: 10,
-	Encounter.EncounterType.RANDOM: 25,
+	Encounter.EncounterType.RANDOM: 20,
+	Encounter.EncounterType.SHOP: 15,
 }
