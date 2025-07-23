@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxxdjiewi7rh2"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_1vmhd"]
+[ext_resource type="Script" uid="uid://cwsiiin2rrusu" path="res://scripts/effects/effect_instances/nemean_hide.gd" id="2_flkdv"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_su56r"]
+[ext_resource type="Resource" uid="uid://0axtlh662ipg" path="res://resources/tooltips/artifact_tooltips/nemean_hide_tooltip.tres" id="4_j2j4c"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_su56r"]
+size = Vector2(10, 10)
+
+[node name="NemeanHide" instance=ExtResource("1_1vmhd")]
+texture = SubResource("PlaceholderTexture2D_su56r")
+script = ExtResource("2_flkdv")
+effect_name = "Nemean Hide"
+tooltip_data = Array[ExtResource("3_su56r")]([ExtResource("4_j2j4c")])
