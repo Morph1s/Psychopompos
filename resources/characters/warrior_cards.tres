@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardLibrary" load_steps=26 format=3 uid="uid://b0uaatd6pxb0u"]
+[gd_resource type="Resource" script_class="CardLibrary" load_steps=27 format=3 uid="uid://b0uaatd6pxb0u"]
 
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="1_a6qaj"]
 [ext_resource type="Script" uid="uid://ckp8ofhnx14eh" path="res://scripts/custom_resources/card_library.gd" id="2_1siwy"]
@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://r43h6r5htgjp" path="res://resources/cards/warrior/common/respite.tres" id="5_rvubs"]
 [ext_resource type="Resource" uid="uid://dhfd6kku1alih" path="res://resources/cards/warrior/common/scrape.tres" id="6_x5qw7"]
 [ext_resource type="Resource" uid="uid://do3iftlwnk53j" path="res://resources/cards/warrior/common/swipe.tres" id="7_6kbyg"]
-[ext_resource type="Resource" uid="uid://csyccqc8xusme" path="res://resources/cards/warrior/common/parry.tres" id="8_8q21g"]
+[ext_resource type="Resource" uid="uid://darsdborhxwp5" path="res://resources/cards/warrior/common/parry.tres" id="8_8q21g"]
 [ext_resource type="Resource" uid="uid://ccfdqsl1eagpq" path="res://resources/cards/warrior/gods_boon/eris.tres" id="8_k1r47"]
 [ext_resource type="Resource" uid="uid://c0kf21jvrxk0a" path="res://resources/cards/warrior/gods_boon/hades.tres" id="9_i8wp8"]
 [ext_resource type="Resource" uid="uid://c70jlsvppy1d0" path="res://resources/cards/warrior/gods_boon/hermes.tres" id="10_emhmc"]
@@ -25,11 +25,12 @@
 [ext_resource type="Resource" uid="uid://c1utyurugrhyi" path="res://resources/cards/warrior/hero/odysseus.tres" id="21_4dvnv"]
 [ext_resource type="Resource" uid="uid://ch25cteno6qfm" path="res://resources/cards/warrior/common/hit.tres" id="23_okumc"]
 [ext_resource type="Resource" uid="uid://r53s3kohc8k0" path="res://resources/cards/warrior/common/guard.tres" id="24_2ip6v"]
+[ext_resource type="Resource" uid="uid://bp2ocy4rip78h" path="res://resources/cards/warrior/gods_boon/zeus.tres" id="26_2nwhb"]
 
 [resource]
 script = ExtResource("2_1siwy")
-starting_deck = Array[ExtResource("1_a6qaj")]([ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v")])
+starting_deck = Array[ExtResource("1_a6qaj")]([ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("26_2nwhb"), ExtResource("26_2nwhb")])
 common_cards = Array[ExtResource("1_a6qaj")]([ExtResource("2_v55og"), ExtResource("3_8q21g"), ExtResource("4_2nwhb"), ExtResource("5_rvubs"), ExtResource("6_x5qw7"), ExtResource("7_6kbyg"), ExtResource("8_8q21g")])
 hero_cards = Array[ExtResource("1_a6qaj")]([ExtResource("14_smktl"), ExtResource("15_brfyi"), ExtResource("16_klj1b"), ExtResource("17_r1n0g"), ExtResource("18_r5237"), ExtResource("19_k4tln"), ExtResource("20_srqpi"), ExtResource("21_4dvnv")])
-gods_boon_cards = Array[ExtResource("1_a6qaj")]([ExtResource("8_k1r47"), ExtResource("9_i8wp8"), ExtResource("10_emhmc"), ExtResource("11_5ld4v"), ExtResource("12_2dfa5"), ExtResource("13_ynupk")])
+gods_boon_cards = Array[ExtResource("1_a6qaj")]([ExtResource("8_k1r47"), ExtResource("9_i8wp8"), ExtResource("10_emhmc"), ExtResource("11_5ld4v"), ExtResource("12_2dfa5"), ExtResource("13_ynupk"), ExtResource("26_2nwhb")])
 metadata/_custom_type_script = "uid://ckp8ofhnx14eh"
