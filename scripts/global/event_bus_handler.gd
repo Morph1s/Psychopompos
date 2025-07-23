@@ -8,6 +8,7 @@ signal battle_ended
 signal campfire_finished
 signal end_turn_button_pressed
 signal player_played_attack
+signal player_started_playing_card
 signal set_player_control(value: bool)
 signal open_settings
 signal show_deck_view(deck: Array[CardType])

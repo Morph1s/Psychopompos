@@ -16,6 +16,10 @@ func get_attacked() -> void:
 func played_attack() -> void:
 	pass
 
+## this function is called when the player plays a card, before all the card actions get resolved
+func started_playing_card() -> void:
+	pass
+
 ## this function is called when the amount of stacks changes 
 func changed_stacks(previous, current):
 	if previous == 0:
