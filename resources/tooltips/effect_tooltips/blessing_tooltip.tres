@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://d1qaoswvagn0n"]
 
+[ext_resource type="Texture2D" uid="uid://dm02tagfush2x" path="res://assets/graphics/battle_effects/borderless/effect_blessing_borderless.png" id="1_blk4w"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_mv667"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mv667"]
-size = Vector2(8, 8)
 
 [resource]
 script = ExtResource("1_mv667")
-icon = SubResource("PlaceholderTexture2D_mv667")
-description_pre_value = "BLESSING: Heal 2 hitpoints at start of enteties turn. 50% chance to negate incoming debuffs for"
+icon = ExtResource("1_blk4w")
+description_pre_value = "BLESSING: Heal 2 hitpoints at start of entities turn. 50% chance to negate incoming debuffs for"
 use_value = true
 default_value = 1
 dynamic_plural = true
