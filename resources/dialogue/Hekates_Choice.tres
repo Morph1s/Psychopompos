@@ -6,10 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_i2ndk"]
 script = ExtResource("2_o361c")
-displayed_response = "I choose vitality (lose 15 hp)"
+displayed_response = "I choose vitality (lose 20 hp)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
-3: -15
+4: -20
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -18,7 +18,7 @@ script = ExtResource("2_o361c")
 displayed_response = "I choose power (lose 10 maxHp)"
 next_block = Array[int]([2])
 consequences = Dictionary[int, Variant]({
-4: -10
+6: -15
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -41,7 +41,7 @@ script = ExtResource("2_o361c")
 displayed_response = "Was it worth it? (gain 20 maxHp)"
 next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
-4: 20
+6: 20
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -57,7 +57,7 @@ script = ExtResource("2_o361c")
 displayed_response = "Was it worth it...? (get a random artifact)"
 next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
-6: null
+8: null
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -73,7 +73,7 @@ script = ExtResource("2_o361c")
 displayed_response = "Have my thanks. (restore 10 hp)"
 next_block = Array[int]([4])
 consequences = Dictionary[int, Variant]({
-3: 10
+4: 10
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 

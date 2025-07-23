@@ -26,8 +26,8 @@ var current_encounter: Node = null
 var previous_battle: BattleEncounter
 var is_stage_2: bool = false
 var random_encounter_weights: Dictionary[Encounter.EncounterType, int] = {
-	Encounter.EncounterType.BATTLE: 20,
-	Encounter.EncounterType.SHOP: 10,
+	#Encounter.EncounterType.BATTLE: 20,
+	#Encounter.EncounterType.SHOP: 10,
 	Encounter.EncounterType.DIALOGUE: 70,
 }
 
@@ -138,6 +138,7 @@ func _load_boss_encounter():
 func _load_dialogue_encounter():
 	var dialogue_scene: Dialogue = load("res://scenes/encounters/dialogue.tscn").instantiate()
 	dialogue_scene.ended.connect(_end_encounter)
+	dialogue_scene.player_died.connect(_load_game_over_screen)
 	add_child(dialogue_scene)
 	dialogue_scene.initialize()
 	current_encounter = dialogue_scene
@@ -176,7 +177,7 @@ func _load_random_encounter():
 			print("Loading battle from random encounter")
 			_load_battle_encounter()
 	
-	_adjust_random_encounter_weights(chosen_encounter)
+	#_adjust_random_encounter_weights(chosen_encounter)
 
 func _adjust_random_encounter_weights(type: Encounter.EncounterType) -> void:
 	match type:

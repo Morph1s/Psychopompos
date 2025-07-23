@@ -425,6 +425,7 @@ func _place_encounters():
 				continue
 			
 			var encounter = _choose_weighted_encounter(node)
+			encounter = Encounter.EncounterType.RANDOM
 			
 			match encounter:
 				Encounter.EncounterType.BATTLE:
