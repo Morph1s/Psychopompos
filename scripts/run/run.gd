@@ -23,14 +23,13 @@ func _ready():
 	run_ui.coins.text = str(RunData.player_stats.coins)
 	map.show()
 
+#region Signals
+
+func _on_encounter_handler_load_main_menu() -> void:
+	load_main_menu.emit()
+
 # Uses the EncounterHandler to load the requested encounter
 func _on_map_encounter_selected(encounter_data):
 	encounter_handler.start_encounter(encounter_data)
 
-#region Signals
-func _on_encounter_handler_load_main_menu() -> void:
-	load_main_menu.emit()
-
-func _on_encounter_handler_load_rewards(boss_rewards: bool) -> void:
-	ui_layer.load_battle_rewards(boss_rewards)
 #endregion
