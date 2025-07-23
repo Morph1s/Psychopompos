@@ -18,6 +18,14 @@ func take_damage() -> void:
 func played_attack() -> void:
 	pass
 
+## this function gets called whenever the player draws a card
+func card_drawn() -> void:
+	pass
+
+## this function gets called whenever the player discards a card
+func card_discarded() -> void:
+	pass
+
 ## this function is called when the amount of stacks changes 
 func changed_stacks(previous: int, current: int) -> void:
 	pass
