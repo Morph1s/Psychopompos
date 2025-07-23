@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_eaxvb"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_eaxvb"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_nphnr"]
-[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="6_fai33"]
+[ext_resource type="Texture2D" uid="uid://gpbvpbb5uqlm" path="res://assets/graphics/cards/god/card_god_artemis.png" id="6_p3wa3"]
 
 [sub_resource type="Resource" id="Resource_p3wa3"]
 script = ExtResource("2_eaxvb")
@@ -44,7 +44,7 @@ script = ExtResource("2_6hgtj")
 card_name = "artemis"
 energy_cost = 1
 rarity = 3
-texture = ExtResource("6_fai33")
+texture = ExtResource("6_p3wa3")
 on_play_action = Array[ExtResource("1_td85v")]([SubResource("Resource_p3wa3"), SubResource("Resource_fai33")])
 on_graveyard_action = Array[ExtResource("1_td85v")]([])
 targeted = true
