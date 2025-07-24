@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://d2d78kjng0n26"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_61h6r"]
+[ext_resource type="Texture2D" uid="uid://dm02tagfush2x" path="res://assets/graphics/battle_effects/borderless/effect_blessing_borderless.png" id="1_nf01b"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_n6y6v"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_8it8f"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_mixb5"]
+[ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="4_xmcnv"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="6_f3gvm"]
+[ext_resource type="Resource" uid="uid://csk0d2pxgm3ja" path="res://resources/tooltips/action_tooltips/blessing_action_tooltip.tres" id="8_nyuin"]
+[ext_resource type="Resource" uid="uid://lho2msy4mqs0" path="res://resources/tooltips/action_tooltips/apollo_action_tooltip.tres" id="9_mixb5"]
+
+[sub_resource type="Resource" id="Resource_23a53"]
+script = ExtResource("3_mixb5")
+effect = 9
+effect_value = 2
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[sub_resource type="Resource" id="Resource_55pdb"]
+script = ExtResource("4_xmcnv")
+action_type = 3
+metadata/_custom_type_script = "uid://0budk8al2kwm"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ihmns"]
+size = Vector2(8, 8)
+
+[resource]
+script = ExtResource("2_n6y6v")
+card_name = "apollo"
+energy_cost = 2
+rarity = 3
+texture = ExtResource("6_f3gvm")
+on_play_action = Array[ExtResource("1_61h6r")]([SubResource("Resource_23a53"), SubResource("Resource_55pdb")])
+on_graveyard_action = Array[ExtResource("1_61h6r")]([])
+targeted = false
+first_description_icon = ExtResource("1_nf01b")
+first_description_text_value = "2"
+first_description_text_addon = ""
+second_description_icon = SubResource("PlaceholderTexture2D_ihmns")
+second_description_text_value = ""
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_8it8f")]([ExtResource("8_nyuin"), ExtResource("9_mixb5")])
+card_value = 0
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
