@@ -12,7 +12,7 @@ script = ExtResource("2_6r88f")
 displayed_response = "Take ambrosia (get artifact)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
-5: ExtResource("3_h8lxm")
+7: ExtResource("3_h8lxm")
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -22,7 +22,7 @@ script = ExtResource("2_6r88f")
 displayed_response = "take nectar (get artifact)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
-5: ExtResource("4_f3i8x")
+7: ExtResource("4_f3i8x")
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -32,7 +32,7 @@ script = ExtResource("2_6r88f")
 displayed_response = "drink pomegranate juice (+10 hp)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
-3: 10
+4: 10
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
