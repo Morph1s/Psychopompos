@@ -18,6 +18,7 @@ var effect_scenes: Dictionary = {
 	"DamoklesSword": preload("res://scenes/effects/effect_instances/damokles_sword.tscn"),
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
 	"Blessing": preload("res://scenes/effects/effect_instances/blessing.tscn"),
+	"Marked": preload("res://scenes/effects/effect_instances/marked.tscn"),
 	}
 
 var parent_node: Node2D
@@ -152,9 +153,9 @@ func _on_unit_turn_start() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.start_of_turn()
 
-func _on_unit_get_attacked() -> void:
+func _on_unit_get_attacked(damage_amount: int) -> void:
 	for effect: Effect in effect_collection.get_children():
-		effect.get_attacked()
+		effect.get_attacked(damage_amount)
 
 func _on_unit_take_damage() -> void:
 	for effect: Effect in effect_collection.get_children():

@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf3frkcargbfj"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_fe2uw"]
+[ext_resource type="Script" uid="uid://ro5qiy2l2hj8" path="res://scripts/effects/effect_instances/marked.gd" id="2_8qalg"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_yjn16"]
+[ext_resource type="Resource" uid="uid://0h8pgpxdbjtc" path="res://resources/tooltips/effect_tooltips/marked_tooltip.tres" id="4_4hkb7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yjn16"]
+size = Vector2(10, 10)
+
+[node name="Marked" instance=ExtResource("1_fe2uw")]
+texture = SubResource("PlaceholderTexture2D_yjn16")
+script = ExtResource("2_8qalg")
+effect_name = "Marked"
+type = 1
+stackable = true
+tooltip_data = Array[ExtResource("3_yjn16")]([ExtResource("4_4hkb7")])

@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://dbjk62g5pqak0"]
+
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_at4or"]
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_nnmaq"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_22sfm"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_bf2sj"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_0xfg8"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_ynnqb"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="5_g0dip"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="8_ixe3x"]
+[ext_resource type="Resource" uid="uid://0h8pgpxdbjtc" path="res://resources/tooltips/effect_tooltips/marked_tooltip.tres" id="9_2gp1q"]
+
+[sub_resource type="Resource" id="Resource_at4or"]
+script = ExtResource("2_22sfm")
+damage_stat = 6
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_ixe3x"]
+script = ExtResource("3_ynnqb")
+effect = 10
+effect_value = 1
+target_type = 1
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1ojwf"]
+size = Vector2(8, 8)
+
+[resource]
+script = ExtResource("2_bf2sj")
+card_name = "meleager"
+energy_cost = 1
+rarity = 2
+texture = ExtResource("5_g0dip")
+on_play_action = Array[ExtResource("1_nnmaq")]([SubResource("Resource_at4or"), SubResource("Resource_ixe3x")])
+on_graveyard_action = Array[ExtResource("1_nnmaq")]([])
+targeted = true
+first_description_icon = ExtResource("1_at4or")
+first_description_text_value = "6"
+first_description_text_addon = ""
+second_description_icon = SubResource("PlaceholderTexture2D_1ojwf")
+second_description_text_value = "1"
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_0xfg8")]([ExtResource("8_ixe3x"), ExtResource("9_2gp1q")])
+card_value = 150
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
