@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvietui526r2c"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_j1myj"]
+[ext_resource type="Script" uid="uid://drvng4bnrjyed" path="res://scripts/effects/effect_instances/parry.gd" id="2_mnd2j"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_y6kda"]
+[ext_resource type="Resource" uid="uid://b7c77hqfdli73" path="res://resources/tooltips/effect_tooltips/parry_tooltip.tres" id="4_rqwaw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_y6kda"]
+size = Vector2(10, 10)
+
+[node name="Parry" instance=ExtResource("1_j1myj")]
+texture = SubResource("PlaceholderTexture2D_y6kda")
+script = ExtResource("2_mnd2j")
+effect_name = "Parry"
+tooltip_data = Array[ExtResource("3_y6kda")]([ExtResource("4_rqwaw")])
