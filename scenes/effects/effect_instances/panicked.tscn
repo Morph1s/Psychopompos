@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjd83ysfww5lh"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_ulnpq"]
+[ext_resource type="Script" uid="uid://jgier82fpa6m" path="res://scripts/effects/effect_instances/panicked.gd" id="2_e6pbk"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_e6pbk"]
+[ext_resource type="Resource" uid="uid://s0ctmf4tso6j" path="res://resources/tooltips/effect_tooltips/panicked_tooltip.tres" id="4_f2hax"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_16loy"]
+size = Vector2(10, 10)
+
+[node name="Panicked" instance=ExtResource("1_ulnpq")]
+texture = SubResource("PlaceholderTexture2D_16loy")
+script = ExtResource("2_e6pbk")
+effect_name = "Panicked"
+type = 1
+stackable = true
+player_only = true
+tooltip_data = Array[ExtResource("3_e6pbk")]([ExtResource("4_f2hax")])

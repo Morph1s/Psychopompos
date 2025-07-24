@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6lvfe0e5xg0k"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_j56kl"]
+[ext_resource type="Script" uid="uid://dlybh0axtpn4o" path="res://scripts/effects/effect_instances/rallying_cry.gd" id="2_ebagp"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_tvtvt"]
+[ext_resource type="Resource" uid="uid://cmpyaxvom1yt7" path="res://resources/tooltips/effect_tooltips/rallying_cry_tooltip.tres" id="4_fwo53"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tvtvt"]
+size = Vector2(10, 10)
+
+[node name="RallyingCry" instance=ExtResource("1_j56kl")]
+texture = SubResource("PlaceholderTexture2D_tvtvt")
+script = ExtResource("2_ebagp")
+effect_name = "Rallying Cry"
+tooltip_data = Array[ExtResource("3_tvtvt")]([ExtResource("4_fwo53")])

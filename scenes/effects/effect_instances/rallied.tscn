@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://btwv4gjcfgrfp"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_wk2rn"]
+[ext_resource type="Script" uid="uid://c2jajo1w6kvm2" path="res://scripts/effects/effect_instances/rallied.gd" id="2_gvuh0"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_gvuh0"]
+[ext_resource type="Resource" uid="uid://e8bcv4qwe0j4" path="res://resources/tooltips/effect_tooltips/rallied_tooltip.tres" id="4_0f5oe"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0f5oe"]
+size = Vector2(10, 10)
+
+[node name="Rallied" instance=ExtResource("1_wk2rn")]
+texture = SubResource("PlaceholderTexture2D_0f5oe")
+script = ExtResource("2_gvuh0")
+effect_name = "Rallied"
+stackable = true
+tooltip_data = Array[ExtResource("3_gvuh0")]([ExtResource("4_0f5oe")])
