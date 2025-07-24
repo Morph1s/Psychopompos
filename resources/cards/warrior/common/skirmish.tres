@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=14 format=3 uid="uid://bpol7osn2bpw1"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_gpfv8"]
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="1_udwov"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_jf2px"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_4xmr4"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="3_324a7"]
+[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="4_b774v"]
+[ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="6_r24bh"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="7_nlnot"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="9_b774v"]
+[ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/action_tooltips/block_tooltip.tres" id="10_r24bh"]
+
+[sub_resource type="Resource" id="Resource_i4d4y"]
+script = ExtResource("3_324a7")
+damage_stat = 2
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_h0ce4"]
+script = ExtResource("3_324a7")
+damage_stat = 2
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_c25pc"]
+script = ExtResource("4_b774v")
+block_stat = 3
+target_type = 0
+metadata/_custom_type_script = "uid://riw8fvdo6pdh"
+
+[resource]
+script = ExtResource("2_jf2px")
+card_name = "skirmish"
+energy_cost = 1
+rarity = 1
+texture = ExtResource("7_nlnot")
+on_play_action = Array[ExtResource("1_gpfv8")]([SubResource("Resource_i4d4y"), SubResource("Resource_h0ce4"), SubResource("Resource_c25pc")])
+on_graveyard_action = Array[ExtResource("1_gpfv8")]([])
+targeted = true
+first_description_icon = ExtResource("1_udwov")
+first_description_text_value = "2"
+first_description_text_addon = "*2"
+second_description_icon = ExtResource("6_r24bh")
+second_description_text_value = "3"
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_4xmr4")]([ExtResource("9_b774v"), ExtResource("10_r24bh")])
+card_value = 59
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
