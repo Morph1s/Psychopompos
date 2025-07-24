@@ -18,6 +18,7 @@ var effect_scenes: Dictionary = {
 	"DamoklesSword": preload("res://scenes/effects/effect_instances/damokles_sword.tscn"),
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
 	"Blessing": preload("res://scenes/effects/effect_instances/blessing.tscn"),
+	"Caeneus": preload("res://scenes/effects/effect_instances/caeneus.tscn"),
 	}
 
 var parent_node: Node2D

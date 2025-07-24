@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://cay7f486fiqq8"]
+
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_u341d"]
+[ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="1_wd676"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_xwwjr"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_2y11w"]
+[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="3_8l6bi"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="4_p6uos"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="6_leils"]
+[ext_resource type="Resource" uid="uid://c8mfsxfya7fu3" path="res://resources/tooltips/action_tooltips/block_tooltip.tres" id="8_kig5q"]
+[ext_resource type="Resource" uid="uid://wy0jta8flmg" path="res://resources/tooltips/effect_tooltips/caeneus_tooltip.tres" id="9_vd30h"]
+
+[sub_resource type="Resource" id="Resource_062ns"]
+script = ExtResource("3_8l6bi")
+block_stat = 3
+target_type = 0
+metadata/_custom_type_script = "uid://riw8fvdo6pdh"
+
+[sub_resource type="Resource" id="Resource_4cikv"]
+script = ExtResource("4_p6uos")
+effect = 10
+effect_value = 1
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p22w6"]
+size = Vector2(8, 8)
+
+[resource]
+script = ExtResource("2_xwwjr")
+card_name = "caeneus"
+energy_cost = 1
+rarity = 2
+texture = ExtResource("6_leils")
+on_play_action = Array[ExtResource("1_u341d")]([SubResource("Resource_062ns"), SubResource("Resource_4cikv")])
+on_graveyard_action = Array[ExtResource("1_u341d")]([])
+targeted = false
+first_description_icon = ExtResource("1_wd676")
+first_description_text_value = "3"
+first_description_text_addon = ""
+second_description_icon = SubResource("PlaceholderTexture2D_p22w6")
+second_description_text_value = "1"
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_2y11w")]([ExtResource("8_kig5q"), ExtResource("9_vd30h")])
+card_value = 147
+metadata/_custom_type_script = "uid://4vek3hvofbhy"

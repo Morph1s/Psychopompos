@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://wy0jta8flmg"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_i1abc"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_11hhp"]
+size = Vector2(10, 10)
+
+[resource]
+script = ExtResource("2_i1abc")
+icon = SubResource("PlaceholderTexture2D_11hhp")
+description_pre_value = "CAENEUS: gain"
+use_value = true
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = "more block each time you apply block"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

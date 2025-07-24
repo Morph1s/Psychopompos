@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca8y75vqqoyg7"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_ftbxb"]
+[ext_resource type="Script" uid="uid://dpnahber8373h" path="res://scripts/effects/effect_instances/caeneus.gd" id="2_cl3iy"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_cl3iy"]
+[ext_resource type="Resource" uid="uid://wy0jta8flmg" path="res://resources/tooltips/effect_tooltips/caeneus_tooltip.tres" id="4_44qlf"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7hd7j"]
+size = Vector2(10, 10)
+
+[node name="Caeneus" instance=ExtResource("1_ftbxb")]
+texture = SubResource("PlaceholderTexture2D_7hd7j")
+script = ExtResource("2_cl3iy")
+effect_name = "Caeneus"
+stackable = true
+tooltip_data = Array[ExtResource("3_cl3iy")]([ExtResource("4_44qlf")])
