@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardLibrary" load_steps=27 format=3 uid="uid://b0uaatd6pxb0u"]
+[gd_resource type="Resource" script_class="CardLibrary" load_steps=28 format=3 uid="uid://b0uaatd6pxb0u"]
 
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="1_a6qaj"]
 [ext_resource type="Script" uid="uid://ckp8ofhnx14eh" path="res://scripts/custom_resources/card_library.gd" id="2_1siwy"]
@@ -26,11 +26,12 @@
 [ext_resource type="Resource" uid="uid://c1utyurugrhyi" path="res://resources/cards/warrior/hero/odysseus.tres" id="21_4dvnv"]
 [ext_resource type="Resource" uid="uid://ch25cteno6qfm" path="res://resources/cards/warrior/common/hit.tres" id="23_okumc"]
 [ext_resource type="Resource" uid="uid://r53s3kohc8k0" path="res://resources/cards/warrior/common/guard.tres" id="24_2ip6v"]
+[ext_resource type="Resource" uid="uid://bpol7osn2bpw1" path="res://resources/cards/warrior/common/skirmish.tres" id="27_rvubs"]
 
 [resource]
 script = ExtResource("2_1siwy")
 starting_deck = Array[ExtResource("1_a6qaj")]([ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("23_okumc"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v"), ExtResource("24_2ip6v")])
-common_cards = Array[ExtResource("1_a6qaj")]([ExtResource("2_v55og"), ExtResource("3_8q21g"), ExtResource("4_2nwhb"), ExtResource("5_rvubs"), ExtResource("6_x5qw7"), ExtResource("7_6kbyg"), ExtResource("8_8q21g")])
+common_cards = Array[ExtResource("1_a6qaj")]([ExtResource("2_v55og"), ExtResource("3_8q21g"), ExtResource("4_2nwhb"), ExtResource("5_rvubs"), ExtResource("6_x5qw7"), ExtResource("7_6kbyg"), ExtResource("8_8q21g"), ExtResource("27_rvubs")])
 hero_cards = Array[ExtResource("1_a6qaj")]([ExtResource("14_smktl"), ExtResource("15_brfyi"), ExtResource("16_klj1b"), ExtResource("17_r1n0g"), ExtResource("18_r5237"), ExtResource("19_k4tln"), ExtResource("20_srqpi"), ExtResource("21_4dvnv")])
 gods_boon_cards = Array[ExtResource("1_a6qaj")]([ExtResource("8_k1r47"), ExtResource("9_i8wp8"), ExtResource("10_emhmc"), ExtResource("11_5ld4v"), ExtResource("12_2dfa5"), ExtResource("13_ynupk"), ExtResource("15_2nwhb")])
 metadata/_custom_type_script = "uid://ckp8ofhnx14eh"
