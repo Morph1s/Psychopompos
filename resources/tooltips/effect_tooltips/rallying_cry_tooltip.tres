@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://cmpyaxvom1yt7"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_kon74"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pj3qx"]
+
+[resource]
+script = ExtResource("1_kon74")
+icon = SubResource("PlaceholderTexture2D_pj3qx")
+description_pre_value = "RALLYING CRY: All enemies gain 5 block and 1 rallied at the start of the next turn"
+use_value = true
+default_value = 1
+dynamic_plural = true
+hide_value_when_singular = false
+singular = "turn"
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

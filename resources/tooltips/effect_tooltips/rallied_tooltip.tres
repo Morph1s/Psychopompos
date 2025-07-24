@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://e8bcv4qwe0j4"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_u70ua"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pj3qx"]
+
+[resource]
+script = ExtResource("2_u70ua")
+icon = SubResource("PlaceholderTexture2D_pj3qx")
+description_pre_value = "RALLIED: deal 25% more damage for"
+use_value = true
+default_value = 1
+dynamic_plural = true
+hide_value_when_singular = false
+singular = "turn"
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
