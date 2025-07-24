@@ -3,7 +3,7 @@ extends Node2D
 
 signal load_main_menu
 
-@onready var ui_layer: CanvasLayer = $UILayer
+@onready var ui_layer: UILayer = $UILayer
 @onready var run_ui: RunUI = $UILayer/RunUI
 @onready var encounter_handler = $EncounterHandler
 @onready var map = $UILayer/Map
@@ -31,5 +31,8 @@ func _on_encounter_handler_load_main_menu() -> void:
 # Uses the EncounterHandler to load the requested encounter
 func _on_map_encounter_selected(encounter_data):
 	encounter_handler.start_encounter(encounter_data)
+
+func _on_encounter_handler_load_rewards(boss_rewards: bool) -> void:
+	ui_layer.load_rewards(boss_rewards)
 
 #endregion

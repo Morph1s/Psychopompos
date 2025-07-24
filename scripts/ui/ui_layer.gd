@@ -1,3 +1,4 @@
+class_name UILayer
 extends CanvasLayer
 
 @onready var map: Map = $Map
@@ -106,7 +107,7 @@ func _on_eventbus_card_picked_for_deck_add(cards: Array[CardType], positions: Ar
 		card_visual.animate_card_collection(deck_icon.global_position)
 		await get_tree().create_timer(0.2).timeout
 
-func _on_encounter_handler_load_rewards(boss_rewards: bool) -> void:
+func load_rewards(boss_rewards: bool) -> void:
 	var battle_rewards: BattleRewards = BATTLE_REWARDS.instantiate()
 	
 	if boss_rewards:

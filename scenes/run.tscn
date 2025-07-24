@@ -40,4 +40,4 @@ script = ExtResource("7_nafsq")
 [connection signal="hidden" from="UILayer/Map" to="UILayer" method="_on_map_hidden"]
 [connection signal="close_deck_view" from="UILayer/DeckView" to="UILayer" method="_close_deck_view"]
 [connection signal="load_main_menu" from="EncounterHandler" to="." method="_on_encounter_handler_load_main_menu"]
-[connection signal="load_rewards" from="EncounterHandler" to="UILayer" method="_on_encounter_handler_load_rewards"]
+[connection signal="load_rewards" from="EncounterHandler" to="." method="_on_encounter_handler_load_rewards"]
