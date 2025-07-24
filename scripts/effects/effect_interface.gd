@@ -104,6 +104,10 @@ func end_of_turn() -> void:
 func effect_applied(stacks_added:int, effect_added:Effect) -> void:
 	pass
 
+## this function is called when the unit gains block
+func block_gained(value: int) -> void:
+	pass
+
 func _on_area_2d_mouse_entered():
 	tooltip.show()
 

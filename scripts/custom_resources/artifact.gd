@@ -11,6 +11,10 @@ extends Resource
 @export var effects_active: bool
 @export var effect: EffectAction.EffectType
 
+@export_group("Effect at start of turn")
+@export var start_of_turn_effects_active: bool
+@export var start_of_turn_effect: EffectAction.EffectType
+
 @export_group("Effect on pickup")
 @export var pickup_active: bool
 @export_enum("None", "+Max HP", "+Max Energy", "Card Draw") var pickup_effect: int = 0

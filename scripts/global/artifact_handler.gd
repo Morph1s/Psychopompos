@@ -11,6 +11,7 @@ var available_artifacts: Array[Artifact] = [
 	preload("res://resources/artifacts/hermes_winged_boots.tres"),
 	preload("res://resources/artifacts/nectar.tres"),
 	preload("res://resources/artifacts/twig_of_lethe.tres"),
+	preload("res://resources/artifacts/nemean_hide.tres"),
 ]
 var selected_artifacts: Array[Artifact] = []
 
@@ -24,6 +25,7 @@ var effect_names: Dictionary = {
 	EffectAction.EffectType.VIGILANT: "Vigilant",
 	EffectAction.EffectType.WARRIORS_FURRY: "WarriorsFury",
 	EffectAction.EffectType.WOUNDED: "Wounded",
+	EffectAction.EffectType.NEMEAN_HIDE: "NemeanHide",
 }
 
 
@@ -60,3 +62,9 @@ func _on_event_bus_battle_started() -> void:
 	for artifact in selected_artifacts:
 		if artifact.effects_active:
 			player_effect_handler.apply_effect(effect_names[artifact.effect], artifact.amount)
+
+func _on_player_start_turn() -> void:
+	var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler
+	for artifact in selected_artifacts:
+		if artifact.start_of_turn_effects_active:
+			player_effect_handler.apply_effect(effect_names[artifact.start_of_turn_effect], artifact.amount)

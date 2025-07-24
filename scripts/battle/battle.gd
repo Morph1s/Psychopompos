@@ -41,6 +41,7 @@ func _on_player_start_turn_choose_enemy_intents() -> void:
 
 func _on_player_start_turn_player_starts_turn() -> void:
 	player_character.start_of_turn()
+	ArtifactHandler._on_player_start_turn()
 
 func _on_player_end_turn_player_ends_turn() -> void:
 	player_character.end_of_turn()
