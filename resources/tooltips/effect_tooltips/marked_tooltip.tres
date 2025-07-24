@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://0h8pgpxdbjtc"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_5hekv"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gov5h"]
+size = Vector2(10, 10)
+
+[resource]
+script = ExtResource("2_5hekv")
+icon = SubResource("PlaceholderTexture2D_gov5h")
+description_pre_value = "MARKED: unit receives double damage the next"
+use_value = true
+default_value = 1
+dynamic_plural = true
+hide_value_when_singular = true
+singular = "time"
+description_after_value = "it gets attacked"
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

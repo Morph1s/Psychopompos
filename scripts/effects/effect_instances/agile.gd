@@ -10,7 +10,7 @@ func _ready() -> void:
 	EventBusHandler.cards_drawn.connect(_on_eventhandler_cards_drawn)
 
 ## this function is called when the entity was attacked
-func get_attacked() -> void:
+func get_attacked(amount: int) -> void:
 	pass
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack

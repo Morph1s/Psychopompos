@@ -7,7 +7,7 @@ extends Effect
 # implement all functions relevant for your effect
 
 ## this function is called when the entity was attacked
-func get_attacked() -> void:
+func get_attacked(amount: int) -> void:
 	pass
 
 ## this function is called when the entity takes damage that is impacted by block

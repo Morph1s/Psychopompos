@@ -76,7 +76,7 @@ func gain_block(amount: int) -> void:
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
-	effect_handler._on_unit_get_attacked()
+	effect_handler._on_unit_get_attacked(damage_amount)
 
 func resolve_intent() -> void:
 	var actions: Array[Action] = stats.actions[intent].action_catalogue
