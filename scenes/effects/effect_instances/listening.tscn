@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqf4naerwimum"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_ym8s6"]
+[ext_resource type="Script" uid="uid://djebsrimjr0yg" path="res://scripts/effects/effect_instances/listening.gd" id="2_0mghe"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_102nt"]
+[ext_resource type="Resource" uid="uid://ckolcfs6seedw" path="res://resources/tooltips/effect_tooltips/listening_tooltip.tres" id="4_6cqa6"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_102nt"]
+size = Vector2(10, 10)
+
+[node name="Listening" instance=ExtResource("1_ym8s6")]
+texture = SubResource("PlaceholderTexture2D_102nt")
+script = ExtResource("2_0mghe")
+effect_name = "Listening"
+type = 1
+stackable = true
+tooltip_data = Array[ExtResource("3_102nt")]([ExtResource("4_6cqa6")])

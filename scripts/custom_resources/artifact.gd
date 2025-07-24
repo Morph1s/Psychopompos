@@ -10,6 +10,7 @@ extends Resource
 @export_group("Effect at start of combat")
 @export var effects_active: bool
 @export var effect: EffectAction.EffectType
+@export var target_type: TargetedAction.TargetType
 
 @export_group("Effect on pickup")
 @export var pickup_active: bool

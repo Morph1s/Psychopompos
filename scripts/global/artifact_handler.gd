@@ -11,6 +11,7 @@ var available_artifacts: Array[Artifact] = [
 	preload("res://resources/artifacts/hermes_winged_boots.tres"),
 	preload("res://resources/artifacts/nectar.tres"),
 	preload("res://resources/artifacts/twig_of_lethe.tres"),
+	preload("res://resources/artifacts/lyre_of_orpheus.tres"),
 ]
 var selected_artifacts: Array[Artifact] = []
 
@@ -24,6 +25,7 @@ var effect_names: Dictionary = {
 	EffectAction.EffectType.VIGILANT: "Vigilant",
 	EffectAction.EffectType.WARRIORS_FURRY: "WarriorsFury",
 	EffectAction.EffectType.WOUNDED: "Wounded",
+	EffectAction.EffectType.LISTENING: "Listening",
 }
 
 
@@ -56,7 +58,13 @@ func select_artifact(artifact: Artifact) -> void:
 				RunData.altered_values[RunData.AlteredValue.CAMPFIRE_HEAL] += artifact.amount
 
 func _on_event_bus_battle_started() -> void:
-	var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler
 	for artifact in selected_artifacts:
 		if artifact.effects_active:
-			player_effect_handler.apply_effect(effect_names[artifact.effect], artifact.amount)
+			match artifact.target_type:
+				TargetedAction.TargetType.PLAYER:
+					var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler
+					player_effect_handler.apply_effect(effect_names[artifact.effect], artifact.amount)
+				TargetedAction.TargetType.ENEMY_ALL_INCLUSIVE:
+					for enemy: Enemy in get_tree().get_nodes_in_group("enemy"):
+						var enemy_effect_handler: EffectHandler = enemy.effect_handler
+						enemy_effect_handler.apply_effect(effect_names[artifact.effect], artifact.amount)
