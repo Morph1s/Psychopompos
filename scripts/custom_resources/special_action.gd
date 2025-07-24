@@ -5,6 +5,7 @@ enum SpecialEffects {
 	ERIS,
 	THANATOS,
 	POSEIDON,
+	APOLLO,
 }
 
 @export var action_type: SpecialEffects
@@ -29,6 +30,8 @@ func resolve(targets: Array[Node2D]) -> void:
 			await _resolve_thanatos()
 		SpecialEffects.POSEIDON:
 			await _resolve_poseidon()
+		SpecialEffects.APOLLO:
+			await _resolve_apollo()
 
 ## discard 1-5 random cards, then draw 1-5 cards
 func _resolve_eris() -> void:
@@ -79,3 +82,7 @@ func _resolve_poseidon() -> void:
 	
 	# add actions to the card
 	card_handler.played_card.card_type.on_play_action.append_array(actions_to_be_resolved)
+
+## heal 10 hp
+func _resolve_apollo() -> void:
+	player.stats.current_hitpoints += 10
