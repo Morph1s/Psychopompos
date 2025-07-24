@@ -5,7 +5,6 @@ extends Node
 
 signal battle_started
 signal battle_ended
-signal campfire_finished
 signal end_turn_button_pressed
 signal player_played_attack
 signal set_player_control(value: bool)
@@ -18,9 +17,8 @@ signal cards_drawn
 signal card_selected(cost: int)
 signal card_deselected
 signal card_piles_card_count_changed(draw_pile_card_count: int, discard_pile_card_count: int)
-signal dialogue_finished
-signal shop_finished
 signal card_picked_for_deck_add(cards: Array[CardType], positions: Array[Vector2])
+signal encounter_finished
 
 
 ## disposes all connections of all events

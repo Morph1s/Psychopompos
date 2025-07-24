@@ -1,7 +1,6 @@
 class_name BattleRewards
 extends Control
 
-signal finished_selecting
 
 const CARDS_PER_CARD_REWARD: int = 3
 # common reward constants for balancing
@@ -88,7 +87,7 @@ func _on_reward_button_reward_selected(type: RewardType, count: int, button: Bat
 
 func _on_skip_rewards_button_up() -> void:
 	print("skipped rewards")
-	finished_selecting.emit()
+	EventBusHandler.encounter_finished.emit()
 	queue_free()
 
 func _on_rewards_container_child_exiting_tree(_node):
@@ -96,7 +95,7 @@ func _on_rewards_container_child_exiting_tree(_node):
 	# because the last child has not left the scene tree at the point of calling this signal
 	if rewards_container.get_child_count() == 1:
 		print("all rewards selected")
-		finished_selecting.emit()
+		EventBusHandler.encounter_finished.emit()
 		queue_free()
 
 
