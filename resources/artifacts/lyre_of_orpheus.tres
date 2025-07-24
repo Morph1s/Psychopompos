@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=6 format=3 uid="uid://bxi4ekt8rff2k"]
+
+[ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_8654i"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_6w0er"]
+[ext_resource type="Texture2D" uid="uid://b3ng3ts2kyhg" path="res://assets/graphics/relics/relic_lyre_of_orpheous.png" id="2_gf5us"]
+[ext_resource type="Resource" uid="uid://cb1q1qvm1edwx" path="res://resources/tooltips/artifact_tooltips/lyre_of_orpheus_tooltip.tres" id="4_tl8qf"]
+[ext_resource type="Resource" uid="uid://ckolcfs6seedw" path="res://resources/tooltips/effect_tooltips/listening_tooltip.tres" id="5_fgho6"]
+
+[resource]
+script = ExtResource("1_8654i")
+name = "LYRE OF ORPHEUS"
+texture = ExtResource("2_gf5us")
+amount = 2
+tooltip = Array[ExtResource("2_6w0er")]([ExtResource("4_tl8qf"), ExtResource("5_fgho6")])
+effects_active = true
+effect = 10
+target_type = 2
+pickup_active = false
+pickup_effect = 0
+changes_active = false
+changed_value = 0
+metadata/_custom_type_script = "uid://booqawgjhy2ac"
