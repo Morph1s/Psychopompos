@@ -147,10 +147,12 @@ func _on_effect_remove_effect(target: Effect) -> void:
 func _on_unit_turn_end() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.end_of_turn()
+		await get_tree().create_timer(0.1).timeout
 
 func _on_unit_turn_start() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.start_of_turn()
+		await get_tree().create_timer(0.1).timeout
 
 func _on_unit_get_attacked() -> void:
 	for effect: Effect in effect_collection.get_children():

@@ -7,4 +7,4 @@ func enter():
 	pass
 
 func exit():
-	pass	# cleanup logic (disconnecting signals, stopping timers, etc.)
+	pass

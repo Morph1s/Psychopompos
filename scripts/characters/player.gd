@@ -30,10 +30,10 @@ func gain_block(amount: int) -> void:
 func start_of_turn() -> void:
 	stats.current_energy = stats.maximum_energy
 	stats.block = 0
-	effect_handler._on_unit_turn_start()
+	await effect_handler._on_unit_turn_start()
 
 func end_of_turn() -> void:
-	effect_handler._on_unit_turn_end()
+	await effect_handler._on_unit_turn_end()
 
 func initialize() -> void:
 	# Connecting Signals
