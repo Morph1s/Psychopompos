@@ -3,13 +3,17 @@ extends State
 
 signal enemy_starts_turn
 
+
+func _ready() -> void:
+	EventBusHandler.enemies_start_of_turn_resolved.connect(_on_event_bus_handle_enemies_start_of_turn_resolved)
+
 func enter():
 	print("Entered EnemyStartTurn")
-	# 1. resolve enemy start of turn effects
+	# resolve enemy start of turn effects
 	enemy_starts_turn.emit()
-	# 2. enter state enemy_turn
-	await get_tree().create_timer(1.0).timeout
-	state_machine.transition_to("EnemyTurn")
 
 func exit():
 	print("Exited EnemyStartTurn")
+
+func _on_event_bus_handle_enemies_start_of_turn_resolved():
+	state_machine.transition_to("EnemyTurn")
