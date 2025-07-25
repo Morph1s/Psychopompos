@@ -5,7 +5,7 @@ signal enemy_ends_turn
 
 
 func _ready() -> void:
-	EventBusHandler.enemies_end_of_turn_resolved.connect(_on_event_bus_handler_enemies_end_of_turn_resolved)
+	EventBusHandler.enemies_end_of_turn_resolved.connect(_on_event_bus_enemies_end_of_turn_resolved)
 
 func enter():
 	print("Entered EnemyEndTurn")
@@ -15,5 +15,5 @@ func enter():
 func exit():
 	print("Exited EnemyEndTurn")
 
-func _on_event_bus_handler_enemies_end_of_turn_resolved():
+func _on_event_bus_enemies_end_of_turn_resolved():
 	state_machine.transition_to("PlayerStartTurn")

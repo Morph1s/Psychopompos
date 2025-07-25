@@ -5,7 +5,7 @@ signal enemy_starts_turn
 
 
 func _ready() -> void:
-	EventBusHandler.enemies_start_of_turn_resolved.connect(_on_event_bus_handle_enemies_start_of_turn_resolved)
+	EventBusHandler.enemies_start_of_turn_resolved.connect(_on_event_bus_enemies_start_of_turn_resolved)
 
 func enter():
 	print("Entered EnemyStartTurn")
@@ -15,5 +15,5 @@ func enter():
 func exit():
 	print("Exited EnemyStartTurn")
 
-func _on_event_bus_handle_enemies_start_of_turn_resolved():
+func _on_event_bus_enemies_start_of_turn_resolved():
 	state_machine.transition_to("EnemyTurn")
