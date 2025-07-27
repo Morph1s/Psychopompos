@@ -104,6 +104,9 @@ func end_of_turn() -> void:
 func effect_applied(stacks_added:int, effect_added:Effect) -> void:
 	pass
 
+func player_pre_attack_action(all_enemies: bool) -> void:
+	pass
+
 func _on_area_2d_mouse_entered():
 	tooltip.show()
 
