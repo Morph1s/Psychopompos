@@ -6,11 +6,6 @@ extends Node
 signal battle_started
 signal battle_ended
 signal end_turn_button_pressed
-signal player_start_of_turn_resolved
-signal player_end_of_turn_resolved
-signal enemies_start_of_turn_resolved
-signal enemies_turn_resolved
-signal enemies_end_of_turn_resolved
 signal player_played_attack
 signal set_player_control(value: bool)
 signal open_settings
@@ -39,18 +34,3 @@ func clear_all_battle_events() -> void:
 	
 	for function in card_piles_card_count_changed.get_connections():
 		card_piles_card_count_changed.disconnect(function["callable"])
-	
-	for function in player_start_of_turn_resolved.get_connections():
-		player_start_of_turn_resolved.disconnect(function["callable"])
-	
-	for function in player_end_of_turn_resolved.get_connections():
-		player_end_of_turn_resolved.disconnect(function["callable"])
-	
-	for function in enemies_start_of_turn_resolved.get_connections():
-		enemies_start_of_turn_resolved.disconnect(function["callable"])
-	
-	for function in enemies_turn_resolved.get_connections():
-		enemies_turn_resolved.disconnect(function["callable"])
-	
-	for function in enemies_end_of_turn_resolved.get_connections():
-		enemies_end_of_turn_resolved.disconnect(function["callable"])

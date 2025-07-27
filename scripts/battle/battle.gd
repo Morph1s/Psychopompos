@@ -37,12 +37,12 @@ func _on_player_start_turn_player_starts_turn() -> void:
 	enemy_handler.choose_intent()
 	await player_character.start_of_turn()
 	await card_handler.draw_cards(RunData.player_stats.card_draw_amount)
-	EventBusHandler.player_start_of_turn_resolved.emit()
+	state_machine.transition_to("Idle")
 
 func _on_player_end_turn_player_ends_turn() -> void:
 	await player_character.end_of_turn()
 	await card_handler.discard_hand()
-	EventBusHandler.player_end_of_turn_resolved.emit()
+	state_machine.transition_to("EnemyStartTurn")
 
 func _on_idle_entered_idle():
 	card_handler.player_turn = true
@@ -56,17 +56,17 @@ func _on_idle_exited_idle():
 
 func _on_enemy_turn_resolve_enemy_intents() -> void:
 	await enemy_handler.resolve_intent()
-	EventBusHandler.enemies_turn_resolved.emit()
+	state_machine.transition_to("EnemyEndTurn")
 
 func _on_enemy_start_turn_enemy_starts_turn() -> void:
 	for enemy in enemy_handler.enemies:
 		await enemy.start_of_turn()
-	EventBusHandler.enemies_start_of_turn_resolved.emit()
+	state_machine.transition_to("EnemyTurn")
 
 func _on_enemy_end_turn_enemy_ends_turn() -> void:
 	for enemy in enemy_handler.enemies:
 		await enemy.end_of_turn()
-	EventBusHandler.enemies_end_of_turn_resolved.emit()
+	state_machine.transition_to("PlayerStartTurn")
 
 #endregion
 
