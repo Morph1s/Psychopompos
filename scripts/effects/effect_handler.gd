@@ -18,6 +18,7 @@ var effect_scenes: Dictionary = {
 	"DamoklesSword": preload("res://scenes/effects/effect_instances/damokles_sword.tscn"),
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
 	"Blessing": preload("res://scenes/effects/effect_instances/blessing.tscn"),
+	"AchillesPride": preload("res://scenes/effects/effect_instances/achilles_pride.tscn"),
 	}
 
 var parent_node: Node2D
@@ -164,7 +165,12 @@ func _on_unit_played_attack() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.played_attack()
 
+func _on_player_pre_attack_action(all_enemies: bool) -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.player_pre_attack_action(all_enemies)
+
 func _on_effect_applied(stack_count:int, applied_effect:Effect) -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.effect_applied(stack_count,applied_effect)
+
 #endregion

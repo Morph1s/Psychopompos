@@ -163,6 +163,8 @@ func play(target_id: int = -1) -> void:
 	for action in actions:
 		
 		if action is TargetedAction:
+			if action is AttackAction:
+				get_tree().get_first_node_in_group("player").effect_handler._on_player_pre_attack_action(action.target_type == TargetedAction.TargetType.ENEMY_ALL_INCLUSIVE)
 			await action.resolve(_get_targets(action.target_type, target_id))
 		elif action is CardManipulationAction:
 			await action.resolve([get_tree().get_first_node_in_group("card_piles")])

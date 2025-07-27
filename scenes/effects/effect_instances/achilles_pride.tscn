@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://die4pw2onqkoy"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_5wvmw"]
+[ext_resource type="Script" uid="uid://cf6soo0gj5pxr" path="res://scripts/effects/effect_instances/achilles_pride.gd" id="2_qbhrn"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5wvmw"]
+size = Vector2(10, 10)
+
+[node name="AchillesPride" instance=ExtResource("1_5wvmw")]
+texture = SubResource("PlaceholderTexture2D_5wvmw")
+script = ExtResource("2_qbhrn")
+effect_name = "Achilles Pride"
+stackable = true
+player_only = true
