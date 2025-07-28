@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://gsab2qn21okq"
 
 [sub_resource type="Resource" id="Resource_fai33"]
 script = ExtResource("3_nphnr")
-effect = 9
+effect = 10
 effect_value = 1
 target_type = 1
 metadata/_custom_type_script = "uid://2e4l2jfud28l"
@@ -40,4 +40,5 @@ second_description_icon = ExtResource("6_fai33")
 second_description_text_value = ""
 second_description_text_addon = ""
 tooltips = Array[ExtResource("3_eaxvb")]([ExtResource("9_epldi"), ExtResource("10_epldi")])
+card_value = 0
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

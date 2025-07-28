@@ -10,5 +10,6 @@
 texture = ExtResource("2_3n50m")
 script = ExtResource("2_gieck")
 effect_name = "Artemis"
+type = 1
 stackable = true
 tooltip_data = Array[ExtResource("3_bkk14")]([ExtResource("5_ea28o")])
