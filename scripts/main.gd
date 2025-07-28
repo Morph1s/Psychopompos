@@ -5,12 +5,16 @@ const MAIN_MENU: PackedScene = preload("res://scenes/ui/main_menu.tscn")
 
 @onready var pause_menu_layer = $PauseMenuLayer
 @onready var close_game_confirmation = $CloseGameConfirmation
+@onready var abandon_run_confirmation: CanvasLayer = $AbandonRunConfirmation
+
+
 
 var loaded_scene: Node
 
 ## called on starting the game
 func _ready() -> void:
 	_load_main_menu_scene()
+	abandon_run_confirmation.abandon_run_confirmed.connect( _return_to_main_menu)
 	EventBusHandler.open_settings.connect(_open_settings)
 	ArtifactHandler.initialize()
 
@@ -50,11 +54,15 @@ func _load_main_menu_scene() -> void:
 func _request_closing_game() -> void:
 	close_game_confirmation.ask_for_exit_confirmation()
 
+func _return_to_main_menu() -> void:
+	abandon_run_confirmation.hide()
+	_load_main_menu_scene()
+
 func _on_pause_menu_layer_exit_button_pressed() -> void:
 	_request_closing_game()
 
 func _on_pause_menu_layer_main_menu_button_pressed() -> void:
-	_load_main_menu_scene()
+	abandon_run_confirmation.ask_abandon_run_confirmation()
 
 func _on_main_menu_options_button_pressed() -> void:
 	pause_menu_layer.open(PauseMenu.OpenFrom.MAIN_MENU)
