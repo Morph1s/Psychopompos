@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="2_eaxvb"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_eaxvb"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_nphnr"]
+[ext_resource type="Texture2D" uid="uid://bgvjpb7rpb1yl" path="res://assets/graphics/battle_effects/borderless/effect_artemis_borderless.png" id="6_fai33"]
 [ext_resource type="Texture2D" uid="uid://gpbvpbb5uqlm" path="res://assets/graphics/cards/god/card_god_artemis.png" id="6_p3wa3"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="9_epldi"]
+[ext_resource type="Resource" uid="uid://cwdvfeu0iti7i" path="res://resources/tooltips/action_tooltips/artemis_action_tooltip.tres" id="10_epldi"]
 
 [sub_resource type="Resource" id="Resource_p3wa3"]
 script = ExtResource("2_eaxvb")
@@ -16,28 +19,10 @@ metadata/_custom_type_script = "uid://gsab2qn21okq"
 
 [sub_resource type="Resource" id="Resource_fai33"]
 script = ExtResource("3_nphnr")
-effect = 1
+effect = 9
 effect_value = 1
 target_type = 1
 metadata/_custom_type_script = "uid://2e4l2jfud28l"
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_px0wn"]
-size = Vector2(8, 8)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p3wa3"]
-size = Vector2(8, 8)
-
-[sub_resource type="Resource" id="Resource_px0wn"]
-script = ExtResource("3_eaxvb")
-icon = SubResource("PlaceholderTexture2D_p3wa3")
-description_pre_value = "ARTEMIS: Deal 8 damage. Every time you draw a card this turn, deal 5 damage to the same enemy."
-use_value = false
-default_value = 1
-dynamic_plural = false
-hide_value_when_singular = false
-singular = ""
-description_after_value = ""
-metadata/_custom_type_script = "uid://dwi74aotc4cae"
 
 [resource]
 script = ExtResource("2_6hgtj")
@@ -51,8 +36,8 @@ targeted = true
 first_description_icon = ExtResource("1_p3wa3")
 first_description_text_value = "8"
 first_description_text_addon = ""
-second_description_icon = SubResource("PlaceholderTexture2D_px0wn")
-second_description_text_value = "1"
+second_description_icon = ExtResource("6_fai33")
+second_description_text_value = ""
 second_description_text_addon = ""
-tooltips = Array[ExtResource("3_eaxvb")]([SubResource("Resource_px0wn")])
+tooltips = Array[ExtResource("3_eaxvb")]([ExtResource("9_epldi"), ExtResource("10_epldi")])
 metadata/_custom_type_script = "uid://4vek3hvofbhy"
