@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://cigekk601ylpb"]
+
+[ext_resource type="Texture2D" uid="uid://c0rgx2ikmn8be" path="res://assets/graphics/cards/card_effect_zeus.png" id="1_y54rk"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_nnfne"]
+
+[resource]
+script = ExtResource("2_nnfne")
+icon = ExtResource("1_y54rk")
+description_pre_value = "ZEUS: Cast 10-15 Lightnings, dealing 2-5 damage each to a random enemy"
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
