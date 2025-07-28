@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="DialogueTree" load_steps=13 format=3 uid="uid://chirshnr1fvji"]
+
+[ext_resource type="Script" uid="uid://c0ndlj6hy1clx" path="res://scripts/encounters/dialogue_block.gd" id="1_i81jv"]
+[ext_resource type="Script" uid="uid://b72vshd8jhlxi" path="res://scripts/encounters/dialogue_response.gd" id="2_1bxtr"]
+[ext_resource type="Script" uid="uid://crvdqpvr4nrg1" path="res://scripts/encounters/dialogue_tree.gd" id="2_hdqxq"]
+
+[sub_resource type="Resource" id="Resource_hdqxq"]
+script = ExtResource("2_1bxtr")
+displayed_response = "reach in it..."
+next_block = Array[int]([1, 2])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_1bxtr"]
+script = ExtResource("2_1bxtr")
+displayed_response = "leave it be..."
+next_block = Array[int]([3])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_evdr0"]
+script = ExtResource("1_i81jv")
+text_block = "As you wander across the barren landscape, you catch something sparkling in the corner of your eye - a hollow tree stump, and apparently something inside it. Unfortunately, it's too dark to make out exactly what it is..."
+possible_answers = Array[ExtResource("2_1bxtr")]([SubResource("Resource_hdqxq"), SubResource("Resource_1bxtr")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_i8vcb"]
+script = ExtResource("2_1bxtr")
+displayed_response = "\"Autsch\" (lose 5 hp)"
+next_block = Array[int]([3])
+consequences = Dictionary[int, Variant]({
+4: -5
+})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_c2ppj"]
+script = ExtResource("1_i81jv")
+text_block = "As you reach into the stump, you suddenly feel a sharp pain - it was a bear trap..."
+possible_answers = Array[ExtResource("2_1bxtr")]([SubResource("Resource_i8vcb")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_vwfjl"]
+script = ExtResource("2_1bxtr")
+displayed_response = "\"Lucky\" (+53 coins)"
+next_block = Array[int]([])
+consequences = Dictionary[int, Variant]({
+9: 53
+})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_jujfp"]
+script = ExtResource("1_i81jv")
+text_block = "As you reach into the stump, you hear a familiar clinking sound - it's a small bag of coins."
+possible_answers = Array[ExtResource("2_1bxtr")]([SubResource("Resource_vwfjl")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_cesqw"]
+script = ExtResource("2_1bxtr")
+displayed_response = "leave..."
+next_block = Array[int]([])
+consequences = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_qrvm7"]
+script = ExtResource("1_i81jv")
+text_block = "You continue your way"
+possible_answers = Array[ExtResource("2_1bxtr")]([SubResource("Resource_cesqw")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[resource]
+script = ExtResource("2_hdqxq")
+dialogue_tree = Array[ExtResource("1_i81jv")]([SubResource("Resource_evdr0"), SubResource("Resource_c2ppj"), SubResource("Resource_jujfp"), SubResource("Resource_qrvm7")])
+metadata/_custom_type_script = "uid://crvdqpvr4nrg1"
