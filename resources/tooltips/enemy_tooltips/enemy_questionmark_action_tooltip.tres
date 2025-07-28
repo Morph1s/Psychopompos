@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_lijv1")
 icon = ExtResource("1_lqu2c")
-description_pre_value = "suprise"
+description_pre_value = "surprise"
 use_value = false
 default_value = 1
 dynamic_plural = false

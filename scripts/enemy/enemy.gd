@@ -138,7 +138,7 @@ func choose_intent() -> void:
 		# if it won't go out the left side of the screen place the tooltip left of the enemy
 		tooltip.position.x = -tooltip.box_size.x - 2
 	else:
-		# if there is not enouth space on the left side, place it on the right side
+		# if there is not enough space on the left side, place it on the right side
 		tooltip.position.x = size.x + 2
 
 func show_highlights() -> void:

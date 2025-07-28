@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_vv4k6")
 icon = ExtResource("1_csqmb")
-description_pre_value = "this enemy will buff himself when you end your turn"
+description_pre_value = "this enemy will buff itself when you end your turn"
 use_value = false
 default_value = 1
 dynamic_plural = false
