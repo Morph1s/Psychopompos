@@ -44,7 +44,7 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 1
 text = "This will abandon your run. 
-Curent progress will be lost. Are you sure?
+Current progress will be lost. Are you sure?
 "
 horizontal_alignment = 1
 
