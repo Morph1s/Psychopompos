@@ -12,7 +12,7 @@ const INTENT_COLOR_BLOCK: Color = Color.SKY_BLUE
 @onready var image: Sprite2D = $EnemyImage
 @onready var shape: CollisionShape2D = $EnemyShape
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
-@onready var effect_handler = $EffectHandler
+@onready var effect_handler: EffectHandler = $EffectHandler
 @onready var highlights = $Highlights
 @onready var hit_frame_timer: Timer = $HitFrameTimer
 
@@ -56,10 +56,10 @@ func initialize() -> void:
 
 func start_of_turn() -> void:
 	stats.block = 0
-	effect_handler._on_unit_turn_start()
+	await effect_handler._on_unit_turn_start()
 
 func end_of_turn() -> void:
-	effect_handler._on_unit_turn_end()
+	await effect_handler._on_unit_turn_end()
 
 func take_damage(amount:int) -> void:
 	image.material.set_shader_parameter("intensity", 1.0)
