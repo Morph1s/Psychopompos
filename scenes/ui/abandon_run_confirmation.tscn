@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2nm0f6w5o0oo"]
+
+[ext_resource type="Script" path="res://scripts/ui/abandon_run_confirmation.gd" id="1_khheu"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_371c8"]
+
+[node name="AbandonRunConfirmation" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_khheu")
+
+[node name="Control" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.67451)
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(92, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -32.0
+offset_right = 91.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_371c8")
+
+[node name="VerticalContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Panel/VerticalContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "This will abandon your run. 
+Current progress will be lost. Are you sure?
+"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Control/Panel/VerticalContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Confirm" type="Button" parent="Control/Panel/VerticalContainer/ButtonContainer"]
+layout_mode = 2
+text = "CONFIRM"
+
+[node name="Cancel" type="Button" parent="Control/Panel/VerticalContainer/ButtonContainer"]
+layout_mode = 2
+text = "CANCEL"
+
+[connection signal="button_up" from="Control/Panel/VerticalContainer/ButtonContainer/Confirm" to="." method="_on_confirm_button_up"]
+[connection signal="button_up" from="Control/Panel/VerticalContainer/ButtonContainer/Cancel" to="." method="_on_cancel_button_up"]
