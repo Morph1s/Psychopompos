@@ -25,7 +25,7 @@ metadata/_custom_type_script = "uid://gsab2qn21okq"
 
 [resource]
 script = ExtResource("2_5fi84")
-card_name = ""
+card_name = "diomedes"
 energy_cost = 1
 rarity = 2
 texture = ExtResource("7_rsfyg")
