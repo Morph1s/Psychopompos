@@ -6,10 +6,15 @@ extends Effect
 
 # implement all functions relevant for your effect
 
-const DAMAGE_TAKEN_REDUCTION: float = 0.5
+const DAMAGE_AMOUNT: int = 5
+
 
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
+	pass
+
+## this function is called when the entity takes damage that is impacted by block
+func take_damage() -> void:
 	pass
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
@@ -18,30 +23,21 @@ func played_attack() -> void:
 
 ## this function gets called whenever the player draws a card
 func card_drawn() -> void:
-	pass
+	if effect_owner.has_method("take_damage"):
+		effect_owner.take_damage(DAMAGE_AMOUNT * stacks)
 
 ## this function gets called whenever the player discards a card
 func card_discarded() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(previous, current):
-	if previous == 0:
-		effect_owner.modifier_handler.apply_multiplicative_modifier(
-			DAMAGE_TAKEN_REDUCTION,
-			ModifierHandler.ModifiedValue.DAMAGE_TAKEN,
-			effect_name
-			)
-	if current == 0:
-		effect_owner.modifier_handler.remove_modifier(
-			ModifierHandler.ModifiedValue.DAMAGE_TAKEN,
-			effect_name
-		)
+func changed_stacks(previous: int, current: int) -> void:
+	pass
 
 ## this function is called at the start of the entities turn 
-func start_of_turn():
-	remove_stacks(1)
-
-## this function is called at the end of the entities turn s
-func end_of_turn():
+func start_of_turn() -> void:
 	pass
+
+## this function is called ath the end of the entities turn s
+func end_of_turn() -> void:
+	remove_stacks(stacks)

@@ -18,6 +18,7 @@ var effect_scenes: Dictionary = {
 	"DamoklesSword": preload("res://scenes/effects/effect_instances/damokles_sword.tscn"),
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
 	"Blessing": preload("res://scenes/effects/effect_instances/blessing.tscn"),
+	"Artemis": preload("res://scenes/effects/effect_instances/artemis.tscn"),
 	}
 
 var parent_node: Node2D
@@ -28,11 +29,13 @@ var max_effects_per_column: int
 func initialize(parent: Node2D) -> void:
 	parent_node = parent
 	
-	
 	max_effects_per_column = int(parent.size.y / (EFFECT_ICON_DISTANCE + EFFECT_ICON_HEIGHT))
 	visible_range = Vector2i(0, max_effects_per_column - 1)
 	
 	buttons.set_bottom_button_position(max_effects_per_column * EFFECT_ICON_HEIGHT + (max_effects_per_column - 1) * EFFECT_ICON_DISTANCE)
+	
+	EventBusHandler.card_drawn.connect(_on_player_card_drawn)
+	EventBusHandler.card_discarded.connect(_on_player_card_discarded)
 
 
 #region effect adding
@@ -166,7 +169,16 @@ func _on_unit_played_attack() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.played_attack()
 
+func _on_player_card_drawn() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.card_drawn()
+
+func _on_player_card_discarded() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.card_discarded()
+
 func _on_effect_applied(stack_count:int, applied_effect:Effect) -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.effect_applied(stack_count,applied_effect)
+
 #endregion
