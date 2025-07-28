@@ -2,6 +2,7 @@ class_name PlayerStats
 extends EntityStats
 
 signal energy_changed(new_energy: int, maximum_energy: int)
+signal coins_changed(new_coins: int)
 
 @export var starting_card_draw_amount: int = 5
 @export var starting_maximum_energy: int = 3
@@ -16,12 +17,16 @@ var maximum_energy: int = 1:
 		energy_changed.emit(current_energy, maximum_energy)
 
 var card_draw_amount: int = 5
-@export var coins: int = 0
+@export var coins: int = 0:
+	set(value):
+		coins = value
+		coins_changed.emit(coins)
 
 func initialize() -> void:
 	super.initialize()
 	card_draw_amount = starting_card_draw_amount
 	maximum_energy = starting_maximum_energy
+	coins = 0
 
 func pay_energy(amount: int) -> void:
 	current_energy -= amount

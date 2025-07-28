@@ -27,9 +27,13 @@ var previous_battle: BattleEncounter
 var is_stage_2: bool = false
 var random_encounter_weights: Dictionary[Encounter.EncounterType, int] = {
 	Encounter.EncounterType.BATTLE: 20,
-	#Encounter.EncounterType.SHOP: 10,
+	Encounter.EncounterType.SHOP: 10,
 	Encounter.EncounterType.DIALOGUE: 70,
 }
+
+
+func _ready() -> void:
+	EventBusHandler.encounter_finished.connect(_end_encounter)
 
 # Loads a requested encounter into the Run scene
 func start_encounter(encounter_data: Encounter):
@@ -50,10 +54,13 @@ func start_encounter(encounter_data: Encounter):
 			_load_mini_boss_encounter()
 		Encounter.EncounterType.BOSS:
 			_load_boss_encounter()
+		Encounter.EncounterType.SHOP:
+			_load_shop_encounter()
 		Encounter.EncounterType.RANDOM:
 			_load_random_encounter()
 		_:
 			print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter_data.type))
+			
 
 func _load_win_screen():
 	current_encounter.queue_free()
@@ -68,12 +75,11 @@ func _load_game_over_screen():
 	game_over_screen.back_to_main_menu_pressed.connect(_on_back_to_main_menu_pressed)
 
 func _load_reward_screen(boss_rewards: bool):
-	current_encounter.queue_free()
 	load_rewards.emit(boss_rewards)
 
 func _end_encounter():
-	current_encounter.queue_free()
-	EventBusHandler.dialogue_finished.emit()
+	if current_encounter:
+		current_encounter.queue_free()
 
 func _on_back_to_main_menu_pressed():
 	load_main_menu.emit()
@@ -132,10 +138,15 @@ func _load_boss_encounter():
 
 func _load_dialogue_encounter():
 	var dialogue_scene: Dialogue = load("res://scenes/encounters/dialogue.tscn").instantiate()
-	dialogue_scene.ended.connect(_end_encounter)
 	add_child(dialogue_scene)
 	dialogue_scene.initialize()
 	current_encounter = dialogue_scene
+
+func _load_shop_encounter():
+	var shop_scene = load("res://scenes/encounters/shop.tscn").instantiate()
+	add_child(shop_scene)
+	shop_scene.initialize()
+	current_encounter = shop_scene
 
 func _load_random_encounter():
 	var encounters: Array[Encounter.EncounterType] = random_encounter_weights.keys()
@@ -154,9 +165,9 @@ func _load_random_encounter():
 			break
 	
 	match chosen_encounter:
-		#Encounter.EncounterType.SHOP:
-			#print("Loading shop from random encounter")
-			#_load_shop_encounter()
+		Encounter.EncounterType.SHOP:
+			print("Loading shop from random encounter")
+			_load_shop_encounter()
 		Encounter.EncounterType.DIALOGUE:
 			print("Loading dialogue from random encounter")
 			_load_dialogue_encounter()
@@ -176,18 +187,18 @@ func _adjust_random_encounter_weights(type: Encounter.EncounterType) -> void:
 			var new_dialogue_weight = current_dialogue_weight + int((current_battle_weight - 20) * dialogue_share)
 			random_encounter_weights[type] = 20
 			random_encounter_weights[Encounter.EncounterType.DIALOGUE] = new_dialogue_weight
-			#random_encounter_weights[Encounter.EncounterType.SHOP] = 80 - random_encounter_weights[Encounter.EncounterType.DIALOGUE]
+			random_encounter_weights[Encounter.EncounterType.SHOP] = 80 - random_encounter_weights[Encounter.EncounterType.DIALOGUE]
 		Encounter.EncounterType.DIALOGUE:
 			var current_dialogue_weight = random_encounter_weights.get(type)
 			var new_dialogue_weight = int(current_dialogue_weight * 0.8)
 			random_encounter_weights[type] = new_dialogue_weight
 			random_encounter_weights[Encounter.EncounterType.BATTLE] = min(80, random_encounter_weights[Encounter.EncounterType.BATTLE] + 10)
-			#random_encounter_weights[Encounter.EncounterType.SHOP] = 100 - new_dialogue_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
-		#Encounter.EncounterType.SHOP:
-			#var current_shop_weight = random_encounter_weights.get(type)
-			#var new_shop_weight = int(current_shop_weight * 0.4)
-			#random_encounter_weights[type] = new_shop_weight
-			#random_encounter_weights[Encounter.EncounterType.BATTLE] = min(80, random_encounter_weights[Encounter.EncounterType.BATTLE] + 10)
-			#random_encounter_weights[Encounter.EncounterType.DIALOGUE] = 100 - new_shop_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
+			random_encounter_weights[Encounter.EncounterType.SHOP] = 100 - new_dialogue_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
+		Encounter.EncounterType.SHOP:
+			var current_shop_weight = random_encounter_weights.get(type)
+			var new_shop_weight = int(current_shop_weight * 0.4)
+			random_encounter_weights[type] = new_shop_weight
+			random_encounter_weights[Encounter.EncounterType.BATTLE] = min(80, random_encounter_weights[Encounter.EncounterType.BATTLE] + 10)
+			random_encounter_weights[Encounter.EncounterType.DIALOGUE] = 100 - new_shop_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
 	
 	print("new random encounter weights: ", random_encounter_weights)

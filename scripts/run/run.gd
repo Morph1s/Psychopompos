@@ -3,7 +3,7 @@ extends Node2D
 
 signal load_main_menu
 
-@onready var ui_layer: CanvasLayer = $UILayer
+@onready var ui_layer: UILayer = $UILayer
 @onready var run_ui: RunUI = $UILayer/RunUI
 @onready var encounter_handler = $EncounterHandler
 @onready var map = $UILayer/Map
@@ -20,16 +20,19 @@ func _ready():
 	run_ui.initialize()
 	RunData.player_stats.initialize()
 	run_ui.hitpoints.text = "%d/%d" % [RunData.player_stats.current_hitpoints, RunData.player_stats.maximum_hitpoints]
+	run_ui.coins.text = str(RunData.player_stats.coins)
 	map.show()
+
+#region Signals
+
+func _on_encounter_handler_load_main_menu() -> void:
+	load_main_menu.emit()
 
 # Uses the EncounterHandler to load the requested encounter
 func _on_map_encounter_selected(encounter_data):
 	encounter_handler.start_encounter(encounter_data)
 
-#region Signals
-func _on_encounter_handler_load_main_menu() -> void:
-	load_main_menu.emit()
-
 func _on_encounter_handler_load_rewards(boss_rewards: bool) -> void:
-	ui_layer.load_battle_rewards(boss_rewards)
+	ui_layer.load_rewards(boss_rewards)
+
 #endregion

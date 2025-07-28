@@ -36,6 +36,6 @@ func start_of_turn():
 	stats.current_hitpoints += int(missing_hp * HEAL_AMOUNT)
 	remove_stacks(1)
 
-## this function is called ath the end of the entities turn s
+## this function is called at the end of the entities turn s
 func end_of_turn():
 	pass
