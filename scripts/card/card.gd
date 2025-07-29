@@ -162,6 +162,9 @@ func play(target_id: int = -1) -> void:
 	# act
 	for action in actions:
 		
+		if get_tree().get_node_count_in_group("enemy") == 0:
+			break
+		
 		if action is TargetedAction:
 			await action.resolve(_get_targets(action.target_type, target_id))
 		elif action is CardManipulationAction:
