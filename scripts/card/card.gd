@@ -209,7 +209,7 @@ func _get_targets(targeting_mode: TargetedAction.TargetType, target_id: int) -> 
 					to_return.append(enemy)
 		
 		TargetedAction.TargetType.ENEMY_RANDOM:
-			var enemies: Array[Node2D] = get_tree().get_nodes_in_group("enemy") as Array[Node2D]
+			var enemies: Array[Node] = get_tree().get_nodes_in_group("enemy") as Array[Node]
 			to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 		
 		_:
