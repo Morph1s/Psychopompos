@@ -72,7 +72,9 @@ metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 script = ExtResource("2_o361c")
 displayed_response = "Have my thanks. (restore 10 hp)"
 next_block = Array[int]([4])
-consequences = Dictionary[int, Variant]({})
+consequences = Dictionary[int, Variant]({
+4: 10
+})
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_qilc8"]
