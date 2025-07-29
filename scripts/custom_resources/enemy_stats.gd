@@ -27,3 +27,6 @@ func initialize() -> void:
 		
 		for index in actions[i].action_catalogue.size():
 			actions[i].action_catalogue[index] = actions[i].action_catalogue[index].duplicate(true)
+		
+		for index in actions[i].tooltips.size():
+			actions[i].tooltips[index] = actions[i].tooltips[index].duplicate(true)

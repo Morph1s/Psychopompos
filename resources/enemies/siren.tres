@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=18 format=3 uid="uid://bjxh77dpflufq"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=22 format=3 uid="uid://bjxh77dpflufq"]
 
 [ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="1_qln16"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="2_0qhyx"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="3_vfwur"]
 [ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="4_vfwur"]
 [ext_resource type="Texture2D" uid="uid://6nj31xcc2ic1" path="res://assets/graphics/enemies/intents/intent_debuff.png" id="4_wi3jj"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_0ew7e"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="5_r7c3a"]
+[ext_resource type="Resource" uid="uid://b5b5kmlp1bkmb" path="res://resources/tooltips/enemy_tooltips/enemy_attack_tooltip.tres" id="6_fmeid"]
 [ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="6_j1ipo"]
 [ext_resource type="Texture2D" uid="uid://jpitba6gq5tt" path="res://assets/graphics/enemies/intents/intent_block.png" id="7_wi3jj"]
+[ext_resource type="Resource" uid="uid://cx7m6xkppo6bp" path="res://resources/tooltips/enemy_tooltips/enemy_defend_tooltip.tres" id="9_bp817"]
 [ext_resource type="Texture2D" uid="uid://c7yggg3wfwhqd" path="res://assets/graphics/enemies/enemy_sirene.png" id="9_vfwur"]
+[ext_resource type="Resource" uid="uid://b3h6lx6thb3vi" path="res://resources/tooltips/enemy_tooltips/enemy_debuff_tooltip.tres" id="12_gf8ss"]
 
 [sub_resource type="Resource" id="Resource_bp817"]
 script = ExtResource("3_vfwur")
@@ -23,6 +27,7 @@ intent_sprite = ExtResource("4_vfwur")
 value = 3
 count = 5
 action_catalogue = Array[ExtResource("2_0qhyx")]([SubResource("Resource_bp817"), SubResource("Resource_bp817"), SubResource("Resource_bp817"), SubResource("Resource_bp817"), SubResource("Resource_bp817")])
+tooltips = Array[ExtResource("5_0ew7e")]([ExtResource("6_fmeid")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [sub_resource type="Resource" id="Resource_j0ll1"]
@@ -37,6 +42,7 @@ intent_sprite = ExtResource("7_wi3jj")
 value = 10
 count = 1
 action_catalogue = Array[ExtResource("2_0qhyx")]([SubResource("Resource_j0ll1")])
+tooltips = Array[ExtResource("5_0ew7e")]([ExtResource("9_bp817")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [sub_resource type="Resource" id="Resource_bmjno"]
@@ -59,6 +65,7 @@ intent_sprite = ExtResource("4_wi3jj")
 value = 0
 count = 1
 action_catalogue = Array[ExtResource("2_0qhyx")]([SubResource("Resource_bmjno"), SubResource("Resource_epxv2")])
+tooltips = Array[ExtResource("5_0ew7e")]([ExtResource("12_gf8ss")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [resource]
