@@ -63,7 +63,7 @@ metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_qrvm7"]
 script = ExtResource("1_i81jv")
-text_block = "You continue your way"
+text_block = "You continue on your way..."
 possible_answers = Array[ExtResource("2_1bxtr")]([SubResource("Resource_cesqw")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
