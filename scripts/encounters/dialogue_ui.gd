@@ -12,12 +12,14 @@ const HEKATES_CHOICE: DialogueTree = preload("res://resources/dialogue/Hekates_C
 const THREE_SISTERS: DialogueTree = preload("res://resources/dialogue/three_sisters.tres")
 const PERSEPHONES_BANQUET: DialogueTree = preload("res://resources/dialogue/persephones_banquet.tres")
 const THE_HIGH_PRIESTESS: DialogueTree = preload("res://resources/dialogue/the_high_priestess.tres")
+const TREE_STUMP: DialogueTree = preload("res://resources/dialogue/tree_stump.tres")
 
 const encounters: Array[DialogueTree] = [
 	HEKATES_CHOICE,
 	THREE_SISTERS,
 	PERSEPHONES_BANQUET,
-	THE_HIGH_PRIESTESS
+	THE_HIGH_PRIESTESS,
+	TREE_STUMP,
 	]
 
 var tree: DialogueTree
@@ -78,9 +80,11 @@ func update_answers():
 		new_response.text = response.displayed_response
 		new_response.add_theme_font_size_override("font_size", 6)
 		new_response.alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		# check if response can give Artifact
-		for consequence in response.consequences.values():
-			if consequence is Artifact and not ArtifactHandler.available_artifacts.has(consequence):
+		# check if response is valid
+		for consequence in response.consequences.keys():
+			var not_artifakt_available = consequence == DialogueResponse.ConsequenceType.SPECIFIC_ARTIFACT and not ArtifactHandler.available_artifacts.has(response.consequences[consequence])
+			var coins_cant_be_spend = consequence == DialogueResponse.ConsequenceType.COINS_ABSOLUTE       and not -1*RunData.player_stats.coins < response.consequences[consequence]
+			if not_artifakt_available or coins_cant_be_spend:
 				new_response.disabled = true
 		
 		# connects the buttons with exeptional parameters

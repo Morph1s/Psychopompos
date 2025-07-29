@@ -138,6 +138,7 @@ func _load_boss_encounter():
 
 func _load_dialogue_encounter():
 	var dialogue_scene: Dialogue = load("res://scenes/encounters/dialogue.tscn").instantiate()
+	dialogue_scene.player_died.connect(_load_game_over_screen)
 	add_child(dialogue_scene)
 	dialogue_scene.initialize()
 	current_encounter = dialogue_scene
