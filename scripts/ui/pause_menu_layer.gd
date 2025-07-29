@@ -31,7 +31,7 @@ func close() -> void:
 #region signal functions
 func _on_main_menu_button_up():
 	main_menu_button_pressed.emit()
-	hide()
+	
 
 func _on_exit_button_up():
 	exit_button_pressed.emit()

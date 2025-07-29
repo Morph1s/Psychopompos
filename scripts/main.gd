@@ -56,6 +56,7 @@ func _request_closing_game() -> void:
 
 func _return_to_main_menu() -> void:
 	abandon_run_confirmation.hide()
+	pause_menu_layer.hide()
 	_load_main_menu_scene()
 
 func _on_pause_menu_layer_exit_button_pressed() -> void:
