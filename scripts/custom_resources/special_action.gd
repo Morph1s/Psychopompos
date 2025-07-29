@@ -58,9 +58,7 @@ func _resolve_thanatos() -> void:
 
 func _resolve_poseidon() -> void:
 	# remove previous actions from the card
-	if card_handler.played_card.card_type.on_play_action.size() > 1:
-		for i in card_handler.played_card.card_type.on_play_action.size() -1:
-			card_handler.played_card.card_type.on_play_action.pop_back()
+	card_handler.played_card.card_type.on_play_action.resize(1)
 	
 	var actions_to_be_resolved: Array[Action]
 	
@@ -89,9 +87,7 @@ func _resolve_poseidon() -> void:
 ## deal 2-5 damage 10-15 times
 func _resolve_zeus() -> void:
 	# remove previous actions from the card
-	if card_handler.played_card.card_type.on_play_action.size() > 1:
-		for i in card_handler.played_card.card_type.on_play_action.size() -1:
-			card_handler.played_card.card_type.on_play_action.pop_back()
+	card_handler.played_card.card_type.on_play_action.resize(1)
 	
 	var actions_to_be_resolved: Array[Action]
 	

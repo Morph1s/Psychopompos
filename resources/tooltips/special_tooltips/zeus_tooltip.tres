@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_nnfne")
 icon = ExtResource("1_y54rk")
-description_pre_value = "ZEUS: Cast 10-15 Lightnings, dealing 2-5 damage each to a random enemy"
+description_pre_value = "ZEUS: Cast 10-15 Lightnings, dealing 2-5 damage to a random enemy each"
 use_value = false
 default_value = 1
 dynamic_plural = false
