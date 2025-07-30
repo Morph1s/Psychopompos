@@ -4,17 +4,7 @@ signal artifact_selected(artifact: Artifact)
 
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_artifact"]
 
-var available_artifacts: Array[Artifact] = [
-	preload("res://resources/artifacts/ambrosia.tres"),
-	preload("res://resources/artifacts/bottle_of_icor.tres"),
-	preload("res://resources/artifacts/eye_of_graeae.tres"),
-	preload("res://resources/artifacts/hermes_winged_boots.tres"),
-	preload("res://resources/artifacts/nectar.tres"),
-	preload("res://resources/artifacts/twig_of_lethe.tres"),
-	preload("res://resources/artifacts/helm_of_hades.tres"),
-	preload("res://resources/artifacts/lyre_of_orpheus.tres"),
-	preload("res://resources/artifacts/nemean_hide.tres"),
-]
+var available_artifacts: Array[Artifact] = []
 var selected_artifacts: Array[Artifact] = []
 
 var effect_names: Dictionary = {
@@ -40,7 +30,16 @@ func initialize() -> void:
 	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
 
 func start_of_run_setup() -> void:
-	available_artifacts.append_array(selected_artifacts)
+	available_artifacts = [
+		load("res://resources/artifacts/ambrosia.tres"),
+		load("res://resources/artifacts/bottle_of_icor.tres"),
+		load("res://resources/artifacts/hermes_winged_boots.tres"),
+		load("res://resources/artifacts/nectar.tres"),
+		load("res://resources/artifacts/twig_of_lethe.tres"),
+		load("res://resources/artifacts/helm_of_hades.tres"),
+		load("res://resources/artifacts/lyre_of_orpheus.tres"),
+		load("res://resources/artifacts/nemean_hide.tres"),
+	]
 	selected_artifacts = []
 
 func get_random_artifact() -> Artifact:
