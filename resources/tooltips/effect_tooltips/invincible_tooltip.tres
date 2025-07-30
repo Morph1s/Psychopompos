@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://c4fixm701wvpl"]
+
+[ext_resource type="Texture2D" uid="uid://mlluxe3vkcxo" path="res://assets/graphics/battle_effects/borderless/effect_invincible_borderless.png" id="1_66ejq"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_4n1w8"]
+
+[resource]
+script = ExtResource("2_4n1w8")
+icon = ExtResource("1_66ejq")
+description_pre_value = "INCVINCIBLE: Target is immune to any kind of damage for"
+use_value = true
+default_value = 1
+dynamic_plural = true
+hide_value_when_singular = false
+singular = "turn"
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

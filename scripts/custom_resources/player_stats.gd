@@ -31,7 +31,7 @@ func initialize() -> void:
 func pay_energy(amount: int) -> void:
 	current_energy -= amount
 	if current_energy < 0:
-			lose_hp(hp_loss_from_energy_calculation(clamp(-current_energy, 0, amount)))
+		lose_hp(hp_loss_from_energy_calculation(clamp(-current_energy, 0, amount)))
 
 func hp_loss_from_energy_calculation(energy_overpayed: int) -> int:
 	return 5 * energy_overpayed

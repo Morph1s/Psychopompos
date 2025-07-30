@@ -83,9 +83,10 @@ func draw_cards(amount: int) -> void:
 		
 		EventBusHandler.card_piles_card_count_changed.emit(draw_pile.size(), discard_pile.size())
 		
+		EventBusHandler.card_drawn.emit()
+		
 		# wait for hand to be updated
-		var timer = get_tree().create_timer(CARD_DRAW_SPEED)
-		await timer.timeout
+		await get_tree().create_timer(CARD_DRAW_SPEED).timeout
 	
 	EventBusHandler.cards_drawn.emit()
 	
@@ -122,6 +123,7 @@ func discard_hand() -> void:
 	while hand.size() > 0:
 		var card = hand.back()
 		await discard_card(card)
+	await get_tree().create_timer(0.4).timeout
 
 func discard_card(card: Card) -> void:
 	

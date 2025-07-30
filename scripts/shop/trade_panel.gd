@@ -15,13 +15,13 @@ var can_trade: bool = true
 
 
 func initialize():
-	trading_interface.change_card_selection.connect(_show_trading_deck_view)
+	trading_interface.change_card_selection.connect(_show_trading_deck_view_from_trading_interface)
 	trading_interface.traded.connect(_on_traded)
 	trade.material.set_shader_parameter("desaturation", 0.0)
 
 func _on_trade_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and can_trade:
-		_show_trading_deck_view(selected_cards)
+		_show_trading_deck_view_from_trade_icon()
 
 func select_card(card: CardType, card_visual: CardVisualization, deck_view: DeckView):
 	# don't allow starting cards to be traded
@@ -61,7 +61,10 @@ func set_previously_selected_cards():
 	trading_interface.show()
 	trading_interface.set_selected_cards(previously_selected_cards)
 
-func _show_trading_deck_view(selected_cards: Array[CardType]):
+func _show_trading_deck_view_from_trade_icon():
+	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "select_card"), true, Callable(self, "set_selected_cards"))
+
+func _show_trading_deck_view_from_trading_interface(selected_cards: Array[CardType]):
 	previously_selected_cards = selected_cards.duplicate()
 	self.selected_cards.clear()
 	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "select_card"), true, Callable(self, "set_selected_cards"), Callable(self, "set_previously_selected_cards"))
