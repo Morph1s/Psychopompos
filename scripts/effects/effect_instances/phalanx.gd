@@ -16,6 +16,14 @@ func get_attacked() -> void:
 func played_attack() -> void:
 	pass
 
+## this function gets called whenever the player draws a card
+func card_drawn() -> void:
+	pass
+
+## this function gets called whenever the player discards a card
+func card_discarded() -> void:
+	pass
+
 ## this function is called when the amount of stacks changes 
 func changed_stacks(previous, current):
 	if previous == 0:
@@ -34,6 +42,6 @@ func changed_stacks(previous, current):
 func start_of_turn():
 	pass
 
-## this function is called ath the end of the entities turn s
+## this function is called at the end of the entities turn s
 func end_of_turn():
 	remove_stacks(1)

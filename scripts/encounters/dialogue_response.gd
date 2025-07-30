@@ -12,11 +12,15 @@ var rng: RandomNumberGenerator = RunData.sub_rngs["rng_dialogue_response"]
 enum ConsequenceType {
 	GET_SPECIFIC_CARD,
 	GET_RANDOM_CARDS, 
+	RANDOM_CARD_OF_TIER,
 	LOSE_CARDS, 
-	HP, 
+	HP,
+	HP_PERCENTILE, 
 	MAX_HP, 
 	SPECIFIC_ARTIFACT, 
 	RANDOM_ARTIFACT,
+	COINS_ABSOLUTE,
+	COINS_PERCENTILE,
 	}
 
 
@@ -35,9 +39,25 @@ func resolve_consequences():
 				if value is not int:
 					push_error("consequences is implemented wrong")
 					return
-				var cards = DeckHandler.get_cards_for_card_rewards(value)
+				var cards = DeckHandler.get_card_selection(value)
 				for card in cards:
 					DeckHandler.add_card_to_deck(card)
+			ConsequenceType.RANDOM_CARD_OF_TIER:
+				if value is not String:
+					push_error("consequences is implemented wrong")
+					return
+				var card
+				match value:
+					"common card":
+						card = DeckHandler.get_card_selection(1,{CardType.Rarity.COMMON_CARD:100})
+					"hero card":
+						card = DeckHandler.get_card_selection(1,{CardType.Rarity.HERO_CARD:100})
+					"gods boon":
+						card = DeckHandler.get_card_selection(1,{CardType.Rarity.GODS_BOON:100})
+					_:
+						push_error("wrong String")
+						card = DeckHandler.get_card_selection(1)
+				DeckHandler.add_card_to_deck(card[0])
 			ConsequenceType.LOSE_CARDS:
 				if value is not int:
 					push_error("consequenzes is implemented wrong")
@@ -56,6 +76,18 @@ func resolve_consequences():
 					RunData.player_stats.current_hitpoints += value
 				else:
 					RunData.player_stats.lose_hp(-value) 
+			ConsequenceType.HP_PERCENTILE:
+				if value is int:
+					value = float(value)
+				if value is not float:
+					push_error("consequences is implemented wrong")
+					return
+				if 0 < value and value <= 1:  # when positive heals depending in maxHP
+					RunData.player_stats.current_hitpoints += int(value*RunData.player_stats.current_hitpoints)
+				elif -1 <= value and value <= 0: # when negative depending o current hp
+					RunData.player_stats.lose_hp(int(-value*RunData.player_stats.current_hitpoints))
+				else: 
+					push_error("Invalid float value (<-1 or >1)")
 			ConsequenceType.MAX_HP:
 				if value is not int:
 					push_error("consequences is implemented wrong")
@@ -70,6 +102,18 @@ func resolve_consequences():
 						ArtifactHandler.select_artifact(value)
 			ConsequenceType.RANDOM_ARTIFACT:
 				ArtifactHandler.select_artifact(ArtifactHandler.get_random_artifact())
+			ConsequenceType.COINS_ABSOLUTE:
+				if value is not int:
+					push_error("consequences is implemented wrong")
+					return
+				RunData.player_stats.coins += value
+			ConsequenceType.COINS_PERCENTILE:
+				if value is int:
+					value = float(value)
+				if value is not float:
+					push_error("consequences is implemented wrong")
+					return
+				RunData.player_stats.coins += int(value*RunData.player_stats.coins)
 			_:
 				push_error("not available action")
 			

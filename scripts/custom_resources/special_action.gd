@@ -5,6 +5,8 @@ enum SpecialEffects {
 	ERIS,
 	THANATOS,
 	POSEIDON,
+	ZEUS,
+	LIGHTNING,
 }
 
 @export var action_type: SpecialEffects
@@ -29,6 +31,10 @@ func resolve(targets: Array[Node2D]) -> void:
 			await _resolve_thanatos()
 		SpecialEffects.POSEIDON:
 			await _resolve_poseidon()
+		SpecialEffects.ZEUS:
+			await _resolve_zeus()
+		SpecialEffects.LIGHTNING:
+			await _resolve_lightning()
 
 ## discard 1-5 random cards, then draw 1-5 cards
 func _resolve_eris() -> void:
@@ -52,9 +58,7 @@ func _resolve_thanatos() -> void:
 
 func _resolve_poseidon() -> void:
 	# remove previous actions from the card
-	if card_handler.played_card.card_type.on_play_action.size() > 1:
-		for i in card_handler.played_card.card_type.on_play_action.size() -1:
-			card_handler.played_card.card_type.on_play_action.pop_back()
+	card_handler.played_card.card_type.on_play_action.resize(1)
 	
 	var actions_to_be_resolved: Array[Action]
 	
@@ -79,3 +83,26 @@ func _resolve_poseidon() -> void:
 	
 	# add actions to the card
 	card_handler.played_card.card_type.on_play_action.append_array(actions_to_be_resolved)
+
+## deal 2-5 damage 10-15 times
+func _resolve_zeus() -> void:
+	# remove previous actions from the card
+	card_handler.played_card.card_type.on_play_action.resize(1)
+	
+	var actions_to_be_resolved: Array[Action]
+	
+	# create the attack actions
+	for i in rng.randi_range(10, 15):
+		var lightning_action: SpecialAction = SpecialAction.new()
+		lightning_action.action_type = SpecialEffects.LIGHTNING
+		actions_to_be_resolved.append(lightning_action)
+	
+	# add actions to the card
+	card_handler.played_card.card_type.on_play_action.append_array(actions_to_be_resolved)
+
+func _resolve_lightning() -> void:
+	var enemy = enemies[rng.randi_range(0, enemies.size() - 1)]
+	if enemy.has_method("take_damage"):
+		enemy.take_damage(rng.randi_range(2, 5))
+	else:
+		printerr("Wrong node in node group! Node: " + enemy.to_string())

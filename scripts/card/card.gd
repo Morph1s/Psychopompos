@@ -162,6 +162,9 @@ func play(target_id: int = -1) -> void:
 	# act
 	for action in actions:
 		
+		if get_tree().get_node_count_in_group("enemy") == 0:
+			break
+		
 		if action is TargetedAction:
 			await action.resolve(_get_targets(action.target_type, target_id))
 		elif action is CardManipulationAction:
@@ -209,7 +212,7 @@ func _get_targets(targeting_mode: TargetedAction.TargetType, target_id: int) -> 
 					to_return.append(enemy)
 		
 		TargetedAction.TargetType.ENEMY_RANDOM:
-			var enemies: Array[Node2D] = get_tree().get_nodes_in_group("enemy") as Array[Node2D]
+			var enemies: Array[Node] = get_tree().get_nodes_in_group("enemy") as Array[Node]
 			to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 		
 		_:

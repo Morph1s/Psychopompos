@@ -31,6 +31,10 @@ var random_encounter_weights: Dictionary[Encounter.EncounterType, int] = {
 	Encounter.EncounterType.DIALOGUE: 70,
 }
 
+
+func _ready() -> void:
+	EventBusHandler.encounter_finished.connect(_end_encounter)
+
 # Loads a requested encounter into the Run scene
 func start_encounter(encounter_data: Encounter):
 	# Remove current encounter if exists
@@ -56,6 +60,7 @@ func start_encounter(encounter_data: Encounter):
 			_load_random_encounter()
 		_:
 			print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter_data.type))
+			
 
 func _load_win_screen():
 	current_encounter.queue_free()
@@ -70,15 +75,11 @@ func _load_game_over_screen():
 	game_over_screen.back_to_main_menu_pressed.connect(_on_back_to_main_menu_pressed)
 
 func _load_reward_screen(boss_rewards: bool):
-	current_encounter.queue_free()
 	load_rewards.emit(boss_rewards)
 
 func _end_encounter():
-	current_encounter.queue_free()
-	EventBusHandler.dialogue_finished.emit()
-
-func _end_shop():
-	current_encounter.queue_free()
+	if current_encounter:
+		current_encounter.queue_free()
 
 func _on_back_to_main_menu_pressed():
 	load_main_menu.emit()
@@ -137,14 +138,13 @@ func _load_boss_encounter():
 
 func _load_dialogue_encounter():
 	var dialogue_scene: Dialogue = load("res://scenes/encounters/dialogue.tscn").instantiate()
-	dialogue_scene.ended.connect(_end_encounter)
+	dialogue_scene.player_died.connect(_load_game_over_screen)
 	add_child(dialogue_scene)
 	dialogue_scene.initialize()
 	current_encounter = dialogue_scene
 
 func _load_shop_encounter():
 	var shop_scene = load("res://scenes/encounters/shop.tscn").instantiate()
-	shop_scene.shop_finished.connect(_end_shop)
 	add_child(shop_scene)
 	shop_scene.initialize()
 	current_encounter = shop_scene

@@ -10,8 +10,10 @@ enum EffectType {
 	REGENERATION,
 	VIGILANT,
 	WARRIORS_FURRY,
-	WOUNDED,
-	HELM_OF_HADES,
+	WOUNDED,	
+	BLESSING,
+	ARTEMIS,
+  HELM_OF_HADES,
 	INVINCIBLE,
 }
  
@@ -25,7 +27,9 @@ var effect_names: Dictionary = {
 	EffectType.VIGILANT: "Vigilant",
 	EffectType.WARRIORS_FURRY: "WarriorsFury",
 	EffectType.WOUNDED: "Wounded",
-	EffectType.HELM_OF_HADES: "HelmOfHades",
+	EffectType.BLESSING: "Blessing",
+	EffectType.ARTEMIS: "Artemis",
+  EffectType.HELM_OF_HADES: "HelmOfHades",
 	EffectType.INVINCIBLE: "Invincible",
 }
 
