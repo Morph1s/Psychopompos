@@ -1,15 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dov68d1go0lu5"]
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_nb1of"]
+[ext_resource type="Texture2D" uid="uid://d3qpfloqrpkr" path="res://assets/graphics/battle_effects/with_border/effect_helm_of_hades.png" id="2_fdkcc"]
 [ext_resource type="Script" uid="uid://fohlloa772u5" path="res://scripts/effects/effect_instances/helm_of_hades.gd" id="2_v56g1"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_sum33"]
 [ext_resource type="Resource" uid="uid://4rbicocywmat" path="res://resources/tooltips/artifact_tooltips/helm_of_hades_tooltip.tres" id="4_fdkcc"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2wc8x"]
-size = Vector2(10, 10)
-
 [node name="HelmOfHades" instance=ExtResource("1_nb1of")]
-texture = SubResource("PlaceholderTexture2D_2wc8x")
+texture = ExtResource("2_fdkcc")
 script = ExtResource("2_v56g1")
 effect_name = "Helm of Hades"
 player_only = true
