@@ -36,6 +36,7 @@ func _exit_tree() -> void:
 func _on_player_start_turn_player_starts_turn() -> void:
 	enemy_handler.choose_intent()
 	await player_character.start_of_turn()
+	ArtifactHandler._on_player_start_turn()
 	await card_handler.draw_cards(RunData.player_stats.card_draw_amount)
 	state_machine.transition_to("Idle")
 
@@ -76,7 +77,7 @@ func _on_player_character_player_died() -> void:
 func _on_enemy_handler_all_enemies_died() -> void:
 	if the_end:
 		load_win_screen.emit()
-		return 
+		return
 	load_battle_rewards.emit(boss_battle)
 
 func _on_card_handler_display_play_area_highlights(visibility: bool) -> void:

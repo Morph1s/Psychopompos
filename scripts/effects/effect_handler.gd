@@ -22,6 +22,7 @@ var effect_scenes: Dictionary = {
 	"HelmOfHades": preload("res://scenes/effects/effect_instances/helm_of_hades.tscn"),
 	"Invincible": preload("res://scenes/effects/effect_instances/invincible.tscn"),
 	"Listening": preload("res://scenes/effects/effect_instances/listening.tscn"),
+	"NemeanHide": preload("res://scenes/effects/effect_instances/nemean_hide.tscn"),
 }
 
 var parent_node: Node2D
@@ -183,5 +184,9 @@ func _on_player_card_discarded() -> void:
 func _on_effect_applied(stack_count:int, applied_effect:Effect) -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.effect_applied(stack_count,applied_effect)
+
+func _on_unit_block_gained(value: int) -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.block_gained(value)
 
 #endregion

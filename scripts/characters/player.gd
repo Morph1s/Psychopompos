@@ -24,8 +24,10 @@ func take_damage(damage_amount: int) -> void:
 func lose_hp(amount: int) -> void:
 	stats.lose_hp(amount)
 
-func gain_block(amount: int) -> void:
+func gain_block(amount: int, from_effect: bool = false) -> void:
 	stats.block += amount
+	if not from_effect:
+		effect_handler._on_unit_block_gained(amount)
 
 func start_of_turn() -> void:
 	stats.current_energy = stats.maximum_energy
