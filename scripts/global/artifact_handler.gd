@@ -13,7 +13,7 @@ var available_artifacts: Array[Artifact] = [
 	preload("res://resources/artifacts/twig_of_lethe.tres"),
 	preload("res://resources/artifacts/helm_of_hades.tres"),
 	preload("res://resources/artifacts/lyre_of_orpheus.tres"),
-  preload("res://resources/artifacts/nemean_hide.tres"),
+	preload("res://resources/artifacts/nemean_hide.tres"),
 ]
 var selected_artifacts: Array[Artifact] = []
 
@@ -32,7 +32,7 @@ var effect_names: Dictionary = {
 	EffectAction.EffectType.HELM_OF_HADES: "HelmOfHades",
 	EffectAction.EffectType.INVINCIBLE: "Invincible",
 	EffectAction.EffectType.LISTENING: "Listening",
-  EffectAction.EffectType.NEMEAN_HIDE: "NemeanHide",
+	EffectAction.EffectType.NEMEAN_HIDE: "NemeanHide",
 }
 
 
@@ -67,7 +67,7 @@ func select_artifact(artifact: Artifact) -> void:
 func _on_event_bus_battle_started() -> void:
 	for artifact in selected_artifacts:
 		if artifact.effects_active:
-      match artifact.target_type:
+			match artifact.target_type:
 				TargetedAction.TargetType.PLAYER:
 					var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler
 					player_effect_handler.apply_effect(effect_names[artifact.effect], artifact.amount)

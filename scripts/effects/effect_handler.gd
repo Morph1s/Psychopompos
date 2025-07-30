@@ -22,7 +22,7 @@ var effect_scenes: Dictionary = {
 	"HelmOfHades": preload("res://scenes/effects/effect_instances/helm_of_hades.tscn"),
 	"Invincible": preload("res://scenes/effects/effect_instances/invincible.tscn"),
 	"Listening": preload("res://scenes/effects/effect_instances/listening.tscn"),
-  "NemeanHide": preload("res://scenes/effects/effect_instances/nemean_hide.tscn"),
+	"NemeanHide": preload("res://scenes/effects/effect_instances/nemean_hide.tscn"),
 }
 
 var parent_node: Node2D
