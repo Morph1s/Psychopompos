@@ -1,11 +1,12 @@
 class_name UILayer
 extends CanvasLayer
 
-@onready var map: Map = $Map
-@onready var run_ui = $RunUI
-@onready var deck_view: DeckView = $DeckView
-@onready var deck_icon: TextureRect =  $RunUI/TopBarMargin/TopBarHBox/IconsRight/DeckIcon
-@onready var run: Run = $".."
+@onready var map: Map = $UpperLevelUI/Map
+@onready var run_ui: RunUI = $UpperLevelUI/RunUI
+@onready var deck_view: DeckView = $UpperLevelUI/DeckView
+@onready var deck_icon: TextureRect =  $UpperLevelUI/RunUI/TopBarMargin/TopBarHBox/IconsRight/DeckIcon
+@onready var lower_level_ui: Control = $LowerLevelUI
+@onready var upper_level_ui: Control = $UpperLevelUI
 
 var battle_ui_reference: BattleUI
 
@@ -31,23 +32,16 @@ func _on_run_ui_open_map():
 	
 	map.show()
 	EventBusHandler.show_map.emit()
-	
-	if battle_ui_reference:
-		battle_ui_reference.hide()
 
 func _on_event_bus_battle_started() -> void:
 	battle_ui_reference = BATTLE_UI.instantiate()
-	add_child(battle_ui_reference)
+	lower_level_ui.add_child(battle_ui_reference)
 
 func _on_event_bus_battle_ended() -> void:
-	for child in get_children():
-		if child is BattleUI:
-			child.queue_free()
-			break
+	if battle_ui_reference:
+		battle_ui_reference.queue_free()
 
 func _on_map_hidden():
-	if battle_ui_reference:
-		battle_ui_reference.show()
 	EventBusHandler.back_to_battle.emit()
 
 func _on_run_ui_open_deck_view():
@@ -59,12 +53,12 @@ func _on_run_ui_open_deck_view():
 func _on_eventbus_open_deck_view(deck: Array[CardType]) -> void:	
 	if map.visible:
 		map.hide()
+		deck_view.set_background_color(Color("000000"))
+	else:
+		deck_view.set_background_color(Color("000000ac"))
 	
 	deck_view.show()
 	deck_view.load_cards(deck)
-	
-	if battle_ui_reference:
-		battle_ui_reference.hide()
 
 func _on_eventbus_open_deck_view_with_action(deck: Array[CardType], on_card_selected_action: Callable, has_button: bool = false, on_button_pressed_action: Callable = Callable(), on_exit_pressed_action: Callable = Callable()) -> void:
 	deck_view.show()
@@ -74,9 +68,6 @@ func _on_eventbus_open_deck_view_with_action(deck: Array[CardType], on_card_sele
 	deck_view.toggle_action_button()
 	deck_view.add_button_action(on_button_pressed_action)
 	deck_view.add_exit_action(on_exit_pressed_action)
-	
-	if battle_ui_reference:
-		battle_ui_reference.hide()
 
 func _close_deck_view():
 	deck_view.hide()
@@ -84,8 +75,6 @@ func _close_deck_view():
 	if not map.can_close:
 		map.show()
 		return
-	if battle_ui_reference:
-		battle_ui_reference.show()
 
 func _on_eventbus_encounter_finished() -> void:
 	map.current_node.encounter.completed = true
@@ -99,7 +88,8 @@ func _on_eventbus_card_picked_for_deck_add(cards: Array[CardType], positions: Ar
 	for card: CardType in cards:
 		var card_visual: CardVisualization = CARD_VISUALIZATION.instantiate()
 		card_visual.initialize(card)
-		add_child(card_visual)
+		upper_level_ui.add_child(card_visual)
+		card_visual.z_index = 10
 		card_visual.position = positions[cards.find(card)]
 		card_visuals.append(card_visual)
 	
@@ -114,4 +104,4 @@ func load_rewards(boss_rewards: bool) -> void:
 		battle_rewards.load_boss_rewards()
 	else:
 		battle_rewards.load_common_rewards()
-	add_child(battle_rewards)
+	lower_level_ui.add_child(battle_rewards)

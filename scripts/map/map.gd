@@ -3,7 +3,7 @@ extends Control
 
 signal encounter_selected(encounter_data)
 
-@onready var exit_button: Button = $TopMargin/ExitButton
+@onready var exit_button: Button = $ExitButton
 @onready var map_layer_container = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
 @onready var scroll_container: ScrollContainer = $TopMargin/MapIconsMargin/MapScrollContainer

@@ -8,11 +8,13 @@ const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 @onready var card_container = $ScrollContainerMargin/CardScrollContainer/CardContainer
 @onready var tooltip = $UIMargin/Tooltip
 @onready var action_button: Button = $UIMargin/ActionButton
+@onready var background_color: ColorRect = $BackgroundColor
 
 var card_selected_action: Callable
 var has_action_button: bool = false
 var button_action: Callable
 var exit_action: Callable
+
 
 func load_cards(card_pile: Array[CardType]) -> void:
 	if not is_node_ready():
@@ -43,6 +45,9 @@ func add_button_action(on_button_pressed_action: Callable) -> void:
 
 func add_exit_action(on_exit_pressed_action: Callable) -> void:
 	exit_action = on_exit_pressed_action
+
+func set_background_color(color: Color) -> void:
+	background_color.color = color
 
 func _on_exit_pressed() -> void:
 	for card: CardVisualization in card_container.get_children():

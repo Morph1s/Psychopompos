@@ -5,7 +5,7 @@ signal load_main_menu
 signal load_rewards(boss_rewards: bool)
 
 @onready var run: Run = $".."
-@onready var map: Map = $"../UILayer/Map"
+@onready var map: Map = $"../UILayer/UpperLevelUI/Map"
 
 const GAME_OVER_SCREEN: PackedScene = preload("res://scenes/ui/game_over_screen.tscn")
 const WIN_SCREEN: PackedScene = preload("res://scenes/ui/win_screen.tscn")
