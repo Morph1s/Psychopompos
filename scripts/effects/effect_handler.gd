@@ -21,6 +21,7 @@ var effect_scenes: Dictionary = {
 	"Artemis": preload("res://scenes/effects/effect_instances/artemis.tscn"),
 	"HelmOfHades": preload("res://scenes/effects/effect_instances/helm_of_hades.tscn"),
 	"Invincible": preload("res://scenes/effects/effect_instances/invincible.tscn"),
+	"Listening": preload("res://scenes/effects/effect_instances/listening.tscn"),
 }
 
 var parent_node: Node2D
