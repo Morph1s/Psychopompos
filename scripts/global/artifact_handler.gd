@@ -25,6 +25,8 @@ var effect_names: Dictionary = {
 	EffectAction.EffectType.VIGILANT: "Vigilant",
 	EffectAction.EffectType.WARRIORS_FURRY: "WarriorsFury",
 	EffectAction.EffectType.WOUNDED: "Wounded",
+	EffectAction.EffectType.BLESSING: "Blessing",
+	EffectAction.EffectType.ARTEMIS: "Artemis",
 	EffectAction.EffectType.HELM_OF_HADES: "HelmOfHades",
 	EffectAction.EffectType.INVINCIBLE: "Invincible",
 }
