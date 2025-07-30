@@ -12,6 +12,12 @@ func get_attacked():
 
 ## this function is called when the entity takes damage that is impacted by block
 func take_damage() -> void:
+	# don't apply if effect_owner is invincible
+	var active_effects: Array[Node] = effect_owner.effect_handler.effect_collection.get_children()
+	for effect: Effect in active_effects:
+		if effect.effect_name == "Invincible":
+			return
+	
 	if effect_owner.has_method("lose_hp"):
 		effect_owner.lose_hp(stacks)
 		print("lost ", stacks, " hp to wound")

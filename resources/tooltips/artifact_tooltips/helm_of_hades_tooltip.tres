@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://4rbicocywmat"]
+
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_8p1ts"]
+[ext_resource type="Texture2D" uid="uid://emoejrw7leb5" path="res://assets/graphics/battle_effects/borderless/effect_helm_of_hades_borderless.png" id="1_bpy3f"]
+
+[resource]
+script = ExtResource("1_8p1ts")
+icon = ExtResource("1_bpy3f")
+description_pre_value = "HELM OF HADES: Once per combat, when your hitpoints fall below 20% of your maximum hitpoints, become invincible for 1 turn"
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

@@ -19,7 +19,9 @@ var effect_scenes: Dictionary = {
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
 	"Blessing": preload("res://scenes/effects/effect_instances/blessing.tscn"),
 	"Artemis": preload("res://scenes/effects/effect_instances/artemis.tscn"),
-	}
+	"HelmOfHades": preload("res://scenes/effects/effect_instances/helm_of_hades.tscn"),
+	"Invincible": preload("res://scenes/effects/effect_instances/invincible.tscn"),
+}
 
 var parent_node: Node2D
 var max_effects_per_column: int
