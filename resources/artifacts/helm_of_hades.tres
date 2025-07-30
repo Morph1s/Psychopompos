@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=6 format=3 uid="uid://d2fdli65onikn"]
+
+[ext_resource type="Script" uid="uid://booqawgjhy2ac" path="res://scripts/custom_resources/artifact.gd" id="1_sy6kf"]
+[ext_resource type="Texture2D" uid="uid://dcx7efow3giog" path="res://assets/graphics/relics/relic_helm_of_hades.png" id="2_anb8e"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_q15ra"]
+[ext_resource type="Resource" uid="uid://4rbicocywmat" path="res://resources/tooltips/artifact_tooltips/helm_of_hades_tooltip.tres" id="3_q15ra"]
+[ext_resource type="Resource" uid="uid://d4gmlkwb6bdlm" path="res://resources/tooltips/action_tooltips/invincible_action_tooltip.tres" id="5_7dsvx"]
+
+[resource]
+script = ExtResource("1_sy6kf")
+name = "HELM OF HADES"
+texture = ExtResource("2_anb8e")
+amount = 1
+tooltip = Array[ExtResource("2_q15ra")]([ExtResource("3_q15ra"), ExtResource("5_7dsvx")])
+effects_active = true
+effect = 11
+target_type = 0
+pickup_active = false
+pickup_effect = 0
+changes_active = false
+changed_value = 0
+metadata/_custom_type_script = "uid://booqawgjhy2ac"

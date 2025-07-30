@@ -1,6 +1,8 @@
 class_name EnemyHud
 extends EntityHud
 
+signal intent_box_hovered(mouse_entered: bool)
+
 const ENEMY_HP_BAR_OVER = preload("res://assets/graphics/hud/hp_bar/enemy_hp_bar_over.png")
 
 @onready var intent_container = $IntentContainer
@@ -35,3 +37,13 @@ func _set_hp_bar_border() -> void:
 		hp_bar.texture_over = ENTITY_DEFEND_BAR_OVER
 	else:
 		hp_bar.texture_over = ENEMY_HP_BAR_OVER
+
+#region mouse_interaction
+
+func _on_intent_container_mouse_entered() -> void:
+	intent_box_hovered.emit(true)
+
+func _on_intent_container_mouse_exited() -> void:
+	intent_box_hovered.emit(false)
+
+#endregion

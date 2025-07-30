@@ -12,9 +12,10 @@ const INTENT_COLOR_BLOCK: Color = Color.SKY_BLUE
 @onready var image: Sprite2D = $EnemyImage
 @onready var shape: CollisionShape2D = $EnemyShape
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
-@onready var effect_handler = $EffectHandler
+@onready var effect_handler: EffectHandler = $EffectHandler
 @onready var highlights = $Highlights
 @onready var hit_frame_timer: Timer = $HitFrameTimer
+@onready var tooltip: Tooltip = $Tooltip
 
 @export var stats: EnemyStats
 @export var enemy_hud: EnemyHud
@@ -53,13 +54,26 @@ func initialize() -> void:
 	stats.died.connect(_on_died)
 	
 	effect_handler.initialize(self)
+	
+	# initializing tooltips
+	for action: EnemyAction in stats.actions:
+		
+		# calculate damage that this action would deal
+		var collective_damage: int = 0
+		for entry in action.action_catalogue:
+			if entry is AttackAction:
+				collective_damage += entry.damage_stat
+		
+		# setting descriptions
+		for action_tooltip: TooltipData in action.tooltips:
+			action_tooltip.set_description(collective_damage)
 
 func start_of_turn() -> void:
 	stats.block = 0
-	effect_handler._on_unit_turn_start()
+	await effect_handler._on_unit_turn_start()
 
 func end_of_turn() -> void:
-	effect_handler._on_unit_turn_end()
+	await effect_handler._on_unit_turn_end()
 
 func take_damage(amount:int) -> void:
 	image.material.set_shader_parameter("intensity", 1.0)
@@ -114,6 +128,18 @@ func choose_intent() -> void:
 		intent_color = INTENT_COLOR_BLOCK
 	
 	enemy_hud.set_intent(stats.actions[intent].intent_sprite, stats.actions[intent].value, intent_color, stats.actions[intent].count)
+	
+	# change tooltip text
+	if not stats.actions[intent].tooltips.is_empty():
+		tooltip.load_tooltips(stats.actions[intent].tooltips)
+	
+	# change position based on the (potentially) new size
+	if global_position.x - tooltip.box_size.x - 2 > 0:
+		# if it won't go out the left side of the screen place the tooltip left of the enemy
+		tooltip.position.x = -tooltip.box_size.x - 2
+	else:
+		# if there is not enough space on the left side, place it on the right side
+		tooltip.position.x = size.x + 2
 
 func show_highlights() -> void:
 	highlights.show()
@@ -154,6 +180,7 @@ func _position_highlights() -> void:
 #endregion
 
 #region Signal Methods
+
 func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:
 	enemy_hud.set_current_hp(new_hp)
 	enemy_hud.set_max_hp(max_hp)
@@ -174,5 +201,11 @@ func _on_mouse_exited() -> void:
 
 func _on_hit_frame_timer_timeout():
 	image.material.set_shader_parameter("intensity", 0.0)
+
+func _on_enemy_hud_intent_box_hovered(mouse_entered: bool) -> void:
+	if mouse_entered:
+		tooltip.show()
+	else:
+		tooltip.hide()
 
 #endregion
