@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="6_hv23o"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="6_ytdy3"]
 [ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="8_3yqpr"]
-[ext_resource type="Resource" path="res://resources/tooltips/action_tooltips/wounded_action_tooltip.tres" id="9_hv23o"]
+[ext_resource type="Resource" uid="uid://su3pit3bgs8d" path="res://resources/tooltips/action_tooltips/wounded_action_tooltip.tres" id="9_hv23o"]
 
 [sub_resource type="Resource" id="Resource_wc6sj"]
 script = ExtResource("2_qcvil")

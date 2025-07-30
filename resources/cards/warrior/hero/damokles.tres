@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_eacpi"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_340hy"]
 [ext_resource type="Texture2D" uid="uid://drts8cgt4yhxv" path="res://assets/graphics/cards/hero/card_hero_damocles.png" id="4_gs3k6"]
-[ext_resource type="Resource" path="res://resources/tooltips/action_tooltips/damokles_sword_action_tooltip.tres" id="7_h2noc"]
+[ext_resource type="Resource" uid="uid://bebwg65fu2n2w" path="res://resources/tooltips/action_tooltips/damokles_sword_action_tooltip.tres" id="7_h2noc"]
 
 [sub_resource type="Resource" id="Resource_y8yhs"]
 script = ExtResource("2_becyy")
