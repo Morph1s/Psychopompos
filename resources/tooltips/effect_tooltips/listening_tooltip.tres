@@ -1,13 +1,11 @@
 [gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://ckolcfs6seedw"]
 
+[ext_resource type="Texture2D" uid="uid://diigciju4nxy2" path="res://assets/graphics/battle_effects/borderless/effect_listening_borderless.png" id="1_ht3re"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_8q7vk"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qw1b4"]
-size = Vector2(10, 10)
 
 [resource]
 script = ExtResource("2_8q7vk")
-icon = SubResource("PlaceholderTexture2D_qw1b4")
+icon = ExtResource("1_ht3re")
 description_pre_value = "LISTENING: deal 25% less damage for"
 use_value = true
 default_value = 1

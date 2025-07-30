@@ -2,14 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_ym8s6"]
 [ext_resource type="Script" uid="uid://djebsrimjr0yg" path="res://scripts/effects/effect_instances/listening.gd" id="2_0mghe"]
+[ext_resource type="Texture2D" uid="uid://co8rbdi5ek8bh" path="res://assets/graphics/battle_effects/with_border/effect_listening.png" id="2_6cqa6"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_102nt"]
 [ext_resource type="Resource" uid="uid://ckolcfs6seedw" path="res://resources/tooltips/effect_tooltips/listening_tooltip.tres" id="4_6cqa6"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_102nt"]
-size = Vector2(10, 10)
-
 [node name="Listening" instance=ExtResource("1_ym8s6")]
-texture = SubResource("PlaceholderTexture2D_102nt")
+texture = ExtResource("2_6cqa6")
 script = ExtResource("2_0mghe")
 effect_name = "Listening"
 type = 1
