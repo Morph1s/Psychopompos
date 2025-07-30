@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://o1nga7r1rbvr" path="res://assets/graphics/cards/card_effect_block.png" id="5_r3ud8"]
 [ext_resource type="Texture2D" uid="uid://piwrcsolsrvd" path="res://assets/graphics/cards/god/card_god_poseidon.png" id="6_e16ov"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="7_oaoyy"]
-[ext_resource type="Resource" path="res://resources/tooltips/special_tooltips/poseidon_tooltip.tres" id="8_kqb76"]
-[ext_resource type="Resource" path="res://resources/tooltips/special_tooltips/poseidon_attack_all_tooltip.tres" id="9_te5xk"]
-[ext_resource type="Resource" path="res://resources/tooltips/special_tooltips/poseidon_block_tooltip.tres" id="10_m6sk4"]
+[ext_resource type="Resource" uid="uid://bomn8y85uof6d" path="res://resources/tooltips/special_tooltips/poseidon_tooltip.tres" id="8_kqb76"]
+[ext_resource type="Resource" uid="uid://do38gpijiblj2" path="res://resources/tooltips/special_tooltips/poseidon_attack_all_tooltip.tres" id="9_te5xk"]
+[ext_resource type="Resource" uid="uid://jritujs8l451" path="res://resources/tooltips/special_tooltips/poseidon_block_tooltip.tres" id="10_m6sk4"]
 
 [sub_resource type="Resource" id="Resource_heu5y"]
 script = ExtResource("3_31fsc")
