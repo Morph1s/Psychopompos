@@ -128,6 +128,7 @@ func randi64(max_value: int) -> int:
 func _on_exit_pressed() -> void:
 	coins = 0
 	total_card_value = 0
+	selected_cards.clear()
 	for card: CardVisualization in selected_cards_container.get_children():
 		card.queue_free()
 	self.hide()
