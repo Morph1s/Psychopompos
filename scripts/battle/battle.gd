@@ -57,16 +57,17 @@ func _on_idle_exited_idle():
 
 func _on_enemy_turn_resolve_enemy_intents() -> void:
 	await enemy_handler.resolve_intent()
+	await get_tree().create_timer(0.1).timeout
 	state_machine.transition_to("EnemyEndTurn")
 
 func _on_enemy_start_turn_enemy_starts_turn() -> void:
-	for enemy in enemy_handler.enemies:
-		await enemy.start_of_turn()
+	await enemy_handler.start_of_enemy_turn()
+	await get_tree().create_timer(0.1).timeout
 	state_machine.transition_to("EnemyTurn")
 
 func _on_enemy_end_turn_enemy_ends_turn() -> void:
-	for enemy in enemy_handler.enemies:
-		await enemy.end_of_turn()
+	await enemy_handler.end_of_enemy_turn()
+	await get_tree().create_timer(0.1).timeout
 	state_machine.transition_to("PlayerStartTurn")
 
 #endregion

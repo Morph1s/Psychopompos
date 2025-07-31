@@ -40,6 +40,9 @@ func _calculate_enemy_x_position(index: int, enemy_count: int) -> int:
 
 func resolve_intent():
 	for enemy in enemies:
+		if enemy.is_dead:
+			await get_tree().create_timer(0.3).timeout
+			continue
 		await enemy.resolve_intent()
 		await get_tree().create_timer(0.8).timeout
 
@@ -54,6 +57,14 @@ func display_enemy_highlights(visibility: bool) -> void:
 	else:
 		for enemy: Enemy in get_children():
 			enemy.hide_highlights()
+
+func start_of_enemy_turn() -> void:
+	for enemy in get_children():
+		await enemy.start_of_turn()
+
+func end_of_enemy_turn() -> void:
+	for enemy in get_children():
+		await enemy.end_of_turn()
 
 # removes enemy and checks for win
 func _an_enemy_died(dead_enemy: Enemy):
