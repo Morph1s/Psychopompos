@@ -1,7 +1,7 @@
 class_name EventBus
 extends Node
 
-# if you add an event ONLY relevant for battle encounters, make sure to add it to the clear_all_battle_events function 
+# if you add an event ONLY relevant for battle encounters, make sure to add it to the clear_all_battle_events function
 
 signal battle_started
 signal battle_ended

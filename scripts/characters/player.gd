@@ -14,6 +14,19 @@ signal player_died
 var size: Vector2
 
 
+func initialize() -> void:
+	# Connecting Signals
+	stats.died.connect(_on_died)
+	stats.hitpoints_changed.connect(_on_hitpoints_changed)
+	stats.block_changed.connect(_on_block_changed)
+	
+	size = character_image.texture.get_size()
+	player_hud.set_entity_size(size)
+	player_hud.set_initial_values(stats.maximum_hitpoints, stats.current_hitpoints, stats.block)
+	
+	effect_handler.initialize(self)
+	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)
+
 func take_damage(damage_amount: int) -> void:
 	character_image.material.set_shader_parameter("intensity", 1.0)
 	hit_frame_timer.start()
@@ -36,19 +49,6 @@ func start_of_turn() -> void:
 
 func end_of_turn() -> void:
 	await effect_handler._on_unit_turn_end()
-
-func initialize() -> void:
-	# Connecting Signals
-	stats.died.connect(_on_died)
-	stats.hitpoints_changed.connect(_on_hitpoints_changed)
-	stats.block_changed.connect(_on_block_changed)
-	
-	size = character_image.texture.get_size()
-	player_hud.set_entity_size(size)
-	player_hud.set_initial_values(stats.maximum_hitpoints, stats.current_hitpoints, stats.block)
-	
-	effect_handler.initialize(self)
-	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
@@ -74,7 +74,7 @@ func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:
 func _on_block_changed(new_block: int) -> void:
 	player_hud.set_block(new_block)
 
-func _on_hit_frame_timer_timeout():
+func _on_hit_frame_timer_timeout() -> void:
 	character_image.material.set_shader_parameter("intensity", 0.0)
 
 #endregion

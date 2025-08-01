@@ -18,15 +18,17 @@ func take_damage() -> void:
 func played_attack() -> void:
 	pass
 
-## this function is called when the amount of stacks changes 
-func changed_stacks(previous: int, current: int) -> void:
+## this function gets called whenever the player draws a card
+func card_drawn() -> void:
 	pass
 
-## this function is called when the unit gains block
-func block_gained(value: int) -> void:
-	if effect_owner.has_method("gain_block"):
-		effect_owner.gain_block(value, true)
-	remove_stacks()
+## this function gets called whenever the player discards a card
+func card_discarded() -> void:
+	pass
+
+## this function is called when the amount of stacks changes 
+func changed_stacks(_previous: int, _current: int) -> void:
+	pass
 
 ## this function is called at the start of the entities turn 
 func start_of_turn() -> void:
@@ -37,5 +39,11 @@ func end_of_turn() -> void:
 	pass
 
 ## this function is called when an effect is applied
-func effect_applied(stacks_added:int, effect_added:Effect) -> void:
+func effect_applied(_stacks_added: int, _effect_added: Effect) -> void:
 	pass
+
+## this function is called when the unit gains block
+func block_gained(value: int) -> void:
+	if effect_owner.has_method("gain_block"):
+		effect_owner.gain_block(value, true)
+	remove_stacks(1)

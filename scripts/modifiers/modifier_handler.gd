@@ -11,7 +11,8 @@ enum ModifiedValue {
 @onready var damage_taken: ModifierInstance = $DamageTaken
 @onready var block_gained: ModifierInstance = $BlockGained
 
-## add a additivl stacking modifier
+
+## add a additively stacking modifier
 func apply_additive_modifier(amount: int, modified_value: ModifiedValue, source: String) -> void:
 	match modified_value:
 		ModifiedValue.DAMAGE_DEALT:
@@ -21,7 +22,7 @@ func apply_additive_modifier(amount: int, modified_value: ModifiedValue, source:
 		ModifiedValue.BLOCK_GAINED:
 			block_gained.apply_additive_modifier(amount, source)
 
-## add a multiplicativly stacking modifier
+## add a multiplicatively stacking modifier
 ## (ex: to add 50% extra damage the amount should be 1.5)
 func apply_multiplicative_modifier(amount: float, modified_value: ModifiedValue, source: String) -> void:
 	match modified_value:

@@ -9,7 +9,7 @@ enum EncounterType {
 	RANDOM,
 	MINI_BOSS,
 	BOSS,
-	}
+}
 
 var type: EncounterType
 var connections_to: Array[Encounter]  # connections to next encounter(s)

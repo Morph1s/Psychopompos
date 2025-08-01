@@ -9,9 +9,10 @@ enum OpenFrom {
 	RUN,
 }
 
-@onready var buttons_for_run = $PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/ButtonsForRun
-@onready var buttons_for_main_menu = $PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/ButtonsForMainMenu
-@onready var header = $PauseMenu/Panel/VerticalSeparation/Header
+@onready var buttons_for_run: VBoxContainer = $PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/ButtonsForRun
+@onready var buttons_for_main_menu: VBoxContainer = $PauseMenu/Panel/VerticalSeparation/HorizontalSeparation/ButtonsForMainMenu
+@onready var header: Label = $PauseMenu/Panel/VerticalSeparation/Header
+
 
 func open(mode: OpenFrom) -> void:
 	match mode:
@@ -29,16 +30,17 @@ func close() -> void:
 	hide()
 
 #region signal functions
-func _on_main_menu_button_up():
-	main_menu_button_pressed.emit()
-	
 
-func _on_exit_button_up():
+func _on_main_menu_button_up() -> void:
+	main_menu_button_pressed.emit()
+
+func _on_exit_button_up() -> void:
 	exit_button_pressed.emit()
 
-func _on_fullscreen_checkbox_toggled(toggled_on):
+func _on_fullscreen_checkbox_toggled(toggled_on) -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN if toggled_on else DisplayServer.WINDOW_MODE_WINDOWED)
 
-func _on_return_button_up():
+func _on_return_button_up() -> void:
 	close()
+
 #endregion

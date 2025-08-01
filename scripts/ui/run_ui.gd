@@ -9,6 +9,7 @@ signal open_deck_view
 @onready var coins: Label = $TopBarMargin/TopBarHBox/IconsLeft/CoinsLabel
 @onready var artifact_container: HBoxContainer = $TopBarMargin/TopBarHBox/ArtifactMargin/ArtifactContainer
 
+
 func initialize() -> void:
 	RunData.player_stats.hitpoints_changed.connect(_on_stats_hp_changed)
 	RunData.player_stats.coins_changed.connect(_on_stats_coins_changed)
@@ -26,10 +27,10 @@ func _on_settings_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click"):
 		EventBusHandler.open_settings.emit()
 
-func _on_stats_hp_changed(current_hp: int, max_hp: int):
+func _on_stats_hp_changed(current_hp: int, max_hp: int) -> void:
 	hitpoints.text = "%d/%d" % [current_hp, max_hp]
 
-func _on_stats_coins_changed(current_coins: int):
+func _on_stats_coins_changed(current_coins: int) -> void:
 	coins.text = str(current_coins)
 
 func _on_artifact_handler_artifact_selected(artifact: Artifact) -> void:

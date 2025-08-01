@@ -10,17 +10,16 @@ var maximum_energy: int = 1:
 	set(value):
 		maximum_energy = value
 		energy_changed.emit(current_energy, maximum_energy)
-
 @export var current_energy: int = 0:
 	set(value):
 		current_energy = value
 		energy_changed.emit(current_energy, maximum_energy)
-
 var card_draw_amount: int = 5
 @export var coins: int = 0:
 	set(value):
 		coins = value
 		coins_changed.emit(coins)
+
 
 func initialize() -> void:
 	super.initialize()

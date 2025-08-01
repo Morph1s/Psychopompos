@@ -20,11 +20,11 @@ const encounters: Array[DialogueTree] = [
 	PERSEPHONES_BANQUET,
 	THE_HIGH_PRIESTESS,
 	TREE_STUMP,
-	]
+]
 
 var tree: DialogueTree
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_dialogue_ui"]
-var current_text_box: String 
+var current_text_box: String
 var current_block_indent: int = 0
 
 
@@ -37,7 +37,7 @@ func _ready() -> void:
 	# create answers
 	update_answers()
 
-func update_dialogue_encounter(possible_events: Array, triggering_response: DialogueResponse):
+func update_dialogue_encounter(possible_events: Array, triggering_response: DialogueResponse) -> void:
 	# resolve response consequences
 	triggering_response.resolve_consequences()
 	
@@ -58,37 +58,36 @@ func update_dialogue_encounter(possible_events: Array, triggering_response: Dial
 
 # takes one random thing out of an array
 func spin_the_wheel(pool: Array) -> int:
-	var result = rng.randi_range(0 , pool.size() - 1)
-	result = pool[result]
-	return result
+	var result: int = rng.randi_range(0 , pool.size() - 1)
+	return pool[result]
 
 # fills dialogue_text_box with text
-func update_text_box():
+func update_text_box() -> void:
 	dialogue_text_box.clear()
 	dialogue_text_box.append_text(current_text_box)
 
 # fills answer_choices with buttons
-func update_answers():
+func update_answers() -> void:
 	# remove previous answers
-	for node in answer_choices.get_children():
+	for node: Control in answer_choices.get_children():
 		if node is Button:
 			answer_choices.remove_child(node)
 	# create new button for each Answer in possibleAnswers
-	for response in tree.dialogue_tree[current_block_indent].possible_answers:
-		var new_response: Button = Button.new()
+	for response: DialogueResponse in tree.dialogue_tree[current_block_indent].possible_answers:
+		var new_response := Button.new()
 		# appearance of button
 		new_response.text = response.displayed_response
 		new_response.add_theme_font_size_override("font_size", 6)
 		new_response.alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		# check if response is valid
-		for consequence in response.consequences.keys():
+		for consequence: DialogueResponse.ConsequenceType in response.consequences.keys():
 			var not_artifakt_available = consequence == DialogueResponse.ConsequenceType.SPECIFIC_ARTIFACT and not ArtifactHandler.available_artifacts.has(response.consequences[consequence])
-			var coins_cant_be_spend = consequence == DialogueResponse.ConsequenceType.COINS_ABSOLUTE       and not -1*RunData.player_stats.coins < response.consequences[consequence]
+			var coins_cant_be_spend = consequence == DialogueResponse.ConsequenceType.COINS_ABSOLUTE and not -1 * RunData.player_stats.coins < response.consequences[consequence]
 			if not_artifakt_available or coins_cant_be_spend:
 				new_response.disabled = true
 		
 		# connects the buttons with exeptional parameters
-		var next_block_ids = response.next_block
+		var next_block_ids: Array[int] = response.next_block
 		new_response.pressed.connect(func(): _on_some_answer_pressed(next_block_ids, response))
 		
 		answer_choices.add_child(new_response)
@@ -97,7 +96,7 @@ func update_answers():
 
 #region Signals
 
-func _on_some_answer_pressed(next_blocks: Array, trigger: DialogueResponse):
+func _on_some_answer_pressed(next_blocks: Array, trigger: DialogueResponse) -> void:
 	update_dialogue_encounter(next_blocks, trigger)
 
 #endregion

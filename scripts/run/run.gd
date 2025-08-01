@@ -5,13 +5,14 @@ signal load_main_menu
 
 @onready var ui_layer: UILayer = $UILayer
 @onready var run_ui: RunUI = $UILayer/RunUI
-@onready var encounter_handler = $EncounterHandler
-@onready var map = $UILayer/Map
-@onready var map_generator = $MapGenerator
+@onready var encounter_handler: EncounterHandler = $EncounterHandler
+@onready var map: Map = $UILayer/Map
+@onready var map_generator: MapGenerator = $MapGenerator
 
 var map_layers: Array[MapLayer] = []
 
-func _ready():
+
+func _ready() -> void:
 	RunData.start_run(RunData.Characters.WARRIOR)
 	map_layers = map_generator.generate_map()
 	map.load_layers(map_layers)
@@ -29,7 +30,7 @@ func _on_encounter_handler_load_main_menu() -> void:
 	load_main_menu.emit()
 
 # Uses the EncounterHandler to load the requested encounter
-func _on_map_encounter_selected(encounter_data):
+func _on_map_encounter_selected(encounter_data) -> void:
 	encounter_handler.start_encounter(encounter_data)
 
 func _on_encounter_handler_load_rewards(boss_rewards: bool) -> void:

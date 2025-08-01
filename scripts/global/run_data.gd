@@ -23,6 +23,7 @@ var sub_rngs: Dictionary[String, RandomNumberGenerator] = {
 	"rng_shop_trade": RandomNumberGenerator.new(),
 	"rng_dialogue_ui": RandomNumberGenerator.new(),
 	"rng_dialogue_response": RandomNumberGenerator.new(),
+	"rng_card_manipulation_action": RandomNumberGenerator.new(),
 }
 var selected_character: Characters = Characters.WARRIOR
 var player_stats: PlayerStats
@@ -31,7 +32,8 @@ var altered_values: Dictionary = {
 	AlteredValue.CAMPFIRE_HEAL: 0,
 }
 
-func start_run(character: Characters):
+
+func start_run(character: Characters) -> void:
 	rng_master = RandomNumberGenerator.new()
 	seed(rng_master.seed)
 	master_seed = rng_master.seed

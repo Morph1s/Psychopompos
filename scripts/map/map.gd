@@ -4,10 +4,9 @@ extends Control
 signal encounter_selected(encounter_data)
 
 @onready var exit_button: Button = $TopMargin/ExitButton
-@onready var map_layer_container = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
+@onready var map_layer_container: HBoxContainer = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 @onready var connection_drawer: MapConnectionDrawer = $TopMargin/MapIconsMargin/MapConnectionDrawer
 @onready var scroll_container: ScrollContainer = $TopMargin/MapIconsMargin/MapScrollContainer
-@onready var layer_container: HBoxContainer = $TopMargin/MapIconsMargin/MapScrollContainer/MapLayerContainer
 
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_map_visual"]
 var node_to_button: Dictionary[MapNode, Button] = {}
@@ -21,18 +20,18 @@ var can_close: bool = false:
 			exit_button.hide()
 		can_close = value
 
+
 func _process(_delta: float) -> void:
 	# update the connection lines on the map
 	connection_drawer.queue_redraw()
 
-
-func load_layers(map_layers):
-	for child in map_layer_container.get_children():
+func load_layers(map_layers: Array[MapLayer]) -> void:
+	for child: Node in map_layer_container.get_children():
 		child.queue_free()
 		
 	# each layer gets a VBoxContainer for displaying its encounters
 	for layer: MapLayer in map_layers:
-		var layer_container = VBoxContainer.new()
+		var layer_container := VBoxContainer.new()
 		layer_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		layer_container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		map_layer_container.add_child(layer_container)
@@ -41,11 +40,11 @@ func load_layers(map_layers):
 			if not node.active:
 				continue
 			
-			var button_container = MarginContainer.new()
+			var button_container := MarginContainer.new()
 			button_container.add_theme_constant_override("margin_left", rng.randi_range(0, 8))
 			button_container.add_theme_constant_override("margin_right", rng.randi_range(0, 8))
 			
-			var button = Button.new()
+			var button := Button.new()
 			button.flat = true
 			# starting layer buttons should be enabled by default
 			if layer.type != MapLayer.MapLayerType.START:
@@ -56,7 +55,7 @@ func load_layers(map_layers):
 			
 			button_container.add_child(button)
 			
-			var completed_icon: TextureRect = TextureRect.new()
+			var completed_icon := TextureRect.new()
 			completed_icon.texture = load("res://assets/graphics/map/icon_encounter_completed.png")
 			completed_icon.position = button.get_global_position()
 			completed_icon.mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
@@ -69,26 +68,26 @@ func load_layers(map_layers):
 	# fill the node_to_button Dictionary
 	connection_drawer.set_connections(node_to_button)
 
-func _scroll_to_current_layer():
-	var layer := layer_container.get_child(current_layer + 1)
-	var layer_pos = layer.position.x
-	var layer_width = layer.size.x
-	var scroll_width = scroll_container.size.x
+func _scroll_to_current_layer() -> void:
+	var layer: VBoxContainer = map_layer_container.get_child(current_layer + 1)
+	var layer_pos: float = layer.position.x
+	var layer_width: float = layer.size.x
+	var scroll_width: float = scroll_container.size.x
 	
-	var target_scroll = layer_pos + layer_width / 2 - scroll_width / 2
+	var target_scroll: float = layer_pos + layer_width / 2 - scroll_width / 2
 	target_scroll = clamp(target_scroll, 0, scroll_container.get_h_scroll_bar().max_value)
 	
 	scroll_container.set_h_scroll(target_scroll)
 
-func lock_layer():
+func lock_layer() -> void:
 	for button_container: MarginContainer in map_layer_container.get_child(current_layer).get_children():
-		var button = button_container.get_child(0)
+		var button: Button = button_container.get_child(0)
 		var node: MapNode = node_to_button.find_key(button)
 		button.disabled = true
 		if node == current_node:
 			button.modulate = Color(0.3, 0.3, 0.4)
 
-func unlock_next_encounters():
+func unlock_next_encounters() -> void:
 	if current_layer >= map_layer_container.get_child_count() - 1:
 		return
 	
@@ -123,12 +122,12 @@ func close_map() -> bool:
 		return true
 	return false
 
-func _on_encounter_pressed(node: MapNode):
+func _on_encounter_pressed(node: MapNode) -> void:
 	hide()
 	can_close = true
 	encounter_selected.emit(node.encounter)
 	current_node = node
 	lock_layer()
 
-func _on_exit_button_pressed():
+func _on_exit_button_pressed() -> void:
 	close_map()

@@ -6,7 +6,6 @@ extends PanelContainer
 @onready var direct_buy_panel: DirectBuyPanel = $"../DirectBuyPanel"
 @onready var packs_panel: CardPackPanel = $"../PacksPanel"
 
-
 const MAX_NUM_CARDS_TO_TRADE: int = 2
 
 var selected_cards: Array[CardType] = []
@@ -14,7 +13,7 @@ var previously_selected_cards: Array[CardType] = []
 var can_trade: bool = true
 
 
-func initialize():
+func initialize() -> void:
 	trading_interface.change_card_selection.connect(_show_trading_deck_view_from_trading_interface)
 	trading_interface.traded.connect(_on_traded)
 	trade.material.set_shader_parameter("desaturation", 0.0)
@@ -23,7 +22,7 @@ func _on_trade_icon_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_click") and can_trade:
 		_show_trading_deck_view_from_trade_icon()
 
-func select_card(card: CardType, card_visual: CardVisualization, deck_view: DeckView):
+func select_card(card: CardType, card_visual: CardVisualization, deck_view: DeckView) -> void:
 	# don't allow starting cards to be traded
 	if card.rarity == CardType.Rarity.STARTING_CARD:
 		card_visual.play_shake_animation()
@@ -47,29 +46,23 @@ func select_card(card: CardType, card_visual: CardVisualization, deck_view: Deck
 		if selected_cards.is_empty():
 			deck_view.action_button.disabled = true
 
-func set_selected_cards():
-	for card: CardType in selected_cards:
-		print("Selected ", card.card_name, " to trade")
-	
+func set_selected_cards() -> void:
 	trading_interface.show()
 	trading_interface.set_selected_cards(selected_cards)
 
-func set_previously_selected_cards():
-	for card: CardType in previously_selected_cards:
-		print("Selected ", card.card_name, " to trade")
-	
+func set_previously_selected_cards() -> void:
 	trading_interface.show()
 	trading_interface.set_selected_cards(previously_selected_cards)
 
-func _show_trading_deck_view_from_trade_icon():
+func _show_trading_deck_view_from_trade_icon() -> void:
 	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "select_card"), true, Callable(self, "set_selected_cards"))
 
-func _show_trading_deck_view_from_trading_interface(selected_cards: Array[CardType]):
+func _show_trading_deck_view_from_trading_interface(selected_cards: Array[CardType]) -> void:
 	previously_selected_cards = selected_cards.duplicate()
 	self.selected_cards.clear()
 	EventBusHandler.show_deck_view_with_action.emit(DeckHandler.current_deck, Callable(self, "select_card"), true, Callable(self, "set_selected_cards"), Callable(self, "set_previously_selected_cards"))
 
-func _on_traded():
+func _on_traded() -> void:
 	can_trade = false
 	trade.texture = load("res://assets/graphics/hud/pictograms/trade_icon_disabled.png")
 	direct_buy_panel.update_price_tags()

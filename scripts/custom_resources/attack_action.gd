@@ -9,8 +9,9 @@ var modified_damage: int:
 	get:
 		return modifier_handler.modify_value(damage_stat, ModifierHandler.ModifiedValue.DAMAGE_DEALT)
 
+
 func resolve(targets: Array[Node2D]) -> void: 
-	for target in targets:
+	for target: Node2D in targets:
 		if target.has_method("get_attacked"):
 			target.get_attacked(modified_damage)
 		else:
