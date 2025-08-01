@@ -27,7 +27,7 @@ func card_discarded() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(previous: int, current: int) -> void:
+func changed_stacks(_previous: int, _current: int) -> void:
 	pass
 
 ## this function is called at the start of the entities turn 
@@ -39,5 +39,9 @@ func end_of_turn() -> void:
 	pass
 
 ## this function is called when an effect is applied
-func effect_applied(stacks_added:int, effect_added:Effect) -> void:
+func effect_applied(_stacks_added: int, _effect_added: Effect) -> void:
+	pass
+
+## this function is called when the unit gains block
+func block_gained(_value: int) -> void:
 	pass

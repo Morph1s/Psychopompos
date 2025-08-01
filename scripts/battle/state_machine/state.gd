@@ -3,8 +3,9 @@ extends Node
 
 var state_machine: StateMachine
 
-func enter():
+
+func enter() -> void:
 	pass
 
-func exit():
+func exit() -> void:
 	pass

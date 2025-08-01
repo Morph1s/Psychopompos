@@ -8,9 +8,14 @@ extends Effect
 
 const DAMAGE_PER_STACK: int = 5
 
+
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
 	add_stacks(1)
+
+## this function is called when the entity takes damage that is impacted by block
+func take_damage() -> void:
+	pass
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
 func played_attack() -> void:
@@ -38,4 +43,12 @@ func start_of_turn():
 
 ## this function is called at the end of the entities turn s
 func end_of_turn():
+	pass
+
+## this function is called when an effect is applied
+func effect_applied(stacks_added:int, effect_added:Effect) -> void:
+	pass
+
+## this function is called when the unit gains block
+func block_gained(value: int) -> void:
 	pass

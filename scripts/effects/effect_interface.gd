@@ -8,8 +8,8 @@ enum EffectType {
 	DEBUFF
 }
 
-@onready var counter = $Counter
-@onready var tooltip = $Tooltip
+@onready var counter: Label = $Counter
+@onready var tooltip: Tooltip = $Tooltip
 
 ## unique idenifier for the effect
 @export var effect_name: String
@@ -20,9 +20,9 @@ enum EffectType {
 ## set true if the effect can't be added to enemies
 @export var player_only: bool = false
 @export var tooltip_data: Array[TooltipData]
+@export var index: int
 
 var effect_owner: Node2D
-@export var index: int
 var stacks: int = 0:
 	set(value):
 		# call the logic on changing stats
@@ -37,11 +37,11 @@ var stacks: int = 0:
 		else:
 			counter.text = ""
 		
-		for tooltip_entry in tooltip_data:
+		for tooltip_entry: TooltipData in tooltip_data:
 			tooltip_entry.set_description(stacks)
 		tooltip.load_tooltips(tooltip_data)
 
-## called to setup the effects functionality
+
 func initialize(entity: Node2D, amount: int) -> void:
 	if not is_node_ready():
 		await ready
@@ -54,7 +54,7 @@ func initialize(entity: Node2D, amount: int) -> void:
 	
 	await tooltip.load_tooltips(tooltip_data)
 	
-	tooltip.position.x -= max(0, self.global_position.x + tooltip.box_size.x - 316.0)
+	tooltip.position.x -= max(0, global_position.x + tooltip.box_size.x - 316.0)
 
 ## removes the effect completely
 func remove() -> void:
@@ -75,6 +75,14 @@ func remove_stacks(amount: int = 1) -> void:
 			remove()
 	else:
 		remove()
+
+func _on_area_2d_mouse_entered() -> void:
+	tooltip.show()
+
+func _on_area_2d_mouse_exited() -> void:
+	tooltip.hide()
+
+#region template function definitions
 
 ## this function is called when the entity was attacked 
 func get_attacked() -> void:
@@ -97,7 +105,7 @@ func card_discarded() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(_previous: int, _current: int) -> void:
+func changed_stacks(previous: int, current: int) -> void:
 	pass
 
 ## this function is called at the start of the entities turn 
@@ -109,15 +117,11 @@ func end_of_turn() -> void:
 	pass
 
 ## this function is called when an effect is applied
-func effect_applied(stacks_added:int, effect_added:Effect) -> void:
+func effect_applied(stacks_added: int, effect_added: Effect) -> void:
 	pass
 
 ## this function is called when the unit gains block
 func block_gained(value: int) -> void:
 	pass
 
-func _on_area_2d_mouse_entered():
-	tooltip.show()
-
-func _on_area_2d_mouse_exited():
-	tooltip.hide()
+#endregion

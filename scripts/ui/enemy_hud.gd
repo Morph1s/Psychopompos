@@ -3,12 +3,12 @@ extends EntityHud
 
 signal intent_box_hovered(mouse_entered: bool)
 
-const ENEMY_HP_BAR_OVER = preload("res://assets/graphics/hud/hp_bar/enemy_hp_bar_over.png")
+@onready var intent_container: HBoxContainer = $IntentContainer
+@onready var intent_icon: TextureRect = $IntentContainer/IntentIcon
+@onready var intent_value: Label = $IntentContainer/IntentValue
+@onready var intent_amount: Label = $IntentContainer/IntentAmount
 
-@onready var intent_container = $IntentContainer
-@onready var intent_icon = $IntentContainer/IntentIcon
-@onready var intent_value = $IntentContainer/IntentValue
-@onready var intent_amount = $IntentContainer/IntentAmount
+const ENEMY_HP_BAR_OVER: Texture = preload("res://assets/graphics/hud/hp_bar/enemy_hp_bar_over.png")
 
 
 func set_intent(icon: Texture, value: int, value_text_color: Color, amount: int = 1) -> void:

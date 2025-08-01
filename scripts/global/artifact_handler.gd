@@ -2,11 +2,9 @@ extends Node
 
 signal artifact_selected(artifact: Artifact)
 
-var rng: RandomNumberGenerator = RunData.sub_rngs["rng_artifact"]
-
 var available_artifacts: Array[Artifact] = []
 var selected_artifacts: Array[Artifact] = []
-
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_artifact"]
 var effect_names: Dictionary = {
 	EffectAction.EffectType.AGILE: "Agile",
 	EffectAction.EffectType.DAMOKLES_SWORD: "DamoklesSword",
@@ -64,7 +62,7 @@ func select_artifact(artifact: Artifact) -> void:
 				RunData.altered_values[RunData.AlteredValue.CAMPFIRE_HEAL] += artifact.amount
 
 func _on_event_bus_battle_started() -> void:
-	for artifact in selected_artifacts:
+	for artifact: Artifact in selected_artifacts:
 		if artifact.effects_active:
 			match artifact.target_type:
 				TargetedAction.TargetType.PLAYER:
@@ -77,6 +75,6 @@ func _on_event_bus_battle_started() -> void:
 
 func _on_player_start_turn() -> void:
 	var player_effect_handler: EffectHandler = get_tree().get_first_node_in_group("player").effect_handler
-	for artifact in selected_artifacts:
+	for artifact: Artifact in selected_artifacts:
 		if artifact.start_of_turn_effects_active:
 			player_effect_handler.apply_effect(effect_names[artifact.start_of_turn_effect], artifact.amount)

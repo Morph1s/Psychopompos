@@ -1,15 +1,14 @@
 extends Node
 
+@onready var pause_menu_layer: PauseMenu = $PauseMenuLayer
+@onready var close_game_confirmation: CanvasLayer = $CloseGameConfirmation
+@onready var abandon_run_confirmation: CanvasLayer = $AbandonRunConfirmation
+
 const RUN: PackedScene = preload("res://scenes/run.tscn")
 const MAIN_MENU: PackedScene = preload("res://scenes/ui/main_menu.tscn")
 
-@onready var pause_menu_layer = $PauseMenuLayer
-@onready var close_game_confirmation = $CloseGameConfirmation
-@onready var abandon_run_confirmation: CanvasLayer = $AbandonRunConfirmation
-
-
-
 var loaded_scene: Node
+
 
 ## called on starting the game
 func _ready() -> void:
@@ -42,7 +41,7 @@ func _load_main_menu_scene() -> void:
 		loaded_scene.queue_free()
 		print("killed child")
 	
-	var main_menu_instance = MAIN_MENU.instantiate()
+	var main_menu_instance: MainMenu = MAIN_MENU.instantiate()
 	main_menu_instance.start_run_button_pressed.connect(_load_run_scene)
 	main_menu_instance.exit_button_pressed.connect(_request_closing_game)
 	main_menu_instance.options_button_pressed.connect(_on_main_menu_options_button_pressed)

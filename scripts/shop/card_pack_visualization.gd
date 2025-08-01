@@ -17,7 +17,8 @@ var is_animating: bool = false
 var is_perma_highlighted: bool = false
 var is_mouse_over: bool = false
 
-func initialize(pack: CardPack):
+
+func initialize(pack: CardPack) -> void:
 	if not is_node_ready():
 		await ready
 	
@@ -38,7 +39,7 @@ func _get_pack_image() -> Texture2D:
 	
 	return load("res://assets/graphics/cards/card_pack_common.png")
 
-func update_price_tag():
+func update_price_tag() -> void:
 	if card_pack.price > RunData.player_stats.coins:
 		material.set_shader_parameter("desaturation", 0.8)
 
@@ -59,20 +60,20 @@ func _on_gui_input(event: InputEvent) -> void:
 			play_shake_animation()
 		pack_selected.emit(card_pack)
 
-func play_shake_animation():
+func play_shake_animation() -> void:
 	if is_animating:
 		return
 	
 	is_animating = true
 	is_perma_highlighted = true
 	
-	var tween := create_tween()
+	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_loops(2)
 	
-	var shake_amount := 4
-	var original_position := position
+	var shake_amount: float = 4
+	var original_position: Vector2 = position
 	
 	tween.tween_property(self, "position:x", original_position.x - shake_amount, 0.02)
 	tween.tween_property(self, "position:x", original_position.x + shake_amount, 0.04)
@@ -81,7 +82,7 @@ func play_shake_animation():
 	tween.finished.connect(_on_shake_animation_finished)
 
 
-func _on_shake_animation_finished():
+func _on_shake_animation_finished() -> void:
 	is_animating = false
 	is_perma_highlighted = false
 	if not is_mouse_over:

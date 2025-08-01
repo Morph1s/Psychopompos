@@ -3,7 +3,7 @@ extends Area2D
 
 signal action_resolved
 signal mouse_entered_enemy(Node)
-signal mouse_exited_enemy(Node)
+signal mouse_exited_enemy()
 signal enemy_died(Node)
 
 const INTENT_COLOR_ATTACK: Color = Color.RED
@@ -13,7 +13,7 @@ const INTENT_COLOR_BLOCK: Color = Color.SKY_BLUE
 @onready var shape: CollisionShape2D = $EnemyShape
 @onready var modifier_handler: ModifierHandler = $ModifierHandler
 @onready var effect_handler: EffectHandler = $EffectHandler
-@onready var highlights = $Highlights
+@onready var highlights: Node2D = $Highlights
 @onready var hit_frame_timer: Timer = $HitFrameTimer
 @onready var tooltip: Tooltip = $Tooltip
 
@@ -21,7 +21,7 @@ const INTENT_COLOR_BLOCK: Color = Color.SKY_BLUE
 @export var enemy_hud: EnemyHud
 
 var id: int = 0
-var intent: int = -1 # Damit in Runde eins der intent auf null erhöht werden kann
+var intent: int = -1
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_enemy"]
 var y_position: int = 55
 var size: Vector2
@@ -57,10 +57,9 @@ func initialize() -> void:
 	
 	# initializing tooltips
 	for action: EnemyAction in stats.actions:
-		
 		# calculate damage that this action would deal
 		var collective_damage: int = 0
-		for entry in action.action_catalogue:
+		for entry: Action in action.action_catalogue:
 			if entry is AttackAction:
 				collective_damage += entry.damage_stat
 		
@@ -75,7 +74,7 @@ func start_of_turn() -> void:
 func end_of_turn() -> void:
 	await effect_handler._on_unit_turn_end()
 
-func take_damage(amount:int) -> void:
+func take_damage(amount: int) -> void:
 	image.material.set_shader_parameter("intensity", 1.0)
 	hit_frame_timer.start()
 	amount = modifier_handler.modify_value(amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
@@ -96,7 +95,7 @@ func resolve_intent() -> void:
 	var actions: Array[Action] = stats.actions[intent].action_catalogue
 	var attacked: bool = false
 	
-	for action in actions:
+	for action: Action in actions:
 		if action is TargetedAction:
 			action.resolve(_get_targets(action.target_type))
 		elif action is CardManipulationAction:
@@ -114,11 +113,11 @@ func resolve_intent() -> void:
 	action_resolved.emit()
 
 func choose_intent() -> void:
-	if stats.action_pattern == stats.ActionPattern.LINEAR :
+	if stats.action_pattern == stats.ActionPattern.LINEAR:
 		intent += 1
 		if intent >= stats.actions.size():
 			intent = 0
-	elif stats.action_pattern == stats.ActionPattern.RANDOM: 
+	elif stats.action_pattern == stats.ActionPattern.RANDOM:
 		intent = rng.randi_range(0,stats.actions.size()-1)
 	
 	var intent_color: Color = Color.WHITE
@@ -162,12 +161,12 @@ func _get_targets(targeting_mode: TargetedAction.TargetType) -> Array[Node2D]:
 		to_return.append_array(get_tree().get_nodes_in_group("enemy"))
 		
 	elif targeting_mode == TargetedAction.TargetType.ENEMY_ALL_EXCLUSIVE:
-		for enemy in get_tree().get_nodes_in_group("enemy"):
+		for enemy: Node2D in get_tree().get_nodes_in_group("enemy"):
 			if enemy.id != id:
 				to_return.append(enemy)
 		
 	elif targeting_mode == TargetedAction.TargetType.ENEMY_RANDOM:
-		var enemies := get_tree().get_nodes_in_group("enemy")
+		var enemies: Array[Node] = get_tree().get_nodes_in_group("enemy")
 		to_return.append(enemies[rng.randi_range(0, enemies.size() -1)])
 	
 	return to_return
@@ -197,9 +196,9 @@ func _on_mouse_entered() -> void:
 	mouse_entered_enemy.emit(self)
 
 func _on_mouse_exited() -> void:
-	mouse_exited_enemy.emit(self)
+	mouse_exited_enemy.emit()
 
-func _on_hit_frame_timer_timeout():
+func _on_hit_frame_timer_timeout() -> void:
 	image.material.set_shader_parameter("intensity", 0.0)
 
 func _on_enemy_hud_intent_box_hovered(mouse_entered: bool) -> void:

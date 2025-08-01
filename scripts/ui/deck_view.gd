@@ -3,12 +3,12 @@ extends Control
 
 signal close_deck_view
 
-const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
-
-@onready var card_container = $ScrollContainerMargin/CardScrollContainer/CardContainer
-@onready var tooltip = $UIMargin/Tooltip
+@onready var card_container: GridContainer = $ScrollContainerMargin/CardScrollContainer/CardContainer
+@onready var tooltip: Tooltip = $UIMargin/Tooltip
 @onready var action_button: Button = $UIMargin/ActionButton
 @onready var background_color: ColorRect = $BackgroundColor
+
+const CARD_VISUALIZATION: PackedScene = preload("res://scenes/card/card_visualization.tscn")
 
 var card_selected_action: Callable
 var has_action_button: bool = false
@@ -24,11 +24,11 @@ func load_cards(card_pile: Array[CardType]) -> void:
 	button_action = Callable()
 	exit_action = Callable()
 	
-	for card in card_container.get_children():
+	for card: CardVisualization in card_container.get_children():
 		card.queue_free()
 	
-	for card in card_pile:
-		var card_visualization = CARD_VISUALIZATION.instantiate()
+	for card: CardType in card_pile:
+		var card_visualization: CardVisualization = CARD_VISUALIZATION.instantiate()
 		card_visualization.initialize(card)
 		card_visualization.show_tooltip.connect(_on_card_show_toopltip)
 		card_visualization.hide_tooltip.connect(_on_card_hide_toopltip)
@@ -37,7 +37,7 @@ func load_cards(card_pile: Array[CardType]) -> void:
 func add_card_action(on_card_selected_action: Callable) -> void:
 	card_selected_action = on_card_selected_action
 	
-	for card in card_container.get_children():
+	for card: CardVisualization in card_container.get_children():
 		card.card_selected.connect(_on_card_selected)
 
 func add_button_action(on_button_pressed_action: Callable) -> void:
@@ -67,11 +67,11 @@ func _on_card_hide_toopltip() -> void:
 func _on_card_selected(card: CardType, card_visual: CardVisualization) -> void:
 	card_selected_action.call(card, card_visual, self)
 	if not has_action_button:
-		for card_vis in card_container.get_children():
+		for card_vis: CardVisualization in card_container.get_children():
 			card_vis.queue_free()
 		close_deck_view.emit()
 
-func toggle_action_button():
+func toggle_action_button() -> void:
 	if has_action_button:
 		action_button.show()
 	else:

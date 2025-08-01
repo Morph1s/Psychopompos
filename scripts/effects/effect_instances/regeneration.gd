@@ -8,8 +8,13 @@ extends Effect
 
 const HEAL_AMOUNT: float = 0.35
 
+
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
+	pass
+
+## this function is called when the entity takes damage that is impacted by block
+func take_damage() -> void:
 	pass
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
@@ -25,7 +30,7 @@ func card_discarded() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(_previous, _current):
+func changed_stacks(_previous: int, _current: int):
 	pass
 
 ## this function is called at the start of the entities turn 
@@ -38,4 +43,12 @@ func start_of_turn():
 
 ## this function is called at the end of the entities turn s
 func end_of_turn():
+	pass
+
+## this function is called when an effect is applied
+func effect_applied(_stacks_added: int, _effect_added: Effect) -> void:
+	pass
+
+## this function is called when the unit gains block
+func block_gained(_value: int) -> void:
 	pass

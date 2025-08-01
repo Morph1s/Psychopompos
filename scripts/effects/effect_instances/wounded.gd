@@ -20,9 +20,6 @@ func take_damage() -> void:
 	
 	if effect_owner.has_method("lose_hp"):
 		effect_owner.lose_hp(stacks)
-		print("lost ", stacks, " hp to wound")
-	else:
-		push_error("something went wrong with wounded effect")
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
 func played_attack() -> void:
@@ -37,7 +34,7 @@ func card_discarded() -> void:
 	pass
 
 ## this function is called when the amount of stacks changes 
-func changed_stacks(_previous, _current):
+func changed_stacks(_previous: int, _current: int):
 	pass
 
 ## this function is called at the start of the entities turn 

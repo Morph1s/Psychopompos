@@ -6,45 +6,42 @@ enum HighlightMode {
 	HOVERED,
 	SELECTED,
 	PLAYED,
-	}
+}
 
 signal mouse_entered_card(Node)
 signal mouse_exited_card(Node)
 
-const MAIN_THEME = preload("res://resources/theme/main_theme.tres")
-const CARD_ENERGY_BALL = preload("res://assets/graphics/cards/card_energy_ball.png")
+@onready var card_frame: Sprite2D = $CardFrame
+@onready var card_image: Sprite2D = $CardImage
+@onready var card_highlight: AnimatedSprite2D = $CardHighlight
+@onready var energy_ball_container: VBoxContainer = $EnergyBallContainer
+@onready var card_name: Label = $Name
+@onready var description: Node2D = $Description
+@onready var action_timer: Timer = $ActionTimer
+@onready var tooltip: Tooltip = $Tooltip
+
+const MAIN_THEME: Theme = preload("res://resources/theme/main_theme.tres")
+const CARD_ENERGY_BALL: Texture = preload("res://assets/graphics/cards/card_energy_ball.png")
 
 const NORMAL_HEIGHT: int = 150
 const SELECTED_HEIGHT: int = 146
 const PLAYED_HEIGHT: int = 142
 const ATTACK_LABEL_COLOR: Color = Color.RED
 
-@onready var card_frame = $CardFrame
-@onready var card_image: Sprite2D = $CardImage
-@onready var card_highlight: AnimatedSprite2D = $CardHighlight
-@onready var energy_ball_container = $EnergyBallContainer
-@onready var card_name: Label = $Name
-@onready var card_shape: CollisionShape2D = $CardShape
-@onready var description: Node2D = $Description
-@onready var action_timer: Timer = $ActionTimer
-@onready var tooltip = $Tooltip
-
-## all data about the kind of card this is and its visuals and effects
+# all data about the kind of card this is and its visuals and effects
 var card_type: CardType
-
 # manages whether a card can be hovered and selected
 var playable = false:
 	set(value):
 		input_pickable = value
 		playable = value
-
-## index of card in hand
+# index of card in hand
 var index: int = 0:
 	set(value):
 		z_index = value
 		index = value
-
-var card_mode: HighlightMode = HighlightMode.NONE # for card-selecting/-hovering
+# for card-selecting/-hovering
+var card_mode: HighlightMode = HighlightMode.NONE
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_card_target"]
 
 
@@ -90,7 +87,7 @@ func initialize(card: CardType) -> void:
 			card_name.add_theme_color_override("font_color", Color.BLACK)
 			card_frame.texture = load("res://assets/graphics/cards/god/template_god_card.png")
 	
-	for index in card_type.tooltips.size():
+	for index: int in card_type.tooltips.size():
 		if index in range(card_type.on_play_action.size()):
 			_set_tooltip_of_index(index)
 		else:
@@ -111,7 +108,6 @@ func _set_tooltip_of_index(index: int) -> void:
 	elif card_type.on_play_action[index] is CardManipulationAction:
 		card_type.tooltips[index].set_description(card_type.on_play_action[index].count)
 
-## function for CardHandler to handle card-state
 func highlight(mode: HighlightMode):
 	match mode:
 		HighlightMode.NONE:
@@ -143,12 +139,9 @@ func highlight(mode: HighlightMode):
 			card_highlight.play("played")
 			card_highlight.show()
 
-
-## function to be called on playing the card
-## 
-## if the card requires targeting an enemy, add its id as the parameter
+# function to be called on playing the card
+# if the card requires targeting an enemy, add its id as the parameter
 func play(target_id: int = -1) -> void:
-	
 	# pay energy cost
 	RunData.player_stats.pay_energy(card_type.energy_cost)
 	
@@ -160,8 +153,7 @@ func play(target_id: int = -1) -> void:
 	var played_attack: bool = false
 	
 	# act
-	for action in actions:
-		
+	for action: Action in actions:
 		if get_tree().get_node_count_in_group("enemy") == 0:
 			break
 		
@@ -198,7 +190,7 @@ func _get_targets(targeting_mode: TargetedAction.TargetType, target_id: int) -> 
 			to_return.append(get_tree().get_first_node_in_group("player"))
 		
 		TargetedAction.TargetType.ENEMY_SINGLE:
-			for enemy in get_tree().get_nodes_in_group("enemy"):
+			for enemy: Enemy in get_tree().get_nodes_in_group("enemy"):
 				if enemy.id == target_id:
 					to_return.append(enemy)
 					break
@@ -207,7 +199,7 @@ func _get_targets(targeting_mode: TargetedAction.TargetType, target_id: int) -> 
 			to_return.append_array(get_tree().get_nodes_in_group("enemy"))
 		
 		TargetedAction.TargetType.ENEMY_ALL_EXCLUSIVE:
-			for enemy in get_tree().get_nodes_in_group("enemy"):
+			for enemy: Enemy in get_tree().get_nodes_in_group("enemy"):
 				if enemy.id != target_id:
 					to_return.append(enemy)
 		
@@ -220,23 +212,22 @@ func _get_targets(targeting_mode: TargetedAction.TargetType, target_id: int) -> 
 	
 	return to_return
 
-
 func _set_description(icon: Texture, value_text: String, value_text_color: Color, addon_text: String, description_index: int) -> void:
 	if 2 < description_index:
 		push_error("too many descriptions for card: ", card_type.card_name)
 		return
 	
 	if icon:
-		var sprite = Sprite2D.new()
+		var sprite := Sprite2D.new()
 		sprite.centered = false
 		sprite.texture = icon
 		sprite.position = Vector2(0, 9 * description_index)
 		description.add_child(sprite)
 	
-	var addon_text_offset: Vector2 = Vector2(9, (9 * description_index) + 2)
+	var addon_text_offset := Vector2(9, (9 * description_index) + 2)
 	
 	if value_text:
-		var label = Label.new()
+		var label := Label.new()
 		label.theme = MAIN_THEME
 		label.add_theme_color_override("font_color", value_text_color)
 		label.text = value_text
@@ -245,7 +236,7 @@ func _set_description(icon: Texture, value_text: String, value_text_color: Color
 		description.add_child(label)
 	
 	if addon_text:
-		var label = Label.new()
+		var label := Label.new()
 		label.theme = MAIN_THEME
 		label.text = addon_text
 		label.position = addon_text_offset
@@ -253,7 +244,7 @@ func _set_description(icon: Texture, value_text: String, value_text_color: Color
 
 func _create_energy_cost_balls(amount: int) -> void:
 	for i in amount:
-		var new_ball = TextureRect.new()
+		var new_ball := TextureRect.new()
 		new_ball.texture = CARD_ENERGY_BALL
 		energy_ball_container.add_child(new_ball)
 
@@ -268,7 +259,7 @@ func _on_mouse_exited() -> void:
 	mouse_exited_card.emit(self)
 
 func _on_card_type_energy_cost_changed(new_value: int) -> void:
-	for energy_ball in energy_ball_container.get_children():
+	for energy_ball: TextureRect in energy_ball_container.get_children():
 		energy_ball.queue_free()
 	
 	_create_energy_cost_balls(new_value)

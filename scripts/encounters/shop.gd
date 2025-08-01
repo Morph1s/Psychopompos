@@ -7,7 +7,7 @@ extends Node2D
 @onready var direct_buy_panel: DirectBuyPanel = $ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel
 
 
-func initialize():
+func initialize() -> void:
 	packs_panel.initialize()
 	trade_panel.initialize()
 	direct_buy_panel.initialize()

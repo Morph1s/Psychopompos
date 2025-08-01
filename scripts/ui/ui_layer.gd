@@ -8,12 +8,12 @@ extends CanvasLayer
 @onready var lower_level_ui: Control = $LowerLevelUI
 @onready var upper_level_ui: Control = $UpperLevelUI
 
-var battle_ui_reference: BattleUI
-
 const BATTLE_UI: PackedScene = preload("res://scenes/ui/battle_ui.tscn")
 const BATTLE_REWARDS: PackedScene = preload("res://scenes/encounters/battle_rewards.tscn")
-const DECK_VIEW: PackedScene = preload("res://scenes/ui/deck_view.tscn")
 const CARD_VISUALIZATION: PackedScene = preload("res://scenes/card/card_visualization.tscn")
+
+var battle_ui_reference: BattleUI
+
 
 func _ready() -> void:
 	EventBusHandler.battle_started.connect(_on_event_bus_battle_started)
@@ -23,7 +23,7 @@ func _ready() -> void:
 	EventBusHandler.card_picked_for_deck_add.connect(_on_eventbus_card_picked_for_deck_add)
 	EventBusHandler.encounter_finished.connect(_on_eventbus_encounter_finished)
 
-func _on_run_ui_open_map():
+func _on_run_ui_open_map() -> void:
 	if map.visible:
 		map.close_map()
 		return
@@ -36,15 +36,16 @@ func _on_run_ui_open_map():
 func _on_event_bus_battle_started() -> void:
 	battle_ui_reference = BATTLE_UI.instantiate()
 	lower_level_ui.add_child(battle_ui_reference)
+	battle_ui_reference.initialize()
 
 func _on_event_bus_battle_ended() -> void:
 	if battle_ui_reference:
 		battle_ui_reference.queue_free()
 
-func _on_map_hidden():
+func _on_map_hidden() -> void:
 	EventBusHandler.back_to_battle.emit()
 
-func _on_run_ui_open_deck_view():
+func _on_run_ui_open_deck_view() -> void:
 	if deck_view.visible:
 		_close_deck_view()
 	else:
@@ -69,7 +70,7 @@ func _on_eventbus_open_deck_view_with_action(deck: Array[CardType], on_card_sele
 	deck_view.add_button_action(on_button_pressed_action)
 	deck_view.add_exit_action(on_exit_pressed_action)
 
-func _close_deck_view():
+func _close_deck_view() -> void:
 	deck_view.hide()
 	EventBusHandler.back_to_battle.emit()
 	if not map.can_close:
@@ -83,7 +84,7 @@ func _on_eventbus_encounter_finished() -> void:
 	map.can_close = false
 	map.show()
 
-func _on_eventbus_card_picked_for_deck_add(cards: Array[CardType], positions: Array[Vector2]):
+func _on_eventbus_card_picked_for_deck_add(cards: Array[CardType], positions: Array[Vector2]) -> void:
 	var card_visuals: Array[CardVisualization] = []
 	for card: CardType in cards:
 		var card_visual: CardVisualization = CARD_VISUALIZATION.instantiate()

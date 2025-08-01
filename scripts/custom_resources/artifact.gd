@@ -1,7 +1,6 @@
 class_name Artifact
 extends Resource
 
-
 @export var name: String
 @export var texture: Texture
 @export var amount: int

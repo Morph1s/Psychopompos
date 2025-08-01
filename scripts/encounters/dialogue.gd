@@ -5,7 +5,8 @@ signal player_died
 
 @onready var character: Character = $Character
 
-func initialize():
+
+func initialize() -> void:
 	character.initialize()
 	character.hide_character_hud()
 

@@ -8,6 +8,7 @@ extends Effect
 
 const HITPOINTS_THRESHOLD: float = 0.2
 
+
 ## this function is called when the entity was attacked
 func get_attacked() -> void:
 	pass
@@ -17,14 +18,22 @@ func take_damage() -> void:
 	if effect_owner.stats.current_hitpoints < int(HITPOINTS_THRESHOLD * effect_owner.stats.maximum_hitpoints):
 		var effect_handler: EffectHandler = effect_owner.effect_handler
 		effect_handler.apply_effect("Invincible", 2)
-		remove_stacks()
+		remove_stacks(stacks)
 
 ## this function gets called after the unit plays a card containing an attack or resolves an action containing an attack
 func played_attack() -> void:
 	pass
 
+## this function gets called whenever the player draws a card
+func card_drawn() -> void:
+	pass
+
+## this function gets called whenever the player discards a card
+func card_discarded() -> void:
+	pass
+
 ## this function is called when the amount of stacks changes 
-func changed_stacks(previous: int, current: int) -> void:
+func changed_stacks(_previous: int, _current: int) -> void:
 	pass
 
 ## this function is called at the start of the entities turn 
@@ -33,4 +42,12 @@ func start_of_turn() -> void:
 
 ## this function is called ath the end of the entities turn s
 func end_of_turn() -> void:
+	pass
+
+## this function is called when an effect is applied
+func effect_applied(_stacks_added: int, _effect_added: Effect) -> void:
+	pass
+
+## this function is called when the unit gains block
+func block_gained(_value: int) -> void:
 	pass
