@@ -7,6 +7,11 @@ enum RewardType {
 	ARTIFACT,
 }
 
+@onready var rewards_container: VBoxContainer = $RewardSelection/CenterPanel/VerticalContainer/RewardsContainer
+@onready var select_card_screen: SelectCardsScreen = $SelectCardScreen
+
+const BATTLE_REWARD_BUTTON = preload("res://scenes/encounters/battle_reward_button.tscn")
+
 const CARDS_PER_CARD_REWARD: int = 3
 # common reward constants for balancing
 const COMMON_COIN_CHANCE: float = 0.7
@@ -17,16 +22,11 @@ const BOSS_COIN_CHANCE: float = 1.0
 const BOSS_COIN_AMOUNT_MAX: int = 70
 const BOSS_COIN_AMOUNT_MIN: int = 50
 
-const BATTLE_REWARD_BUTTON = preload("res://scenes/encounters/battle_reward_button.tscn")
-
-@onready var rewards_container = $RewardSelection/CenterPanel/VerticalContainer/RewardsContainer
-@onready var select_card_screen = $SelectCardScreen
-@onready var reward_selection = $RewardSelection
-
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_battle_rewards"]
 var current_card_reward_button: Button
 var card_rewards_list: Array[Array] = []
 var reward_count: int = 0
+
 
 func load_common_rewards() -> void:
 	if not is_node_ready():
@@ -53,7 +53,7 @@ func load_boss_rewards() -> void:
 	artifact_reward.reward_selected.connect(_on_reward_button_reward_selected)
 	rewards_container.add_child(artifact_reward)
 	
-	var god_cards_distribution := {
+	var god_cards_distribution: Dictionary[CardType.Rarity, int] = {
 		CardType.Rarity.GODS_BOON: 100
 	}
 	

@@ -14,14 +14,14 @@ enum SpecialEffects {
 var card_handler: CardHandler
 var player: Character
 var enemies: Array[Node2D]
-
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_special_action"]
+
 
 func resolve(targets: Array[Node2D]) -> void:
 	# the first target is the CardHandler, the second is the player, everything after are all enemies in the combat
 	card_handler = targets[0]
 	player = targets[1]
-	for i in range(2, targets.size()):
+	for i: int in range(2, targets.size()):
 		enemies.append(targets[i])
 	
 	match action_type:
@@ -41,14 +41,12 @@ func _resolve_eris() -> void:
 	var cards_to_discard: int = rng.randi_range(1, 5)
 	var cards_to_draw: int = rng.randi_range(1, 5)
 	
-	for i in cards_to_discard:
+	for i: int in cards_to_discard:
 		if card_handler.hand.is_empty():
 			break
 		await card_handler.discard_card(card_handler.hand[rng.randi_range(0, card_handler.hand.size() - 1)])
-	print("eris discarded ", cards_to_discard, "cards")
 	
 	await card_handler.draw_cards(cards_to_draw)
-	print("eris drew ", cards_to_draw, "cards")
 
 ## double gather
 func _resolve_thanatos() -> void:
@@ -75,10 +73,10 @@ func _resolve_poseidon() -> void:
 	block_action.modifier_handler = player.modifier_handler
 	
 	# append the actions to the arrays
-	for i in card_handler.draw_pile.size():
+	for i: int in card_handler.draw_pile.size():
 		actions_to_be_resolved.append(attack_all_action)
 	
-	for i in card_handler.discard_pile.size():
+	for i: int in card_handler.discard_pile.size():
 		actions_to_be_resolved.append(block_action)
 	
 	# add actions to the card
@@ -92,7 +90,7 @@ func _resolve_zeus() -> void:
 	var actions_to_be_resolved: Array[Action]
 	
 	# create the attack actions
-	for i in rng.randi_range(10, 15):
+	for i: int in rng.randi_range(10, 15):
 		var lightning_action: SpecialAction = SpecialAction.new()
 		lightning_action.action_type = SpecialEffects.LIGHTNING
 		actions_to_be_resolved.append(lightning_action)
@@ -101,7 +99,7 @@ func _resolve_zeus() -> void:
 	card_handler.played_card.card_type.on_play_action.append_array(actions_to_be_resolved)
 
 func _resolve_lightning() -> void:
-	var enemy = enemies[rng.randi_range(0, enemies.size() - 1)]
+	var enemy: Node2D = enemies[rng.randi_range(0, enemies.size() - 1)]
 	if enemy.has_method("take_damage"):
 		enemy.take_damage(rng.randi_range(2, 5))
 	else:

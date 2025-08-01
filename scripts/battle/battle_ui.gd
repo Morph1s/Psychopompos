@@ -1,20 +1,20 @@
 class_name BattleUI
 extends Control
 
-const HUD_ENERGY_BALL = preload("res://scenes/ui/hud_energy_ball.tscn")
-const HUD_NEGATIVE_ENERGY_BALL = preload("res://scenes/ui/hud_negative_energy_ball.tscn")
-
 @onready var end_turn_button: Button = $EndTurnButton
-@onready var energy_ball_container = $Energy/EnergyBallContainer
-@onready var hitpoint_cost_label_container = $Energy/HitpointCostLabelContainer
-@onready var hitpoint_cost_text = $Energy/HitpointCostLabelContainer/HitpointCostText
-@onready var negative_energy_ball_container = $Energy/NegativeEnergyBallContainer
+@onready var energy_ball_container: HBoxContainer = $Energy/EnergyBallContainer
+@onready var hitpoint_cost_label_container: HBoxContainer = $Energy/HitpointCostLabelContainer
+@onready var hitpoint_cost_text: Label = $Energy/HitpointCostLabelContainer/HitpointCostText
+@onready var negative_energy_ball_container: VBoxContainer = $Energy/NegativeEnergyBallContainer
 @onready var card_handler: CardHandler = get_tree().get_first_node_in_group("card_piles")
-@onready var draw_pile_card_count_label = $DrawPile/DrawPileCardCount
-@onready var discard_pile_card_count_label = $DiscardPile/DiscardPileCardCount
+@onready var draw_pile_card_count_label: Label = $DrawPile/DrawPileCardCount
+@onready var discard_pile_card_count_label: Label = $DiscardPile/DiscardPileCardCount
+
+const HUD_ENERGY_BALL: PackedScene = preload("res://scenes/ui/hud_energy_ball.tscn")
+const HUD_NEGATIVE_ENERGY_BALL: PackedScene = preload("res://scenes/ui/hud_negative_energy_ball.tscn")
 
 
-func _ready() -> void:
+func initialize() -> void:
 	EventBusHandler.set_player_control.connect(_on_eventbus_set_player_control)
 	EventBusHandler.card_selected.connect(_on_event_bus_card_selected)
 	EventBusHandler.card_deselected.connect(_on_event_bus_card_deselected)
@@ -46,15 +46,18 @@ func _on_event_bus_card_piles_card_count_changed(draw_pile_card_count: int, disc
 #region energy hud
 
 func _spawn_energy_balls(amount: int) -> void:
+	if not is_node_ready():
+		await ready
+	
 	for i in amount:
-		var ball = HUD_ENERGY_BALL.instantiate()
+		var ball := HUD_ENERGY_BALL.instantiate()
 		energy_ball_container.add_child(ball)
 		
 		if not ball.is_inside_tree():
 			await ball.ready
 
 func _on_run_data_player_stats_energy_changed(energy_value: int, maximum_energy: int) -> void:
-	var all_energy_balls: Array = energy_ball_container.get_children()
+	var all_energy_balls: Array[Node] = energy_ball_container.get_children()
 	
 	# set maximum energy
 	if all_energy_balls.size() != maximum_energy:
@@ -81,7 +84,7 @@ func _on_run_data_player_stats_energy_changed(energy_value: int, maximum_energy:
 func _on_event_bus_card_selected(cost: int) -> void:
 	var energy_after_paying_cost: int = RunData.player_stats.current_energy - cost
 	var all_energy_balls: Array = energy_ball_container.get_children()
-	var excess_energy_payment = clamp(-energy_after_paying_cost, 0, cost)
+	var excess_energy_payment: int = clamp(-energy_after_paying_cost, 0, cost)
 	
 	# check if the player hast to sacrifice HP to play the card
 	if energy_after_paying_cost < 0:

@@ -4,6 +4,7 @@ extends Node
 var current_state: State = null
 var states: Dictionary = {}
 
+
 func initialize() -> void:
 	# Add all state nodes to the states dictionary
 	for child in get_children():
@@ -23,10 +24,11 @@ func initialize() -> void:
 	else:
 		push_error("Initial state 'PlayerStartTurn' not found.")
 
-func transition_to(state_name: String):
+func transition_to(state_name: String) -> void:
 	if not states.has(state_name):
 		push_error("State '%s' not found." % state_name)
 		return
+	# exit current state before entering the new state
 	if current_state:
 		current_state.exit()
 	current_state = states[state_name]

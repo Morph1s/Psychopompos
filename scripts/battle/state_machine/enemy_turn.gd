@@ -4,10 +4,9 @@ extends State
 signal resolve_enemy_intents
 
 
-func enter():
-	print("Entered EnemyTurn")
+func enter() -> void:
 	# resolve enemy intent
 	resolve_enemy_intents.emit()
 
-func exit():
-	print("Exited EnemyTurn")
+func exit() -> void:
+	pass
