@@ -4,10 +4,9 @@ extends State
 signal player_starts_turn
 
 
-func enter():
-	print("Entered PlayerStartTurn")
+func enter() -> void:
 	# choose enemy intents and resolve player start of turn effects
 	player_starts_turn.emit()
 
-func exit():
-	print("Exited PlayerStartTurn")
+func exit() -> void:
+	pass

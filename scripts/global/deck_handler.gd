@@ -1,16 +1,14 @@
 extends Node2D
 
+var card_library: CardLibrary
+var current_deck: Array[CardType] = []
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_deck_handler"]
 var rarity_distribution: Dictionary[CardType.Rarity, int] = {
 	CardType.Rarity.COMMON_CARD: 65,
 	CardType.Rarity.HERO_CARD: 30,
 	CardType.Rarity.GODS_BOON: 5
 }
 
-var card_library: CardLibrary
-var current_deck: Array[CardType] = []
-
-
-var rng: RandomNumberGenerator = RunData.sub_rngs["rng_deck_handler"]
 
 func start_run_setup() -> void:
 	card_library = null
@@ -21,7 +19,7 @@ func start_run_setup() -> void:
 	
 	# setting starting deck
 	current_deck.clear()
-	for card in card_library.starting_deck:
+	for card: CardType in card_library.starting_deck:
 		current_deck.append(card.create_instance())
 
 func add_card_to_deck(card: CardType) -> void:
@@ -37,9 +35,9 @@ func get_card_selection(amount: int, rarity_dist: Dictionary = rarity_distributi
 	var selected_god_cards: Array[CardType] = []
 	
 	# selecting i cards and remove selected cards from the pool
-	for i in amount:
-		var card_rarity := _get_card_rarity(rarity_dist)
-		var card_index := _get_card_index_by_rarity(card_rarity)
+	for i: int in amount:
+		var card_rarity: CardType.Rarity = _get_card_rarity(rarity_dist)
+		var card_index: int = _get_card_index_by_rarity(card_rarity)
 		
 		match card_rarity:
 			CardType.Rarity.COMMON_CARD:
@@ -73,7 +71,6 @@ func _get_card_rarity(rarity_dist: Dictionary) -> CardType.Rarity:
 	# failsafe
 	push_error("error when selecting card rarity")
 	return CardType.Rarity.COMMON_CARD
-
 
 func _get_card_index_by_rarity(rarity: CardType.Rarity) -> int:
 	match rarity:

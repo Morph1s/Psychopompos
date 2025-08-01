@@ -10,7 +10,8 @@ signal traded
 @onready var card_display: Control = $MarginContainer/TradingEquationContainer/ResultPart/CardDisplay
 @onready var probability_label: Label = $MarginContainer/TradingEquationContainer/ResultPart/ProbabilityLabel
 
-const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
+const CARD_VISUALIZATION: PackedScene = preload("res://scenes/card/card_visualization.tscn")
+
 const MAX_DIFF_TRADING_VALUE: int = 50
 const MAX_NUM_POSSIBLE_TRADE_RESULTS: int = 6
 const MIN_NUM_POSSIBLE_TRADE_RESULTS: int = 3
@@ -36,7 +37,7 @@ var rng: RandomNumberGenerator = RunData.sub_rngs["rng_shop_trade"]
 var card_visual: CardVisualization
 
 
-func set_selected_cards(cards: Array[CardType]):
+func set_selected_cards(cards: Array[CardType]) -> void:
 	for card: CardVisualization in selected_cards_container.get_children():
 		card.queue_free()
 	
@@ -50,9 +51,9 @@ func set_selected_cards(cards: Array[CardType]):
 		selected_cards_container.add_child(card_visual)
 		total_card_value += int(card.card_value * CARD_VALUE_MODIFIER)
 
-func calculate_result():
+func calculate_result() -> void:
 	possible_trade_results.clear()
-	for child in card_display.get_children():
+	for child: CardVisualization in card_display.get_children():
 		child.queue_free()
 	var all_available_cards: Array[CardType] = DeckHandler.card_library.common_cards + DeckHandler.card_library.hero_cards + DeckHandler.card_library.gods_boon_cards
 	
@@ -74,14 +75,14 @@ func calculate_result():
 	var w_scale: int = 1000
 	
 	# add up to MAX_NUM_POSSIBLE_TRADE_RESULTS cards to possible_trade_results if constraints are met
-	for i in MAX_NUM_POSSIBLE_TRADE_RESULTS:
+	for i: int in MAX_NUM_POSSIBLE_TRADE_RESULTS:
 		var card: CardType = all_available_cards[i]
 		var diff: int = abs(trading_value - card.card_value)
 		if diff > MAX_DIFF_TRADING_VALUE and possible_trade_results.size() >= MIN_NUM_POSSIBLE_TRADE_RESULTS:
 			continue
 		var relative_diff: int = diff - min_diff
 		var weight_f: float = exp(- alpha * relative_diff)
-		var weight = int(pow(max(1, int(round(weight_f * w_scale))), 3))
+		var weight: int = int(pow(max(1, int(round(weight_f * w_scale))), 3))
 		
 		possible_trade_results[card] = weight
 		total_weight += weight
@@ -94,18 +95,18 @@ func calculate_result():
 	
 	probability_label.text = "with a probability\nof %.2f" % ((float(highest_weight) / float(total_weight)) * 100)  + "%"
 
-func choose_weighted_trade_result():
+func choose_weighted_trade_result() -> void:
 	var cards: Array[CardType] = possible_trade_results.keys()
 	var cum_weights: Array[int] = possible_trade_results.values().duplicate()
 	var card_result: CardType
 	
-	for w in cum_weights.size():
+	for w: int in cum_weights.size():
 		if 0 < w:
 			cum_weights[w] += cum_weights[w - 1]
 	
 	var random_index: int = randi64(cum_weights.back())
 	
-	for w in cum_weights:
+	for w: int in cum_weights:
 		if w >= random_index:
 			card_result = cards[cum_weights.find(w)]
 			break
@@ -120,8 +121,8 @@ func choose_weighted_trade_result():
 	RunData.player_stats.coins -= coins
 
 func randi64(max_value: int) -> int:
-	var hi := rng.randi()
-	var lo := rng.randi()
+	var hi: int = rng.randi()
+	var lo: int = rng.randi()
 	var combined: int = (hi << 32) | lo
 	return combined % max_value
 
@@ -130,7 +131,7 @@ func _on_exit_pressed() -> void:
 	total_card_value = 0
 	for card: CardVisualization in selected_cards_container.get_children():
 		card.queue_free()
-	self.hide()
+	hide()
 
 func _on_change_card_selection_button_pressed() -> void:
 	change_card_selection.emit(selected_cards)
@@ -150,4 +151,4 @@ func _on_minus_10_button_pressed() -> void:
 func _on_trade_pressed() -> void:
 	choose_weighted_trade_result()
 	traded.emit()
-	self.hide()
+	hide()

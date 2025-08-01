@@ -4,10 +4,9 @@ extends State
 signal player_ends_turn
 
 
-func enter():
-	print("Entered PlayerEndTurn")
+func enter() -> void:
 	# resolve player end of turn effects
 	player_ends_turn.emit()
 
-func exit():
-	print("Exited PlayerEndTurn")
+func exit() -> void:
+	pass

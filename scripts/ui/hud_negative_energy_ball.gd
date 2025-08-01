@@ -6,6 +6,7 @@ extends TextureRect
 
 var exploding: bool = false
 
+
 func explode() -> void:
 	exploding = true
 	texture = null

@@ -4,36 +4,29 @@ extends Node2D
 signal display_play_area_highlights(visibility: bool)
 signal display_enemy_highlights(visibility: bool)
 
-## card scene
-const CARD = preload("res://scenes/card/card.tscn")
+const CARD: PackedScene = preload("res://scenes/card/card.tscn")
+const UNAIMED_CURSOR: Texture = preload("res://assets/graphics/cursors/cursor_unaimed.png")
+const LOCKON_CURSOR: Texture = preload("res://assets/graphics/cursors/cursor_lock_on.png")
+const DEFAULT_CURSOR: Texture = preload("res://assets/graphics/cursors/cursor_default.png")
 
-# Assets preload for mouse_changes
-const UNAIMED_CURSOR = preload("res://assets/graphics/cursors/cursor_unaimed.png")
-const LOCKON_CURSOR = preload("res://assets/graphics/cursors/cursor_lock_on.png")
-const DEFAULT_CURSOR = preload("res://assets/graphics/cursors/cursor_default.png")
-
-# constants for quick adjusting
 const DRAW_PILE_COORDS: Vector2 = Vector2(24.0, 148.0)
 const MAX_HAND_SIZE: int = 10
 const CARD_Y_POSITION: int = 150
 const SCREEN_CENTER_X: int = 160
-const CARD_WIDTH = 32
+const CARD_WIDTH: int = 32
 const CARD_DRAW_SPEED: float = 0.2
 const DISCARD_PILE_COORDS: Vector2 = Vector2(360.0, 148.0)
-
 
 # card piles
 var draw_pile: Array[CardType]
 var hand: Array[Card] = []
 var discard_pile: Array[CardType] = []
-
-# for the highligting and select process
+# for the highlighting and selecting process
 var highlighted_card: Card
 var second_card: Card
 var selected_card: Card
 var played_card: Card
 var playing_card: bool
-
 # determining targets
 var hovered_enemy_id: int = -1:
 	set(value):
@@ -46,8 +39,8 @@ var player_turn: bool = false:
 		_set_player_control(value)
 
 
-## handels setup at beginning of battle.
-## should only be called once to handle the initialization!
+# handles setup at beginning of battle
+# should only be called once to handle the initialization!
 func initialize() -> void:
 	draw_pile.append_array(DeckHandler.current_deck)
 	draw_pile.shuffle()
@@ -58,17 +51,16 @@ func initialize() -> void:
 
 #region card drawing and adding
 
-## draws "amount" cards from the drawpile
+# draws "amount" cards from the drawpile
 func draw_cards(amount: int) -> void:
 	
-	# alter the value
+	# alter the value (from effects)
 	amount += RunData.altered_values[RunData.AlteredValue.CARDS_DRAWN]
 	
 	# limit the amount of cards drawn to meet the maximum hand size
 	amount = clamp(amount, 0, MAX_HAND_SIZE - hand.size())
 	
 	for i in range(amount):
-		
 		# if the drawpile is empty, shuffle discard pile
 		if draw_pile.size() == 0:
 			if discard_pile.size() == 0:
@@ -82,7 +74,6 @@ func draw_cards(amount: int) -> void:
 		add_card_to_hand(front_card_card_type)
 		
 		EventBusHandler.card_piles_card_count_changed.emit(draw_pile.size(), discard_pile.size())
-		
 		EventBusHandler.card_drawn.emit()
 		
 		# wait for hand to be updated
@@ -93,26 +84,27 @@ func draw_cards(amount: int) -> void:
 	if not playing_card:
 		_set_player_control(true)
 
-## adds the given card type to the players hand.
-## THIS IS THE ONLY WAY CARDS SHOULD BE ADDED TO THE HAND!
-func add_card_to_hand(card_type: CardType) -> bool:
+# adds the given card type to the players hand
+# THIS IS THE ONLY WAY CARDS SHOULD BE ADDED TO THE HAND!
+func add_card_to_hand(card_type: CardType) -> void:
 	# check if handsize limit is reached
 	if hand.size() == MAX_HAND_SIZE:
 		print("hand size limit reached")
-		return false
+		return
 	
 	# instantiate new Card to CardHandler
-	var new_card: Card = CARD.instantiate() as Card
+	var new_card: Card = CARD.instantiate()
 	new_card.initialize(card_type)
 	new_card.position = DRAW_PILE_COORDS
-	self.add_child(new_card)
+	add_child(new_card)
+	
 	# connect mouse-signal
 	new_card.mouse_entered_card.connect(_on_mouse_entered_card)
 	new_card.mouse_exited_card.connect(_on_mouse_exited_card)
+	
 	# dynamicly moves card to apropiate position
 	hand.push_front(new_card)
 	_update_hand_positions()
-	return true
 
 #endregion
 
@@ -126,7 +118,6 @@ func discard_hand() -> void:
 	await get_tree().create_timer(0.4).timeout
 
 func discard_card(card: Card) -> void:
-	
 	# remove card from hand
 	if hand.has(card):
 		hand.erase(card)
@@ -141,6 +132,7 @@ func discard_card(card: Card) -> void:
 	
 	card.queue_free()
 	
+	# rearrange remaining hand cards
 	if not hand.is_empty():
 		_update_hand_positions()
 	
@@ -177,7 +169,7 @@ func _play_card(card: Card) -> void:
 
 #region card position functions
 
-# used to animate the cards to their respective position
+# animate the cards to their respective position
 func _update_hand_positions() -> void:
 	for i in hand.size():
 		var tween: Tween = get_tree().create_tween()
@@ -188,21 +180,19 @@ func _update_hand_positions() -> void:
 func _calculate_card_position(index: int, hand_count: int) -> Vector2:
 	hand[index].index = index
 	var card_distance: int = CARD_WIDTH - round(hand_count / 2) * 2
-	var card_x_position = SCREEN_CENTER_X + index * card_distance - card_distance * (hand_count - 1) / 2
+	var card_x_position: int = SCREEN_CENTER_X + index * card_distance - card_distance * (hand_count - 1) / 2
 	return Vector2(card_x_position, CARD_Y_POSITION)
+
 #endregion
 
 #region card hovering and selecting
-## handels state of cards (has no unconsidered edgecases)
 
-
-## handels state after mouseinput
 func _input(event: InputEvent) -> void:
 	# set card as an selected card
-	if  event.is_action_pressed("left_click") && highlighted_card: 
+	if  event.is_action_pressed("left_click") and highlighted_card: 
 		_select_card()
 	
-	# realeses selected card
+	# releases selected card
 	elif event.is_action_released("right_click") and selected_card:
 		_deselect_selected_card()
 	
@@ -218,20 +208,16 @@ func _input(event: InputEvent) -> void:
 		
 		_set_tooltips()
 
-
-## handels state after mouse enters card
-func _on_mouse_entered_card(card: Card):
+func _on_mouse_entered_card(card: Card) -> void:
 	if highlighted_card == null:
 		# hovered onto a card
 		_hover_card(card)
 		_set_tooltips()
 	else:
-		# hovered on boarder of second card under main card
+		# hovered on border of second card under main card
 		second_card = card
 
-## handels state after mouse exits card
-func _on_mouse_exited_card(card: Card):
-	
+func _on_mouse_exited_card(card: Card) -> void:
 	# hovered off highlighted card
 	if card == highlighted_card:
 		highlighted_card = null
@@ -305,15 +291,15 @@ func _set_tooltips() -> void:
 	if highlighted_card:
 		highlighted_card.tooltip.show()
 
-func _set_player_control(controlable: bool) -> void:
-	if not player_turn and controlable:
+func _set_player_control(controllable: bool) -> void:
+	if not player_turn and controllable:
 		return
 	
 	for card in hand:
-		card.playable = controlable
-	EventBusHandler.set_player_control.emit(controlable)
+		card.playable = controllable
+	EventBusHandler.set_player_control.emit(controllable)
 	
-	if not controlable and selected_card:
+	if not controllable and selected_card:
 		_deselect_selected_card()
 	
 	_set_mouse_cursor()
@@ -322,13 +308,11 @@ func _set_player_control(controlable: bool) -> void:
 
 #region other helper functions
 
-## empties the discard pile into the draw pile and the shuffles the draw pile 
 func shuffle_discard_pile_into_draw_pile() -> void:
 	draw_pile.append_array(discard_pile)
 	discard_pile = []
 	draw_pile.shuffle()
 
-## for determening mouseposition
 func _on_play_area_mouse_entered() -> void:
 	mouse_on_play_area = true 
 	_set_mouse_cursor()
