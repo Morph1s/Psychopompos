@@ -25,6 +25,7 @@ var intent: int = -1
 var rng: RandomNumberGenerator = RunData.sub_rngs["rng_enemy"]
 var y_position: int = 55
 var size: Vector2
+var is_dead: bool = false
 
 
 func initialize() -> void:
@@ -188,6 +189,7 @@ func _on_block_changed(new_block) -> void:
 	enemy_hud.set_block(new_block)
 
 func _on_died() -> void:
+	is_dead = true
 	if hit_frame_timer.time_left:
 		await hit_frame_timer.timeout
 	enemy_died.emit(self)
