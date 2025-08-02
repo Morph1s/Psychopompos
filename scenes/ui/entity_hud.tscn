@@ -15,11 +15,15 @@ script = ExtResource("1_qf4hu")
 
 [node name="HpBar" type="TextureProgressBar" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = 1.0
+offset_left = -24.0
+offset_top = -10.0
+offset_right = 24.0
+grow_horizontal = 2
 grow_vertical = 0
 value = 70.0
 rounded = true

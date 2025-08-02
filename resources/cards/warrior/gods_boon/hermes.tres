@@ -40,4 +40,5 @@ second_description_icon = ExtResource("5_b3ppu")
 second_description_text_value = "3"
 second_description_text_addon = ""
 tooltips = Array[ExtResource("3_4f833")]([ExtResource("7_b3ppu"), ExtResource("6_3jf1v")])
+card_value = 205
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

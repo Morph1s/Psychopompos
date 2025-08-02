@@ -19,6 +19,11 @@ var sub_rngs: Dictionary[String, RandomNumberGenerator] = {
 	"rng_artifact": RandomNumberGenerator.new(),
 	"rng_deck_handler": RandomNumberGenerator.new(),
 	"rng_battle_rewards": RandomNumberGenerator.new(),
+	"rng_card_pack_panel": RandomNumberGenerator.new(),
+	"rng_shop_trade": RandomNumberGenerator.new(),
+	"rng_dialogue_ui": RandomNumberGenerator.new(),
+	"rng_dialogue_response": RandomNumberGenerator.new(),
+	"rng_card_manipulation_action": RandomNumberGenerator.new(),
 }
 var selected_character: Characters = Characters.WARRIOR
 var player_stats: PlayerStats
@@ -27,9 +32,10 @@ var altered_values: Dictionary = {
 	AlteredValue.CAMPFIRE_HEAL: 0,
 }
 
-func start_run(character: Characters):
+
+func start_run(character: Characters) -> void:
 	rng_master = RandomNumberGenerator.new()
-	#rng_master.seed = -8717263499465901576
+	seed(rng_master.seed)
 	master_seed = rng_master.seed
 	_generate_sub_rngs()
 	

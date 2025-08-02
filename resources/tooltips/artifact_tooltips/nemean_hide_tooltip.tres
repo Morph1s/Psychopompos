@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://0axtlh662ipg"]
+
+[ext_resource type="Texture2D" uid="uid://bu5dl6fdctybf" path="res://assets/graphics/battle_effects/borderless/effect_nemean_hide_borderless.png" id="1_0f1l1"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_70guj"]
+
+[resource]
+script = ExtResource("1_70guj")
+icon = ExtResource("1_0f1l1")
+description_pre_value = "NEMEAN HIDE: Once per turn, gain double the amount of block from a card"
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

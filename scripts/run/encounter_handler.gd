@@ -5,11 +5,10 @@ signal load_main_menu
 signal load_rewards(boss_rewards: bool)
 
 @onready var run: Run = $".."
-@onready var map: Map = $"../UILayer/Map"
+@onready var map: Map = $"../UILayer/UpperLevelUI/Map"
 
 const GAME_OVER_SCREEN: PackedScene = preload("res://scenes/ui/game_over_screen.tscn")
-const WIN_SCREEN = preload("res://scenes/ui/win_screen.tscn")
-
+const WIN_SCREEN: PackedScene = preload("res://scenes/ui/win_screen.tscn")
 const BATTLE_STAGE_0: BattleEncounter = preload("res://resources/encounters/battle_stage_0.tres")
 const BATTLES_STAGE_1: Array[BattleEncounter] = [
 	preload("res://resources/encounters/battle_stage_1_1.tres"),
@@ -25,9 +24,18 @@ const BATTLES_STAGE_2: Array[BattleEncounter] = [
 var current_encounter: Node = null
 var previous_battle: BattleEncounter
 var is_stage_2: bool = false
+var random_encounter_weights: Dictionary[Encounter.EncounterType, int] = {
+	Encounter.EncounterType.BATTLE: 20,
+	Encounter.EncounterType.SHOP: 10,
+	Encounter.EncounterType.DIALOGUE: 70,
+}
+
+
+func _ready() -> void:
+	EventBusHandler.encounter_finished.connect(_end_encounter)
 
 # Loads a requested encounter into the Run scene
-func start_encounter(encounter_data: Encounter):
+func start_encounter(encounter_data: Encounter) -> void:
 	# Remove current encounter if exists
 	if current_encounter:
 		current_encounter.queue_free()
@@ -45,38 +53,40 @@ func start_encounter(encounter_data: Encounter):
 			_load_mini_boss_encounter()
 		Encounter.EncounterType.BOSS:
 			_load_boss_encounter()
+		Encounter.EncounterType.SHOP:
+			_load_shop_encounter()
 		Encounter.EncounterType.RANDOM:
 			_load_random_encounter()
 		_:
 			print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter_data.type))
+			
 
-func _load_win_screen():
+func _load_win_screen() -> void:
 	current_encounter.queue_free()
-	var win_screen: GameOverScreen  = WIN_SCREEN.instantiate()
+	var win_screen: WinScreen = WIN_SCREEN.instantiate()
 	self.add_child(win_screen)
 	win_screen.back_to_main_menu_pressed.connect(_on_back_to_main_menu_pressed)
 
-func _load_game_over_screen():
+func _load_game_over_screen() -> void:
 	current_encounter.queue_free()
 	var game_over_screen: GameOverScreen = GAME_OVER_SCREEN.instantiate() 
 	self.add_child(game_over_screen)
 	game_over_screen.back_to_main_menu_pressed.connect(_on_back_to_main_menu_pressed)
 
-func _load_reward_screen(boss_rewards: bool):
-	current_encounter.queue_free()
+func _load_reward_screen(boss_rewards: bool) -> void:
 	load_rewards.emit(boss_rewards)
 
-func _end_encounter():
-	current_encounter.queue_free()
-	EventBusHandler.dialogue_finished.emit()
+func _end_encounter() -> void:
+	if current_encounter:
+		current_encounter.queue_free()
 
-func _on_back_to_main_menu_pressed():
+func _on_back_to_main_menu_pressed() -> void:
 	load_main_menu.emit()
 
-func _load_battle_encounter():
+func _load_battle_encounter() -> void:
 	var current_map_layer_type: MapLayer.MapLayerType = run.map_layers[map.current_layer].type
 	
-	var battle_scene = load("res://scenes/encounters/battle.tscn").instantiate()
+	var battle_scene: Battle = load("res://scenes/encounters/battle.tscn").instantiate()
 	battle_scene.load_game_over_screen.connect(_load_game_over_screen)
 	battle_scene.load_battle_rewards.connect(_load_reward_screen)
 	add_child(battle_scene)
@@ -102,13 +112,13 @@ func _load_battle_encounter():
 		previous_battle = battle_to_load
 	current_encounter = battle_scene
 
-func _load_campfire_encounter():
-	var campfire_scene = load("res://scenes/encounters/campfire.tscn").instantiate()
+func _load_campfire_encounter() -> void:
+	var campfire_scene: Campfire = load("res://scenes/encounters/campfire.tscn").instantiate()
 	add_child(campfire_scene)
 	current_encounter = campfire_scene
 
-func _load_mini_boss_encounter():
-	var mini_boss_battle_scene = load("res://scenes/encounters/battle.tscn").instantiate()
+func _load_mini_boss_encounter() -> void:
+	var mini_boss_battle_scene: Battle = load("res://scenes/encounters/battle.tscn").instantiate()
 	mini_boss_battle_scene.load_game_over_screen.connect(_load_game_over_screen)
 	mini_boss_battle_scene.load_battle_rewards.connect(_load_reward_screen)
 	add_child(mini_boss_battle_scene)
@@ -116,7 +126,7 @@ func _load_mini_boss_encounter():
 	current_encounter = mini_boss_battle_scene
 	is_stage_2 = true
 
-func _load_boss_encounter():
+func _load_boss_encounter() -> void:
 	var boss_battle_scene: Battle = load("res://scenes/encounters/battle.tscn").instantiate()
 	boss_battle_scene.load_game_over_screen.connect(_load_game_over_screen)
 	boss_battle_scene.load_battle_rewards.connect(_load_reward_screen)
@@ -125,38 +135,70 @@ func _load_boss_encounter():
 	boss_battle_scene.initialize(load("res://resources/encounters/boss_battle_medusa.tres"))
 	current_encounter = boss_battle_scene
 
-func _load_dialogue_encounter():
-	# TODO: change to dialogue encounter loading once implemented
-	_load_battle_encounter()
+func _load_dialogue_encounter() -> void:
+	var dialogue_scene: Dialogue = load("res://scenes/encounters/dialogue.tscn").instantiate()
+	dialogue_scene.player_died.connect(_load_game_over_screen)
+	add_child(dialogue_scene)
+	dialogue_scene.initialize()
+	current_encounter = dialogue_scene
 
-func _load_random_encounter():
-	# weights are shown in percentage values (must add up to 100)
-	var possible_encounters: Dictionary[Encounter.EncounterType, int] = {
-		Encounter.EncounterType.BATTLE: 20,
-		Encounter.EncounterType.CAMPFIRE: 15,
-		Encounter.EncounterType.DIALOGUE: 65,
-	}
-	var encounters: Array[Encounter.EncounterType] = possible_encounters.keys()
-	var cum_weights: Array[int] = possible_encounters.values()
+func _load_shop_encounter() -> void:
+	var shop_scene: Shop = load("res://scenes/encounters/shop.tscn").instantiate()
+	add_child(shop_scene)
+	shop_scene.initialize()
+	current_encounter = shop_scene
+
+func _load_random_encounter() -> void:
+	var encounters: Array[Encounter.EncounterType] = random_encounter_weights.keys()
+	var cum_weights: Array[int] = random_encounter_weights.values()
 	var chosen_encounter: Encounter.EncounterType
 	
-	for w in cum_weights.size():
+	for w: int in cum_weights.size():
 		if 0 < w:
 			cum_weights[w] += cum_weights[w - 1]
 	
 	var random_index: int = randi_range(0, cum_weights.back())
 	
-	for w in cum_weights:
+	for w: int in cum_weights:
 		if w >= random_index:
 			chosen_encounter = encounters[cum_weights.find(w)]
+			break
 	
 	match chosen_encounter:
-		Encounter.EncounterType.CAMPFIRE:
-			print("Loading campfire from random")
-			_load_campfire_encounter()
+		Encounter.EncounterType.SHOP:
+			print("Loading shop from random encounter")
+			_load_shop_encounter()
 		Encounter.EncounterType.DIALOGUE:
-			print("Loading dialogue from random")
+			print("Loading dialogue from random encounter")
 			_load_dialogue_encounter()
 		_:
-			print("Loading battle from random")
+			print("Loading battle from random encounter")
 			_load_battle_encounter()
+	
+	_adjust_random_encounter_weights(chosen_encounter)
+
+func _adjust_random_encounter_weights(type: Encounter.EncounterType) -> void:
+	match type:
+		Encounter.EncounterType.BATTLE:
+			var current_battle_weight: int = random_encounter_weights.get(type)
+			var combined_other_weights: int = 100 - current_battle_weight
+			var current_dialogue_weight: int = random_encounter_weights[Encounter.EncounterType.DIALOGUE]
+			var dialogue_share: float = float(current_dialogue_weight) / float(combined_other_weights)
+			var new_dialogue_weight: int = current_dialogue_weight + int((current_battle_weight - 20) * dialogue_share)
+			random_encounter_weights[type] = 20
+			random_encounter_weights[Encounter.EncounterType.DIALOGUE] = new_dialogue_weight
+			random_encounter_weights[Encounter.EncounterType.SHOP] = 80 - random_encounter_weights[Encounter.EncounterType.DIALOGUE]
+		Encounter.EncounterType.DIALOGUE:
+			var current_dialogue_weight: int = random_encounter_weights.get(type)
+			var new_dialogue_weight: int = int(current_dialogue_weight * 0.8)
+			random_encounter_weights[type] = new_dialogue_weight
+			random_encounter_weights[Encounter.EncounterType.BATTLE] = min(80, random_encounter_weights[Encounter.EncounterType.BATTLE] + 10)
+			random_encounter_weights[Encounter.EncounterType.SHOP] = 100 - new_dialogue_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
+		Encounter.EncounterType.SHOP:
+			var current_shop_weight: int = random_encounter_weights.get(type)
+			var new_shop_weight: int = int(current_shop_weight * 0.4)
+			random_encounter_weights[type] = new_shop_weight
+			random_encounter_weights[Encounter.EncounterType.BATTLE] = min(80, random_encounter_weights[Encounter.EncounterType.BATTLE] + 10)
+			random_encounter_weights[Encounter.EncounterType.DIALOGUE] = 100 - new_shop_weight - random_encounter_weights[Encounter.EncounterType.BATTLE]
+	
+	print("new random encounter weights: ", random_encounter_weights)

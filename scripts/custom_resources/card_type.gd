@@ -1,14 +1,14 @@
 class_name CardType
 extends Resource
 
+signal energy_cost_changed(new_value: int)
+
 enum Rarity {
 	STARTING_CARD,
 	COMMON_CARD,
 	HERO_CARD,
 	GODS_BOON,
 }
-
-signal energy_cost_changed(new_value: int)
 
 @export var card_name: String = ""
 @export var energy_cost : int:
@@ -31,6 +31,9 @@ signal energy_cost_changed(new_value: int)
 @export var second_description_text_value: String
 @export var second_description_text_addon: String
 @export var tooltips: Array[TooltipData]
+## Coin value for shop
+@export var card_value: int
+
 
 ## has to be called when adding a new card to the deck
 func create_instance() -> CardType:
@@ -39,10 +42,10 @@ func create_instance() -> CardType:
 
 ## adds a reference to the players modifier handler to all actions
 func set_modifier_handler(player_modifier_handler: ModifierHandler) -> void:
-	for action in on_play_action:
+	for action: Action in on_play_action:
 		if action is TargetedAction:
 			action.modifier_handler = player_modifier_handler
 	
-	for action in on_graveyard_action:
+	for action: Action in on_graveyard_action:
 		if action is TargetedAction:
 			action.modifier_handler = player_modifier_handler

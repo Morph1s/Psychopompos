@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="3_esfnr"]
 [ext_resource type="Texture2D" uid="uid://cg8i3524fx7hq" path="res://assets/graphics/cards/common/card_common_flurry.png" id="4_4ip2j"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_l6ttd"]
-[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="6_gokbj"]
+[ext_resource type="Resource" uid="uid://bwhov7g4cr2nr" path="res://resources/tooltips/special_tooltips/flurry_tooltip.tres" id="7_3huey"]
 
 [sub_resource type="Resource" id="Resource_r43t0"]
 script = ExtResource("2_3huey")
@@ -28,5 +28,6 @@ first_description_text_value = "2"
 first_description_text_addon = "*3"
 second_description_text_value = ""
 second_description_text_addon = ""
-tooltips = Array[ExtResource("5_l6ttd")]([ExtResource("6_gokbj")])
+tooltips = Array[ExtResource("5_l6ttd")]([ExtResource("7_3huey")])
+card_value = 55
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

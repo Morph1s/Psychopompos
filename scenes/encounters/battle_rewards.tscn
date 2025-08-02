@@ -5,22 +5,22 @@
 [ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="2_ipgjk"]
 
 [node name="BattleRewards" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_ophfa")
 script = ExtResource("1_cx4uy")
 
 [node name="RewardSelection" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_top = 22.0
+offset_right = 320.0
+offset_bottom = 180.0
 color = Color(0, 0, 0, 0.67451)
 
 [node name="CenterPanel" type="Panel" parent="RewardSelection"]
@@ -80,6 +80,5 @@ text = "SKIP"
 visible = false
 layout_mode = 1
 
-[connection signal="child_exiting_tree" from="RewardSelection/CenterPanel/VerticalContainer/RewardsContainer" to="." method="_on_rewards_container_child_exiting_tree"]
 [connection signal="button_up" from="RewardSelection/CenterPanel/SkipRewards" to="." method="_on_skip_rewards_button_up"]
-[connection signal="card_selected" from="SelectCardScreen" to="." method="_on_select_card_screen_card_selected"]
+[connection signal="cards_selected" from="SelectCardScreen" to="." method="_on_select_card_screen_cards_selected"]

@@ -6,14 +6,20 @@ signal block_changed(new_block: int)
 signal died()
 
 @export var starting_maximum_hitpoints: int = 1
-
 var maximum_hitpoints: int = 1:
 	set(value):
+		var maximum_hitpoint_gain: int = value - maximum_hitpoints
+		
 		maximum_hitpoints = value
-		current_hitpoints = clamp(current_hitpoints, 0, maximum_hitpoints) # limit hp if maxhp get reduced
+		
+		if maximum_hitpoint_gain > 0:
+			# gain hp
+			current_hitpoints += maximum_hitpoint_gain
+		else:
+			current_hitpoints = clamp(current_hitpoints, 0, maximum_hitpoints) # limit hp if maxhp get reduced
+		
 		# call hitpoint changed eventbus
 		hitpoints_changed.emit(current_hitpoints, maximum_hitpoints)
-
 @export var current_hitpoints: int = 1:
 	set(value):
 		var old_hp = current_hitpoints
@@ -32,12 +38,13 @@ var block: int = 0:
 		if old_block != block:
 			block_changed.emit(block)
 
+
 func initialize() -> void:
 	maximum_hitpoints = starting_maximum_hitpoints
 	current_hitpoints = maximum_hitpoints
 
 func create_instance() -> EntityStats:
-	var new_entity = self.duplicate()
+	var new_entity: EntityStats = duplicate()
 	new_entity.initialize()
 	return new_entity
 

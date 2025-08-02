@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_p2gno"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_7qwwq"]
 [ext_resource type="Texture2D" uid="uid://o4ydo2rocley" path="res://assets/graphics/cards/god/card_god_hades.png" id="4_44t4l"]
-[ext_resource type="Resource" uid="uid://c0bqjh5i2u6kc" path="res://resources/tooltips/action_tooltips/attack_all_tooltip.tres" id="7_lumf3"]
+[ext_resource type="Resource" uid="uid://ragqmygj4w1k" path="res://resources/tooltips/special_tooltips/hades_tooltip.tres" id="7_lumf3"]
 
 [sub_resource type="Resource" id="Resource_gpe51"]
 script = ExtResource("2_44t4l")
@@ -17,10 +17,10 @@ metadata/_custom_type_script = "uid://gsab2qn21okq"
 [resource]
 script = ExtResource("2_p2gno")
 card_name = "hades"
-energy_cost = 2
+energy_cost = 3
 rarity = 3
 texture = ExtResource("4_44t4l")
-on_play_action = Array[ExtResource("1_uy6uf")]([SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51")])
+on_play_action = Array[ExtResource("1_uy6uf")]([SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51"), SubResource("Resource_gpe51")])
 on_graveyard_action = Array[ExtResource("1_uy6uf")]([])
 targeted = false
 first_description_icon = ExtResource("1_lumf3")
@@ -29,4 +29,5 @@ first_description_text_addon = "*10 all"
 second_description_text_value = ""
 second_description_text_addon = ""
 tooltips = Array[ExtResource("3_7qwwq")]([ExtResource("7_lumf3")])
+card_value = 248
 metadata/_custom_type_script = "uid://4vek3hvofbhy"

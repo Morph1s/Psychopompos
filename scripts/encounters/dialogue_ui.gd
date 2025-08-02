@@ -2,28 +2,34 @@ class_name DialogueUI
 extends Control
 
 signal end_dialogue
-signal an_action_occured(action:String,value: String,)
-
+signal an_action_occured(action: String, value: String)
 
 @onready var dialogue_text_box: RichTextLabel = $DialogueTextBox
 @onready var answer_choices: VBoxContainer = $AnswerChoices
 
-# loading ressource
-const HEKATES_CHOICE = preload("res://resources/dialogue/Hekates_Choice.tres")
-const THREE_SISTERS = preload("res://resources/dialogue/three_sisters.tres")
-const PRESEPHONES_BANQUET = preload("res://resources/dialogue/persephones_banquet.tres")
-const THE_HIGH_PRIESTESS = preload("res://resources/dialogue/the_high_priestess.tres")
+# loading dialogue resources
+const HEKATES_CHOICE: DialogueTree = preload("res://resources/dialogue/Hekates_Choice.tres")
+const THREE_SISTERS: DialogueTree = preload("res://resources/dialogue/three_sisters.tres")
+const PERSEPHONES_BANQUET: DialogueTree = preload("res://resources/dialogue/persephones_banquet.tres")
+const THE_HIGH_PRIESTESS: DialogueTree = preload("res://resources/dialogue/the_high_priestess.tres")
+const TREE_STUMP: DialogueTree = preload("res://resources/dialogue/tree_stump.tres")
 
-const encounters:Array = [HEKATES_CHOICE,THREE_SISTERS, PRESEPHONES_BANQUET, THE_HIGH_PRIESTESS]
+const encounters: Array[DialogueTree] = [
+	HEKATES_CHOICE,
+	THREE_SISTERS,
+	PERSEPHONES_BANQUET,
+	THE_HIGH_PRIESTESS,
+	TREE_STUMP,
+]
 
-var tree:DialogueTree
-var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-var current_text_box: String 
-var current_block_indent:int = 0
+var tree: DialogueTree
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_dialogue_ui"]
+var current_text_box: String
+var current_block_indent: int = 0
 
 
 func _ready() -> void:
-	#fill dialogue_tree with proper file
+	# fill dialogue_tree with proper file
 	tree = encounters[rng.randi_range(0,encounters.size()-1)]
 	# set initial text
 	current_text_box = tree.dialogue_tree[current_block_indent].text_block
@@ -31,10 +37,8 @@ func _ready() -> void:
 	# create answers
 	update_answers()
 
-
-
-func update_dialogue_encounter(possible_events: Array, triggering_response: DialogueResponse):
-	# resolve respons' consequences
+func update_dialogue_encounter(possible_events: Array, triggering_response: DialogueResponse) -> void:
+	# resolve response consequences
 	triggering_response.resolve_consequences()
 	
 	# evaluate if encounter is still going
@@ -50,47 +54,49 @@ func update_dialogue_encounter(possible_events: Array, triggering_response: Dial
 	update_text_box()
 	update_answers()
 
-
-
 #region Helper Functions
+
 # takes one random thing out of an array
-func spin_the_wheel(pool : Array) -> int:
-	var result = rng.randi_range(0 , pool.size()-1)
-	result = pool[result]
-	return result
+func spin_the_wheel(pool: Array) -> int:
+	var result: int = rng.randi_range(0 , pool.size() - 1)
+	return pool[result]
 
-
-# Fills TextBox with the Argument
-func update_text_box():
+# fills dialogue_text_box with text
+func update_text_box() -> void:
 	dialogue_text_box.clear()
 	dialogue_text_box.append_text(current_text_box)
 
-# Fills Answers with buttons
-func update_answers():
-	#remove previous answers
-	for node in answer_choices.get_children():
+# fills answer_choices with buttons
+func update_answers() -> void:
+	# remove previous answers
+	for node: Control in answer_choices.get_children():
 		if node is Button:
 			answer_choices.remove_child(node)
 	# create new button for each Answer in possibleAnswers
-	for response in tree.dialogue_tree[current_block_indent].possible_answers:
-		var new_response : Button = Button.new()
-		# lappearance of button
+	for response: DialogueResponse in tree.dialogue_tree[current_block_indent].possible_answers:
+		var new_response := Button.new()
+		# appearance of button
 		new_response.text = response.displayed_response
-		new_response.add_theme_font_size_override("font_size",6)
+		new_response.add_theme_font_size_override("font_size", 6)
 		new_response.alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		# check if response is valid
+		for consequence: DialogueResponse.ConsequenceType in response.consequences.keys():
+			var not_artifakt_available = consequence == DialogueResponse.ConsequenceType.SPECIFIC_ARTIFACT and not ArtifactHandler.available_artifacts.has(response.consequences[consequence])
+			var coins_cant_be_spend = consequence == DialogueResponse.ConsequenceType.COINS_ABSOLUTE and not -1 * RunData.player_stats.coins < response.consequences[consequence]
+			if not_artifakt_available or coins_cant_be_spend:
+				new_response.disabled = true
 		
 		# connects the buttons with exeptional parameters
-		var next_block_ids = response.next_block
+		var next_block_ids: Array[int] = response.next_block
 		new_response.pressed.connect(func(): _on_some_answer_pressed(next_block_ids, response))
 		
 		answer_choices.add_child(new_response)
 
+#endregion
 
 #region Signals
 
-func _on_answer_pressed() -> void:
-	pass
-
-func _on_some_answer_pressed(next_blocks: Array, trigger: DialogueResponse):
+func _on_some_answer_pressed(next_blocks: Array, trigger: DialogueResponse) -> void:
 	update_dialogue_encounter(next_blocks, trigger)
+
 #endregion

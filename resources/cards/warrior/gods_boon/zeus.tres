@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=9 format=3 uid="uid://bp2ocy4rip78h"]
+
+[ext_resource type="Texture2D" uid="uid://c0rgx2ikmn8be" path="res://assets/graphics/cards/card_effect_zeus.png" id="1_0gwn8"]
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_ol6kw"]
+[ext_resource type="Script" uid="uid://0budk8al2kwm" path="res://scripts/custom_resources/special_action.gd" id="2_2qw8q"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_7q1cr"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_2qw8q"]
+[ext_resource type="Texture2D" uid="uid://ceubndjmems04" path="res://assets/graphics/cards/god/card_god_zeus.png" id="5_0gwn8"]
+[ext_resource type="Resource" uid="uid://cigekk601ylpb" path="res://resources/tooltips/special_tooltips/zeus_tooltip.tres" id="7_5grbc"]
+
+[sub_resource type="Resource" id="Resource_0gwn8"]
+script = ExtResource("2_2qw8q")
+action_type = 3
+metadata/_custom_type_script = "uid://0budk8al2kwm"
+
+[resource]
+script = ExtResource("2_7q1cr")
+card_name = "zeus"
+energy_cost = 3
+rarity = 3
+texture = ExtResource("5_0gwn8")
+on_play_action = Array[ExtResource("1_ol6kw")]([SubResource("Resource_0gwn8")])
+on_graveyard_action = Array[ExtResource("1_ol6kw")]([])
+targeted = false
+first_description_icon = ExtResource("1_0gwn8")
+first_description_text_value = "10-15"
+first_description_text_addon = ""
+second_description_text_value = ""
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_2qw8q")]([ExtResource("7_5grbc")])
+card_value = 257
+metadata/_custom_type_script = "uid://4vek3hvofbhy"

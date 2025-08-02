@@ -4,10 +4,14 @@ extends Node2D
 const EFFECT_ICON_DISTANCE: int = 1
 const EFFECT_ICON_HEIGHT: int = 10
 
-@onready var effect_collection = $EffectCollection
-@onready var buttons = $Buttons
+@onready var effect_collection: Node2D = $EffectCollection
+@onready var buttons: Node2D = $Buttons
 
-var effect_scenes: Dictionary = {
+@export var visible_range: Vector2i
+
+var parent_node: Node2D
+var max_effects_per_column: int
+var effect_scenes: Dictionary[String, PackedScene] = {
 	"Vigilant": preload("res://scenes/effects/effect_instances/vigilant.tscn"),
 	"Incapacitated": preload("res://scenes/effects/effect_instances/incapacitated.tscn"),
 	"Agile": preload("res://scenes/effects/effect_instances/agile.tscn"),
@@ -17,27 +21,30 @@ var effect_scenes: Dictionary = {
 	"Gather": preload("res://scenes/effects/effect_instances/gather.tscn"),
 	"DamoklesSword": preload("res://scenes/effects/effect_instances/damokles_sword.tscn"),
 	"WarriorsFury": preload("res://scenes/effects/effect_instances/warriors_fury.tscn"),
+	"Blessing": preload("res://scenes/effects/effect_instances/blessing.tscn"),
+	"Artemis": preload("res://scenes/effects/effect_instances/artemis.tscn"),
+	"HelmOfHades": preload("res://scenes/effects/effect_instances/helm_of_hades.tscn"),
+	"Invincible": preload("res://scenes/effects/effect_instances/invincible.tscn"),
+	"Listening": preload("res://scenes/effects/effect_instances/listening.tscn"),
+	"NemeanHide": preload("res://scenes/effects/effect_instances/nemean_hide.tscn"),
 }
 
-var parent_node: Node2D
-var max_effects_per_column: int
-@export var visible_range: Vector2i 
 
-## call this method to setup the nodes functionality
 func initialize(parent: Node2D) -> void:
 	parent_node = parent
-	
 	
 	max_effects_per_column = int(parent.size.y / (EFFECT_ICON_DISTANCE + EFFECT_ICON_HEIGHT))
 	visible_range = Vector2i(0, max_effects_per_column - 1)
 	
 	buttons.set_bottom_button_position(max_effects_per_column * EFFECT_ICON_HEIGHT + (max_effects_per_column - 1) * EFFECT_ICON_DISTANCE)
+	
+	EventBusHandler.card_drawn.connect(_on_player_card_drawn)
+	EventBusHandler.card_discarded.connect(_on_player_card_discarded)
 
 #region effect adding
 
 ## adds a effect if it doesnt exist yet and adds stacks if it does
 func apply_effect(effect_name: String, amount: int) -> void:
-	
 	# search for the effect in all columns and adds stacks if found
 	for effect: Effect in effect_collection.get_children():
 		if effect.effect_name == effect_name:
@@ -65,6 +72,8 @@ func apply_effect(effect_name: String, amount: int) -> void:
 	effect_collection.add_child(new_effect)
 	new_effect.remove_effect.connect(_on_effect_remove_effect)
 	new_effect.initialize(parent_node, amount)
+	
+	_on_effect_applied(amount, new_effect)
 	
 	_change_visibility()
 
@@ -103,11 +112,9 @@ func _decrement_visible_range() -> void:
 	
 	visible_range -= Vector2i(max_effects_per_column, max_effects_per_column)
 
-
 func _on_buttons_decrement_pressed():
 	_decrement_visible_range()
 	_change_visibility()
-
 
 func _on_buttons_increment_pressed():
 	_increment_visible_range()
@@ -140,20 +147,42 @@ func _on_effect_remove_effect(target: Effect) -> void:
 
 #region effect triggers
 
-func _on_unit_turn_end() -> void:
-	for effect: Effect in effect_collection.get_children():
-		effect.end_of_turn()
-
-func _on_unit_turn_start() -> void:
-	for effect: Effect in effect_collection.get_children():
-		effect.start_of_turn()
-
 func _on_unit_get_attacked() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.get_attacked()
 
+func _on_unit_take_damage() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.take_damage()
+
 func _on_unit_played_attack() -> void:
 	for effect: Effect in effect_collection.get_children():
 		effect.played_attack()
+
+func _on_player_card_drawn() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.card_drawn()
+
+func _on_player_card_discarded() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.card_discarded()
+
+func _on_unit_turn_end() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.end_of_turn()
+		await get_tree().create_timer(0.1).timeout
+
+func _on_unit_turn_start() -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.start_of_turn()
+		await get_tree().create_timer(0.1).timeout
+
+func _on_effect_applied(stack_count: int, applied_effect: Effect) -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.effect_applied(stack_count,applied_effect)
+
+func _on_unit_block_gained(value: int) -> void:
+	for effect: Effect in effect_collection.get_children():
+		effect.block_gained(value)
 
 #endregion

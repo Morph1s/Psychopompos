@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ckurrpodkua76"]
+[gd_scene load_steps=22 format=3 uid="uid://ckurrpodkua76"]
 
 [ext_resource type="Script" uid="uid://c65koxneqq7ba" path="res://scripts/battle/state_machine/player_start_turn.gd" id="1_1mqim"]
 [ext_resource type="Script" uid="uid://cjw0yaraqpdnr" path="res://scripts/battle/battle.gd" id="1_6die2"]
@@ -11,12 +11,20 @@
 [ext_resource type="Script" uid="uid://bxigu8nv1jbme" path="res://scripts/battle/state_machine/enemy_turn.gd" id="7_7id2p"]
 [ext_resource type="Script" uid="uid://c758m1ohji7ep" path="res://scripts/battle/state_machine/enemy_end_turn.gd" id="8_tt5ef"]
 [ext_resource type="Script" uid="uid://d4l21cq278qpt" path="res://scripts/battle/state_machine/exit.gd" id="9_mqlpk"]
+[ext_resource type="Shader" uid="uid://dyuda5yv5qog2" path="res://resources/shaders/river_shader.gdshader" id="10_7id2p"]
 [ext_resource type="Texture2D" uid="uid://bv4srl865j4k1" path="res://assets/graphics/background/wallpaper_battle_scene.png" id="10_luffw"]
+[ext_resource type="Texture2D" uid="uid://dt555eshdw22b" path="res://assets/graphics/background/wallpaper_battle_scene_river.png" id="11_qhkyp"]
 [ext_resource type="Texture2D" uid="uid://dbch1ucf4lgk3" path="res://assets/graphics/hud/play_area_highlight/highlight_top_left.png" id="14_dqn5d"]
 [ext_resource type="PackedScene" uid="uid://b086lic3ys2g6" path="res://scenes/characters/character.tscn" id="14_fiugh"]
 [ext_resource type="Texture2D" uid="uid://bu353ldu5r47y" path="res://assets/graphics/hud/play_area_highlight/highlight_top_right.png" id="15_qhkyp"]
 [ext_resource type="Texture2D" uid="uid://vph2g6xhw38b" path="res://assets/graphics/hud/play_area_highlight/highlight_bottom_left.png" id="16_7id2p"]
 [ext_resource type="Texture2D" uid="uid://70btvntr2dq5" path="res://assets/graphics/hud/play_area_highlight/highlight_bottom_right.png" id="17_tt5ef"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7id2p"]
+shader = ExtResource("10_7id2p")
+shader_parameter/base_speed = 0.1
+shader_parameter/width = 10.0
+shader_parameter/distance_from_viewer = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3s1b"]
 size = Vector2(320, 88)
@@ -47,6 +55,11 @@ script = ExtResource("8_tt5ef")
 
 [node name="Exit" type="Node" parent="StateMachine"]
 script = ExtResource("9_mqlpk")
+
+[node name="River" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7id2p")
+position = Vector2(160, 76)
+texture = ExtResource("11_qhkyp")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("10_luffw")
@@ -87,12 +100,9 @@ texture = ExtResource("16_7id2p")
 position = Vector2(310, 81)
 texture = ExtResource("17_tt5ef")
 
-[connection signal="choose_enemy_intents" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_choose_enemy_intents"]
-[connection signal="draw_cards" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_draw_cards"]
 [connection signal="player_starts_turn" from="StateMachine/PlayerStartTurn" to="." method="_on_player_start_turn_player_starts_turn"]
 [connection signal="entered_idle" from="StateMachine/Idle" to="." method="_on_idle_entered_idle"]
 [connection signal="exited_idle" from="StateMachine/Idle" to="." method="_on_idle_exited_idle"]
-[connection signal="discard_hand" from="StateMachine/PlayerEndTurn" to="." method="_on_player_end_turn_discard_hand"]
 [connection signal="player_ends_turn" from="StateMachine/PlayerEndTurn" to="." method="_on_player_end_turn_player_ends_turn"]
 [connection signal="enemy_starts_turn" from="StateMachine/EnemyStartTurn" to="." method="_on_enemy_start_turn_enemy_starts_turn"]
 [connection signal="resolve_enemy_intents" from="StateMachine/EnemyTurn" to="." method="_on_enemy_turn_resolve_enemy_intents"]

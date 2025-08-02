@@ -42,7 +42,7 @@ script = ExtResource("2_6awv3")
 displayed_response = "\"No, I think I will keep it\" (get Artifakt)"
 next_block = Array[int]([3])
 consequences = Dictionary[int, Variant]({
-5: ExtResource("3_uya0r")
+7: ExtResource("3_uya0r")
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -82,7 +82,7 @@ script = ExtResource("2_6awv3")
 displayed_response = "leave.. (lose a random card)"
 next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({
-2: 1
+3: 1
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -99,7 +99,7 @@ script = ExtResource("2_6awv3")
 displayed_response = "Why not (get 10 maxHp)"
 next_block = Array[int]([5])
 consequences = Dictionary[int, Variant]({
-4: 10
+6: 10
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
@@ -108,7 +108,9 @@ resource_name = "keep_it"
 script = ExtResource("2_6awv3")
 displayed_response = "\"No, I think I will keep it\" (get Artifakt)"
 next_block = Array[int]([3])
-consequences = Dictionary[int, Variant]({})
+consequences = Dictionary[int, Variant]({
+7: ExtResource("3_uya0r")
+})
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_oi17l"]
