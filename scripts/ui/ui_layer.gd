@@ -2,7 +2,6 @@ class_name UILayer
 extends CanvasLayer
 
 @onready var map: Map = $UpperLevelUI/Map
-@onready var run_ui: RunUI = $UpperLevelUI/RunUI
 @onready var deck_view: DeckView = $UpperLevelUI/DeckView
 @onready var deck_icon: TextureRect =  $UpperLevelUI/RunUI/TopBarMargin/TopBarHBox/IconsRight/DeckIcon
 @onready var lower_level_ui: Control = $LowerLevelUI
