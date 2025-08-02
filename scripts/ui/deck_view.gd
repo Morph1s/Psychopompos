@@ -6,6 +6,7 @@ signal close_deck_view
 @onready var card_container: GridContainer = $ScrollContainerMargin/CardScrollContainer/CardContainer
 @onready var tooltip: Tooltip = $UIMargin/Tooltip
 @onready var action_button: Button = $UIMargin/ActionButton
+@onready var background_color: ColorRect = $BackgroundColor
 
 const CARD_VISUALIZATION: PackedScene = preload("res://scenes/card/card_visualization.tscn")
 
@@ -44,6 +45,9 @@ func add_button_action(on_button_pressed_action: Callable) -> void:
 
 func add_exit_action(on_exit_pressed_action: Callable) -> void:
 	exit_action = on_exit_pressed_action
+
+func set_background_color(color: Color) -> void:
+	background_color.color = color
 
 func _on_exit_pressed() -> void:
 	for card: CardVisualization in card_container.get_children():

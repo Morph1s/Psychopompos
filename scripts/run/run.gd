@@ -4,9 +4,9 @@ extends Node2D
 signal load_main_menu
 
 @onready var ui_layer: UILayer = $UILayer
-@onready var run_ui: RunUI = $UILayer/RunUI
+@onready var run_ui: RunUI = $UILayer/UpperLevelUI/RunUI
 @onready var encounter_handler: EncounterHandler = $EncounterHandler
-@onready var map: Map = $UILayer/Map
+@onready var map: Map = $UILayer/UpperLevelUI/Map
 @onready var map_generator: MapGenerator = $MapGenerator
 
 var map_layers: Array[MapLayer] = []
