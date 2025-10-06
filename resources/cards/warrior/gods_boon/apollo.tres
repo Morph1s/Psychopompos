@@ -20,7 +20,7 @@ metadata/_custom_type_script = "uid://2e4l2jfud28l"
 
 [sub_resource type="Resource" id="Resource_55pdb"]
 script = ExtResource("4_xmcnv")
-action_type = 3
+action_type = 5
 metadata/_custom_type_script = "uid://0budk8al2kwm"
 
 [resource]
