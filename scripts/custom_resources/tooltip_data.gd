@@ -12,6 +12,7 @@ extends Resource
 
 var description: String = ""
 
+
 func set_description(value: int = -1) -> void:
 	# "mom can we have string buiders?
 	# "no we have string builders at home!"

@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource("1_q6jpx")
-description_pre_value = "this is so dead"
-use_value = false
+description_pre_value = "Earn"
+use_value = true
 default_value = 1
-dynamic_plural = false
+dynamic_plural = true
 hide_value_when_singular = false
-singular = ""
-description_after_value = ""
+singular = "coin"
+description_after_value = "as a reward."
 metadata/_custom_type_script = "uid://dwi74aotc4cae"

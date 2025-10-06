@@ -9,8 +9,9 @@ var modified_block: int:
 	get:
 		return modifier_handler.modify_value(block_stat, ModifierHandler.ModifiedValue.BLOCK_GAINED)
 
+
 func resolve(targets: Array[Node2D]) -> void : 
-	for target in targets:
+	for target: Node2D in targets:
 		if target.has_method("gain_block"):
 			target.gain_block(modified_block)
 		else:

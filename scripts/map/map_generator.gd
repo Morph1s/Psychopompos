@@ -9,7 +9,6 @@ const NUM_GENERATED_PATHS: int = 6				# CANNOT BE SMALLER THAN 2! - number of it
 const MAX_OVERLAPPING_NODES_IN_PATHS: int = 2
 const MAX_EQUAL_SIZE_LAYER_STREAK: int = 2		# max number of consecutive layers with the same amount of nodes
 const MAX_SINGLE_CONNECTION_STREAK: int = 3		# max number of consecutive nodes with only one next node
-
 # const values for encounter placement
 const MIN_NUM_CAMPFIRE_ENCOUNTERS: int = 2
 const MIN_LAYER_ID_CAMPFIRE_PLACEMENT: int = 2
@@ -33,29 +32,29 @@ func generate_map() -> Array[MapLayer]:
 
 func build_map_layers() -> void:
 	# starting layer
-	var starting_layer: MapLayer = MapLayer.new()
+	var starting_layer := MapLayer.new()
 	starting_layer.type = MapLayer.MapLayerType.START
 	map.append(starting_layer)
 	
 	# normal layers before mini boss
-	for l in NUM_LAYERS_BEFORE_MINI_BOSS:
-		var layer: MapLayer = MapLayer.new()
+	for i: int in NUM_LAYERS_BEFORE_MINI_BOSS:
+		var layer := MapLayer.new()
 		layer.type = MapLayer.MapLayerType.NORMAL
 		map.append(layer)
 	
 	# mini boss layer
-	var mini_boss_layer: MapLayer = MapLayer.new()
+	var mini_boss_layer := MapLayer.new()
 	mini_boss_layer.type = MapLayer.MapLayerType.MINI_BOSS
 	map.append(mini_boss_layer)
 	
 	# normal layers after mini boss
-	for l in NUM_LAYERS_AFTER_MINI_BOSS:
-		var layer: MapLayer = MapLayer.new()
+	for i: int in NUM_LAYERS_AFTER_MINI_BOSS:
+		var layer := MapLayer.new()
 		layer.type = MapLayer.MapLayerType.NORMAL
 		map.append(layer)
 	
 	# boss layer
-	var boss_layer: MapLayer = MapLayer.new()
+	var boss_layer := MapLayer.new()
 	boss_layer.type = MapLayer.MapLayerType.BOSS
 	map.append(boss_layer)
 	
@@ -70,7 +69,7 @@ func fill_map_layers() -> void:
 			continue
 		
 		# every other layer contains the max number of nodes
-		for n in MAX_NUM_NODES_PER_LAYER:
+		for i: int in MAX_NUM_NODES_PER_LAYER:
 			layer.nodes.append(MapNode.new())
 
 #endregion
@@ -81,13 +80,13 @@ func generate_map_paths() -> void:
 	_generate_first_path()
 	_generate_second_path()
 	
-	for path in NUM_GENERATED_PATHS - 3:
+	for path: int in NUM_GENERATED_PATHS - 3:
 		_generate_single_path()
 	
 	_generate_last_path()
 
 func _generate_first_path() -> void:
-	var path: MapPath = MapPath.new()
+	var path := MapPath.new()
 	var previous_index: int
 	
 	for layer: MapLayer in map:
@@ -126,7 +125,7 @@ func _generate_first_path() -> void:
 	_add_connections_from_path(path)
 
 func _generate_second_path() -> void:
-	var path: MapPath = MapPath.new()
+	var path := MapPath.new()
 	var previous_index: int
 	
 	for layer: MapLayer in map:
@@ -173,7 +172,7 @@ func _get_min_index_for_second_path(layer_index: int) -> int:
 	return current_layer.nodes.find(node_first_path_current_layer) + 1
 
 func _generate_single_path() -> void:
-	var path: MapPath = MapPath.new()
+	var path := MapPath.new()
 	var previous_index: int
 	
 	for layer: MapLayer in map:
@@ -215,7 +214,7 @@ func _generate_single_path() -> void:
 	_add_connections_from_path(path)
 
 func _generate_last_path() -> void:
-	var path: MapPath = MapPath.new()
+	var path := MapPath.new()
 	var previous_index: int
 	var equal_layer_streak: int = 1
 	var last_layer_size: int = 0
@@ -373,19 +372,19 @@ func _check_path_overlap(current_path: MapPath, index: int) -> Array[MapPath]:
 	for path: MapPath in paths:
 		if path.nodes[index] != current_path.nodes[index]:
 			continue
-		for i in MAX_OVERLAPPING_NODES_IN_PATHS - 1:
+		for i: int in MAX_OVERLAPPING_NODES_IN_PATHS - 1:
 			if path.nodes[index - i] != current_path.nodes[index - i]:
 				break
 			result.append(path)
 	
 	return result
 
-func _remove_nodes_from_overlapping_paths(paths: Array[MapPath], nodes: Array[MapNode], index: int):
+func _remove_nodes_from_overlapping_paths(paths: Array[MapPath], nodes: Array[MapNode], index: int) -> void:
 	for path: MapPath in paths:
 		if nodes.has(path.nodes[index]):
 			nodes.erase(path.nodes[index])
 
-func _add_connections_from_path(path: MapPath):
+func _add_connections_from_path(path: MapPath) -> void:
 	for node: MapNode in path.nodes:
 		if (path.nodes.find(node) + 1) < path.nodes.size() and not node.next_nodes.has(path.nodes.get(path.nodes.find(node) + 1)):
 			node.next_nodes.append(path.nodes.get(path.nodes.find(node) + 1))
@@ -394,26 +393,26 @@ func _add_connections_from_path(path: MapPath):
 
 #region ### PLACE ENCOUNTERS ###
 
-func place_encounters():
+func place_encounters() -> void:
 	_place_mini_boss_encounter()
 	_place_boss_encounter()
 	_place_min_num_campfires()
 	_place_encounters()
 
-func _place_mini_boss_encounter():
+func _place_mini_boss_encounter() -> void:
 	map[NUM_LAYERS_BEFORE_MINI_BOSS + 1].nodes[0].encounter = MiniBossEncounter.new()
 
-func _place_boss_encounter():
+func _place_boss_encounter() -> void:
 	map.back().nodes[0].encounter = BossEncounter.new()
 
-func _place_min_num_campfires():
-	for i in MIN_NUM_CAMPFIRE_ENCOUNTERS:
+func _place_min_num_campfires() -> void:
+	for i: int in MIN_NUM_CAMPFIRE_ENCOUNTERS:
 		var path: MapPath = paths[rng.randi_range(0, paths.size() - 1)]
 		var node: MapNode = _choose_random_node_for_encounter_in_path(path, MIN_LAYER_ID_CAMPFIRE_PLACEMENT, Encounter.EncounterType.CAMPFIRE)
 		node.encounter = CampfireEncounter.new()
 		_update_campfire_weights_two_way(node)
 
-func _place_encounters():
+func _place_encounters() -> void:
 	if STARTING_LAYER_ONLY_CONTAINS_BATTLES:
 		for node: MapNode in map[0].nodes:
 			if node.active:
@@ -424,17 +423,19 @@ func _place_encounters():
 			if node.encounter != null or not node.active:
 				continue
 			
-			var encounter = _choose_weighted_encounter(node)
+			var encounter: Encounter.EncounterType = _choose_weighted_encounter(node)
 			
 			match encounter:
 				Encounter.EncounterType.BATTLE:
 					node.encounter = BattleEncounter.new()
 				Encounter.EncounterType.CAMPFIRE:
 					node.encounter = CampfireEncounter.new()
+				Encounter.EncounterType.SHOP:
+					node.encounter = ShopEncounter.new()
 				Encounter.EncounterType.RANDOM:
 					node.encounter = RandomEncounter.new()
 				_:
-					print("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter))
+					push_error("Encounter type not implemented: ", Encounter.EncounterType.find_key(encounter))
 					break
 			
 			_update_encounter_weights_up(node)
@@ -446,20 +447,20 @@ func _choose_random_node_for_encounter_in_path(path: MapPath, min_layer_index: i
 	viable_nodes = viable_nodes.slice(min_layer_index)
 	
 	# remove all nodes from viable nodes that already have an encounter set
-	for i in range(viable_nodes.size() - 1, -1, -1):
+	for i: int in range(viable_nodes.size() - 1, -1, -1):
 		var node: MapNode = viable_nodes[i]
 		if node.encounter != null:
 			viable_nodes.erase(node)
 	
 	# remove all nodes where the wanted encounter types weight is 0
-	for i in range(viable_nodes.size() - 1, -1, -1):
+	for i: int in range(viable_nodes.size() - 1, -1, -1):
 		var node: MapNode = viable_nodes[i]
 		if node.encounter_weights[type] == 0:
 			viable_nodes.erase(node)
 	
 	return viable_nodes[rng.randi_range(0, viable_nodes.size() - 1)]
 
-func _choose_weighted_encounter(node: MapNode):
+func _choose_weighted_encounter(node: MapNode) -> Encounter.EncounterType:
 	var encounters: Array = node.encounter_weights.keys()
 	var cum_weights: Array[int] = node.encounter_weights.values().duplicate()
 	
@@ -472,8 +473,10 @@ func _choose_weighted_encounter(node: MapNode):
 	for w in cum_weights:
 		if w >= random_index:
 			return encounters[cum_weights.find(w)]
+	
+	return Encounter.EncounterType.BATTLE
 
-func _update_campfire_weights_two_way(current_node: MapNode):
+func _update_campfire_weights_two_way(current_node: MapNode) -> void:
 	var paths_containing_node: Array[MapPath] = _get_paths_containing_node(current_node)
 	
 	# this would be an error, just continue map generation
@@ -486,7 +489,7 @@ func _update_campfire_weights_two_way(current_node: MapNode):
 	# adjust weights
 	for path: MapPath in paths_containing_node:
 		# up the path
-		for i in range(layer_index + 1, layer_index + MIN_NUM_LAYERS_BETWEEN_CAMPFIRES + 1):
+		for i: int in range(layer_index + 1, layer_index + MIN_NUM_LAYERS_BETWEEN_CAMPFIRES + 1):
 			var node: MapNode = path.nodes.get(i)
 			if node.encounter != null:
 				continue
@@ -494,7 +497,7 @@ func _update_campfire_weights_two_way(current_node: MapNode):
 			_adjust_encounter_weights(node, Encounter.EncounterType.CAMPFIRE, -100)
 		
 		# down the path
-		for i in range(layer_index - 1, layer_index - MIN_NUM_LAYERS_BETWEEN_CAMPFIRES - 1, -1):
+		for i: int in range(layer_index - 1, layer_index - MIN_NUM_LAYERS_BETWEEN_CAMPFIRES - 1, -1):
 			var node: MapNode = path.nodes.get(i)
 			if node.encounter != null:
 				continue
@@ -526,16 +529,16 @@ func _update_encounter_weights_up(current_node: MapNode) -> void:
 			adjusting_value = -100
 		
 		# battle rules
-		if current_node.encounter.type == Encounter.EncounterType.BATTLE:
-			for i in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_BATTLES - 1), -1):
+		elif current_node.encounter.type == Encounter.EncounterType.BATTLE:
+			for i: int in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_BATTLES - 1), -1):
 				if path.nodes[i].encounter.type != Encounter.EncounterType.BATTLE:
 					break
 				
 				adjusting_value = -100
 		
 		# random encounter rules
-		if current_node.encounter.type == Encounter.EncounterType.RANDOM:
-			for i in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_RANDOM_ENCOUNTERS - 1), -1):
+		elif current_node.encounter.type == Encounter.EncounterType.RANDOM:
+			for i: int in range(max(0, layer_index - 1), max(0, layer_index - MAX_NUM_CONSECUTIVE_RANDOM_ENCOUNTERS - 1), -1):
 				if path.nodes[i].encounter.type != Encounter.EncounterType.RANDOM:
 					break
 				
@@ -557,7 +560,7 @@ func _adjust_encounter_weights(node: MapNode, weight: Encounter.EncounterType, v
 	node.encounter_weights[weight] = max(0, current_weight + value)
 	var ignored_encounters: int = 1
 	
-	for type in node.encounter_weights:
+	for type: Encounter.EncounterType in node.encounter_weights:
 		if type == weight:
 			continue
 		

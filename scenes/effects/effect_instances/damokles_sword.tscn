@@ -10,5 +10,6 @@
 texture = ExtResource("2_m683e")
 script = ExtResource("2_8tdnq")
 effect_name = "DamoklesSword"
+type = 1
 stackable = true
 tooltip_data = Array[ExtResource("3_8t5fw")]([ExtResource("3_8tdnq")])

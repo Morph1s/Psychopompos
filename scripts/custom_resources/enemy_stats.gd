@@ -10,11 +10,6 @@ enum ActionPattern {
 @export var action_pattern: ActionPattern = ActionPattern.RANDOM
 @export var actions: Array[EnemyAction] 
 
-## adds a reference to the modifier handler of the enemy to all actions
-func set_modifier_handler(modifier_handler: ModifierHandler) -> void:
-	for action in actions:
-		for action_instance in action.action_catalogue:
-			action_instance.modifier_handler = modifier_handler
 
 func initialize() -> void:
 	super.initialize()
@@ -27,3 +22,12 @@ func initialize() -> void:
 		
 		for index in actions[i].action_catalogue.size():
 			actions[i].action_catalogue[index] = actions[i].action_catalogue[index].duplicate(true)
+		
+		for index in actions[i].tooltips.size():
+			actions[i].tooltips[index] = actions[i].tooltips[index].duplicate(true)
+
+## adds a reference to the modifier handler of the enemy to all actions
+func set_modifier_handler(modifier_handler: ModifierHandler) -> void:
+	for action in actions:
+		for action_instance in action.action_catalogue:
+			action_instance.modifier_handler = modifier_handler

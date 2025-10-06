@@ -1,0 +1,163 @@
+[gd_scene load_steps=6 format=3 uid="uid://g83ni5mqmfl6"]
+
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="1_jfqey"]
+[ext_resource type="Script" uid="uid://twrfrmgc3ceu" path="res://scripts/shop/shop_trading_interface.gd" id="2_1gglh"]
+[ext_resource type="Texture2D" uid="uid://bxdv8xc48vg0s" path="res://assets/graphics/hud/pictograms/plus_sign.png" id="3_yve3q"]
+[ext_resource type="Texture2D" uid="uid://ct8f1mocnhn48" path="res://assets/graphics/hud/pictograms/hud_coins.png" id="4_1gglh"]
+[ext_resource type="Texture2D" uid="uid://lyvtxtrggyvc" path="res://assets/graphics/hud/pictograms/equals_sign.png" id="4_abi4k"]
+
+[node name="ShopTradingInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jfqey")
+script = ExtResource("2_1gglh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TradingEquationContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CardsPart" type="VBoxContainer" parent="MarginContainer/TradingEquationContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="SelectedCardsContainer" type="HBoxContainer" parent="MarginContainer/TradingEquationContainer/CardsPart"]
+layout_mode = 2
+alignment = 1
+
+[node name="CardValueLabel" type="Label" parent="MarginContainer/TradingEquationContainer/CardsPart"]
+layout_mode = 2
+text = "cringe wer Karten tauscht"
+
+[node name="ChangeCardSelectionButton" type="Button" parent="MarginContainer/TradingEquationContainer/CardsPart"]
+layout_mode = 2
+text = "Change Selection"
+
+[node name="PlusPart" type="TextureRect" parent="MarginContainer/TradingEquationContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_yve3q")
+stretch_mode = 2
+
+[node name="CoinsPartMargin" type="MarginContainer" parent="MarginContainer/TradingEquationContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 60
+
+[node name="CoinsPart" type="VBoxContainer" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CoinsDisplay" type="HBoxContainer" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart"]
+layout_mode = 2
+alignment = 1
+
+[node name="Coins" type="Label" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/CoinsDisplay"]
+custom_minimum_size = Vector2(36, 18)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 2
+
+[node name="CoinIcon" type="TextureRect" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/CoinsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("4_1gglh")
+stretch_mode = 2
+
+[node name="AdjustCoinsArea" type="VBoxContainer" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart"]
+layout_mode = 2
+
+[node name="AdjustCoins1" type="HBoxContainer" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea"]
+layout_mode = 2
+alignment = 1
+
+[node name="MinusOneButton" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1"]
+layout_mode = 2
+text = "-1"
+
+[node name="PlusOneButton" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1"]
+layout_mode = 2
+text = "+1"
+
+[node name="AdjustCoins10" type="HBoxContainer" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea"]
+layout_mode = 2
+alignment = 1
+
+[node name="Minus10Button" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10"]
+layout_mode = 2
+text = "-10"
+
+[node name="Plus10Button" type="Button" parent="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10"]
+layout_mode = 2
+text = "+10"
+
+[node name="EqualsPart" type="TextureRect" parent="MarginContainer/TradingEquationContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_abi4k")
+stretch_mode = 2
+
+[node name="ResultPart" type="VBoxContainer" parent="MarginContainer/TradingEquationContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="You will get" type="Label" parent="MarginContainer/TradingEquationContainer/ResultPart"]
+layout_mode = 2
+text = "You will get"
+horizontal_alignment = 1
+
+[node name="CardDisplay" type="BoxContainer" parent="MarginContainer/TradingEquationContainer/ResultPart"]
+layout_mode = 2
+alignment = 1
+
+[node name="ProbabilityLabel" type="Label" parent="MarginContainer/TradingEquationContainer/ResultPart"]
+layout_mode = 2
+text = "with a probability
+of 0%"
+horizontal_alignment = 1
+
+[node name="Exit" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "x"
+
+[node name="Trade" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Trade"
+
+[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CardsPart/ChangeCardSelectionButton" to="." method="_on_change_card_selection_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1/MinusOneButton" to="." method="_on_minus_one_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins1/PlusOneButton" to="." method="_on_plus_one_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10/Minus10Button" to="." method="_on_minus_10_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TradingEquationContainer/CoinsPartMargin/CoinsPart/AdjustCoinsArea/AdjustCoins10/Plus10Button" to="." method="_on_plus_10_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/Trade" to="." method="_on_trade_pressed"]

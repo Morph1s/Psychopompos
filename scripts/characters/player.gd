@@ -14,27 +14,6 @@ signal player_died
 var size: Vector2
 
 
-func take_damage(damage_amount: int) -> void:
-	character_image.material.set_shader_parameter("intensity", 1.0)
-	hit_frame_timer.start()
-	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
-	stats.take_damage(damage_amount)
-	effect_handler._on_unit_take_damage()
-
-func lose_hp(amount: int) -> void:
-	stats.lose_hp(amount)
-
-func gain_block(amount: int) -> void:
-	stats.block += amount
-
-func start_of_turn() -> void:
-	stats.current_energy = stats.maximum_energy
-	stats.block = 0
-	effect_handler._on_unit_turn_start()
-
-func end_of_turn() -> void:
-	effect_handler._on_unit_turn_end()
-
 func initialize() -> void:
 	# Connecting Signals
 	stats.died.connect(_on_died)
@@ -47,6 +26,29 @@ func initialize() -> void:
 	
 	effect_handler.initialize(self)
 	EventBusHandler.player_played_attack.connect(effect_handler._on_unit_played_attack)
+
+func take_damage(damage_amount: int) -> void:
+	character_image.material.set_shader_parameter("intensity", 1.0)
+	hit_frame_timer.start()
+	damage_amount = modifier_handler.modify_value(damage_amount, ModifierHandler.ModifiedValue.DAMAGE_TAKEN)
+	stats.take_damage(damage_amount)
+	effect_handler._on_unit_take_damage()
+
+func lose_hp(amount: int) -> void:
+	stats.lose_hp(amount)
+
+func gain_block(amount: int, from_effect: bool = false) -> void:
+	stats.block += amount
+	if not from_effect:
+		effect_handler._on_unit_block_gained(amount)
+
+func start_of_turn() -> void:
+	stats.current_energy = stats.maximum_energy
+	stats.block = 0
+	await effect_handler._on_unit_turn_start()
+
+func end_of_turn() -> void:
+	await effect_handler._on_unit_turn_end()
 
 func get_attacked(damage_amount: int) -> void:
 	take_damage(damage_amount)
@@ -72,7 +74,7 @@ func _on_hitpoints_changed(new_hp: int, max_hp: int) -> void:
 func _on_block_changed(new_block: int) -> void:
 	player_hud.set_block(new_block)
 
-func _on_hit_frame_timer_timeout():
+func _on_hit_frame_timer_timeout() -> void:
 	character_image.material.set_shader_parameter("intensity", 0.0)
 
 #endregion

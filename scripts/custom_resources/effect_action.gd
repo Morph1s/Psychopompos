@@ -10,10 +10,19 @@ enum EffectType {
 	REGENERATION,
 	VIGILANT,
 	WARRIORS_FURRY,
-	WOUNDED,
+	WOUNDED,	
+	BLESSING,
+	ARTEMIS,
+	HELM_OF_HADES,
+	INVINCIBLE,
+	LISTENING,
+	NEMEAN_HIDE,
 }
+
+@export var effect: EffectType
+@export var effect_value: int = 1
  
-var effect_names: Dictionary = {
+var effect_names: Dictionary[EffectType, String] = {
 	EffectType.AGILE: "Agile",
 	EffectType.DAMOKLES_SWORD: "DamoklesSword",
 	EffectType.GATHER: "Gather",
@@ -23,15 +32,19 @@ var effect_names: Dictionary = {
 	EffectType.VIGILANT: "Vigilant",
 	EffectType.WARRIORS_FURRY: "WarriorsFury",
 	EffectType.WOUNDED: "Wounded",
+	EffectType.BLESSING: "Blessing",
+	EffectType.ARTEMIS: "Artemis",
+	EffectType.HELM_OF_HADES: "HelmOfHades",
+	EffectType.INVINCIBLE: "Invincible",
+	EffectType.LISTENING: "Listening",
+	EffectType.NEMEAN_HIDE: "NemeanHide",
 }
 
-@export var effect: EffectType
-@export var effect_value: int = 1
 
 func resolve(targets: Array[Node2D]) -> void:
-	for target in targets:
+	for target: Node2D in targets:
 		target.effect_handler.apply_effect(effect_names[effect], effect_value)
 
 func undo(targets: Array[Node2D]) -> void: 
-	for target in targets:
+	for target: Node2D in targets:
 		target.effect_handler.apply_effect(effect_names[effect], -effect_value)

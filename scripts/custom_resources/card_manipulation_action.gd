@@ -10,7 +10,8 @@ enum CardAction {
 @export var card_action: CardAction 
 @export var count: int
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RunData.sub_rngs["rng_card_manipulation_action"]
+
 
 func resolve(targets: Array[Node2D]) -> void : 
 	match card_action:
@@ -22,7 +23,7 @@ func resolve(targets: Array[Node2D]) -> void :
 			await _discard_all(targets[0])
 
 func _discard_random(card_handler: CardHandler) -> void:
-	for i in count:
+	for i: int in count:
 		if card_handler.hand.is_empty():
 			break
 		var target: Card = card_handler.hand[rng.randi_range(0, card_handler.hand.size() - 1)]
