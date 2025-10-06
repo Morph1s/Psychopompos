@@ -1,14 +1,15 @@
 extends Control
 class_name EntityHud
 
-const PLAYER_HP_BAR_OVER = preload("res://assets/graphics/hud/hp_bar/player_hp_bar_over.png")
-const ENTITY_DEFEND_BAR_OVER = preload("res://assets/graphics/hud/hp_bar/entity_defend_bar_over.png")
-const MAX_HITPOINT_CHANGE_LABELS: int = 5
+@onready var hp_bar: TextureProgressBar = $HpBar
+@onready var hitpoint_label: Label = $HpBar/LabelContainer/Hitpoints
+@onready var block_label: Label = $HpBar/LabelContainer/Block
+@onready var hitpoint_changes_container: VBoxContainer = $HpBar/HitpointChangesContainer
 
-@onready var hp_bar = $HpBar
-@onready var hitpoint_label = $HpBar/LabelContainer/Hitpoints
-@onready var block_label = $HpBar/LabelContainer/Block
-@onready var hitpoint_changes_container = $HpBar/HitpointChangesContainer
+const PLAYER_HP_BAR_OVER: Texture = preload("res://assets/graphics/hud/hp_bar/player_hp_bar_over.png")
+const ENTITY_DEFEND_BAR_OVER: Texture = preload("res://assets/graphics/hud/hp_bar/entity_defend_bar_over.png")
+
+const MAX_HITPOINT_CHANGE_LABELS: int = 5
 
 @export var hp_loss_label_color: Color = Color("ff0000")
 @export var hp_heal_label_color: Color = Color("00ff00")
@@ -66,7 +67,7 @@ func _create_hp_change_label(change: int) -> void:
 	if change == 0:
 		return
 	
-	var label: Label = Label.new()
+	var label := Label.new()
 	
 	if 0 < change:
 		label.add_theme_color_override("font_color", hp_heal_label_color)
@@ -86,7 +87,7 @@ func _create_block_change_label(change: int) -> void:
 	if not change < 0:
 		return
 	
-	var label: Label = Label.new()
+	var label := Label.new()
 	label.add_theme_color_override("font_color", block_loss_label_color)
 	label.text = str(change)
 	hitpoint_changes_container.add_child(label)

@@ -1,64 +1,73 @@
-[gd_resource type="Resource" script_class="DialogueTree" load_steps=13 format=3 uid="uid://bdn6di2weuseg"]
+[gd_resource type="Resource" script_class="DialogueTree" load_steps=12 format=3 uid="uid://bdn6di2weuseg"]
 
 [ext_resource type="Script" uid="uid://c0ndlj6hy1clx" path="res://scripts/encounters/dialogue_block.gd" id="1_nnby8"]
 [ext_resource type="Script" uid="uid://crvdqpvr4nrg1" path="res://scripts/encounters/dialogue_tree.gd" id="2_htumi"]
 [ext_resource type="Script" uid="uid://b72vshd8jhlxi" path="res://scripts/encounters/dialogue_response.gd" id="2_p235y"]
-[ext_resource type="Resource" uid="uid://c0kf21jvrxk0a" path="res://resources/cards/warrior/gods_boon/hades.tres" id="3_mkyrb"]
-[ext_resource type="Resource" uid="uid://btbjki4ou2ghp" path="res://resources/cards/warrior/gods_boon/thanatos.tres" id="4_dues4"]
-[ext_resource type="Resource" uid="uid://iku4w5o2a2gu" path="res://resources/cards/warrior/gods_boon/nemesis.tres" id="4_mkyrb"]
 
 [sub_resource type="Resource" id="Resource_dpkt2"]
-resource_name = "hades"
 script = ExtResource("2_p235y")
-displayed_response = "\"hades\" (get card)"
-next_block = Array[int]([1])
+displayed_response = "\"Let me pay in coin\" (-159 coins)"
+next_block = Array[int]([0])
 consequences = Dictionary[int, Variant]({
-0: ExtResource("3_mkyrb")
+9: -159
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_bc0bu"]
-resource_name = "nemesis"
 script = ExtResource("2_p235y")
-displayed_response = "\"nemesis\" (get card)"
+displayed_response = "\"Let me pay in blood\\\" (-33% of current hp)"
 next_block = Array[int]([1])
 consequences = Dictionary[int, Variant]({
-0: ExtResource("4_mkyrb")
+5: -0.333
 })
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_pfxvx"]
-resource_name = "thanatos"
 script = ExtResource("2_p235y")
-displayed_response = "\"thanatos\" (get card)"
-next_block = Array[int]([1])
-consequences = Dictionary[int, Variant]({
-0: ExtResource("4_dues4")
-})
+displayed_response = "\"Can I not pay?\""
+next_block = Array[int]([2])
+consequences = Dictionary[int, Variant]({})
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
 [sub_resource type="Resource" id="Resource_t3qb3"]
 resource_name = "high_priestess_enter"
 script = ExtResource("1_nnby8")
-text_block = "You come to an altar where the ghost of a young woman conducts a rite.\"Ahh! A noble soul... Come... Tell me... to which god are you most devoted?\""
+text_block = "You come to an altar where the ghost of a young woman conducts a rite.\"Ahh! A noble soul... Come... Here to pay youre respects?\""
 possible_answers = Array[ExtResource("2_p235y")]([SubResource("Resource_dpkt2"), SubResource("Resource_bc0bu"), SubResource("Resource_pfxvx")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [sub_resource type="Resource" id="Resource_s8t5e"]
 resource_name = "leave"
 script = ExtResource("2_p235y")
-displayed_response = "\"thanks\" leave..."
+displayed_response = "\"You have my thanks\"  leave with god card"
+next_block = Array[int]([])
+consequences = Dictionary[int, Variant]({
+2: "gods boon"
+})
+metadata/_custom_type_script = "uid://b72vshd8jhlxi"
+
+[sub_resource type="Resource" id="Resource_wnpg5"]
+resource_name = "high_priestress_success"
+script = ExtResource("1_nnby8")
+text_block = "\"You shall receive their blessing... May they be with you...\" You feel like a warm light engulfs you."
+possible_answers = Array[ExtResource("2_p235y")]([SubResource("Resource_s8t5e")])
+metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
+
+[sub_resource type="Resource" id="Resource_xfv8r"]
+script = ExtResource("2_p235y")
+displayed_response = "leave..."
 next_block = Array[int]([])
 consequences = Dictionary[int, Variant]({})
 metadata/_custom_type_script = "uid://b72vshd8jhlxi"
 
-[sub_resource type="Resource" id="Resource_wnpg5"]
+[sub_resource type="Resource" id="Resource_htumi"]
+resource_name = "high_priestress_failure"
 script = ExtResource("1_nnby8")
-text_block = "\"You shall receive their blessing… May they be with you…\""
-possible_answers = Array[ExtResource("2_p235y")]([SubResource("Resource_s8t5e")])
+text_block = "\"Ah... so littel faith... If you didn't come to pray... just be on youre way...\" She gestures towards the exit."
+possible_answers = Array[ExtResource("2_p235y")]([SubResource("Resource_xfv8r")])
 metadata/_custom_type_script = "uid://c0ndlj6hy1clx"
 
 [resource]
 script = ExtResource("2_htumi")
-dialogue_tree = Array[ExtResource("1_nnby8")]([SubResource("Resource_t3qb3"), SubResource("Resource_wnpg5")])
+dialogue_tree = Array[ExtResource("1_nnby8")]([SubResource("Resource_t3qb3"), SubResource("Resource_wnpg5"), SubResource("Resource_htumi")])
 metadata/_custom_type_script = "uid://crvdqpvr4nrg1"

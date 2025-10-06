@@ -8,6 +8,7 @@ extends Control
 
 var active: bool = true
 
+
 func activate() -> void:
 	if active:
 		return

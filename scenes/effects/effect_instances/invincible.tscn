@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsxusto66xxtc"]
+
+[ext_resource type="PackedScene" uid="uid://bm301jgeenuu" path="res://scenes/effects/effect_interface.tscn" id="1_7a7uy"]
+[ext_resource type="Script" uid="uid://cysf8leq2xxeu" path="res://scripts/effects/effect_instances/invincible.gd" id="2_gqf5m"]
+[ext_resource type="Texture2D" uid="uid://48mjc5xa5m2x" path="res://assets/graphics/battle_effects/with_border/effect_invincible.png" id="2_jucdw"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_gqf5m"]
+[ext_resource type="Resource" uid="uid://c4fixm701wvpl" path="res://resources/tooltips/effect_tooltips/invincible_tooltip.tres" id="4_2joo2"]
+
+[node name="Invincible" instance=ExtResource("1_7a7uy")]
+texture = ExtResource("2_jucdw")
+script = ExtResource("2_gqf5m")
+effect_name = "Invincible"
+stackable = true
+player_only = true
+tooltip_data = Array[ExtResource("3_gqf5m")]([ExtResource("4_2joo2")])

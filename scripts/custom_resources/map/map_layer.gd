@@ -6,7 +6,7 @@ enum MapLayerType {
 	START,
 	MINI_BOSS,
 	BOSS,
-	}
+}
 
 var type: MapLayerType
 var nodes: Array[MapNode]

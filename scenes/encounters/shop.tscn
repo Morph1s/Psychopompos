@@ -1,0 +1,172 @@
+[gd_scene load_steps=13 format=3 uid="uid://brl1xwjjdvivu"]
+
+[ext_resource type="Script" uid="uid://bwbeshn5gmhsj" path="res://scripts/encounters/shop.gd" id="1_a2l51"]
+[ext_resource type="Texture2D" uid="uid://bct8ua2n57ro0" path="res://assets/graphics/background/placeholder_shop_background.png" id="1_q5qej"]
+[ext_resource type="Theme" uid="uid://gu54ssij03su" path="res://resources/theme/main_theme.tres" id="2_1hjcp"]
+[ext_resource type="Script" uid="uid://b0hh1vttrirkw" path="res://scripts/shop/card_packs_panel.gd" id="3_272ib"]
+[ext_resource type="Script" uid="uid://vnjpeuy7kifl" path="res://scripts/shop/direct_buy_panel.gd" id="4_2r8dp"]
+[ext_resource type="Script" uid="uid://bithascay8ui8" path="res://scripts/shop/trade_panel.gd" id="4_v4nyk"]
+[ext_resource type="Shader" uid="uid://d0sbw7m6mjuhk" path="res://resources/shaders/desaturation_shader.gdshader" id="5_jwvl2"]
+[ext_resource type="PackedScene" uid="uid://t44dhyfoti7a" path="res://scenes/ui/select_card_screen.tscn" id="6_87tic"]
+[ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="6_rl7h0"]
+[ext_resource type="Texture2D" uid="uid://110xauolevsl" path="res://assets/graphics/hud/pictograms/trade_icon.png" id="7_ffoeh"]
+[ext_resource type="PackedScene" uid="uid://g83ni5mqmfl6" path="res://scenes/encounters/shop_trading_interface.tscn" id="9_2r8dp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffoeh"]
+shader = ExtResource("5_jwvl2")
+shader_parameter/desaturation = 0.0
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_a2l51")
+
+[node name="ShopBackground" type="Sprite2D" parent="."]
+texture = ExtResource("1_q5qej")
+centered = false
+
+[node name="ShopLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ShopUI" type="Control" parent="ShopLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_1hjcp")
+
+[node name="ShopUIMargin" type="MarginContainer" parent="ShopLayer/ShopUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="ShopLayer/ShopUI/ShopUIMargin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 2
+
+[node name="DirectBuyPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
+custom_minimum_size = Vector2(192, 69)
+layout_mode = 2
+script = ExtResource("4_2r8dp")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+
+[node name="CardContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Slot0" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer/CardContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="Slot1" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer/CardContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="Slot2" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer/CardContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="NoCardsLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/DirectBuyPanel/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "No more cards remain.
+Seek the shop again when the stars align."
+horizontal_alignment = 1
+
+[node name="TradePanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
+layout_mode = 2
+script = ExtResource("4_v4nyk")
+
+[node name="TradePanelMargin" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TradeContainer" type="VBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin"]
+layout_mode = 2
+
+[node name="TradeIcon" type="TextureRect" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
+material = SubResource("ShaderMaterial_ffoeh")
+layout_mode = 2
+texture = ExtResource("7_ffoeh")
+
+[node name="TradeLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer"]
+layout_mode = 2
+text = "TRADE"
+horizontal_alignment = 1
+
+[node name="PacksPanel" type="PanelContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
+custom_minimum_size = Vector2(192, 83)
+layout_mode = 2
+script = ExtResource("3_272ib")
+
+[node name="PacksMargin" type="MarginContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="PacksContainer" type="HBoxContainer" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Pack0" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin/PacksContainer"]
+custom_minimum_size = Vector2(48, 72)
+layout_mode = 2
+
+[node name="Pack1" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin/PacksContainer"]
+custom_minimum_size = Vector2(48, 72)
+layout_mode = 2
+
+[node name="Pack2" type="Control" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin/PacksContainer"]
+custom_minimum_size = Vector2(48, 72)
+layout_mode = 2
+
+[node name="NoPacksLabel" type="Label" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel/PacksMargin"]
+visible = false
+layout_mode = 2
+text = "Looks like the gods are out of gifts today.
+No card packs left in this shop!"
+horizontal_alignment = 1
+
+[node name="LeaveButton" type="Button" parent="ShopLayer/ShopUI/ShopUIMargin/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Leave"
+
+[node name="Tooltip" parent="ShopLayer" instance=ExtResource("6_rl7h0")]
+visible = false
+offset_left = 2.0
+offset_top = 26.0
+offset_right = 2.0
+offset_bottom = 26.0
+
+[node name="SelectCardScreen" parent="ShopLayer" instance=ExtResource("6_87tic")]
+visible = false
+
+[node name="ShopTradingInterface" parent="ShopLayer" instance=ExtResource("9_2r8dp")]
+visible = false
+
+[connection signal="gui_input" from="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel/TradePanelMargin/TradeContainer/TradeIcon" to="ShopLayer/ShopUI/ShopUIMargin/GridContainer/TradePanel" method="_on_trade_icon_gui_input"]
+[connection signal="pressed" from="ShopLayer/ShopUI/ShopUIMargin/GridContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="cards_selected" from="ShopLayer/SelectCardScreen" to="ShopLayer/ShopUI/ShopUIMargin/GridContainer/PacksPanel" method="_on_select_card_screen_cards_selected"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=17 format=3 uid="uid://cp733qsv8syje"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=20 format=3 uid="uid://cp733qsv8syje"]
 
 [ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="1_qiugy"]
 [ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="2_cwftc"]
@@ -6,8 +6,11 @@
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="3_s6t2b"]
 [ext_resource type="Texture2D" uid="uid://cx71dc3ocqabi" path="res://assets/graphics/enemies/intents/intent_buff.png" id="4_7ruqa"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="5_gfaaa"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_rvj4q"]
+[ext_resource type="Resource" uid="uid://buc0tnfea1jda" path="res://resources/tooltips/enemy_tooltips/enemy_buff_tooltip.tres" id="6_a2lwg"]
 [ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="6_rvj4q"]
 [ext_resource type="Texture2D" uid="uid://dh0a4b2jcaajx" path="res://assets/graphics/enemies/mini_boss_minotaur.png" id="7_hnrvt"]
+[ext_resource type="Resource" uid="uid://b5b5kmlp1bkmb" path="res://resources/tooltips/enemy_tooltips/enemy_attack_tooltip.tres" id="9_u47oq"]
 
 [sub_resource type="Resource" id="Resource_u47oq"]
 script = ExtResource("3_s6t2b")
@@ -22,6 +25,7 @@ intent_sprite = ExtResource("4_7ruqa")
 value = 0
 count = 1
 action_catalogue = Array[ExtResource("2_hnrvt")]([SubResource("Resource_u47oq")])
+tooltips = Array[ExtResource("5_rvj4q")]([ExtResource("6_a2lwg")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [sub_resource type="Resource" id="Resource_pgvva"]
@@ -43,6 +47,7 @@ intent_sprite = ExtResource("6_rvj4q")
 value = 15
 count = 1
 action_catalogue = Array[ExtResource("2_hnrvt")]([SubResource("Resource_pgvva"), SubResource("Resource_ubyht")])
+tooltips = Array[ExtResource("5_rvj4q")]([ExtResource("9_u47oq")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [sub_resource type="Resource" id="Resource_hnrvt"]
@@ -63,6 +68,7 @@ intent_sprite = ExtResource("6_rvj4q")
 value = 5
 count = 2
 action_catalogue = Array[ExtResource("2_hnrvt")]([SubResource("Resource_hnrvt"), SubResource("Resource_s6t2b")])
+tooltips = Array[ExtResource("5_rvj4q")]([ExtResource("9_u47oq")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [resource]

@@ -31,3 +31,6 @@ text = "1*3"
 
 [node name="IntentAmount" type="Label" parent="IntentContainer" index="2"]
 layout_mode = 2
+
+[connection signal="mouse_entered" from="IntentContainer" to="." method="_on_intent_container_mouse_entered"]
+[connection signal="mouse_exited" from="IntentContainer" to="." method="_on_intent_container_mouse_exited"]
