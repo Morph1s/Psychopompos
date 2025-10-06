@@ -11,19 +11,42 @@
 [node name="Run" type="Node2D"]
 script = ExtResource("1_q5lik")
 
+[node name="BackgroundTexture" type="Sprite2D" parent="."]
+
 [node name="UILayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_dqgnb")
 
-[node name="RunUI" parent="UILayer" instance=ExtResource("4_nafsq")]
-offset_bottom = 18.0
-size_flags_vertical = 0
+[node name="LowerLevelUI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
-[node name="Map" parent="UILayer" instance=ExtResource("3_6ock1")]
-visible = false
+[node name="UpperLevelUI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="DeckView" parent="UILayer" instance=ExtResource("5_nafsq")]
+[node name="Map" parent="UILayer/UpperLevelUI" instance=ExtResource("3_6ock1")]
 visible = false
+layout_mode = 1
+
+[node name="DeckView" parent="UILayer/UpperLevelUI" instance=ExtResource("5_nafsq")]
+visible = false
+layout_mode = 1
+
+[node name="RunUI" parent="UILayer/UpperLevelUI" instance=ExtResource("4_nafsq")]
+layout_mode = 1
+offset_bottom = 24.0
+size_flags_vertical = 0
+mouse_filter = 2
 
 [node name="EncounterHandler" type="Node2D" parent="."]
 script = ExtResource("2_6ock1")
@@ -34,10 +57,10 @@ unique_name_in_owner = true
 [node name="MapGenerator" type="Node2D" parent="."]
 script = ExtResource("7_nafsq")
 
-[connection signal="open_deck_view" from="UILayer/RunUI" to="UILayer" method="_on_run_ui_open_deck_view"]
-[connection signal="open_map" from="UILayer/RunUI" to="UILayer" method="_on_run_ui_open_map"]
-[connection signal="encounter_selected" from="UILayer/Map" to="." method="_on_map_encounter_selected"]
-[connection signal="hidden" from="UILayer/Map" to="UILayer" method="_on_map_hidden"]
-[connection signal="close_deck_view" from="UILayer/DeckView" to="UILayer" method="_close_deck_view"]
+[connection signal="encounter_selected" from="UILayer/UpperLevelUI/Map" to="." method="_on_map_encounter_selected"]
+[connection signal="hidden" from="UILayer/UpperLevelUI/Map" to="UILayer" method="_on_map_hidden"]
+[connection signal="close_deck_view" from="UILayer/UpperLevelUI/DeckView" to="UILayer" method="_close_deck_view"]
+[connection signal="open_deck_view" from="UILayer/UpperLevelUI/RunUI" to="UILayer" method="_on_run_ui_open_deck_view"]
+[connection signal="open_map" from="UILayer/UpperLevelUI/RunUI" to="UILayer" method="_on_run_ui_open_map"]
 [connection signal="load_main_menu" from="EncounterHandler" to="." method="_on_encounter_handler_load_main_menu"]
 [connection signal="load_rewards" from="EncounterHandler" to="." method="_on_encounter_handler_load_rewards"]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://b3h6lx6thb3vi"]
+
+[ext_resource type="Texture2D" uid="uid://6nj31xcc2ic1" path="res://assets/graphics/enemies/intents/intent_debuff.png" id="1_3v5d1"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="1_n2odk"]
+
+[resource]
+script = ExtResource("1_n2odk")
+icon = ExtResource("1_3v5d1")
+description_pre_value = "this enemy will debuff you when you end your turn"
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

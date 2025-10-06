@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://bsovf2rid67tf"]
+
+[ext_resource type="Texture2D" uid="uid://bgvjpb7rpb1yl" path="res://assets/graphics/battle_effects/borderless/effect_artemis_borderless.png" id="1_kjgs3"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_cjpcf"]
+
+[resource]
+script = ExtResource("2_cjpcf")
+icon = ExtResource("1_kjgs3")
+description_pre_value = "ARTEMIS: Every time you draw a card this turn, deal 5 damage to this enemy."
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"

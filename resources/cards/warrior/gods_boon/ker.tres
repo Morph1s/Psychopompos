@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_vtuot"]
 [ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_yrx38"]
 [ext_resource type="Texture2D" uid="uid://cue0ttuan7s7e" path="res://assets/graphics/cards/god/card_god_ker.png" id="5_m6j5c"]
-[ext_resource type="Resource" path="res://resources/tooltips/action_tooltips/wounded_action_tooltip.tres" id="7_m6j5c"]
+[ext_resource type="Resource" uid="uid://su3pit3bgs8d" path="res://resources/tooltips/action_tooltips/wounded_action_tooltip.tres" id="7_m6j5c"]
 
 [sub_resource type="Resource" id="Resource_rxom3"]
 script = ExtResource("2_05px8")

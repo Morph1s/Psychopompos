@@ -12,9 +12,10 @@ extends PanelContainer
 	$PacksMargin/PacksContainer/Pack2
 ]
 
+const CARD_PACK_VISUALIZATION: PackedScene = preload("res://scenes/encounters/card_pack_visualization.tscn")
+
 const NUM_PACKS: int = 3
 const NUM_CARDS_TO_SELECT: int = 2
-const CARD_PACK_VISUALIZATION = preload("res://scenes/encounters/card_pack_visualization.tscn")
 const PACK_SIZE: int = 5
 
 var packs: Array[CardPack] = []
@@ -44,12 +45,12 @@ var rng: RandomNumberGenerator = RunData.sub_rngs["rng_card_pack_panel"]
 var current_card_pack: CardPack
 
 
-func initialize():
+func initialize() -> void:
 	_create_packs()
 	_fill_packs_panel()
 
 func _create_packs() -> void:
-	for i in NUM_PACKS:
+	for i: int in NUM_PACKS:
 		var pack_rarity: CardPack.PackRarity = _get_pack_rarity()
 		var pack: CardPack = _create_pack(pack_rarity)
 		packs.append(pack)
@@ -73,9 +74,9 @@ func _calculate_price(rarity: CardPack.PackRarity) -> int:
 	}[rarity]
 
 func _get_pack_rarity() -> CardPack.PackRarity:
-	var random_index := rng.randi_range(0, 100)
+	var random_index: int = rng.randi_range(0, 100)
 	
-	for rar in pack_distributions:
+	for rar: CardPack.PackRarity in pack_distributions:
 		if random_index <= pack_distributions[rar]:
 			return rar
 		else:
@@ -84,7 +85,7 @@ func _get_pack_rarity() -> CardPack.PackRarity:
 	return CardPack.PackRarity.COMMON
 
 func _fill_packs_panel() -> void:
-	for i in pack_slots.size():
+	for i: int in pack_slots.size():
 		var pack: CardPack = packs[i]
 		if pack:
 			var pack_visual: CardPackVisualization = CARD_PACK_VISUALIZATION.instantiate()
@@ -110,7 +111,6 @@ func _on_card_pack_pack_selected(pack: CardPack) -> void:
 	
 	RunData.player_stats.coins -= pack.price
 	
-	print("Selected a ", CardPack.PackRarity.find_key(pack.pack_rarity), " pack for the price of ", pack.price, " coins.")
 	select_cards_screen.initialize(pack.cards, NUM_CARDS_TO_SELECT)
 	select_cards_screen.show()
 	
@@ -124,7 +124,6 @@ func _on_select_card_screen_cards_selected(cards: Array[CardType], card_visuals:
 	for card: CardType in cards:
 		DeckHandler.add_card_to_deck(card)
 		positions.append(card_visuals[cards.find(card)].global_position)
-		print("Add card ", card.card_name, " to deck")
 	
 	EventBusHandler.card_picked_for_deck_add.emit(cards, positions)
 	

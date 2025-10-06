@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=13 format=3 uid="uid://cp5rxr3mp8elq"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=16 format=3 uid="uid://cp5rxr3mp8elq"]
 
 [ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="1_xdanq"]
 [ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="2_7egoo"]
 [ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="2_318jf"]
 [ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="4_jlgxb"]
 [ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="5_8w74y"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="5_yo0yt"]
 [ext_resource type="Texture2D" uid="uid://cx71dc3ocqabi" path="res://assets/graphics/enemies/intents/intent_buff.png" id="6_53x8g"]
+[ext_resource type="Resource" uid="uid://b5b5kmlp1bkmb" path="res://resources/tooltips/enemy_tooltips/enemy_attack_tooltip.tres" id="6_eoui6"]
 [ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="6_yo0yt"]
 [ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="7_eoui6"]
+[ext_resource type="Resource" uid="uid://buc0tnfea1jda" path="res://resources/tooltips/enemy_tooltips/enemy_buff_tooltip.tres" id="9_78k7y"]
 
 [sub_resource type="Resource" id="Resource_s17fa"]
 script = ExtResource("5_8w74y")
@@ -21,6 +24,7 @@ intent_sprite = ExtResource("6_yo0yt")
 value = 8
 count = 1
 action_catalogue = Array[ExtResource("4_jlgxb")]([SubResource("Resource_s17fa")])
+tooltips = Array[ExtResource("5_yo0yt")]([ExtResource("6_eoui6")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [sub_resource type="Resource" id="Resource_d1np4"]
@@ -36,6 +40,7 @@ intent_sprite = ExtResource("6_53x8g")
 value = 3
 count = 1
 action_catalogue = Array[ExtResource("4_jlgxb")]([SubResource("Resource_d1np4")])
+tooltips = Array[ExtResource("5_yo0yt")]([ExtResource("9_78k7y")])
 metadata/_custom_type_script = "uid://djsgq2wlihskl"
 
 [resource]

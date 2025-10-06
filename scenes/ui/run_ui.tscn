@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c548kbb7afp6r" path="res://scenes/ui/tooltip.tscn" id="8_5gf5s"]
 
 [node name="RunUI" type="TextureRect"]
+z_index = 10
 custom_minimum_size = Vector2(0, 20)
 anchors_preset = 10
 anchor_right = 1.0

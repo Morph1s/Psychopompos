@@ -4,16 +4,15 @@ extends State
 signal entered_idle
 signal exited_idle
 
-func _ready():
+
+func _ready() -> void:
 	EventBusHandler.end_turn_button_pressed.connect(_on_event_bus_end_turn_button_pressed)
 
-func enter():
+func enter() -> void:
 	entered_idle.emit()
-	print("Entered Idle")
 
-func exit():
+func exit() -> void:
 	exited_idle.emit()
-	print("Exited Idle")
 
 func _on_event_bus_end_turn_button_pressed() -> void:
 	state_machine.transition_to("PlayerEndTurn")

@@ -11,8 +11,9 @@ extends PanelContainer
 	$MarginContainer/CardContainer/Slot2
 ]
 
+const CARD_VISUALIZATION: PackedScene = preload("res://scenes/card/card_visualization.tscn")
+
 const NUM_CARDS: int = 3
-const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
 
 var cards: Array[CardType] = []
 var rarity_distribution: Dictionary[CardType.Rarity, int] = {
@@ -22,12 +23,12 @@ var rarity_distribution: Dictionary[CardType.Rarity, int] = {
 }
 
 
-func initialize():
+func initialize() -> void:
 	_create_cards()
 	_fill_cards_panel()
 
 func _fill_cards_panel() -> void:
-	for i in card_slots.size():
+	for i: int in card_slots.size():
 		var card: CardType = cards[i]
 		if card:
 			var card_visual: CardVisualization = CARD_VISUALIZATION.instantiate()
@@ -63,18 +64,18 @@ func _on_card_selected(card: CardType, scene: CardVisualization) -> void:
 	packs_panel.update_price_tags()
 
 func _create_cards() -> void:
-	var new_cards := DeckHandler.get_card_selection(NUM_CARDS, rarity_distribution)
-	for card in new_cards:
+	var new_cards: Array[CardType] = DeckHandler.get_card_selection(NUM_CARDS, rarity_distribution)
+	for card: CardType in new_cards:
 		cards.append(card)
 
-func update_price_tags():
+func update_price_tags() -> void:
 	for card_visual: Control in card_container.get_children():
 		if card_visual.get_children().size() > 0:
 			card_visual.get_child(0).update_price_tag()
 
-func _on_card_show_tooltip(data: Array[TooltipData]):
+func _on_card_show_tooltip(data: Array[TooltipData]) -> void:
 	tooltip.load_tooltips(data)
 	tooltip.show()
 
-func _on_card_hide_tooltip():
+func _on_card_hide_tooltip() -> void:
 	tooltip.hide()

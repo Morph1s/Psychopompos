@@ -3,12 +3,12 @@ extends ColorRect
 
 signal cards_selected(cards: Array[CardType], card_visuals: Array[CardVisualization])
 
-const CARD_VISUALIZATION = preload("res://scenes/card/card_visualization.tscn")
-
 @onready var card_container: HBoxContainer = $HorizontalContainer/CardContainer
 @onready var tooltip: Tooltip = $Tooltip
 @onready var select_cards_button: Button = $HorizontalContainer/ButtonContainer/SelectCards
 @onready var header: Label = $HorizontalContainer/Header
+
+const CARD_VISUALIZATION: PackedScene = preload("res://scenes/card/card_visualization.tscn")
 
 var selected_cards: Array[CardType] = []
 var selected_card_visuals: Array[CardVisualization] = []
@@ -16,7 +16,7 @@ var num_cards_to_choose: int
 
 
 func initialize(cards: Array[CardType], choosable_count: int = 1) -> void:
-	for child in card_container.get_children():
+	for child: CardVisualization in card_container.get_children():
 		child.queue_free()
 	
 	selected_cards = []
@@ -26,15 +26,14 @@ func initialize(cards: Array[CardType], choosable_count: int = 1) -> void:
 	header.text = _set_header(choosable_count)
 	num_cards_to_choose = choosable_count
 	
-	for card in cards:
+	for card: CardType in cards:
 		if card:
-			var card_reward_scene = CARD_VISUALIZATION.instantiate()
+			var card_reward_scene: CardVisualization = CARD_VISUALIZATION.instantiate()
 			card_reward_scene.initialize(card)
 			card_reward_scene.card_selected.connect(_on_card_reward_scene_card_selected)
 			card_reward_scene.show_tooltip.connect(_on_card_show_tooltip)
 			card_reward_scene.hide_tooltip.connect(_on_card_hide_tooltip)
 			card_container.add_child(card_reward_scene)
-
 
 func _on_card_reward_scene_card_selected(card: CardType, scene: CardVisualization) -> void:
 	if not selected_cards.has(card):
@@ -63,7 +62,7 @@ func _set_header(card_count: int) -> String:
 		return "SELECT A CARD"
 	return str("SELECT ", card_count, " CARDS")
 
-func _on_skip_cards_button_up():
+func _on_skip_cards_button_up() -> void:
 	selected_cards = []
 	selected_card_visuals = []
 	cards_selected.emit(selected_cards, selected_card_visuals)
