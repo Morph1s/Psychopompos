@@ -4,10 +4,10 @@ extends Action
 enum SpecialEffects {
 	ERIS,
 	THANATOS,
-	POSEIDON,	
+	POSEIDON,
 	ZEUS,
 	LIGHTNING,
-  APOLLO,
+	APOLLO,
 }
 
 @export var action_type: SpecialEffects
@@ -31,12 +31,12 @@ func resolve(targets: Array[Node2D]) -> void:
 		SpecialEffects.THANATOS:
 			await _resolve_thanatos()
 		SpecialEffects.POSEIDON:
-			await _resolve_poseidon()		
+			await _resolve_poseidon()
 		SpecialEffects.ZEUS:
 			await _resolve_zeus()
 		SpecialEffects.LIGHTNING:
 			await _resolve_lightning()
-    SpecialEffects.APOLLO:
+		SpecialEffects.APOLLO:
 			await _resolve_apollo()
 
 ## discard 1-5 random cards, then draw 1-5 cards
