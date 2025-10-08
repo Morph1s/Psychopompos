@@ -7,6 +7,7 @@ enum SpecialEffects {
 	POSEIDON,
 	ZEUS,
 	LIGHTNING,
+	APOLLO,
 }
 
 @export var action_type: SpecialEffects
@@ -35,6 +36,8 @@ func resolve(targets: Array[Node2D]) -> void:
 			await _resolve_zeus()
 		SpecialEffects.LIGHTNING:
 			await _resolve_lightning()
+		SpecialEffects.APOLLO:
+			await _resolve_apollo()
 
 ## discard 1-5 random cards, then draw 1-5 cards
 func _resolve_eris() -> void:
@@ -104,3 +107,7 @@ func _resolve_lightning() -> void:
 		enemy.take_damage(rng.randi_range(2, 5))
 	else:
 		printerr("Wrong node in node group! Node: " + enemy.to_string())
+
+## heal 10 hp
+func _resolve_apollo() -> void:
+	player.stats.current_hitpoints += 10

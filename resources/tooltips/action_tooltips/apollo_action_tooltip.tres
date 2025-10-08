@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TooltipData" load_steps=3 format=3 uid="uid://lho2msy4mqs0"]
+
+[ext_resource type="Texture2D" uid="uid://d1bqrn8lo3bu8" path="res://assets/graphics/battle_effects/borderless/effect_apollo_borderless.png" id="1_k5eys"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="2_4xl16"]
+
+[resource]
+script = ExtResource("2_4xl16")
+icon = ExtResource("1_k5eys")
+description_pre_value = "Heal 10 hp"
+use_value = false
+default_value = 1
+dynamic_plural = false
+hide_value_when_singular = false
+singular = ""
+description_after_value = ""
+metadata/_custom_type_script = "uid://dwi74aotc4cae"
