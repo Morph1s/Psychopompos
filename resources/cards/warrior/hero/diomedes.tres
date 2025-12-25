@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=13 format=3 uid="uid://b7hpmjvn4olpm"]
+
+[ext_resource type="Texture2D" uid="uid://5h3fm2svfixd" path="res://assets/graphics/cards/card_effect_discard.png" id="1_fvvrb"]
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="1_l3d27"]
+[ext_resource type="Script" uid="uid://4vek3hvofbhy" path="res://scripts/custom_resources/card_type.gd" id="2_5fi84"]
+[ext_resource type="Script" uid="uid://dwi74aotc4cae" path="res://scripts/custom_resources/tooltip_data.gd" id="3_6maph"]
+[ext_resource type="Script" uid="uid://d3tfuhm4icnum" path="res://scripts/custom_resources/card_manipulation_action.gd" id="3_yh8x6"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="4_pd6qd"]
+[ext_resource type="Texture2D" uid="uid://b1spuda58w0c0" path="res://assets/graphics/cards/card_effect_attack.png" id="6_axkr4"]
+[ext_resource type="Texture2D" uid="uid://bcf3j1rvt7qub" path="res://assets/graphics/cards/placeholder.png" id="7_rsfyg"]
+[ext_resource type="Resource" uid="uid://djm0xrjedkx5" path="res://resources/tooltips/action_tooltips/attack_tooltip.tres" id="9_spm5j"]
+[ext_resource type="Resource" uid="uid://btlkn3ixxbdps" path="res://resources/tooltips/action_tooltips/discard_random_tooltip.tres" id="10_ddl3k"]
+
+[sub_resource type="Resource" id="Resource_kwc1r"]
+script = ExtResource("3_yh8x6")
+card_action = 1
+count = 1
+metadata/_custom_type_script = "uid://d3tfuhm4icnum"
+
+[sub_resource type="Resource" id="Resource_ojsfc"]
+script = ExtResource("4_pd6qd")
+damage_stat = 16
+target_type = 1
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[resource]
+script = ExtResource("2_5fi84")
+card_name = "diomedes"
+energy_cost = 1
+rarity = 2
+texture = ExtResource("7_rsfyg")
+on_play_action = Array[ExtResource("1_l3d27")]([SubResource("Resource_kwc1r"), SubResource("Resource_ojsfc")])
+on_graveyard_action = Array[ExtResource("1_l3d27")]([])
+targeted = true
+first_description_icon = ExtResource("1_fvvrb")
+first_description_text_value = "1"
+first_description_text_addon = ""
+second_description_icon = ExtResource("6_axkr4")
+second_description_text_value = "16"
+second_description_text_addon = ""
+tooltips = Array[ExtResource("3_6maph")]([ExtResource("10_ddl3k"), ExtResource("9_spm5j")])
+metadata/_custom_type_script = "uid://4vek3hvofbhy"
