@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=20 format=3 uid="uid://c5rawnbtiy7y7"]
+
+[ext_resource type="Script" uid="uid://djsgq2wlihskl" path="res://scripts/custom_resources/enemy_action.gd" id="1_acp5n"]
+[ext_resource type="Script" uid="uid://bq170hnpyow8i" path="res://scripts/custom_resources/enemy_stats.gd" id="2_5b78p"]
+[ext_resource type="Script" uid="uid://b6oq0afvg0fhl" path="res://scripts/custom_resources/action.gd" id="2_20ce0"]
+[ext_resource type="Script" uid="uid://gsab2qn21okq" path="res://scripts/custom_resources/attack_action.gd" id="3_i7tdt"]
+[ext_resource type="Texture2D" uid="uid://oh6gua1uyaj6" path="res://assets/graphics/enemies/intents/intent_damage.png" id="4_huwmh"]
+[ext_resource type="Script" uid="uid://2e4l2jfud28l" path="res://scripts/custom_resources/effect_action.gd" id="5_31ojm"]
+[ext_resource type="Script" uid="uid://riw8fvdo6pdh" path="res://scripts/custom_resources/defend_action.gd" id="6_0dfjf"]
+[ext_resource type="Texture2D" uid="uid://jpitba6gq5tt" path="res://assets/graphics/enemies/intents/intent_block.png" id="7_xqpkl"]
+[ext_resource type="Texture2D" uid="uid://iuh6i3lik22h" path="res://assets/graphics/enemies/placeholder_enemy.png" id="8_q6ge6"]
+
+[sub_resource type="Resource" id="Resource_vq4mn"]
+script = ExtResource("3_i7tdt")
+damage_stat = 6
+target_type = 0
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_nmsux"]
+script = ExtResource("3_i7tdt")
+damage_stat = 6
+target_type = 0
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_i2pj5"]
+script = ExtResource("3_i7tdt")
+damage_stat = 6
+target_type = 0
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_55v4y"]
+script = ExtResource("1_acp5n")
+intent_sprite = ExtResource("4_huwmh")
+value = 6
+count = 3
+action_catalogue = Array[ExtResource("2_20ce0")]([SubResource("Resource_vq4mn"), SubResource("Resource_nmsux"), SubResource("Resource_i2pj5")])
+metadata/_custom_type_script = "uid://djsgq2wlihskl"
+
+[sub_resource type="Resource" id="Resource_ahswi"]
+script = ExtResource("5_31ojm")
+effect = 8
+effect_value = 1
+target_type = 0
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[sub_resource type="Resource" id="Resource_7s8db"]
+script = ExtResource("3_i7tdt")
+damage_stat = 5
+target_type = 0
+metadata/_custom_type_script = "uid://gsab2qn21okq"
+
+[sub_resource type="Resource" id="Resource_mwidw"]
+script = ExtResource("1_acp5n")
+intent_sprite = ExtResource("4_huwmh")
+value = 5
+count = 1
+action_catalogue = Array[ExtResource("2_20ce0")]([SubResource("Resource_ahswi"), SubResource("Resource_7s8db")])
+metadata/_custom_type_script = "uid://djsgq2wlihskl"
+
+[sub_resource type="Resource" id="Resource_ontdb"]
+script = ExtResource("6_0dfjf")
+block_stat = 8
+target_type = 1
+metadata/_custom_type_script = "uid://riw8fvdo6pdh"
+
+[sub_resource type="Resource" id="Resource_0lrtv"]
+script = ExtResource("5_31ojm")
+effect = 5
+effect_value = 2
+target_type = 1
+metadata/_custom_type_script = "uid://2e4l2jfud28l"
+
+[sub_resource type="Resource" id="Resource_pn03o"]
+script = ExtResource("1_acp5n")
+intent_sprite = ExtResource("7_xqpkl")
+value = 8
+count = 1
+action_catalogue = Array[ExtResource("2_20ce0")]([SubResource("Resource_ontdb"), SubResource("Resource_0lrtv")])
+metadata/_custom_type_script = "uid://djsgq2wlihskl"
+
+[resource]
+script = ExtResource("2_5b78p")
+enemy_sprite = ExtResource("8_q6ge6")
+action_pattern = 0
+actions = Array[ExtResource("1_acp5n")]([SubResource("Resource_55v4y"), SubResource("Resource_mwidw"), SubResource("Resource_pn03o")])
+starting_maximum_hitpoints = 60
+current_hitpoints = 1
+metadata/_custom_type_script = "uid://bq170hnpyow8i"
